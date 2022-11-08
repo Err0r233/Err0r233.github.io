@@ -178,6 +178,12 @@
                     字
                 </li>
                 
+                    <li id="/2022/11/07/Test/" class="leancloud_visitors" data-flag-title="Test">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
             </ul>
         </header>
         <div class="kratos-post-content">
@@ -304,34 +310,38 @@ Hello World test 01:
     </div>
     
     
-        <div id="disqus_thread" class="post-comments lazy-load"></div>
-
+        <div id="v-comments" class="post-comments"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/11/07/Test/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '2022/11/07/Test/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
     var load_comm = () => {
-        if (typeof DISQUS === 'undefined') {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://Err0r.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.url = 'http://example.com/2022/11/07/Test/';  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = '2022/11/07/Test/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                }
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/2022/11/07/Test/'
             });
         }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
     };
-    
 </script>
-<script async id="dsq-count-scr" src="//Err0r.disqus.com/count.js"></script>
 
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script type="text/javascript">
+ jinrishici.load(function(result) {
+     var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+     document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+ })
+</script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
     
 </article>
 
@@ -485,6 +495,8 @@ Hello World test 01:
 </footer>
 </div>
 </div>
+
+
 
         <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
 <script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
