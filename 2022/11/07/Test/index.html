@@ -138,7 +138,7 @@
                 <div class="desc desc2 animate-box">
                     <a href="/">
                         <h2>Err0r233</h2> <br />
-                        <span></span>
+                        <span>Err0r233的个人博客</span>
                     </a>
                 </div>
             </div>
@@ -208,6 +208,8 @@
         <footer class="kratos-entry-footer clearfix">
             
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
                 
                 
                     <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
@@ -301,6 +303,35 @@ Hello World test 01:
         </footer>
     </div>
     
+    
+        <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/11/07/Test/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2022/11/07/Test/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS === 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://Err0r.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2022/11/07/Test/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2022/11/07/Test/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//Err0r.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
 </article>
 
@@ -494,6 +525,8 @@ Hello World test 01:
 <script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
 
 
 
