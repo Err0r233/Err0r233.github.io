@@ -3,7 +3,7 @@
     <head>
   <!-- 元数据 -->
   <meta charset="utf-8">
-  
+  <link rel="icon" href="failure.ico">
   
   <title>标签: Hello WORLD | Err0r233</title>
   <meta name="author" content="Err0r2333" />
@@ -21,8 +21,11 @@
 <meta property="og:url" content="http://example.com/tags/Hello-WORLD/index.html">
 <meta property="og:site_name" content="Err0r233">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/failure.ico">
 <meta property="article:author" content="Err0r2333">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/failure.ico">
+<meta name="twitter:site" content="@Err0r2333">
   
   <!-- 站点验证相关 -->
   
@@ -245,7 +248,7 @@ Hello World test 01:
     <div class="hidden">
         <!-- 加载文章阅读对应的统计功能，评论自带的那种 -->
         
-            <div id="v-comments" class="post-comments"></div>
+            <div id="v-comments" class="post-comments bg-image"></div>
 <script>
     var load_comm = () => {
         const init = () => {
@@ -256,6 +259,7 @@ Hello World test 01:
                 visitor: true,
                 enableQQ: false,
                 path: '/tags/Hello-WORLD/index.html'
+                
             });
         }
         if (typeof Valine === 'undefined') {
@@ -267,13 +271,42 @@ Hello World test 01:
     };
 </script>
 
-<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<script type="text/javascript">
- jinrishici.load(function(result) {
-     var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
-     document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
- })
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
 </script>
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
 
 <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
 
@@ -288,7 +321,9 @@ Hello World test 01:
 
         
 
-                
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
             
 
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
@@ -301,7 +336,7 @@ Hello World test 01:
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/waterchen.webp" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -379,12 +414,12 @@ Hello World test 01:
                     <ul class="kratos-social-icons">
                         
                         
-                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
                         
                         
                         
-                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
-                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
                         
                     </ul>
                     <ul class="kratos-copyright">
@@ -432,7 +467,6 @@ Hello World test 01:
 </footer>
 </div>
 </div>
-
 
 
         <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
