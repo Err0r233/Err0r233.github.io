@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2022-11-13T06:42:49.000Z">
-<meta property="article:modified_time" content="2022-11-13T10:15:04.495Z">
+<meta property="article:modified_time" content="2022-11-13T10:27:12.718Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="SQL_Injection">
 <meta property="article:tag" content="POST">
@@ -180,7 +180,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~7.96K
+                        ~8.78K
                     
                     字
                 </li>
@@ -197,7 +197,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1668334504495"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1668335232718"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -299,7 +299,26 @@
 <img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/6.png" class title="上传木马">
 
 <p>蚁剑连接，找到flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/7.png" class title="蚁剑连接} {%asset_img 8.png 获得flag} ------ ## Really Easy SQL 延时盲注（过滤sleep()，substr()） ------ 输入啥都没反应，由于又是SQL注入，很容易想到延时盲注 提示是insert注入 所以payload的格式有：&#96;0" alt="or payload or">
+<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/7.png" class title="蚁剑连接">
+
+<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/8.png" class title="获得flag">
+
+<hr>
+<h2><span id="really-easy-sql">Really Easy SQL</span></h2><p>延时盲注（过滤sleep()，substr()）</p>
+<hr>
+<p>输入啥都没反应，由于又是SQL注入，很容易想到延时盲注</p>
+<p>提示是insert注入</p>
+<p>所以payload的格式有：<code>0&#39; or payload or&#39; </code></p>
+<p>采用NewStarCTF的延时盲注脚本就可以了</p>
+<p>但是这里直接使用会发现啥也没有，那肯定是过滤了字段</p>
+<p>找了找writeup：</p>
+<p>发现给了黑名单</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$black_list</span>=<span class="keyword">array</span>(<span class="string">&#x27;union&#x27;</span>,<span class="string">&#x27;updatexml&#x27;</span>,<span class="string">&#x27;order&#x27;</span>,<span class="string">&#x27;by&#x27;</span>,<span class="string">&#x27;substr&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;and&#x27;</span>,<span class="string">&#x27;extractvalue&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;join&#x27;</span>,<span class="string">&#x27;alter&#x27;</span>,<span class="string">&#x27;handler&#x27;</span>,<span class="string">&#x27;char&#x27;</span>,<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27;/&#x27;</span>,<span class="string">&#x27;like&#x27;</span>,<span class="string">&#x27;regexp&#x27;</span>,<span class="string">&#x27;offset&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;case&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;hex&#x27;</span>,<span class="string">&#x27;%0&#x27;</span>,<span class="string">&#x27;load&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>过滤sleep和substr</p>
+<p>所以我们的payload修改下，mid能够替换substr，benchmark能替换sleep</p>
+<p>benchmark：让数据库反复多次做一件事，增大延迟（比如执行2500000次的MD5加密）</p>
+<span class="blur">这个benchmark的误差真的太大了，注意使用时按照延迟修改下keep>的参数</span>
 
 <span class="blur">尤其是跑table和column的时候，那个误差，会输出全是~</span>
 
@@ -431,7 +450,7 @@ Misc的话… 之后再看看`;
                     <a class="tag-none-link" href="/tags/POST/" rel="tag">POST</a>, <a class="tag-none-link" href="/tags/RCE/" rel="tag">RCE</a>, <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>, <a class="tag-none-link" href="/tags/Upload/" rel="tag">Upload</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2022-11-13T10:15:04.495Z" itemprop="dateModified">最后编辑：2022-11-13</time>
+                    <time datetime="2022-11-13T10:27:12.718Z" itemprop="dateModified">最后编辑：2022-11-13</time>
                 </div>
             </div>
         </footer>
