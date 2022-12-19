@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2022-12-19T09:37:02.000Z">
-<meta property="article:modified_time" content="2022-12-19T14:11:32.389Z">
+<meta property="article:modified_time" content="2022-12-19T14:18:31.637Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="不务正业">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~2.09K
+                        1057
                     
                     字
                 </li>
@@ -194,7 +194,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1671459092389"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1671459511637"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -210,9 +210,15 @@
 <p>如果平面内一动点与两定点F1、F2的距离之和等于一个常数的轨迹为椭圆</p>
 <img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/1.jpg" class title="证明">
 
-<p>那么我们就有如下的证明过程，假设上面的小圆圆心为O1、大圆圆心为O2，内切球与圆锥的交点为B、C：<br>$$<br>在截口上取一点A（A是在母线上的）,AF_1就是过球 O_2 外一点A做出的切线，C又是切点<br>\则AF_1与AC之间就有：<br>\AF_1 &#x3D; AC<br>\同理可证，BF&#x3D;AB<br>\二者相加即可得到 AF_1 + BF&#x3D;AC+AB&#x3D;BC（定值）<br>$$<br>所以截口曲线便是椭圆</p>
-<h2><span id="0x03-截口曲线离心率的计算">0x03 截口曲线离心率的计算</span></h2><p>离心率计算公式：<br>$$<br>e&#x3D;\frac{c}{a}<br>$$<br>那么我们根据几何关系计算出c和a即可</p>
-<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/2.png" class title="截面图">a
+<p>那么我们就有如下的证明过程，假设上面的小圆圆心为O1、大圆圆心为O2，内切球与圆锥的交点为B、C：</p>
+
+
+<p>所以截口曲线便是椭圆</p>
+<h2><span id="0x03-截口曲线离心率的计算">0x03 截口曲线离心率的计算</span></h2><p>离心率计算公式：</p>
+
+
+<p>那么我们根据几何关系计算出c和a即可</p>
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/2.png" class title="截面图">
 
 <p>为方便计算取其截面图如上，并且添加辅助线后的图如下（辅助线是手动添加的，可能十分不平整）：</p>
 <img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/3.png" class title="辅助线">
@@ -220,16 +226,30 @@
 <p>假设D、E是切点，连接O1F1、O2F2、O1D、O2E</p>
 <p>又作O1G垂直于O2E，垂足为G（O1、F1、G三点并不共线）</p>
 <p>同时设轴线C1C2与平面α的交点为H 夹角为β、与母线的夹角为γ</p>
-<p>由上面的推导可得到：<br>$$<br>DE&#x3D;IF_1+IF_2&#x3D;2a<br>\F_1F_2&#x3D;2c<br>\e&#x3D;\frac{c}{a}&#x3D;\frac{2c}{2a}<br>$$<br>容易证明得到：<br>$$<br>O_1D\perp VE<br>\O_2D\perp VE<br>\\therefore O_1D\parallel O_2E<br>\就容易证明出四边形O_1GED其实是矩形<br>$$<br>就能够将DE转到O1G</p>
+<p>由上面的推导可得到：</p>
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/7.png" class title="证明过程">
+
+<p>容易证明得到：</p>
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/8.png" class title="证明过程">
+
+<p>就能够将DE转到O1G</p>
 <p>接下来提供两种方法（其实二者是一致，实际上只有一种的）：</p>
 <p>（假设圆的半径，O1O2的距离已知）</p>
-<p>法一：<br>$$<br>而F_1F_2又可以由\triangle O_1F_1H与\triangle O_2F_2H相似得到比例关系：<br>\ \begin{cases}<br>\frac{O_1H}{O_2H}&#x3D;\frac{O_1F_1}{O_2F_2}&#x3D;\frac{r_1}{r_2}<br>\r_1+r_2&#x3D;O_1O_2<br>\end{cases}<br>\ 能够求解出O_1H和O_2H的长度，使用勾股定理分别求出F_1H与F_2H的长度<br>\相加即可得到F_1F_2<br>\又由于O_1O_2长度已知，O_1D&#x3D;GE<br>\可以求得O_2G的长度，并使用勾股定理求出O_1G，即可得到2a<br>$$<br>其实细细看来可以进行如下的推导：<br>$$<br>F_1F_2&#x3D;O_1H\cos\beta + O_2H\cos\beta<br>\也就是F_1F_2&#x3D;O_1O_2\cos\beta &#x3D; 2c<br>\O_1G&#x3D;O_1O_2\cos\gamma &#x3D; 2a<br>\ \therefore e&#x3D;\frac{2c}{2a}&#x3D;\frac{\cos\beta}{\cos\gamma}<br>$$<br>这也就是方法二，计算这两个夹角的余弦值即可</p>
+<p>法一：</p>
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/9.png" class title="计算过程">
+
+<p>其实细细看来可以进行如下的推导：</p>
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/10.png" class title="计算过程">
+
+<p>这也就是方法二，计算这两个夹角的余弦值即可</p>
 <p>其实这两个方法确实是一样的（雾</p>
 <hr>
 <p>当然，如果选取的夹角不一样，得到的结论也会略有不同，但是离心率的值仍然是两个角度的比值：</p>
 <p>参考了闲敲棋子落灯hua师傅的文章</p>
 <img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/4.png" class title="投影">
-<p>$$<br>如果我们假设截面与圆锥底面的夹角为\alpha，圆锥母线与地面的夹角为\beta<br>\那么我们仍能够得到DE&#x3D;2a，F_1F_2&#x3D;2c<br>\通过等式关系建立\alpha与\beta的关系有：<br>\DE在轴C_1C_2上的投影&#x3D;IJ在轴上的投影+（JK+ID）在轴上的投影<br>\即：2a\sin\beta&#x3D;2a\sin\alpha+(2a-2c)\sin\beta<br>\整理可得：e&#x3D;\frac{2c}{2a}&#x3D;\frac{\sin\alpha}{\sin\beta}<br>$$</p>
+
+<img src="/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/11.png" class title="计算">
+
 <h2><span id="0x04-小拓展">0x04 小拓展</span></h2><p>由该双球模型得出的离心率的取值是由截面与底面的夹角α决定的（一般认为圆锥固定不变）</p>
 <p>所以截取的角度不同，所得到的圆锥曲线也不同（根据离心率判断即可）</p>
 <p>在某些动点类求轨迹的问题中，也可以通过截面与底面的夹角α，母线与底面的夹角β来确定离心率，从而确定轨迹是何种圆锥曲线</p>
@@ -334,7 +354,7 @@
                     <a class="tag-none-link" href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" rel="tag">不务正业</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2022-12-19T14:11:32.389Z" itemprop="dateModified">最后编辑：2022-12-19</time>
+                    <time datetime="2022-12-19T14:18:31.637Z" itemprop="dateModified">最后编辑：2022-12-19</time>
                 </div>
             </div>
         </footer>
