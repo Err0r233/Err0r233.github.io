@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-03-12T09:49:36.742Z</updated>
+  <updated>2023-04-17T13:49:16.702Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,9 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>flask ssti的新姿势</title>
+    <link href="http://example.com/posts/25410.html"/>
+    <id>http://example.com/posts/25410.html</id>
+    <published>2023-04-16T06:33:25.000Z</published>
+    <updated>2023-04-17T13:49:16.702Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这个题是最新最热的GDOUCTF里面出的一个题&lt;code&gt;&amp;lt;ez_ze&amp;gt;&lt;/code&gt;的姿势&lt;/p&gt;
+&lt;p&gt;偷偷来学一学：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>看看无回显RCE</title>
-    <link href="http://example.com/2023/03/11/%E7%9C%8B%E7%9C%8B%E6%97%A0%E5%9B%9E%E6%98%BERCE/"/>
-    <id>http://example.com/2023/03/11/%E7%9C%8B%E7%9C%8B%E6%97%A0%E5%9B%9E%E6%98%BERCE/</id>
+    <link href="http://example.com/posts/50751.html"/>
+    <id>http://example.com/posts/50751.html</id>
     <published>2023-03-11T08:46:16.000Z</published>
     <updated>2023-03-12T09:49:36.742Z</updated>
     
@@ -37,8 +57,8 @@
   
   <entry>
     <title>一道题学习两个知识点</title>
-    <link href="http://example.com/2023/03/04/%E4%B8%80%E9%81%93%E9%A2%98%E5%AD%A6%E4%B9%A0%E4%B8%A4%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    <id>http://example.com/2023/03/04/%E4%B8%80%E9%81%93%E9%A2%98%E5%AD%A6%E4%B9%A0%E4%B8%A4%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9/</id>
+    <link href="http://example.com/posts/13237.html"/>
+    <id>http://example.com/posts/13237.html</id>
     <published>2023-03-04T05:42:27.000Z</published>
     <updated>2023-03-12T09:43:56.843Z</updated>
     
@@ -73,8 +93,8 @@
   
   <entry>
     <title>看看session.upload_progress</title>
-    <link href="http://example.com/2023/03/04/%E7%9C%8B%E7%9C%8Bsession-upload-progress/"/>
-    <id>http://example.com/2023/03/04/%E7%9C%8B%E7%9C%8Bsession-upload-progress/</id>
+    <link href="http://example.com/posts/42409.html"/>
+    <id>http://example.com/posts/42409.html</id>
     <published>2023-03-04T05:12:51.000Z</published>
     <updated>2023-03-12T09:43:56.844Z</updated>
     
@@ -88,7 +108,7 @@
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;当session.upload_progress.enabled打开的时候（默认为On），我们传入PHP_SESSION_UPLOAD_PROGRESS的时候，php会执行session_start()，这个时候就会绕过没有session的限制&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;然后我就想起来之前session反序列化的时候好像也是用这个session_upload_progress的&lt;/p&gt;
 &lt;p&gt;觉得这个东西挺有用的，就来学习一下&lt;/p&gt;
-&lt;img src=&quot;/2023/03/04/%E7%9C%8B%E7%9C%8Bsession-upload-progress/1.png&quot; class title=&quot;awa&quot;&gt;
+&lt;img src=&quot;/posts/42409/1.png&quot; class title=&quot;awa&quot;&gt;
 &lt;p&gt;&lt;s&gt;还有就是这个了（雾）&lt;/s&gt;&lt;/p&gt;</summary>
     
     
@@ -102,8 +122,8 @@
   
   <entry>
     <title>HSCCTF 2th WriteUp</title>
-    <link href="http://example.com/2023/02/19/HSCCTF-2th-WriteUp/"/>
-    <id>http://example.com/2023/02/19/HSCCTF-2th-WriteUp/</id>
+    <link href="http://example.com/posts/37685.html"/>
+    <id>http://example.com/posts/37685.html</id>
     <published>2023-02-19T03:30:24.000Z</published>
     <updated>2023-03-12T09:43:56.841Z</updated>
     
@@ -121,8 +141,8 @@
   
   <entry>
     <title>CTFShow 菜狗杯</title>
-    <link href="http://example.com/2023/01/29/CTFShow-%E8%8F%9C%E7%8B%97%E6%9D%AF/"/>
-    <id>http://example.com/2023/01/29/CTFShow-%E8%8F%9C%E7%8B%97%E6%9D%AF/</id>
+    <link href="http://example.com/posts/37693.html"/>
+    <id>http://example.com/posts/37693.html</id>
     <published>2023-01-29T03:26:32.000Z</published>
     <updated>2023-03-12T09:43:56.840Z</updated>
     
@@ -140,8 +160,8 @@
   
   <entry>
     <title>看看sql注入</title>
-    <link href="http://example.com/2023/01/10/%E7%9C%8B%E7%9C%8Bsql%E6%B3%A8%E5%85%A5/"/>
-    <id>http://example.com/2023/01/10/%E7%9C%8B%E7%9C%8Bsql%E6%B3%A8%E5%85%A5/</id>
+    <link href="http://example.com/posts/35462.html"/>
+    <id>http://example.com/posts/35462.html</id>
     <published>2023-01-10T02:35:56.000Z</published>
     <updated>2023-03-12T09:43:56.845Z</updated>
     
@@ -159,8 +179,8 @@
   
   <entry>
     <title>NepNep x CatCTF    WriteUp</title>
-    <link href="http://example.com/2023/01/02/NepNep-x-CatCTF-WriteUp/"/>
-    <id>http://example.com/2023/01/02/NepNep-x-CatCTF-WriteUp/</id>
+    <link href="http://example.com/posts/22778.html"/>
+    <id>http://example.com/posts/22778.html</id>
     <published>2023-01-02T03:07:03.000Z</published>
     <updated>2023-03-12T09:43:56.842Z</updated>
     
@@ -178,8 +198,8 @@
   
   <entry>
     <title>Buuoj SSRF Me 题解</title>
-    <link href="http://example.com/2022/12/28/Buuoj-SSRF-Me-%E9%A2%98%E8%A7%A3/"/>
-    <id>http://example.com/2022/12/28/Buuoj-SSRF-Me-%E9%A2%98%E8%A7%A3/</id>
+    <link href="http://example.com/posts/6505.html"/>
+    <id>http://example.com/posts/6505.html</id>
     <published>2022-12-28T03:40:42.000Z</published>
     <updated>2023-03-12T09:43:56.836Z</updated>
     
@@ -197,8 +217,8 @@
   
   <entry>
     <title>Buuoj题目(3)</title>
-    <link href="http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/"/>
-    <id>http://example.com/2022/12/24/Buuoj%E9%A2%98%E7%9B%AE-3/</id>
+    <link href="http://example.com/posts/46695.html"/>
+    <id>http://example.com/posts/46695.html</id>
     <published>2022-12-24T03:28:18.000Z</published>
     <updated>2023-03-12T09:43:56.844Z</updated>
     
@@ -217,8 +237,8 @@
   
   <entry>
     <title>Dandelin双球模型</title>
-    <link href="http://example.com/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://example.com/2022/12/19/Dandelin%E5%8F%8C%E7%90%83%E6%A8%A1%E5%9E%8B/</id>
+    <link href="http://example.com/posts/62938.html"/>
+    <id>http://example.com/posts/62938.html</id>
     <published>2022-12-19T09:37:02.000Z</published>
     <updated>2023-03-12T09:43:56.840Z</updated>
     
@@ -237,10 +257,10 @@
   
   <entry>
     <title>Buuoj题目(2)</title>
-    <link href="http://example.com/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/"/>
-    <id>http://example.com/2022/12/15/Buuoj%E9%A2%98%E7%9B%AE-2/</id>
+    <link href="http://example.com/posts/9830.html"/>
+    <id>http://example.com/posts/9830.html</id>
     <published>2022-12-15T06:43:46.000Z</published>
-    <updated>2023-03-12T09:43:56.838Z</updated>
+    <updated>2023-03-15T08:08:17.461Z</updated>
     
     
     <summary type="html">&lt;p&gt;做做buuoj上的web题，本萌新纯采集，轻喷（（（&lt;/p&gt;</summary>
@@ -256,8 +276,8 @@
   
   <entry>
     <title>Buuoj题目(1)</title>
-    <link href="http://example.com/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/"/>
-    <id>http://example.com/2022/12/09/Buuoj%E9%A2%98%E7%9B%AE-1/</id>
+    <link href="http://example.com/posts/54886.html"/>
+    <id>http://example.com/posts/54886.html</id>
     <published>2022-12-09T02:44:14.000Z</published>
     <updated>2023-03-12T09:43:56.837Z</updated>
     
@@ -275,8 +295,8 @@
   
   <entry>
     <title>AuroraCTF Write Up</title>
-    <link href="http://example.com/2022/12/03/AuroraCTF-Write-Up/"/>
-    <id>http://example.com/2022/12/03/AuroraCTF-Write-Up/</id>
+    <link href="http://example.com/posts/1516.html"/>
+    <id>http://example.com/posts/1516.html</id>
     <published>2022-12-03T13:10:01.000Z</published>
     <updated>2023-03-12T09:43:56.836Z</updated>
     
@@ -297,8 +317,8 @@
   
   <entry>
     <title>简单看看无数字字母RCE</title>
-    <link href="http://example.com/2022/11/19/%E7%AE%80%E5%8D%95%E7%9C%8B%E7%9C%8B%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8DRCE/"/>
-    <id>http://example.com/2022/11/19/%E7%AE%80%E5%8D%95%E7%9C%8B%E7%9C%8B%E6%97%A0%E6%95%B0%E5%AD%97%E5%AD%97%E6%AF%8DRCE/</id>
+    <link href="http://example.com/posts/47468.html"/>
+    <id>http://example.com/posts/47468.html</id>
     <published>2022-11-19T04:54:29.000Z</published>
     <updated>2023-03-12T09:43:56.846Z</updated>
     
@@ -316,8 +336,8 @@
   
   <entry>
     <title>Dest0g3 520 迎新赛部分write up</title>
-    <link href="http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/"/>
-    <id>http://example.com/2022/11/13/Dest0g3-520-%E8%BF%8E%E6%96%B0%E8%B5%9B%E9%83%A8%E5%88%86write-up/</id>
+    <link href="http://example.com/posts/32534.html"/>
+    <id>http://example.com/posts/32534.html</id>
     <published>2022-11-13T06:42:49.000Z</published>
     <updated>2023-03-12T09:43:56.839Z</updated>
     
@@ -344,8 +364,8 @@
   
   <entry>
     <title>看看蚁剑流量包</title>
-    <link href="http://example.com/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/"/>
-    <id>http://example.com/2022/11/10/%E7%9C%8B%E7%9C%8B%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%8C%85/</id>
+    <link href="http://example.com/posts/39070.html"/>
+    <id>http://example.com/posts/39070.html</id>
     <published>2022-11-10T15:37:24.000Z</published>
     <updated>2023-03-12T09:43:56.845Z</updated>
     
@@ -366,8 +386,8 @@
   
   <entry>
     <title>Buuoj Hack World 题解</title>
-    <link href="http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/"/>
-    <id>http://example.com/2022/11/09/Buuoj-Hack-World-%E9%A2%98%E8%A7%A3/</id>
+    <link href="http://example.com/posts/60450.html"/>
+    <id>http://example.com/posts/60450.html</id>
     <published>2022-11-09T05:08:46.000Z</published>
     <updated>2023-03-12T09:43:56.833Z</updated>
     
@@ -387,8 +407,8 @@
   
   <entry>
     <title>NewStarCTF SQL注入题</title>
-    <link href="http://example.com/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/"/>
-    <id>http://example.com/2022/11/08/NewStarCTF-SQL%E6%B3%A8%E5%85%A5%E9%A2%98/</id>
+    <link href="http://example.com/posts/40736.html"/>
+    <id>http://example.com/posts/40736.html</id>
     <published>2022-11-08T07:24:09.000Z</published>
     <updated>2023-03-12T09:43:56.842Z</updated>
     
@@ -409,8 +429,8 @@
   
   <entry>
     <title>About Me</title>
-    <link href="http://example.com/2022/11/07/Test/"/>
-    <id>http://example.com/2022/11/07/Test/</id>
+    <link href="http://example.com/posts/61421.html"/>
+    <id>http://example.com/posts/61421.html</id>
     <published>2022-11-07T14:27:49.000Z</published>
     <updated>2023-03-12T09:43:56.843Z</updated>
     
@@ -423,25 +443,6 @@
     
     
     <category term="Introduce_Myself" scheme="http://example.com/tags/Introduce-Myself/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Buuoj题目(4)</title>
-    <link href="http://example.com/2022/02/01/Buuoj%E9%A2%98%E7%9B%AE-4/"/>
-    <id>http://example.com/2022/02/01/Buuoj%E9%A2%98%E7%9B%AE-4/</id>
-    <published>2022-02-01T03:28:18.000Z</published>
-    <updated>2023-03-12T09:43:56.838Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;做做buuoj上的web题，本萌新纯采集，轻喷（（（&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   
