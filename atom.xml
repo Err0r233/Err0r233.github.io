@@ -373,9 +373,9 @@
     
     <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
     
-    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
     <category term="POST" scheme="http://example.com/tags/POST/"/>
+    
+    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
     
     <category term="Upload" scheme="http://example.com/tags/Upload/"/>
     
