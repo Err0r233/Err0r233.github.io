@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-01T12:44:14.620Z</updated>
+  <updated>2023-06-04T14:04:01.235Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSS Round 13</title>
+    <link href="http://example.com/posts/4670.html"/>
+    <id>http://example.com/posts/4670.html</id>
+    <published>2023-06-04T09:52:00.000Z</published>
+    <updated>2023-06-04T14:04:01.235Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;是赛后靠wp自己复现的，可以划走了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>CISCN 2022 online_crt题解</title>
@@ -420,27 +439,6 @@
     <category term="POST" scheme="http://example.com/tags/POST/"/>
     
     <category term="Misc" scheme="http://example.com/tags/Misc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Buuoj Hack World 题解</title>
-    <link href="http://example.com/posts/60450.html"/>
-    <id>http://example.com/posts/60450.html</id>
-    <published>2022-11-09T05:08:46.000Z</published>
-    <updated>2023-03-12T09:43:56.833Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;续接上文&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
-    
-    
-    <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
-    
-    <category term="POST" scheme="http://example.com/tags/POST/"/>
     
   </entry>
   
