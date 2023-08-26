@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-04T14:17:13.336Z</updated>
+  <updated>2023-08-26T04:25:25.769Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Inject Me 题解</title>
+    <link href="http://example.com/posts/57648.html"/>
+    <id>http://example.com/posts/57648.html</id>
+    <published>2023-08-26T01:40:04.000Z</published>
+    <updated>2023-08-26T04:25:25.769Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;一道来自CNSS Summer的java题&lt;/p&gt;
+&lt;p&gt;笨人也是最近才刚刚开始学习java，所以写得比较菜。而且说是题解，但是因为自己没有vps的原因，自己也做不完后面的内容&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    <category term="java" scheme="http://example.com/categories/CTF/java/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>NSS Round 13</title>
@@ -412,33 +434,11 @@
     
     <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
     
+    <category term="POST" scheme="http://example.com/tags/POST/"/>
+    
     <category term="RCE" scheme="http://example.com/tags/RCE/"/>
     
-    <category term="POST" scheme="http://example.com/tags/POST/"/>
-    
     <category term="Upload" scheme="http://example.com/tags/Upload/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>看看蚁剑流量包</title>
-    <link href="http://example.com/posts/39070.html"/>
-    <id>http://example.com/posts/39070.html</id>
-    <published>2022-11-10T15:37:24.000Z</published>
-    <updated>2023-03-12T09:43:56.845Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今天来看看Misc（雾）&lt;/p&gt;
-&lt;p&gt;只是简单的看一下蚁剑上传的包被wireshark抓包以后的形式&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Misc" scheme="http://example.com/categories/CTF-Misc/"/>
-    
-    
-    <category term="POST" scheme="http://example.com/tags/POST/"/>
-    
-    <category term="Misc" scheme="http://example.com/tags/Misc/"/>
     
   </entry>
   
