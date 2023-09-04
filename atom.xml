@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-26T04:31:15.337Z</updated>
+  <updated>2023-09-04T13:56:07.782Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>羊城杯的一些题解及体会</title>
+    <link href="http://example.com/posts/10145.html"/>
+    <id>http://example.com/posts/10145.html</id>
+    <published>2023-09-04T09:57:26.000Z</published>
+    <updated>2023-09-04T13:56:07.782Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;打了羊城杯，自我感觉难的挺合理:(&lt;/p&gt;
+&lt;p&gt;不过我觉得了解到题目出/考的是什么才是重要的:(&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>Inject Me 题解</title>
@@ -411,34 +431,6 @@
     
     
     <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dest0g3 520 迎新赛部分write up</title>
-    <link href="http://example.com/posts/32534.html"/>
-    <id>http://example.com/posts/32534.html</id>
-    <published>2022-11-13T06:42:49.000Z</published>
-    <updated>2023-03-12T09:43:56.839Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;你管这叫迎新赛…&lt;/p&gt;
-&lt;p&gt;猛新啊，那没事了。&lt;/p&gt;
-&lt;p&gt;只有自己不会做的世界达成了&lt;/p&gt;
-&lt;p&gt;Misc的话… 之后再看看&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
-    
-    
-    <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
-    
-    <category term="POST" scheme="http://example.com/tags/POST/"/>
-    
-    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
-    <category term="Upload" scheme="http://example.com/tags/Upload/"/>
     
   </entry>
   
