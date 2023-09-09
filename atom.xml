@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-09T07:49:38.245Z</updated>
+  <updated>2023-09-09T08:20:26.522Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/42279.html"/>
     <id>http://example.com/posts/42279.html</id>
     <published>2023-09-09T04:48:14.000Z</published>
-    <updated>2023-09-09T07:49:38.245Z</updated>
+    <updated>2023-09-09T08:20:26.522Z</updated>
     
     
     <summary type="html">&lt;p&gt;整理一下有关服务端模板注入(&lt;code&gt;s&lt;/code&gt;erver &lt;code&gt;s&lt;/code&gt;ide &lt;code&gt;t&lt;/code&gt;emplate &lt;code&gt;i&lt;/code&gt;njection)的东西&lt;/p&gt;</summary>
