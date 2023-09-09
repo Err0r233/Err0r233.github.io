@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-04T13:57:09.597Z</updated>
+  <updated>2023-09-09T07:49:38.245Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>看看ssti</title>
+    <link href="http://example.com/posts/42279.html"/>
+    <id>http://example.com/posts/42279.html</id>
+    <published>2023-09-09T04:48:14.000Z</published>
+    <updated>2023-09-09T07:49:38.245Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;整理一下有关服务端模板注入(&lt;code&gt;s&lt;/code&gt;erver &lt;code&gt;s&lt;/code&gt;ide &lt;code&gt;t&lt;/code&gt;emplate &lt;code&gt;i&lt;/code&gt;njection)的东西&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>羊城杯的一些题解及体会</title>
@@ -410,25 +429,6 @@
     
     
     <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
-    
-    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单看看无数字字母RCE</title>
-    <link href="http://example.com/posts/47468.html"/>
-    <id>http://example.com/posts/47468.html</id>
-    <published>2022-11-19T04:54:29.000Z</published>
-    <updated>2023-03-12T09:43:56.846Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;这两天一直在看的玩意，原来我已经菜到啥也不会了，qwq。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
-    
     
     <category term="RCE" scheme="http://example.com/tags/RCE/"/>
     
