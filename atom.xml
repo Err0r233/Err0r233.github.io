@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-14T05:00:20.856Z</updated>
+  <updated>2023-10-29T13:08:36.178Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Phar反序列化</title>
+    <link href="http://example.com/posts/42785.html"/>
+    <id>http://example.com/posts/42785.html</id>
+    <published>2023-10-29T13:05:27.000Z</published>
+    <updated>2023-10-29T13:08:36.178Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关Phar反序列化的内容&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
     <title>看看ssti</title>
     <link href="http://example.com/posts/42279.html"/>
     <id>http://example.com/posts/42279.html</id>
     <published>2023-09-09T04:48:14.000Z</published>
-    <updated>2023-09-14T05:00:20.856Z</updated>
+    <updated>2023-10-17T11:29:32.443Z</updated>
     
     
     <summary type="html">&lt;p&gt;整理一下有关服务端模板注入(&lt;code&gt;s&lt;/code&gt;erver &lt;code&gt;s&lt;/code&gt;ide &lt;code&gt;t&lt;/code&gt;emplate &lt;code&gt;i&lt;/code&gt;njection)的东西&lt;/p&gt;</summary>
@@ -409,27 +428,6 @@
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AuroraCTF Write Up</title>
-    <link href="http://example.com/posts/1516.html"/>
-    <id>http://example.com/posts/1516.html</id>
-    <published>2022-12-03T13:10:01.000Z</published>
-    <updated>2023-09-16T06:42:13.369Z</updated>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    <category term="CTF WriteUp" scheme="http://example.com/categories/CTF-WriteUp/"/>
-    
-    
-    <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
-    
-    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
     
   </entry>
   
