@@ -24,8 +24,8 @@
 <meta property="og:description" content="有关Phar反序列化的内容">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
-<meta property="article:published_time" content="2023-10-29T13:05:27.000Z">
-<meta property="article:modified_time" content="2023-10-29T13:08:36.178Z">
+<meta property="article:published_time" content="2023-10-31T10:46:27.000Z">
+<meta property="article:modified_time" content="2023-10-31T10:47:14.229Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -170,7 +170,7 @@
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-10-29T13:05:27.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-10-29</time></li>
+                <li><time datetime="2023-10-31T10:46:27.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-10-31</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
                 </li>
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~10.78K
+                        ~11.75K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1698584916178"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1698749234229"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -276,6 +276,29 @@
 <p>此时获得了phar的数据流，假设记为B：</p>
 <p>此时我们只需要</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$time</span> = <span class="title function_ invoke__">time</span>();</span><br><span class="line"><span class="variable">$logger</span> = <span class="keyword">new</span> <span class="title class_">Logger</span>(<span class="string">&quot;log/info.log&quot;</span>,<span class="string">&quot;Close at <span class="subst">$time</span>&quot;</span>);</span><br><span class="line"><span class="variable">$fileName</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;file&#x27;</span>]; <span class="comment">//第一步随便写，第二步 phar://log/info.log</span></span><br><span class="line"><span class="variable">$userName</span> = <span class="variable">$_POST</span>[<span class="string">&quot;name&quot;</span>] ?? <span class="string">&quot;nothing&quot;</span>; <span class="comment">//第一步，phar数据流，第二步随便写</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">file_exists</span>(<span class="variable">$fileName</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;File exists&quot;</span>;</span><br><span class="line">    <span class="variable">$logger</span>-&gt;<span class="title function_ invoke__">info</span>(<span class="string">&quot;<span class="subst">$userName</span>&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;File does not exist&quot;</span>;</span><br><span class="line">    <span class="variable">$logger</span>-&gt;<span class="title function_ invoke__">info</span>(<span class="string">&quot;<span class="subst">$userName</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="一些php反序列化的tricks"> 一些php反序列化的tricks</span></h1>
+<h2><span id="绕过wakeup"> 绕过wakeup</span></h2>
+<p>老生常谈的绕过wakeup</p>
+<p>可以看看大师傅的博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.viewofthai.link/2022/11/08/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B9%8B%E7%BB%95%E8%BF%87wakeup/">php反序列化之绕过wakeup – View of Thai</a></p>
+<p>当然也可以直接利用<code>cve-2016-7124</code>(就是最常用的绕过destruct方法)</p>
+<h2><span id="绕过throw-error异常抛出"> 绕过throw Error异常抛出</span></h2>
+<p>利用gc垃圾回收机制，<code>gc</code>又叫<code>garbage collection</code>，在php中使用引用奇数和回收周期来自动管理内容</p>
+<p>当一些数据或者变量在进行某些操作后被置为空(<code>null</code>)或者是没有地址的指向时，一旦这些数据被回收，就相当于给一个程序的结尾划上了句号，那么久不会出现无法调用<code>__destruct</code>方法了</p>
+<h3><span id="利用"> 利用</span></h3>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    exp here</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> A;</span><br><span class="line"><span class="comment">//pop chains here;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span> = <span class="keyword">array</span>(<span class="number">0</span>=&gt;<span class="variable">$a</span>, <span class="number">1</span>=&gt;<span class="literal">null</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$c</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;i:1&quot;</span>, <span class="string">&quot;i:0&quot;</span>, <span class="variable">$result</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$result</span>;</span><br><span class="line"><span class="comment">//echo urlencode($result);</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里需要引入null，此时反序列化中的结果有两个，一个是i=0，另一个是i=1，此时i=1为null，i=0为我们的对象，如果将i=1修改成i=0，就可以将i=0指向null，实现gc回收</p>
+</blockquote>
+<h2><span id="绕过一些正则匹配表达式"> 绕过一些正则匹配表达式</span></h2>
+<p>反序列化中，以下两个payload等价：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0:4:&quot;test&quot;:1:s:1:&quot;a&quot;;s:4:&quot;flag&quot;;&#125;</span><br><span class="line"></span><br><span class="line">0:4:&quot;test:1:(s:1:&quot;a&quot;;5:4:”\66lag&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>利用十六进制绕过即可</p>
+<p>比如说：</p>
+<p>绕过</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/flag/i&quot;</span>, <span class="variable">$str</span>))&#123;</span><br><span class="line">    <span class="title function_ invoke__">unserialize</span>(<span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时就可以利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0:4:&quot;test:1:(s:1:&quot;a&quot;;5:4:”\66lag&quot;;&#125;</span><br></pre></td></tr></table></figure>
 </div>
         </div>
         
@@ -367,7 +390,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-10-29T13:08:36.178Z" itemprop="dateModified">最后编辑：2023-10-29</time>
+                    <time datetime="2023-10-31T10:47:14.229Z" itemprop="dateModified">最后编辑：2023-10-31</time>
                 </div>
             </div>
         </footer>
@@ -376,7 +399,7 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 看看ssti" href="/posts/42279.html">&lt; 上一篇</a>
+                <a title=" 文件上传" href="/posts/11796.html">&lt; 上一篇</a>
             </div>
             
             
@@ -480,7 +503,7 @@
                 文章
             </span>
             <span class="count">
-                28
+                30
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -507,7 +530,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">3</span></li></ul>
   </aside>
 
 
@@ -516,7 +539,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.67em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.67em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.73em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.6em;">基础漏洞</a>
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.7em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.7em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.75em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.65em;">基础漏洞</a>
       </div>
   </aside>
 
@@ -536,6 +559,18 @@
         
           
           
+            <a class="list-group-item" href="/posts/11796.html"><i class="fa  fa-book"></i> 文件上传</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/3072.html"><i class="fa  fa-book"></i> php伪协议</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/posts/42279.html"><i class="fa  fa-book"></i> 看看ssti</a>
             
           
@@ -547,17 +582,9 @@
           
         
           
-          
-            <a class="list-group-item" href="/posts/57648.html"><i class="fa  fa-book"></i> Inject Me 题解</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/posts/4670.html"><i class="fa  fa-book"></i> NSS Round 13</a>
             
-          
-        
           
             
           

