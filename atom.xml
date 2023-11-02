@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-31T10:47:14.229Z</updated>
+  <updated>2023-11-02T05:35:35.494Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php特性</title>
+    <link href="http://example.com/posts/21053.html"/>
+    <id>http://example.com/posts/21053.html</id>
+    <published>2023-11-02T05:31:15.000Z</published>
+    <updated>2023-11-02T05:35:35.494Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关php的一些特性&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>Phar反序列化</title>
@@ -40,7 +59,7 @@
     <link href="http://example.com/posts/11796.html"/>
     <id>http://example.com/posts/11796.html</id>
     <published>2023-10-31T10:43:58.000Z</published>
-    <updated>2023-10-31T10:45:48.229Z</updated>
+    <updated>2023-11-02T05:34:08.600Z</updated>
     
     
     <summary type="html">&lt;p&gt;有关php文件上传的一些特性&lt;/p&gt;</summary>
@@ -59,7 +78,7 @@
     <link href="http://example.com/posts/3072.html"/>
     <id>http://example.com/posts/3072.html</id>
     <published>2023-10-31T10:43:51.000Z</published>
-    <updated>2023-10-31T10:47:47.669Z</updated>
+    <updated>2023-10-31T10:48:05.862Z</updated>
     
     
     <summary type="html">&lt;p&gt;有关php伪协议的一些特性&lt;/p&gt;</summary>
@@ -78,7 +97,7 @@
     <link href="http://example.com/posts/42279.html"/>
     <id>http://example.com/posts/42279.html</id>
     <published>2023-09-09T04:48:14.000Z</published>
-    <updated>2023-10-17T11:29:32.443Z</updated>
+    <updated>2023-11-02T06:01:12.868Z</updated>
     
     
     <summary type="html">&lt;p&gt;整理一下有关服务端模板注入(&lt;code&gt;s&lt;/code&gt;erver &lt;code&gt;s&lt;/code&gt;ide &lt;code&gt;t&lt;/code&gt;emplate &lt;code&gt;i&lt;/code&gt;njection)的东西&lt;/p&gt;</summary>
@@ -408,26 +427,6 @@
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dandelin双球模型</title>
-    <link href="http://example.com/posts/62938.html"/>
-    <id>http://example.com/posts/62938.html</id>
-    <published>2022-12-19T09:37:02.000Z</published>
-    <updated>2023-03-12T09:43:56.840Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;最近有个小朋友问我Dandelin用来证明一个平面截圆锥得到的截口曲线是椭圆的模型的题咋做的，我一看，我大意了，不会做…&lt;/p&gt;
-&lt;p&gt;所以直接去网上百度一下，水了一篇博客出来&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="不务正业系列" scheme="http://example.com/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/"/>
-    
-    
-    <category term="不务正业" scheme="http://example.com/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/"/>
     
   </entry>
   
