@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-11-02T05:35:35.494Z</updated>
+  <updated>2023-11-07T09:58:10.101Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>rce</title>
+    <link href="http://example.com/posts/49224.html"/>
+    <id>http://example.com/posts/49224.html</id>
+    <published>2023-11-07T09:56:28.000Z</published>
+    <updated>2023-11-07T09:58:10.101Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关一些php和linux命令执行的知识&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件包含</title>
+    <link href="http://example.com/posts/59563.html"/>
+    <id>http://example.com/posts/59563.html</id>
+    <published>2023-11-07T09:52:32.000Z</published>
+    <updated>2023-11-07T09:56:12.785Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关文件包含的一些知识&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单看看无数字字母RCE</title>
+    <link href="http://example.com/posts/47468.html"/>
+    <id>http://example.com/posts/47468.html</id>
+    <published>2023-11-06T04:54:29.000Z</published>
+    <updated>2023-11-07T09:54:47.271Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这两天一直在看的玩意，原来我已经菜到啥也不会了，qwq。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>php特性</title>
     <link href="http://example.com/posts/21053.html"/>
     <id>http://example.com/posts/21053.html</id>
     <published>2023-11-02T05:31:15.000Z</published>
-    <updated>2023-11-02T05:35:35.494Z</updated>
+    <updated>2023-11-07T09:55:31.260Z</updated>
     
     
     <summary type="html">&lt;p&gt;有关php的一些特性&lt;/p&gt;</summary>
@@ -291,7 +348,7 @@
     <link href="http://example.com/posts/42409.html"/>
     <id>http://example.com/posts/42409.html</id>
     <published>2023-03-04T05:12:51.000Z</published>
-    <updated>2023-03-12T09:43:56.844Z</updated>
+    <updated>2023-11-03T07:23:51.375Z</updated>
     
     
     <summary type="html">&lt;p&gt;这个东西让我印象挺深刻的（&lt;/p&gt;
@@ -369,64 +426,6 @@
     
     
     <category term="SQL_Injection" scheme="http://example.com/tags/SQL-Injection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NepNep x CatCTF    WriteUp</title>
-    <link href="http://example.com/posts/22778.html"/>
-    <id>http://example.com/posts/22778.html</id>
-    <published>2023-01-02T03:07:03.000Z</published>
-    <updated>2023-03-12T09:43:56.842Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;又是被虐爆的一天，太难了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF WriteUp" scheme="http://example.com/categories/CTF-WriteUp/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Buuoj SSRF Me 题解</title>
-    <link href="http://example.com/posts/6505.html"/>
-    <id>http://example.com/posts/6505.html</id>
-    <published>2022-12-28T03:40:42.000Z</published>
-    <updated>2023-03-12T09:43:56.836Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;昨天做到的一个很好的题目（个人觉得），写出来给大家看看（&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Buuoj题目(3)</title>
-    <link href="http://example.com/posts/46695.html"/>
-    <id>http://example.com/posts/46695.html</id>
-    <published>2022-12-24T03:28:18.000Z</published>
-    <updated>2023-03-12T09:43:56.844Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;做做buuoj上的web题，本萌新纯采集，轻喷（（（&lt;/p&gt;
-&lt;p&gt;没想到这个连续剧居然做到第三集了（？&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   
