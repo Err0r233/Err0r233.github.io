@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-08T05:31:20.000Z">
-<meta property="article:modified_time" content="2023-11-08T05:46:39.203Z">
+<meta property="article:modified_time" content="2023-11-08T05:54:33.879Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~5.10K
+                        ~6.08K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1699422399203"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1699422873879"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -258,43 +258,7 @@
 <li>环境变量拼接</li>
 </ul>
 <p>ctfshow web 118：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&#123;PWD&#125; 表示当前所在的目录 如果是靶机的话一般是/var/www/html</span><br><span class="line">$&#123;#PWD&#125; 13 表示当前目录字符串的长度</span><br><span class="line">$&#123;PWD:~3&#125; html 代表从最后开始向前保留3位(从0开始计数)</span><br><span class="line">$&#123;PWD:3&#125; r/www/html 代表从第三位开始截取到最后</span><br><span class="line">$&#123;PWD:3:1&#125; r 从第三位开始截取长度为1的字符串</span><br><span class="line">$&#123;PWD:~A&#125; l 这里的A代表1、B代表2...</span><br><span class="line">$&#123;SHLVL:~A&#125; 1 用于数字1</span><br><span class="line">$&#123;#RANDOM&#125; 返回1、2、3、4、5中的一个随机值，因为$&#123;RANDOM&#125;会返回0-32767的一个随机值，此时会返回其长度，当然只有1-5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th>结果</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>$&#123;PWD&#125;</code></td>
-<td>/var/www/html</td>
-<td>表示当前所在的目录 如果是靶机的话一般是/var/www/html</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>$</code></td>
-<td>1</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>$&#123;HOME&#125;</code></td>
-<td>/root</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>$?</code></td>
-<td>0或1</td>
-<td>上一条指令执行成功返回0，失败返回1</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;A</code></td>
-<td>报错</td>
-<td>配合$?返回1</td>
-</tr>
-</tbody>
-</table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">|     指令     | 结果              | 解释                                                 |</span><br><span class="line">|   $&#123;PWD&#125;    | /var/www/html     | 表示当前所在的目录 如果是靶机的话一般是/var/www/html |</span><br><span class="line">|   $&#123;#PWD&#125;   | 13                | 返回当前目录的字符串长度                             |</span><br><span class="line">|  $&#123;PWD:~3&#125;  | html              | 代表从最后开始向前保留3(从0开始)                     |</span><br><span class="line">|  $&#123;PWD:3&#125;   | r/www/html        | 从第三位开始截取到最后                               |</span><br><span class="line">| $&#123;PWD:3:1&#125;  | r                 | 从第三位开始截取长度为1的字符串                      |</span><br><span class="line">|  $&#123;PWD:~A&#125;  | l                 | 作用同$&#123;PWD:~1&#125;，此时A相当于1，同理，B相当于2...     |</span><br><span class="line">| $&#123;SHLVL:~A&#125; | 1                 | 用于返回数字1                                        |</span><br><span class="line">|  $&#123;#SHLVL&#125;  | 1                 | 用于返回数字1                                        |</span><br><span class="line">| $&#123;#RANDOM&#125;  | 1-5中的随机一个数 	  | random返回0-32767，#random返回其长度                 |</span><br><span class="line">| $&#123;PATH&#125;     | n     			  | 一般是指根目录下的bin目录          |</span><br><span class="line">| $&#123;#TERM&#125;    | 14    			  | 返回xterm-256color的长度           |</span><br><span class="line">| $&#123;##RANDOM&#125; | 1     			  | 返回随机数的长度的长度，只能是1    |</span><br><span class="line">| $&#123;#IFS&#125;     | 3     		      | IFS的长度当然是3                   |</span><br><span class="line">| $&#123;#?&#125;       | 3     		      |                                    |</span><br><span class="line">| $&#123;##&#125;       | 1     		      |                                    |</span><br><span class="line">| $&#123;HOME&#125;     | /root 		      |                                    |</span><br><span class="line">| $?          | 0或1  		     | 上一条指令执行成功返回0，失败返回1 |</span><br><span class="line">| &lt;A          | 报错  		     | 配合$?返回1                        |</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -509,7 +473,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-11-08T05:46:39.203Z" itemprop="dateModified">最后编辑：2023-11-08</time>
+                    <time datetime="2023-11-08T05:54:33.879Z" itemprop="dateModified">最后编辑：2023-11-08</time>
                 </div>
             </div>
         </footer>
