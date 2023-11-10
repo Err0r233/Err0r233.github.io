@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-07T09:56:28.000Z">
-<meta property="article:modified_time" content="2023-11-08T05:32:44.956Z">
+<meta property="article:modified_time" content="2023-11-10T04:54:29.219Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1699421564956"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1699592069219"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -471,10 +471,10 @@
 </ol>
 </blockquote>
 <p>所以这题的解法就是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. title=sh&amp;data=1</span><br><span class="line">2. title=t&amp;data=nl /*</span><br><span class="line">3. title=;*&amp;data=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. title=sh&amp;data=1</span><br><span class="line">2. title=t&amp;data=nl /*</span><br><span class="line">3. title=w;*&amp;data</span><br></pre></td></tr></table></figure>
 <p>这样子的话第一步会生成一个<code>sh</code>的文件名，我们只需要其文件名</p>
 <p>第二步会生成一个<code>t</code>的文件名(确保其ls之后在<code>sh</code>之后)，我们只需要其内容</p>
-<p>第三步闭合前面的php，利用<code>*</code>直接能够执行<code>sh t</code></p>
+<p>第三步用<code>w</code>闭合前面的php，分号分割后利用<code>*</code>直接能够执行<code>sh t</code></p>
 <p>此时相当于执行<code>nl /*</code>，自然能读到flag</p>
 <p>另外一种解法就是利用数组绕过长度限制，直接执行命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title[]=123&amp;data[]=&lt;?=`nl /f*`;</span><br></pre></td></tr></table></figure>
@@ -570,7 +570,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-11-08T05:32:44.956Z" itemprop="dateModified">最后编辑：2023-11-08</time>
+                    <time datetime="2023-11-10T04:54:29.219Z" itemprop="dateModified">最后编辑：2023-11-10</time>
                 </div>
             </div>
         </footer>
