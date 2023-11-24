@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-02T05:31:15.000Z">
-<meta property="article:modified_time" content="2023-11-10T05:38:47.858Z">
+<meta property="article:modified_time" content="2023-11-24T03:11:06.549Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~56.74K
+                        ~57.99K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1699594727858"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1700795466549"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -813,6 +813,13 @@
 <p>经过parse_str():</p>
 <p>会变成<code>$_POST[key1]=123</code></p>
 <p>再经过extract(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mi>P</mi></msub><mi>O</mi><mi>S</mi><mi>T</mi><mo stretchy="false">)</mo><mtext>后，会变成</mtext><mi mathvariant="normal">‘</mi></mrow><annotation encoding="application/x-tex">_POST)后，会变成`</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mord cjk_fallback">后</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">会</span><span class="mord cjk_fallback">变</span><span class="mord cjk_fallback">成</span><span class="mord">‘</span></span></span></span>key1=123`</p>
+<h3><span id="extract_post"> extract($_POST)</span></h3>
+<p>能够将POST传入的变量覆盖掉，甚至能够用于一些登录的情况：</p>
+<p>例如下面这个代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$mode</span> == <span class="string">&#x27;changepassword&#x27;</span>)&#123;</span><br><span class="line">		<span class="title function_ invoke__">extract</span>(<span class="variable">$_POST</span>);</span><br><span class="line">        <span class="variable">$u</span> = <span class="variable">$_SESSION</span>[<span class="string">&#x27;admin&#x27;</span>];<span class="comment">//限制</span></span><br><span class="line">        <span class="variable">$sql</span> = <span class="string">&quot;select username, password from user where username = &#x27;<span class="subst">$u</span>&#x27;&quot;</span>;</span><br><span class="line">        <span class="variable">$requ</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$rs</span> = <span class="title function_ invoke__">mysqli_fetch_array</span>(<span class="variable">$requ</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$r</span>=<span class="title class_">PasswordStorage</span>::<span class="title function_ invoke__">verify_password</span>(<span class="variable">$oldp</span>, <span class="variable">$rs</span>[<span class="string">&#x27;password&#x27;</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$r</span>)&#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里如果利用<code>POST</code>传参：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_SESSION[admin]=admin</span><br></pre></td></tr></table></figure>
+<p>就能够将<code>$u</code>的值修改为admin</p>
 <h2><span id="evalreturn类问题"> eval(“return”)类问题</span></h2>
 <p>对于这类问题，需要我们绕过return</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$code</span> =  <span class="keyword">eval</span>(<span class="string">&quot;return <span class="subst">$v1</span><span class="subst">$v3</span><span class="subst">$v2</span>;&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$v1</span><span class="subst">$v3</span><span class="subst">$v2</span> = &quot;</span>.<span class="variable">$code</span>;</span><br></pre></td></tr></table></figure>
@@ -853,6 +860,12 @@
 <p>绕过方式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">255</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">basename</span>(<span class="string">&quot;test/&quot;</span>.<span class="title function_ invoke__">chr</span>(i))===<span class="string">&#x27;test&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;%&#x27;</span>.<span class="title function_ invoke__">dechex</span>(<span class="variable">$i</span>).<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也就是说<code>test.php/%88</code> =&gt; <code>test.php</code></p>
+<h2><span id="取地址问题"> 取地址问题</span></h2>
+<p>有的时候需要你输入的一个字符串与随机生成的一个字符串相等时，如果发现爆破十分困难，不妨试试让他们的地址相等：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$secret</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$key</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$characters</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyz0123456789&#x27;</span>;</span><br><span class="line">        <span class="variable">$randomString</span> = <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">str_shuffle</span>(<span class="variable">$characters</span>),<span class="number">0</span>,<span class="number">6</span>);</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;secret = <span class="variable">$randomString</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;key === <span class="variable language_">$this</span>-&gt;secret)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You Win&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;NONONO&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&quot;1&quot;</span>]);</span><br></pre></td></tr></table></figure>
+<p>这里能够碰撞相等的概率非常之低，我们可以利用<code>&amp;</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> A;</span><br><span class="line"><span class="variable">$a</span>-&gt;key = &amp;<span class="variable">$a</span>-&gt;secret;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就能使它们两个相等了</p>
 </div>
         </div>
         
@@ -944,7 +957,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-11-10T05:38:47.858Z" itemprop="dateModified">最后编辑：2023-11-10</time>
+                    <time datetime="2023-11-24T03:11:06.549Z" itemprop="dateModified">最后编辑：2023-11-24</time>
                 </div>
             </div>
         </footer>
