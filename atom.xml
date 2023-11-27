@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-11-27T11:15:46.796Z</updated>
+  <updated>2023-11-27T15:11:06.465Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/27273.html"/>
     <id>http://example.com/posts/27273.html</id>
     <published>2023-11-27T11:14:03.000Z</published>
-    <updated>2023-11-27T11:15:46.796Z</updated>
+    <updated>2023-11-27T15:11:06.465Z</updated>
     
     
     <summary type="html">&lt;p&gt;看看redis的一些东西&lt;/p&gt;</summary>
@@ -40,7 +40,7 @@
     <link href="http://example.com/posts/28032.html"/>
     <id>http://example.com/posts/28032.html</id>
     <published>2023-11-27T11:10:37.000Z</published>
-    <updated>2023-11-27T11:13:53.224Z</updated>
+    <updated>2023-11-27T11:16:00.290Z</updated>
     
     
     <summary type="html">&lt;p&gt;二次校验，又或者是有关quine的东西&lt;/p&gt;</summary>
@@ -59,7 +59,7 @@
     <link href="http://example.com/posts/36166.html"/>
     <id>http://example.com/posts/36166.html</id>
     <published>2023-11-27T11:09:12.000Z</published>
-    <updated>2023-11-27T11:10:07.541Z</updated>
+    <updated>2023-11-27T11:16:00.285Z</updated>
     
     
     <summary type="html">&lt;p&gt;利用groupby + rand的特性进行报错注入&lt;/p&gt;</summary>
@@ -78,7 +78,7 @@
     <link href="http://example.com/posts/62892.html"/>
     <id>http://example.com/posts/62892.html</id>
     <published>2023-11-27T11:07:51.000Z</published>
-    <updated>2023-11-27T11:08:53.867Z</updated>
+    <updated>2023-11-27T11:16:00.287Z</updated>
     
     
     <summary type="html">&lt;p&gt;看看mssql的一些特性：&lt;/p&gt;</summary>
@@ -97,7 +97,7 @@
     <link href="http://example.com/posts/55683.html"/>
     <id>http://example.com/posts/55683.html</id>
     <published>2023-11-27T10:56:20.000Z</published>
-    <updated>2023-11-27T11:06:59.185Z</updated>
+    <updated>2023-11-27T11:16:00.288Z</updated>
     
     
     <summary type="html">&lt;p&gt;pgsql注入的一些方式&lt;/p&gt;</summary>
