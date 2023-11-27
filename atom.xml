@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-11-08T05:54:33.879Z</updated>
+  <updated>2023-11-27T11:15:46.796Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,101 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis</title>
+    <link href="http://example.com/posts/27273.html"/>
+    <id>http://example.com/posts/27273.html</id>
+    <published>2023-11-27T11:14:03.000Z</published>
+    <updated>2023-11-27T11:15:46.796Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;看看redis的一些东西&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二次校验</title>
+    <link href="http://example.com/posts/28032.html"/>
+    <id>http://example.com/posts/28032.html</id>
+    <published>2023-11-27T11:10:37.000Z</published>
+    <updated>2023-11-27T11:13:53.224Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;二次校验，又或者是有关quine的东西&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>groupby + rand报错注入</title>
+    <link href="http://example.com/posts/36166.html"/>
+    <id>http://example.com/posts/36166.html</id>
+    <published>2023-11-27T11:09:12.000Z</published>
+    <updated>2023-11-27T11:10:07.541Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;利用groupby + rand的特性进行报错注入&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mssql注入</title>
+    <link href="http://example.com/posts/62892.html"/>
+    <id>http://example.com/posts/62892.html</id>
+    <published>2023-11-27T11:07:51.000Z</published>
+    <updated>2023-11-27T11:08:53.867Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;看看mssql的一些特性：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pgsql注入</title>
+    <link href="http://example.com/posts/55683.html"/>
+    <id>http://example.com/posts/55683.html</id>
+    <published>2023-11-27T10:56:20.000Z</published>
+    <updated>2023-11-27T11:06:59.185Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;pgsql注入的一些方式&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>rce(下)</title>
@@ -302,128 +397,6 @@
     
     
     <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>看看无回显RCE</title>
-    <link href="http://example.com/posts/50751.html"/>
-    <id>http://example.com/posts/50751.html</id>
-    <published>2023-03-11T08:46:16.000Z</published>
-    <updated>2023-03-12T09:49:36.742Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;学到了一点点新东西：&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
-    
-    
-    <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一道题学习两个知识点</title>
-    <link href="http://example.com/posts/13237.html"/>
-    <id>http://example.com/posts/13237.html</id>
-    <published>2023-03-04T05:42:27.000Z</published>
-    <updated>2023-03-12T09:43:56.843Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;说点题外话，就是今年的安洵杯老逆天了这件事&lt;/p&gt;
-&lt;p&gt;其实我连账号都没有的（（ 懒狗本质，懒得去注册账号&lt;/p&gt;
-&lt;p&gt;然后看到群里发的比赛链接，欸，怎么连都进不去&lt;/p&gt;
-&lt;p&gt;容器环境也打不开… 还是得靠thai神&lt;/p&gt;
-&lt;p&gt;然后thai神光速做完web1下班，后面就没见到题目解了= =&lt;/p&gt;
-&lt;p&gt;额，这段话的意思就是很离谱，只能打开第一题的环境…&lt;/p&gt;
-&lt;p&gt;后面就更搞笑了&lt;/p&gt;
-&lt;p&gt;比赛直接给paused了，笑死&lt;/p&gt;
-&lt;p&gt;然后群里都在说这一届安洵杯就是个离谱杯&lt;/p&gt;
-&lt;p&gt;知乎一看：&lt;/p&gt;
-&lt;p&gt;Web： 5秒最多10次请求 开局500 公共环境静态flag&lt;/p&gt;
-&lt;p&gt;Misc：套题&lt;/p&gt;
-&lt;p&gt;Crypto： misc &lt;s&gt;简单的密码学不给附件&lt;/s&gt;&lt;/p&gt;
-&lt;p&gt;re：原题&lt;/p&gt;
-&lt;p&gt;甚至没有pwn&lt;/p&gt;
-&lt;p&gt;&lt;s&gt;甚至还有开盒，收集学生信息&lt;/s&gt;&lt;/p&gt;
-&lt;p&gt;不过知乎说他们没少看p神文章还挺对的&lt;/p&gt;
-&lt;p&gt;web 1 就考的两篇p神的文章((&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>看看session.upload_progress</title>
-    <link href="http://example.com/posts/42409.html"/>
-    <id>http://example.com/posts/42409.html</id>
-    <published>2023-03-04T05:12:51.000Z</published>
-    <updated>2023-11-03T07:23:51.375Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;这个东西让我印象挺深刻的（&lt;/p&gt;
-&lt;p&gt;最近一次接触还是在一道SQL注入的题目：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;[PwnThyBytes2019] BabySQL&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;由于login.php没有session存在的时候就不能访问，并且无法注入&lt;/p&gt;
-&lt;p&gt;所以这时候就需要我们自己创造一个session&lt;/p&gt;
-&lt;p&gt;所以session_upload_progress在这里就派上用场了&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;当session.upload_progress.enabled打开的时候（默认为On），我们传入PHP_SESSION_UPLOAD_PROGRESS的时候，php会执行session_start()，这个时候就会绕过没有session的限制&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后我就想起来之前session反序列化的时候好像也是用这个session_upload_progress的&lt;/p&gt;
-&lt;p&gt;觉得这个东西挺有用的，就来学习一下&lt;/p&gt;
-&lt;img src=&quot;/posts/42409/1.png&quot; class title=&quot;awa&quot;&gt;
-&lt;p&gt;&lt;s&gt;还有就是这个了（雾）&lt;/s&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HSCCTF 2th WriteUp</title>
-    <link href="http://example.com/posts/37685.html"/>
-    <id>http://example.com/posts/37685.html</id>
-    <published>2023-02-19T03:30:24.000Z</published>
-    <updated>2023-03-12T09:43:56.841Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;又被薄纱了，哈哈哈&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF WriteUp" scheme="http://example.com/categories/CTF-WriteUp/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CTFShow 菜狗杯</title>
-    <link href="http://example.com/posts/37693.html"/>
-    <id>http://example.com/posts/37693.html</id>
-    <published>2023-01-29T03:26:32.000Z</published>
-    <updated>2023-03-12T09:43:56.840Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;做做菜狗杯的题（主要是web）&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web WriteUp" scheme="http://example.com/categories/CTF-Web-WriteUp/"/>
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
