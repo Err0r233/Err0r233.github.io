@@ -16,16 +16,16 @@
   
     <meta name="keywords" content="Java" />
   
-  <meta name="description" content="ajasdasd askdnaskdjaslkjd as das dasd asd as das das das java comon collections反序列化的第一条链 cc1">
+  <meta name="description" content="java comon collections反序列化的第一条链 cc1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java反序列化 CC1">
 <meta property="og:url" content="http://example.com/posts/26875.html">
 <meta property="og:site_name" content="Err0r233">
-<meta property="og:description" content="ajasdasd askdnaskdjaslkjd as das dasd asd as das das das java comon collections反序列化的第一条链 cc1">
+<meta property="og:description" content="java comon collections反序列化的第一条链 cc1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-02-02T04:31:55.000Z">
-<meta property="article:modified_time" content="2024-02-02T04:54:02.277Z">
+<meta property="article:modified_time" content="2024-02-03T03:41:44.253Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~10.29K
+                        ~10.23K
                     
                     字
                 </li>
@@ -195,21 +195,17 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1706849642277"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1706931704253"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><p>ajasdasd askdnaskdjaslkjd as</p>
-<p>das dasd asd as</p>
-<p>das</p>
-<p>das das</p>
-<p>java comon collections反序列化的第一条链 cc1</p>
+            <div itemprop="articleBody"><p>java comon collections反序列化的第一条链 cc1</p>
 <span id="more"></span>
 <h1><span id="cc1"> CC1</span></h1>
 <p>java反序列化CommonsCollections手写exp</p>
-<p>CC1链，可以看**<code>白日梦组长</code>**大佬的视频，讲得很详细，多看几遍肯定能看懂</p>
+<p>CC1链，可以看<strong>白日梦组长</strong>大佬的视频，讲得很详细，多看几遍肯定能看懂</p>
 <h2><span id="前置知识"> 前置知识</span></h2>
 <p>众所周知(?)，java的反序列化是建立在反序列化时自动执行<code>readObject</code>方法的，所以我们只需要找到能够执行恶意代码的方法，然后倒推回有<code>readObject</code>入口类的方法(前提当然是他们都是实现<code>serializable</code>的，如果没有，要用反射获取)</p>
 <h2><span id="版本问题"> 版本问题</span></h2>
@@ -306,13 +302,13 @@
 <p>成功弹出计算器</p>
 <p>继续往回找符合Entry遍历并且调用<code>setValue</code>方法的方法，并且最好是回到入口的<code>readObject</code></p>
 <p>此时找到了<code>AnnotationInvocationHandler</code>内的<code>readObject</code>利用了该方法</p>
-<img src="/posts/undefined/image-20240131121721379.png" class title="uwu">
+<img src="/posts/26875/image-20240131121721379.png" class title="uwu">
 <p>跟进发现完全符合我们要求：</p>
-<img src="/posts/undefined/image-20240131121747855.png" class title="vwv">
+<img src="/posts/26875/image-20240131121747855.png" class title="vwv">
 <p>其中这个memberValues是我们可控的</p>
-<img src="/posts/undefined/image-20240131121806713.png" class title="www">
+<img src="/posts/26875/image-20240131121806713.png" class title="www">
 <p>看看其构造函数：</p>
-<img src="/posts/undefined/image-20240131121952721.png" class title="xwx">
+<img src="/posts/26875/image-20240131121952721.png" class title="xwx">
 <p>里一个Class类型，一个Map类型</p>
 <p>其中Class类型是需要继承<code>Annotation</code>的</p>
 <p>Annotation其实就是我们平时经常写的那种<code>@Override</code>那样的注解</p>
@@ -324,12 +320,12 @@
 <ul>
 <li>仔细想想就知道我们setValue的时候需要传入那个<code>runtime</code>对象，但是这里似乎是被限制了：</li>
 </ul>
-<img src="/posts/undefined/image-20240131122700805.png" class title="ywy">
+<img src="/posts/26875/image-20240131122700805.png" class title="ywy">
 <ul>
 <li>Runtime没有实现<code>Serializable</code>，所以我们还需要利用反射获取到runtime</li>
 <li>readObject还需要满足两个if条件才能到<code>setValue</code>：</li>
 </ul>
-<img src="/posts/undefined/image-20240131122842526.png" class title="zwz">
+<img src="/posts/26875/image-20240131122842526.png" class title="zwz">
 <h3><span id="反射获取runtime"> 反射获取runtime</span></h3>
 <p>接下来我们修改一下获得Runtime：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">clz</span> <span class="operator">=</span> Runtime.class;</span><br><span class="line">        <span class="type">Method</span> <span class="variable">getRuntimeM</span> <span class="operator">=</span> clz.getMethod(<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="type">Runtime</span> <span class="variable">r</span> <span class="operator">=</span> (Runtime) getRuntimeM.invoke(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="type">Method</span> <span class="variable">execM</span> <span class="operator">=</span>  clz.getMethod(<span class="string">&quot;exec&quot;</span>, String.class);</span><br><span class="line"></span><br><span class="line">        execM.invoke(r, <span class="string">&quot;calc&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -338,14 +334,14 @@
 <p>是通过传入的Object来获取其反射，然后根据传入的方法名、参数类型、参数来执行该方法(<code>a.b(参数)</code>)</p>
 <p>首先利用<code>InvokerTransformer</code>实现<code>getRuntime</code></p>
 <p>就是利用<code>getMethod</code>来实现的，所以我们去查看一下getMethod的参数类型：</p>
-<img src="/posts/undefined/image-20240131124259878.png" class title="zwz">
+<img src="/posts/26875/image-20240131124259878.png" class title="zwz">
 <p>一个<code>String</code>，一个<code>Class</code>数组</p>
 <p><code>InvokerTransformer</code>的Object数组填的是参数，这里其实就是<code>getRuntime</code>，getRuntime的参数是null</p>
 <p>那就可以写出：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Method</span> <span class="variable">getRuntimeM</span> <span class="operator">=</span> (Method) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;getMethod&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class, Class[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>&#125;).transform(Runtime.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接下来实现invoke</p>
 <p>理解这个<code>transform(a)</code>其实就是<code>a. b(参数)</code>的时候就很容易写了</p>
-<img src="/posts/undefined/image-20240131124850774.png" class title="awa">
+<img src="/posts/26875/image-20240131124850774.png" class title="awa">
 <p>invoke是一个Object，一个Object数组，而且我们的两个参数都是null</p>
 <p>此时我们就获得了<code>Runtime r</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Runtime</span> <span class="variable">r</span> <span class="operator">=</span> (Runtime) <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;invoke&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class, Object[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="literal">null</span>, <span class="literal">null</span>&#125;).transform(getRuntimeM);</span><br></pre></td></tr></table></figure>
@@ -357,46 +353,46 @@
 <p>可以看到这三行总是利用前一个的值作为后一个transform方法的参数</p>
 <p>所以我们利用<code>ChainedTransformer</code>进行简化</p>
 <p>查看ChainedTransformer的方法</p>
-<img src="/posts/undefined/image-20240131125959260.png" class title="bwb">
+<img src="/posts/26875/image-20240131125959260.png" class title="bwb">
 <p>只需要传入Object就可以了，这个Object就是我们方法的开始，也就是<code>Runtime.class</code></p>
 <p>简化后变成：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Transformer[] transformers = <span class="keyword">new</span> <span class="title class_">Transformer</span>[]&#123;</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;getMethod&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class, Class[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>&#125;),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;invoke&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class, Object[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="literal">null</span>, <span class="literal">null</span>&#125;),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;exec&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;calc&quot;</span>&#125;)</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="type">ChainedTransformer</span> <span class="variable">chainedTransformer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChainedTransformer</span>(transformers);</span><br><span class="line">        chainedTransformer.transform(Runtime.class);</span><br></pre></td></tr></table></figure>
 <h3><span id="补全并解决其他的问题"> 补全并解决其他的问题</span></h3>
 <p>重新往下走，补全之前的TransformedMap：</p>
-<img src="/posts/undefined/image-20240131130530377.png" class title="cwc">
+<img src="/posts/26875/image-20240131130530377.png" class title="cwc">
 <p>发现其实还是不能够成功</p>
 <p>这里debug一下，先看一下是不是没进到if</p>
-<img src="/posts/undefined/image-20240131131156270.png" class title="dwd">
+<img src="/posts/26875/image-20240131131156270.png" class title="dwd">
 <p>可以看到Map里面是<code>key=&gt;value</code></p>
 <p>getKey之后是<code>key</code></p>
 <p>但是<code>memberType</code>里面却是<code>null</code>，导致我们进入不了<code>if</code></p>
 <p>往回看<code>memberType</code>是个什么东西：</p>
 <p>是一个叫<code>MemberTypes</code>的<code>Map</code>根据<code>getKey</code>之后获取的名字来获取到的结果</p>
-<img src="/posts/undefined/image-20240131131457056.png" class title="ewe">
+<img src="/posts/26875/image-20240131131457056.png" class title="ewe">
 <p>往回跟memberTypes</p>
-<img src="/posts/undefined/image-20240131131524475.png" class title="fwf">
+<img src="/posts/26875/image-20240131131524475.png" class title="fwf">
 <p>发现他是一个<code>AnnotationType.getInstance(type)</code></p>
 <p>也就是它会根据注解的类型来获取到它的成员变量/方法</p>
 <p>我们写的注解是<code>Override</code>，看一下<code>Override</code></p>
-<img src="/posts/undefined/image-20240131131953919.png" class title="gwg">
+<img src="/posts/26875/image-20240131131953919.png" class title="gwg">
 <p>Override是没有成员变量/方法的</p>
 <p>所以我们改一下，改成有的：</p>
-<img src="/posts/undefined/image-20240131132132096.png" class title="hwh">
+<img src="/posts/26875/image-20240131132132096.png" class title="hwh">
 <p>比如Target就有一个</p>
 <p>我们改成Target.class</p>
 <p>此时还需要满足根据Map的key来查找它</p>
 <p>所以将Map的key值改成<code>value</code></p>
-<img src="/posts/undefined/image-20240131132532062.png" class title="iwi">
+<img src="/posts/26875/image-20240131132532062.png" class title="iwi">
 <p>再debug一下发现已经不是null了</p>
-<img src="/posts/undefined/image-20240131132840463.png" class title="jwj">
+<img src="/posts/26875/image-20240131132840463.png" class title="jwj">
 <p>然后进入到第二个if:</p>
-<img src="/posts/undefined/image-20240131132857847.png" class title="kwk">
+<img src="/posts/26875/image-20240131132857847.png" class title="kwk">
 <p>这个<code>isInstance</code>的意思就是判断对象是否是参数本身或者父类</p>
 <p>也就是memberType是否是value本身或者父类</p>
 <p>我们的value传的是aaa，所以肯定不是memberType的本身或者父类</p>
 <p>直接进入到下面的<code>setValue</code></p>
 <p>跟进发现问题：</p>
-<img src="/posts/undefined/image-20240131133515884.png" class title="lwl">
+<img src="/posts/26875/image-20240131133515884.png" class title="lwl">
 <p>我们传入的Object是一个<code>Proxy</code></p>
 <p>也就是setValue那的一个不可控的东西，导致我们失败</p>
 <p>此时该怎么办呢</p>
@@ -404,7 +400,7 @@
 <p>ConstantTransformer无论传入什么返回的都是一个常量</p>
 <p>我们可以利用它传入一个<code>Proxy</code>，返回的常量就是我们的<code>Runtime.class</code></p>
 <p>只需要在ChainedTransformer数组里的第一项添加即可</p>
-<img src="/posts/undefined/image-20240131133752158.png" class title="mwm">
+<img src="/posts/26875/image-20240131133752158.png" class title="mwm">
 <p>构造方法如上</p>
 <p>很简单，只需要将Transformer数组修改成：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Transformer[] transformers = <span class="keyword">new</span> <span class="title class_">Transformer</span>[]&#123;</span><br><span class="line">               <span class="keyword">new</span> <span class="title class_">ConstantTransformer</span>(Runtime.class),</span><br><span class="line">               <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;getMethod&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class, Class[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>&#125;),</span><br><span class="line">               <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;invoke&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class, Object[].class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="literal">null</span>, <span class="literal">null</span>&#125;),</span><br><span class="line">               <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(<span class="string">&quot;exec&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class&#125;, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;calc&quot;</span>&#125;)</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
@@ -485,11 +481,7 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://example.com/posts/26875.html";
             const title         = "「java反序列化 CC1」";
-            const excerpt       = `ajasdasd askdnaskdjaslkjd as
-das dasd asd as
-das
-das das
-java comon collections反序列化的第一条链 cc1`;
+            const excerpt       = `java comon collections反序列化的第一条链 cc1`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -511,7 +503,7 @@ java comon collections反序列化的第一条链 cc1`;
                     <a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-02-02T04:54:02.277Z" itemprop="dateModified">最后编辑：2024-02-02</time>
+                    <time datetime="2024-02-03T03:41:44.253Z" itemprop="dateModified">最后编辑：2024-02-03</time>
                 </div>
             </div>
         </footer>
