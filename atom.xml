@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-02-13T03:14:38.615Z</updated>
+  <updated>2024-03-09T11:59:21.531Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单看看环境变量劫持</title>
+    <link href="http://example.com/posts/13343.html"/>
+    <id>http://example.com/posts/13343.html</id>
+    <published>2024-03-07T13:15:31.000Z</published>
+    <updated>2024-03-09T11:59:21.531Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;建立在他人文章基础上的文章，简单看看环境变量带来的提权/劫持&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>opcache缓存getshell学习</title>
@@ -372,26 +389,6 @@
     
     
     <summary type="html">&lt;p&gt;是赛后靠wp自己复现的，可以划走了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CISCN 2022 online_crt题解</title>
-    <link href="http://example.com/posts/28425.html"/>
-    <id>http://example.com/posts/28425.html</id>
-    <published>2023-06-01T11:23:27.000Z</published>
-    <updated>2023-06-01T12:44:14.620Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;又是go和python的结合啊（（&lt;/p&gt;
-&lt;p&gt;今年的CISCN好像也有一道go+python的(go_session)&lt;/p&gt;</summary>
     
     
     
