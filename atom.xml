@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-09T11:59:21.531Z</updated>
+  <updated>2024-03-09T11:59:48.188Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/13343.html"/>
     <id>http://example.com/posts/13343.html</id>
     <published>2024-03-07T13:15:31.000Z</published>
-    <updated>2024-03-09T11:59:21.531Z</updated>
+    <updated>2024-03-09T11:59:48.188Z</updated>
     
     
     <summary type="html">&lt;p&gt;建立在他人文章基础上的文章，简单看看环境变量带来的提权/劫持&lt;/p&gt;</summary>

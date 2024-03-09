@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-03-07T13:15:31.000Z">
-<meta property="article:modified_time" content="2024-03-09T11:59:21.531Z">
+<meta property="article:modified_time" content="2024-03-09T11:59:48.188Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1709985561531"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1709985588188"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -265,41 +265,41 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o random random.c</span><br></pre></td></tr></table></figure>
 <p>执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./random</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/13343/1.png" class title="awa">
 <p>写了一个urandom.c，覆盖了random.c里的rand()函数</p>
 <p>用下面的方式编译成<code>.so</code>文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC urandom.c -o urandom.so</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/2.png" class title="awa">
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/13343/2.png" class title="awa">
+<img src="/posts/13343/3.png" class title="awa">
 <p>此时再执行一次random：</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/13343/4.png" class title="awa">
 <p>他就会返回的都是我们urandom设定好的666</p>
 <p>利用ldd命令可以查看可执行文件加载的动态库优先顺序：</p>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/13343/5.png" class title="awa">
 <p>可以看到如果我们指定了<code>LD_PRELOAD=urandom.so</code>，<a target="_blank" rel="noopener" href="http://xn--lddsourandom-k86seds3id1sozbhwk8r6b8yjtyvp3ag83d12fyn6g37hzqjia610by76ix6te.so">使用ldd时可以看到所加载的so有我们自己实现的urandom.so</a>，由于加载顺序最高，所以优先使用<code>urandom.so</code>中的rand函数(libc.so.6是默认的动态链接库)</p>
 <h2><span id="利用"> 利用</span></h2>
 <p>其实linux的命令，例如ls这些在背后运行了许多函数，如果我们用<code>ld_preload</code>劫持了其中一个函数，就会引发危险</p>
 <p>例如<code>ls</code>命令</p>
 <p>通过readelf查询ls使用了什么函数：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readelf -Ws /usr/bin/ls</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/13343/6.png" class title="awa">
 <p>选取其中之一重写，例如strcpy(line 13)和strncmp(line 10)</p>
 <h3><span id="踩坑strcpy"> 踩坑strcpy</span></h3>
 <p>这边选取strcpy</p>
 <p>如果不知道strcpy的参数格式可以先编译一次，然后查看报错信息：</p>
-<img src="/posts/undefined/7.png" class title="awa">
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/13343/7.png" class title="awa">
+<img src="/posts/13343/8.png" class title="awa">
 <p>发现不行，不显示，然后发现clear用不了了：</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/13343/9.png" class title="awa">
 <p>神秘原因，clear也没调用strcpy啊</p>
 <h3><span id="换strncmp"> 换strncmp</span></h3>
 <p>同样的情况。。</p>
 <h3><span id="换成system"> 换成system</span></h3>
 <p>strncmp居然可以了，而strcpy不行：</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/13343/10.png" class title="awa">
 <p>真的神秘</p>
 <p>猜测是exit的原因…?</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/13343/11.png" class title="awa">
 <ul>
 <li>还有一点要注意的就是不要写return 0</li>
 </ul>
@@ -319,17 +319,17 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mail.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="title function_ invoke__">mail</span>(<span class="string">&quot;a@localhost&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>利用strace跟踪系统调用</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -f php mail.php 2&gt;&amp;1 | grep -A2 -B2 execve</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/13343/12.png" class title="awa">
 <p>查看它会调用什么系统函数，比如/bin/sh，比如这个sendmail</p>
 <p>由于kali里没有sendmail，这里便直说是调用了<code>getuid()</code>函数了</p>
 <p>直接构造一个getuid.c，并且payload执行<code>id</code>命令：</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/13343/13.png" class title="awa">
 <p><strong>注意这里id要用双引号包裹，我这边打错了，后面改正了</strong></p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/13343/14.png" class title="awa">
 <p>如果说命令没找到的，可以apt install一下</p>
 <h2><span id="error_log"> error_log()</span></h2>
 <p>同样地，error_log也可以这么干，同样调用了<code>getuid</code></p>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/13343/15.png" class title="awa">
 <h2><span id="利用ld_preload劫持新进程"> 利用ld_preload劫持新进程</span></h2>
 <p>我们劫持getuid是因为前面这些函数调用了getuid，但是实际程序上如果禁用了sendmail，或者根本没有安装sendmail的话就根本劫持不了</p>
 <p>所以另一个方法就是</p>
@@ -340,13 +340,13 @@
 <p>example:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((__constructor__)) <span class="type">void</span> <span class="title function_">preload</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    unsetenv(<span class="string">&quot;LD_PRELOAD&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译成so，LD_PRELOAD添加路径：</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/13343/16.png" class title="awa">
 <p>无论执行什么命令，都会执行id命令</p>
 <p><a target="_blank" rel="noopener" href="https://gitcode.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD/blob/master/bypass_disablefunc.c?utm_source=csdn_github_accelerator&amp;isLogin=1">项目文件预览 - bypass_disablefunc_via_LD_PRELOAD - GitCode</a></p>
 <h1><span id="ctf例题"> CTF例题</span></h1>
 <p><strong>[UUCTF 2022 新生赛] uploadandinject</strong></p>
 <p>nssctf平台</p>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/13343/17.png" class title="awa">
 <p>上传文件，提示<code>hint.php</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nothing here,but I think you look look JPG,index&#x27;s swp</span><br></pre></td></tr></table></figure>
 <p>下载<code>.index.php.swp</code></p>
@@ -360,19 +360,19 @@
 <p>这里要检查它调用了什么函数，关键在于这个<code>system(&quot;echo Success to load&quot;);</code></p>
 <p>用<code>strace</code>看一下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -f php mail.php 2&gt;&amp;1 | grep -A2 -B2 execve</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/13343/18.png" class title="awa">
 <p>emmm，只有一个<code>/bin/sh</code></p>
 <p>这个时候追踪一下<code>/bin/sh</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readelf -Ws /bin/sh</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/13343/19.png" class title="awa">
 <p>发现了strcpy</p>
 <p>写一个<code>exp.c</code></p>
 <p>剩下就是找上传路径</p>
 <p>试一下发现在<code>/upload/upload.php</code></p>
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/13343/20.png" class title="awa">
 <p>无其他限制，直接改后缀就能传</p>
 <p>直接把我们的路径加载上去，就getshell咯：</p>
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/13343/21.png" class title="awa">
 <p>偷一下上传文件模板，欸嘿</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt;EOF</span></span><br><span class="line"><span class="string">&lt;html&gt;</span></span><br><span class="line"><span class="string">&lt;head&gt;</span></span><br><span class="line"><span class="string">&lt;meta charset=&quot;utf-8&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;title&gt;文件上传&lt;/title&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">&lt;form action=&quot;upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;label for=&quot;file&quot;&gt;文件名：&lt;/label&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;上传&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;/form&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">EOF</span>;</span><br><span class="line"><span class="comment">// 允许上传的图片后缀</span></span><br><span class="line"><span class="variable">$allowedExts</span> = <span class="keyword">array</span>(<span class="string">&quot;gif&quot;</span>, <span class="string">&quot;jpeg&quot;</span>, <span class="string">&quot;jpg&quot;</span>, <span class="string">&quot;png&quot;</span>);</span><br><span class="line"><span class="variable">$temp</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&quot;.&quot;</span>, <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]);</span><br><span class="line"><span class="variable">$extension</span> = <span class="title function_ invoke__">end</span>(<span class="variable">$temp</span>);     <span class="comment">// 获取文件后缀名</span></span><br><span class="line"><span class="keyword">if</span> (((<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/gif&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/jpeg&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/jpg&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/pjpeg&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/x-png&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/png&quot;</span>))</span><br><span class="line">&amp;&amp; (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;size&quot;</span>] &lt; <span class="number">204800</span>)   <span class="comment">// 小于 200 kb</span></span><br><span class="line">&amp;&amp; <span class="title function_ invoke__">in_array</span>(<span class="variable">$extension</span>, <span class="variable">$allowedExts</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;error&quot;</span>] &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;ERROR: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;error&quot;</span>] . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 判断当前目录下的 upload 目录是否存在该文件</span></span><br><span class="line">        <span class="comment">// 如果没有 upload 目录，你需要创建它，upload 目录权限为 777</span></span><br><span class="line">            <span class="comment">//if (file_exists(&quot;/var/www/html/upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]===<span class="string">&quot;1.jpg&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="comment">//echo &quot;upload/&quot;+$_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; 文件已经存在。 &quot;;</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;这个图片你替换不了&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 如果 upload 目录不存在该文件则将文件上传到 upload 目录下</span></span><br><span class="line">            <span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>], <span class="string">&quot;/var/www/html/upload/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]);</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;image_path: &quot;</span> . <span class="string">&quot;upload/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;hacker,别乱上传其他文件了,你只能上传jpg,gif,png文件&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果后续有的话还会慢慢补充的，放心</p>
@@ -467,7 +467,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-09T11:59:21.531Z" itemprop="dateModified">最后编辑：2024-03-09</time>
+                    <time datetime="2024-03-09T11:59:48.188Z" itemprop="dateModified">最后编辑：2024-03-09</time>
                 </div>
             </div>
         </footer>
