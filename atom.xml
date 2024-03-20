@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-20T15:09:47.354Z</updated>
+  <updated>2024-03-20T15:16:41.761Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/57620.html"/>
     <id>http://example.com/posts/57620.html</id>
     <published>2024-03-20T12:15:36.000Z</published>
-    <updated>2024-03-20T15:09:47.354Z</updated>
+    <updated>2024-03-20T15:16:41.761Z</updated>
     
     
     <summary type="html">&lt;p&gt;也是终于做了这个vulnstack靶场的测试了:(&lt;/p&gt;
