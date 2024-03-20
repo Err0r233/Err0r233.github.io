@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-11T15:23:47.225Z</updated>
+  <updated>2024-03-20T15:09:47.354Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VulnStack 1</title>
+    <link href="http://example.com/posts/57620.html"/>
+    <id>http://example.com/posts/57620.html</id>
+    <published>2024-03-20T12:15:36.000Z</published>
+    <updated>2024-03-20T15:09:47.354Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;也是终于做了这个vulnstack靶场的测试了:(&lt;/p&gt;
+&lt;p&gt;不过市面上还是很多人做了这个的，简单的操作学习一下吧&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>简单看看环境变量劫持</title>
@@ -374,25 +392,6 @@
     <category term="CTF" scheme="http://example.com/categories/CTF/"/>
     
     <category term="java" scheme="http://example.com/categories/CTF/java/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSS Round 13</title>
-    <link href="http://example.com/posts/4670.html"/>
-    <id>http://example.com/posts/4670.html</id>
-    <published>2023-06-04T09:52:00.000Z</published>
-    <updated>2023-06-04T14:17:13.336Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;是赛后靠wp自己复现的，可以划走了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
