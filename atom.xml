@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-24T14:29:05.599Z</updated>
+  <updated>2024-03-25T15:22:06.747Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NKCTF2024 Write Up</title>
+    <link href="http://example.com/posts/40439.html"/>
+    <id>http://example.com/posts/40439.html</id>
+    <published>2024-03-25T05:25:16.000Z</published>
+    <updated>2024-03-25T15:22:06.747Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;写一下wp&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>VulnStack 3</title>
@@ -368,25 +385,6 @@
     
     
     <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>看看ssti</title>
-    <link href="http://example.com/posts/42279.html"/>
-    <id>http://example.com/posts/42279.html</id>
-    <published>2023-09-09T04:48:14.000Z</published>
-    <updated>2023-11-11T16:09:39.526Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;整理一下有关服务端模板注入(&lt;code&gt;s&lt;/code&gt;erver &lt;code&gt;s&lt;/code&gt;ide &lt;code&gt;t&lt;/code&gt;emplate &lt;code&gt;i&lt;/code&gt;njection)的东西&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   
