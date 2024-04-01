@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-25T15:22:43.534Z</updated>
+  <updated>2024-04-01T14:12:21.486Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PicoCTF2024 Web Writeup</title>
+    <link href="http://example.com/posts/6701.html"/>
+    <id>http://example.com/posts/6701.html</id>
+    <published>2024-04-01T11:52:45.000Z</published>
+    <updated>2024-04-01T14:12:21.486Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;清一下存货&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>NKCTF2024 Write Up</title>
@@ -260,7 +277,7 @@
     <link href="http://example.com/posts/49224.html"/>
     <id>http://example.com/posts/49224.html</id>
     <published>2023-11-07T09:56:28.000Z</published>
-    <updated>2024-01-23T02:40:42.476Z</updated>
+    <updated>2024-04-01T06:10:59.742Z</updated>
     
     
     <summary type="html">&lt;p&gt;有关一些php和linux命令执行的知识&lt;/p&gt;</summary>
@@ -359,25 +376,6 @@
     
     
     <summary type="html">&lt;p&gt;有关php文件上传的一些特性&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>php伪协议</title>
-    <link href="http://example.com/posts/3072.html"/>
-    <id>http://example.com/posts/3072.html</id>
-    <published>2023-10-31T10:43:51.000Z</published>
-    <updated>2023-10-31T10:48:05.862Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;有关php伪协议的一些特性&lt;/p&gt;</summary>
     
     
     

