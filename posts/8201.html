@@ -3,7 +3,7 @@
     <head>
   <!-- 元数据 -->
   <meta charset="utf-8">
-  <link rel="icon" href="/images/failure.ico">
+  <link rel="icon" href="/images/favicon.ico">
   
   <title>java基础-javassist | Err0r233</title>
   <meta name="author" content="Err0r2333" />
@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="Err0r233">
 <meta property="og:description" content="可能有人感觉自己写在博客上的java跨度太大了，其实是因为大多数的java笔记都写在本地上了。。。今天来点基础的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/failure.ico">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-04-06T06:32:07.000Z">
-<meta property="article:modified_time" content="2024-04-06T07:36:09.839Z">
+<meta property="article:modified_time" content="2024-04-06T07:36:17.257Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/failure.ico">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
 <meta name="twitter:site" content="@Err0r2333">
   
   <!-- 站点验证相关 -->
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1712388969839"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1712388977257"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -259,10 +259,10 @@
 <h2><span id="创建一个hello类"> 创建一个Hello类</span></h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NotFoundException, IOException, CannotCompileException &#123;</span><br><span class="line">        <span class="type">ClassPool</span> <span class="variable">cp</span> <span class="operator">=</span> ClassPool.getDefault();</span><br><span class="line">        <span class="type">CtClass</span> <span class="variable">ctClass</span> <span class="operator">=</span> cp.makeClass(<span class="string">&quot;Javassist.Hello&quot;</span>);</span><br><span class="line">        ctClass.writeFile();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>这样会将这个类生成到<code>Javassist/Hello.class</code></p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/8201/1.png" class title="awa">
 <h2><span id="往hello类中添加属性"> 往Hello类中添加属性</span></h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.JavassistDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtField;</span><br><span class="line"><span class="keyword">import</span> javassist.Modifier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">ClassPool</span> <span class="variable">pool</span> <span class="operator">=</span> ClassPool.getDefault();</span><br><span class="line">        <span class="type">CtClass</span> <span class="variable">ctClass</span> <span class="operator">=</span> pool.makeClass(<span class="string">&quot;Javassist.Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">CtField</span> <span class="variable">nameField</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CtField</span>(pool.get(<span class="string">&quot;java.lang.String&quot;</span>), <span class="string">&quot;name&quot;</span>, ctClass);<span class="comment">//获取到String name</span></span><br><span class="line">        nameField.setModifiers(Modifier.PUBLIC);<span class="comment">//设置为public属性</span></span><br><span class="line">        ctClass.addField(nameField, CtField.Initializer.constant(<span class="string">&quot;Err0r233&quot;</span>));<span class="comment">//初始化赋值为Err0r233</span></span><br><span class="line">        <span class="comment">//或者ctClass.addField(name,&quot;name=\&quot;Err0r233\&quot;&quot;);</span></span><br><span class="line"></span><br><span class="line">        ctClass.writeFile();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/8201/2.png" class title="awa">
 <h2><span id="往hello类中添加方法"> 往Hello类中添加方法</span></h2>
 <p>设置返回类型：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass booleanType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass charType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass byteType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass shortType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass intType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass longType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass floatType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass doubleType;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CtClass voidType;</span><br></pre></td></tr></table></figure>
@@ -274,16 +274,16 @@
 <p>前置插入和后置插入（可以拿setBody做比较）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">method.setBody(<span class="string">&quot;System.out.println(\&quot;This is test !\&quot;);&quot;</span>);</span><br><span class="line">        method.insertAfter(<span class="string">&quot;System.out.println(\&quot;Insert after! var1 = \&quot; + $1);&quot;</span>);</span><br><span class="line">        method.insertBefore(<span class="string">&quot;System.out.println(\&quot;This is insert before! \&quot;);&quot;</span>);</span><br></pre></td></tr></table></figure>
 <p>注意，如果想要调用传入的var1，可以使用<code>$i</code>符号，其中i=1</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/8201/4.png" class title="awa">
 <p>可以看到insertBefore的在test语句前面，而after的在test后面，而且成功输出了var1的值</p>
 <h2><span id="往hello类中添加构造函数"> 往Hello类中添加构造函数</span></h2>
 <p>设置构造函数：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CtConstructor</span> <span class="variable">constructor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CtConstructor</span>(<span class="keyword">new</span> <span class="title class_">CtClass</span>[]&#123;&#125;, ctClass);<span class="comment">//无参构造方法</span></span><br><span class="line">        constructor.setBody(<span class="string">&quot;&#123;name=\&quot;Err0r233\&quot;;&#125;&quot;</span>);</span><br><span class="line">        ctClass.addConstructor(constructor);</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/8201/5.png" class title="awa">
 <p>设置了无参构造器</p>
 <p>有参构造器设置如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CtConstructor</span> <span class="variable">constructor1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CtConstructor</span>(<span class="keyword">new</span> <span class="title class_">CtClass</span>[]&#123;pool.get(<span class="string">&quot;java.lang.String&quot;</span>)&#125;, ctClass);<span class="comment">//有参构造方法：Hello(String var1)</span></span><br><span class="line">constructor1.setBody(<span class="string">&quot;&#123;$0.name = $1;&#125;&quot;</span>);<span class="comment">//这里的 $0 相当于this</span></span><br><span class="line">ctClass.addConstructor(constructor1);</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/8201/6.png" class title="awa">
 <h2><span id="修改已有的类"> 修改已有的类</span></h2>
 <p>通过Classpool的get方法来获得已有的一个类，并且进行修改：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Javassist;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javassist.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NotFoundException, CannotCompileException, IOException &#123;</span><br><span class="line">        <span class="type">ClassPool</span> <span class="variable">cp</span> <span class="operator">=</span> ClassPool.getDefault();</span><br><span class="line">        <span class="type">CtClass</span> <span class="variable">ctClass</span> <span class="operator">=</span> cp.get(<span class="string">&quot;Javassist.Test&quot;</span>);</span><br><span class="line">        <span class="type">CtConstructor</span> <span class="variable">test</span> <span class="operator">=</span> ctClass.getConstructors()[<span class="number">0</span>];</span><br><span class="line">        test.setBody(<span class="string">&quot;&#123;System.out.println(\&quot;Changing......\&quot;);&#125;&quot;</span>);</span><br><span class="line">        ctClass.writeFile();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Test</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is test !&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -394,7 +394,7 @@
                     <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-04-06T07:36:09.839Z" itemprop="dateModified">最后编辑：2024-04-06</time>
+                    <time datetime="2024-04-06T07:36:17.257Z" itemprop="dateModified">最后编辑：2024-04-06</time>
                 </div>
             </div>
         </footer>
