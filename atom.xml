@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-06T07:36:17.257Z</updated>
+  <updated>2024-04-18T09:46:16.772Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xss学习</title>
+    <link href="http://example.com/posts/20141.html"/>
+    <id>http://example.com/posts/20141.html</id>
+    <published>2024-04-18T02:54:57.000Z</published>
+    <updated>2024-04-18T09:46:16.772Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;再不学xss就要被学弟狠狠超了:(&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>java基础-javassist</title>
@@ -200,7 +219,7 @@
     <link href="http://example.com/posts/27273.html"/>
     <id>http://example.com/posts/27273.html</id>
     <published>2023-11-27T11:14:03.000Z</published>
-    <updated>2024-03-26T07:28:55.713Z</updated>
+    <updated>2024-04-13T13:13:52.281Z</updated>
     
     
     <summary type="html">&lt;p&gt;看看redis的一些东西&lt;/p&gt;</summary>
@@ -238,7 +257,7 @@
     <link href="http://example.com/posts/36166.html"/>
     <id>http://example.com/posts/36166.html</id>
     <published>2023-11-27T11:09:12.000Z</published>
-    <updated>2023-11-27T11:16:00.285Z</updated>
+    <updated>2024-04-17T08:32:21.877Z</updated>
     
     
     <summary type="html">&lt;p&gt;利用groupby + rand的特性进行报错注入&lt;/p&gt;</summary>
@@ -364,25 +383,6 @@
     
     
     <category term="RCE" scheme="http://example.com/tags/RCE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>php特性</title>
-    <link href="http://example.com/posts/21053.html"/>
-    <id>http://example.com/posts/21053.html</id>
-    <published>2023-11-02T05:31:15.000Z</published>
-    <updated>2024-04-08T15:28:21.012Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;有关php的一些特性&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   

