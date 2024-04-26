@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-26T13:58:28.670Z</updated>
+  <updated>2024-04-26T15:17:26.743Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>XYCTF2024 Web方向题解</title>
+    <link href="http://example.com/posts/52072.html"/>
+    <id>http://example.com/posts/52072.html</id>
+    <published>2024-04-26T14:00:14.000Z</published>
+    <updated>2024-04-26T15:17:26.743Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;仅作wp记录用，不宣泄任何情绪，仅作知识分享&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>UTF8 Overlong Encoding绕waf</title>
     <link href="http://example.com/posts/13739.html"/>
     <id>http://example.com/posts/13739.html</id>
     <published>2024-04-26T10:27:30.000Z</published>
-    <updated>2024-04-26T13:58:28.670Z</updated>
+    <updated>2024-04-26T13:59:09.524Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习一个绕waf的方法&lt;/p&gt;</summary>
@@ -357,25 +376,6 @@
     
     
     <summary type="html">&lt;p&gt;有关一些php和linux命令执行的知识&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文件包含</title>
-    <link href="http://example.com/posts/59563.html"/>
-    <id>http://example.com/posts/59563.html</id>
-    <published>2023-11-07T09:52:32.000Z</published>
-    <updated>2024-04-08T15:16:12.957Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;有关文件包含的一些知识&lt;/p&gt;</summary>
     
     
     
