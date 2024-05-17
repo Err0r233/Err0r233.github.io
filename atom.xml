@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-26T15:17:37.198Z</updated>
+  <updated>2024-05-17T11:59:02.776Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,118 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>山警网络空间安全实验室比赛的复现学习</title>
+    <link href="http://example.com/posts/48037.html"/>
+    <id>http://example.com/posts/48037.html</id>
+    <published>2024-05-17T08:49:17.000Z</published>
+    <updated>2024-05-17T11:59:02.776Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;自己没打，但是朋友提了两嘴就去看了一下，题目还挺有意思，学习一下&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javaweb与tomcat</title>
+    <link href="http://example.com/posts/23430.html"/>
+    <id>http://example.com/posts/23430.html</id>
+    <published>2024-05-15T11:45:56.000Z</published>
+    <updated>2024-05-17T08:48:08.367Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;简单了解javaweb三大件&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java内存马学习 - 介绍</title>
+    <link href="http://example.com/posts/25574.html"/>
+    <id>http://example.com/posts/25574.html</id>
+    <published>2024-05-15T11:11:46.000Z</published>
+    <updated>2024-05-15T11:37:46.053Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;学习java内存马&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flask内存马学习</title>
+    <link href="http://example.com/posts/4656.html"/>
+    <id>http://example.com/posts/4656.html</id>
+    <published>2024-05-14T11:51:52.000Z</published>
+    <updated>2024-05-17T07:45:00.627Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;要学内存马了，先学点简单的，从flask内存马开始&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPEL表达式注入</title>
+    <link href="http://example.com/posts/56097.html"/>
+    <id>http://example.com/posts/56097.html</id>
+    <published>2024-05-07T07:27:26.000Z</published>
+    <updated>2024-05-09T06:37:29.911Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;学习SPEL表达式注入&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>被awd速通(1)</title>
+    <link href="http://example.com/posts/57335.html"/>
+    <id>http://example.com/posts/57335.html</id>
+    <published>2024-04-28T12:34:41.000Z</published>
+    <updated>2024-05-09T09:07:20.156Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;心血来潮学习awd(吗？)&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="awd" scheme="http://example.com/tags/awd/"/>
+    
+  </entry>
   
   <entry>
     <title>XYCTF2024 Web方向题解</title>
@@ -261,121 +373,6 @@
     
     
     <summary type="html">&lt;p&gt;看看redis的一些东西&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二次校验</title>
-    <link href="http://example.com/posts/28032.html"/>
-    <id>http://example.com/posts/28032.html</id>
-    <published>2023-11-27T11:10:37.000Z</published>
-    <updated>2023-11-27T11:16:00.290Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;二次校验，又或者是有关quine的东西&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>groupby + rand报错注入</title>
-    <link href="http://example.com/posts/36166.html"/>
-    <id>http://example.com/posts/36166.html</id>
-    <published>2023-11-27T11:09:12.000Z</published>
-    <updated>2024-04-17T08:32:21.877Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;利用groupby + rand的特性进行报错注入&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mssql注入</title>
-    <link href="http://example.com/posts/62892.html"/>
-    <id>http://example.com/posts/62892.html</id>
-    <published>2023-11-27T11:07:51.000Z</published>
-    <updated>2023-11-27T11:16:00.287Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;看看mssql的一些特性：&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pgsql注入</title>
-    <link href="http://example.com/posts/55683.html"/>
-    <id>http://example.com/posts/55683.html</id>
-    <published>2023-11-27T10:56:20.000Z</published>
-    <updated>2023-11-27T11:16:00.288Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;pgsql注入的一些方式&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>rce(下)</title>
-    <link href="http://example.com/posts/62381.html"/>
-    <id>http://example.com/posts/62381.html</id>
-    <published>2023-11-08T05:31:20.000Z</published>
-    <updated>2024-03-19T09:19:02.500Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;由于篇幅有点长 字数有限制:(&lt;/p&gt;
-&lt;p&gt;分两篇发：&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>rce(上)</title>
-    <link href="http://example.com/posts/49224.html"/>
-    <id>http://example.com/posts/49224.html</id>
-    <published>2023-11-07T09:56:28.000Z</published>
-    <updated>2024-04-01T06:10:59.742Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;有关一些php和linux命令执行的知识&lt;/p&gt;</summary>
     
     
     
