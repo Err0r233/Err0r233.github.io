@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-05-20T05:30:13.000Z">
-<meta property="article:modified_time" content="2024-05-20T14:41:47.361Z">
+<meta property="article:modified_time" content="2024-05-20T14:49:03.876Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~36.15K
+                        ~35.99K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1716216107361"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1716216543876"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -458,12 +458,12 @@
 <img src="/posts/26055/26.png" class title="awa">
 <p>然后，然后就没有然后了。打不了反序列化</p>
 <p>pgsql没测，这里放一下y4神写的exp：</p>
-<p>[JavaSec/9.JDBC Attack/PostGreSQL/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/PostGreSQL/index.md)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC%20Attack/PostGreSQL/index.md">JavaSec/9.JDBC Attack/PostGreSQL/index.md at main · Y4tacker/JavaSec · GitHub</a></p>
 <p>看了几眼，原理大概是</p>
 <p><code>DriverManager.getConnection</code>会导致在<code>org.postgresql.util.ObjectFactory#instantiate</code>可以初始化任意类，这里找到了<code>org.springframework.context.support.ClassPathXmlApplicationContext</code>，这个函数本来就是初始化spring配置的，这里可以解析远程xml配置文件实现RCE。似乎在这里也不行</p>
 <p>sqlite其实很鸡肋，只能做ssrf，但是这是在普通的情况下。如果开启了允许加载拓展的话，就能够加载恶意so文件打rce了()</p>
 <p>还是看看y4神的分析吧：</p>
-<p>[JavaSec/9.JDBC Attack/SQLite/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/SQLite/index.md)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC%20Attack/SQLite/index.md">JavaSec/9.JDBC Attack/SQLite/index.md at main · Y4tacker/JavaSec · GitHub</a></p>
 <p>当sqllite建立连接是会调用<code>org.sqlite.core.CoreConnection#open</code></p>
 <img src="/posts/26055/27.png" class title="awa">
 <p>这个时候进extractResource</p>
@@ -585,7 +585,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-20T14:41:47.361Z" itemprop="dateModified">最后编辑：2024-05-20</time>
+                    <time datetime="2024-05-20T14:49:03.876Z" itemprop="dateModified">最后编辑：2024-05-20</time>
                 </div>
             </div>
         </footer>
