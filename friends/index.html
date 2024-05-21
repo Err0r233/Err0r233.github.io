@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/favicon.ico">
   
-  <title>搜索 | Err0r233</title>
+  <title>我的一些朋友~ | Err0r233</title>
   <meta name="author" content="Err0r2333" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -16,10 +16,12 @@
   
     <meta name="keywords" content="" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="搜索">
-<meta property="og:url" content="http://example.com/search/index.html">
+  <meta name="description" content="好伙伴们在哪里~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的一些朋友~">
+<meta property="og:url" content="http://example.com/friends/index.html">
 <meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="好伙伴们在哪里~">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:author" content="Err0r2333">
@@ -155,34 +157,40 @@
 
         
 
-            <div class="kratos-hentry kratos-post-inner clearfix">
-    <div class="kratos-post-content">
-        <h2 class="title-h2 text-center">搜索</h2>
-        <form class="input-group" onsubmit="return inpSearch();">
-            <input class="form-input input-lg" id="search-input" maxlength="80" name="s" placeholder="有什么想找找看的呢o(*￣▽￣*)ブ" required type="search">
-            <button class="btn btn-primary" type="submit">找一找~</button>
-        </form>
-    </div>
-</div>
-
-<div class="alert alert-info" id="kr-search-notice">
-    这里是 Err0r233 的搜索引擎~
-</div>
-
-<div id="result-posts">
+            <article itemscope itemtype="https://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <div class="kratos-post-content">
-            <p>搜索多个关键词时请用空格分割，例如「SQL_Injection RCE POST」这样；</p>
-            <p>您也可以使用这些标签碰碰运气哦~</p>
-            <p class="search-demo-tags">
-                <a href="/tags/SQL-Injection/" style="font-size: 21px; color: #8f96a3">SQL_Injection</a> <a href="/tags/RCE/" style="font-size: 20px; color: #9ba1ac">RCE</a> <a href="/tags/POST/" style="font-size: 20px; color: #9ba1ac">POST</a> <a href="/tags/Web/" style="font-size: 24px; color: #6c7588">Web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 18px; color: #b2b7be">不务正业</a> <a href="/tags/Upload/" style="font-size: 18px; color: #b2b7be">Upload</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 23px; color: #788091">基础漏洞</a> <a href="/tags/java/" style="font-size: 22px; color: #838b9a">java</a> <a href="/tags/Introduce-Myself/" style="font-size: 18px; color: #b2b7be">Introduce_Myself</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 19px; color: #a6acb5">渗透</a> <a href="/tags/Java/" style="font-size: 18px; color: #b2b7be">Java</a> <a href="/tags/Misc/" style="font-size: 18px; color: #b2b7be">Misc</a> <a href="/tags/awd/" style="font-size: 18px; color: #b2b7be">awd</a>
-            </p>
-        </div>
-    </div>
+            <h2 class="title-h2 text-center" itemprop="name headline">我的一些朋友~</h2>
+            <div itemprop="articleBody"><div class="linkpage">
+    <ul id="friendsList"></ul>
 </div>
 
-<script>var searchDataFile = "/search.json";</script>
-<script defer src="/js/local-search.min.js"></script>
+<script type="text/javascript">
+{
+    const flist = [{"name":"9c±void","link":"https://cauliweak9.github.io/","avatar":"../images/9c.jpg","bio":"Misc大神 god"},{"name":"triode","link":"https://triodelzx.github.io/","avatar":"../images/lzx.jpg","bio":"Crypto学弟 新晋密码god"},{"name":"1k0ct","link":"https://1k0ct.github.io/","avatar":"../images/taidao.jpg","bio":"Reverse学弟 新晋god， 喜欢玩下头太刀"}];
+    let friendNodes = '';
+    while (flist.length > 0) {
+        const rndNum = Math.floor(Math.random()*flist.length);
+        friendNodes += `<li><a target="_blank" href="${flist[rndNum].link}"><img src="${flist[rndNum].avatar}" onerror="this.src='/images/avatar.webp';this.onerror=null;"><h4>${flist[rndNum].name}</h4><p>${flist[rndNum].bio}</p></a></li>`;
+        flist.splice(rndNum, 1);
+    }
+    document.getElementById("friendsList").innerHTML = friendNodes;
+}
+</script></div>
+        </div>
+        <footer class="kratos-entry-footer clearfix">
+            <div class="footer-tag clearfix">
+                <div class="pull-date">
+                    <time datetime="1111-10-31T15:54:17.000Z" itemprop="dateModified">最后编辑：1111-11-01</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    
+</article>
+
 
         
 
