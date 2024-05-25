@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-23T13:13:19.848Z</updated>
+  <updated>2024-05-25T08:19:19.835Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tomcat内存马(四)</title>
+    <link href="http://example.com/posts/43864.html"/>
+    <id>http://example.com/posts/43864.html</id>
+    <published>2024-05-25T07:27:14.000Z</published>
+    <updated>2024-05-25T08:19:19.835Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;tomcat内存马第四式 valve型内存马，自己写的很水，直接用就行了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat内存马(三)</title>
+    <link href="http://example.com/posts/15780.html"/>
+    <id>http://example.com/posts/15780.html</id>
+    <published>2024-05-25T04:23:09.000Z</published>
+    <updated>2024-05-25T06:57:30.740Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;tomcat内存马第三式 servlet型内存马&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Tomcat内存马(二)</title>
@@ -345,41 +383,6 @@
     
     
     <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VulnStack 1</title>
-    <link href="http://example.com/posts/57620.html"/>
-    <id>http://example.com/posts/57620.html</id>
-    <published>2024-03-20T12:15:36.000Z</published>
-    <updated>2024-03-24T14:29:40.521Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;也是终于做了这个vulnstack靶场的测试了:(&lt;/p&gt;
-&lt;p&gt;不过市面上还是很多人做了这个的，简单的操作学习一下吧&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单看看环境变量劫持</title>
-    <link href="http://example.com/posts/13343.html"/>
-    <id>http://example.com/posts/13343.html</id>
-    <published>2024-03-07T13:15:31.000Z</published>
-    <updated>2024-03-11T15:23:47.225Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;建立在他人文章基础上的文章，简单看看环境变量带来的提权/劫持&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
