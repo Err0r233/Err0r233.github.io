@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-25T08:19:41.635Z</updated>
+  <updated>2024-05-29T07:30:18.927Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AspectJWeaver反序列化</title>
+    <link href="http://example.com/posts/13706.html"/>
+    <id>http://example.com/posts/13706.html</id>
+    <published>2024-05-26T03:29:34.000Z</published>
+    <updated>2024-05-29T07:30:18.927Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;AspectJWeaver反序列化&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Tomcat内存马(四)</title>
@@ -211,7 +230,7 @@
     <link href="http://example.com/posts/57335.html"/>
     <id>http://example.com/posts/57335.html</id>
     <published>2024-04-28T12:34:41.000Z</published>
-    <updated>2024-05-17T12:00:24.903Z</updated>
+    <updated>2024-05-25T12:45:47.550Z</updated>
     
     
     <summary type="html">&lt;p&gt;心血来潮学习awd(吗？)&lt;/p&gt;</summary>
@@ -361,23 +380,6 @@
     
     
     <summary type="html">&lt;p&gt;每次做红日靶场最痛苦的事情就是安装虚拟机，每次内存都爆满。。。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VulnStack 2</title>
-    <link href="http://example.com/posts/57428.html"/>
-    <id>http://example.com/posts/57428.html</id>
-    <published>2024-03-22T07:15:38.000Z</published>
-    <updated>2024-03-24T11:02:53.791Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;vulnstack 2 靶场，练一下，学习一下&lt;/p&gt;</summary>
     
     
     
