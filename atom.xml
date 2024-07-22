@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-06-11T06:06:44.439Z</updated>
+  <updated>2024-07-22T05:05:11.644Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>博客复活测试</title>
+    <link href="http://example.com/posts/58452.html"/>
+    <id>http://example.com/posts/58452.html</id>
+    <published>2024-07-22T05:03:51.000Z</published>
+    <updated>2024-07-22T05:05:11.644Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;孩子们我回来了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
+    
+    
+    <category term="杂项" scheme="http://example.com/tags/%E6%9D%82%E9%A1%B9/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CISCN2024 华南分区赛 awd</title>
     <link href="http://example.com/posts/50456.html"/>
     <id>http://example.com/posts/50456.html</id>
     <published>2024-06-11T04:22:11.000Z</published>
-    <updated>2024-06-11T06:06:44.439Z</updated>
+    <updated>2024-06-11T06:06:46.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;不好评价，支持绿盟&lt;/p&gt;</summary>
@@ -38,7 +57,7 @@
     <link href="http://example.com/posts/12279.html"/>
     <id>http://example.com/posts/12279.html</id>
     <published>2024-06-07T08:32:42.000Z</published>
-    <updated>2024-06-08T15:56:27.103Z</updated>
+    <updated>2024-06-08T15:56:28.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;以长城杯的DocToolkit修复作为例子，研究一下jvav靶机怎么修的&lt;/p&gt;</summary>
@@ -55,7 +74,7 @@
     <link href="http://example.com/posts/13706.html"/>
     <id>http://example.com/posts/13706.html</id>
     <published>2024-05-26T03:29:34.000Z</published>
-    <updated>2024-05-29T07:30:50.123Z</updated>
+    <updated>2024-05-29T07:30:52.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;AspectJWeaver反序列化&lt;/p&gt;</summary>
@@ -74,7 +93,7 @@
     <link href="http://example.com/posts/43864.html"/>
     <id>http://example.com/posts/43864.html</id>
     <published>2024-05-25T07:27:14.000Z</published>
-    <updated>2024-05-25T08:19:41.635Z</updated>
+    <updated>2024-05-25T08:19:42.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;tomcat内存马第四式 valve型内存马，自己写的很水，直接用就行了&lt;/p&gt;</summary>
@@ -93,7 +112,7 @@
     <link href="http://example.com/posts/15780.html"/>
     <id>http://example.com/posts/15780.html</id>
     <published>2024-05-25T04:23:09.000Z</published>
-    <updated>2024-05-25T08:19:41.639Z</updated>
+    <updated>2024-05-25T08:19:42.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;tomcat内存马第三式 servlet型内存马&lt;/p&gt;</summary>
@@ -112,7 +131,7 @@
     <link href="http://example.com/posts/44294.html"/>
     <id>http://example.com/posts/44294.html</id>
     <published>2024-05-22T14:12:50.000Z</published>
-    <updated>2024-05-23T13:13:19.848Z</updated>
+    <updated>2024-05-23T13:13:20.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;tomcat内存马第二式 filter型内存马&lt;/p&gt;</summary>
@@ -131,7 +150,7 @@
     <link href="http://example.com/posts/28066.html"/>
     <id>http://example.com/posts/28066.html</id>
     <published>2024-05-22T11:33:22.000Z</published>
-    <updated>2024-05-22T16:19:53.524Z</updated>
+    <updated>2024-05-22T16:19:54.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;tomcat的第一个内存马，listener型&lt;/p&gt;</summary>
@@ -150,7 +169,7 @@
     <link href="http://example.com/posts/26055.html"/>
     <id>http://example.com/posts/26055.html</id>
     <published>2024-05-20T05:30:13.000Z</published>
-    <updated>2024-06-07T07:35:35.841Z</updated>
+    <updated>2024-06-07T07:35:36.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()&lt;/p&gt;</summary>
@@ -169,7 +188,7 @@
     <link href="http://example.com/posts/48037.html"/>
     <id>http://example.com/posts/48037.html</id>
     <published>2024-05-17T08:49:17.000Z</published>
-    <updated>2024-05-17T12:15:58.858Z</updated>
+    <updated>2024-05-17T12:16:00.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;自己没打，但是朋友提了两嘴就去看了一下，题目还挺有意思，学习一下&lt;/p&gt;</summary>
@@ -188,7 +207,7 @@
     <link href="http://example.com/posts/23430.html"/>
     <id>http://example.com/posts/23430.html</id>
     <published>2024-05-15T11:45:56.000Z</published>
-    <updated>2024-05-17T12:00:24.897Z</updated>
+    <updated>2024-05-17T12:00:26.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;简单了解javaweb三大件&lt;/p&gt;</summary>
@@ -207,7 +226,7 @@
     <link href="http://example.com/posts/25574.html"/>
     <id>http://example.com/posts/25574.html</id>
     <published>2024-05-15T11:11:46.000Z</published>
-    <updated>2024-05-17T12:00:24.899Z</updated>
+    <updated>2024-05-17T12:00:26.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习java内存马&lt;/p&gt;</summary>
@@ -226,7 +245,7 @@
     <link href="http://example.com/posts/4656.html"/>
     <id>http://example.com/posts/4656.html</id>
     <published>2024-05-14T11:51:52.000Z</published>
-    <updated>2024-05-17T12:00:24.892Z</updated>
+    <updated>2024-05-17T12:00:26.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;要学内存马了，先学点简单的，从flask内存马开始&lt;/p&gt;</summary>
@@ -245,7 +264,7 @@
     <link href="http://example.com/posts/56097.html"/>
     <id>http://example.com/posts/56097.html</id>
     <published>2024-05-07T07:27:26.000Z</published>
-    <updated>2024-05-17T12:00:24.895Z</updated>
+    <updated>2024-05-17T12:00:26.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习SPEL表达式注入&lt;/p&gt;</summary>
@@ -264,7 +283,7 @@
     <link href="http://example.com/posts/57335.html"/>
     <id>http://example.com/posts/57335.html</id>
     <published>2024-04-28T12:34:41.000Z</published>
-    <updated>2024-06-06T08:06:12.370Z</updated>
+    <updated>2024-06-06T08:06:14.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;心血来潮学习awd(吗？)&lt;/p&gt;</summary>
@@ -281,7 +300,7 @@
     <link href="http://example.com/posts/52072.html"/>
     <id>http://example.com/posts/52072.html</id>
     <published>2024-04-26T14:00:14.000Z</published>
-    <updated>2024-04-26T15:17:37.198Z</updated>
+    <updated>2024-04-26T15:17:38.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;仅作wp记录用，不宣泄任何情绪，仅作知识分享&lt;/p&gt;</summary>
@@ -300,7 +319,7 @@
     <link href="http://example.com/posts/13739.html"/>
     <id>http://example.com/posts/13739.html</id>
     <published>2024-04-26T10:27:30.000Z</published>
-    <updated>2024-04-26T13:59:09.524Z</updated>
+    <updated>2024-04-26T13:59:10.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习一个绕waf的方法&lt;/p&gt;</summary>
@@ -319,7 +338,7 @@
     <link href="http://example.com/posts/20141.html"/>
     <id>http://example.com/posts/20141.html</id>
     <published>2024-04-18T02:54:57.000Z</published>
-    <updated>2024-04-18T09:46:48.421Z</updated>
+    <updated>2024-04-18T09:46:50.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;再不学xss就要被学弟狠狠超了:(&lt;/p&gt;</summary>
@@ -338,7 +357,7 @@
     <link href="http://example.com/posts/8201.html"/>
     <id>http://example.com/posts/8201.html</id>
     <published>2024-04-06T06:32:07.000Z</published>
-    <updated>2024-04-06T07:36:17.257Z</updated>
+    <updated>2024-04-06T07:36:18.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;可能有人感觉自己写在博客上的java跨度太大了，其实是因为大多数的java笔记都写在本地上了。。。今天来点基础的&lt;/p&gt;</summary>
@@ -357,7 +376,7 @@
     <link href="http://example.com/posts/49039.html"/>
     <id>http://example.com/posts/49039.html</id>
     <published>2024-04-04T10:54:10.000Z</published>
-    <updated>2024-04-04T13:32:29.832Z</updated>
+    <updated>2024-04-04T13:32:30.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;被红明谷打爆了，所以来学习thymeleaf ssti&lt;/p&gt;</summary>
@@ -368,23 +387,6 @@
     
     
     <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PicoCTF2024 Web Writeup</title>
-    <link href="http://example.com/posts/6701.html"/>
-    <id>http://example.com/posts/6701.html</id>
-    <published>2024-04-01T11:52:45.000Z</published>
-    <updated>2024-04-01T14:13:24.369Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;清一下存货&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   
