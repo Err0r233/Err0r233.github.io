@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-07-22T05:05:11.644Z</updated>
+  <updated>2024-07-22T07:16:52.018Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CISCN ezjava另解</title>
+    <link href="http://example.com/posts/35553.html"/>
+    <id>http://example.com/posts/35553.html</id>
+    <published>2024-07-22T06:23:14.000Z</published>
+    <updated>2024-07-22T07:16:52.018Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;参考z3r4y师傅的解题思路，感觉这种方法也是很有参考价值的&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>博客复活测试</title>
     <link href="http://example.com/posts/58452.html"/>
     <id>http://example.com/posts/58452.html</id>
     <published>2024-07-22T05:03:51.000Z</published>
-    <updated>2024-07-22T05:05:11.644Z</updated>
+    <updated>2024-07-22T05:05:43.221Z</updated>
     
     
     <summary type="html">&lt;p&gt;孩子们我回来了&lt;/p&gt;</summary>
@@ -361,25 +380,6 @@
     
     
     <summary type="html">&lt;p&gt;可能有人感觉自己写在博客上的java跨度太大了，其实是因为大多数的java笔记都写在本地上了。。。今天来点基础的&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Thymeleaf ssti</title>
-    <link href="http://example.com/posts/49039.html"/>
-    <id>http://example.com/posts/49039.html</id>
-    <published>2024-04-04T10:54:10.000Z</published>
-    <updated>2024-04-04T13:32:30.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;被红明谷打爆了，所以来学习thymeleaf ssti&lt;/p&gt;</summary>
     
     
     
