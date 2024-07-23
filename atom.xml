@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-07-23T10:44:04.514Z</updated>
+  <updated>2024-07-23T10:45:37.886Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/52077.html"/>
     <id>http://example.com/posts/52077.html</id>
     <published>2024-07-23T08:34:18.000Z</published>
-    <updated>2024-07-23T10:44:04.514Z</updated>
+    <updated>2024-07-23T10:45:37.886Z</updated>
     
     
     <summary type="html">&lt;p&gt;这次java意外地能查到资料.jpg，然后以为得用jndi打，就不是很想做。哎，没想到不出网，淦。还有个很几把神经的原因就是十个靶机我全都打不开，摆了&lt;/p&gt;</summary>
