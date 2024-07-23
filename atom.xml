@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-07-22T07:16:52.018Z</updated>
+  <updated>2024-07-23T10:44:04.514Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>dasctf暑期挑战赛easyjob复现</title>
+    <link href="http://example.com/posts/52077.html"/>
+    <id>http://example.com/posts/52077.html</id>
+    <published>2024-07-23T08:34:18.000Z</published>
+    <updated>2024-07-23T10:44:04.514Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这次java意外地能查到资料.jpg，然后以为得用jndi打，就不是很想做。哎，没想到不出网，淦。还有个很几把神经的原因就是十个靶机我全都打不开，摆了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CISCN ezjava另解</title>
     <link href="http://example.com/posts/35553.html"/>
     <id>http://example.com/posts/35553.html</id>
     <published>2024-07-22T06:23:14.000Z</published>
-    <updated>2024-07-22T07:16:52.018Z</updated>
+    <updated>2024-07-22T07:21:32.236Z</updated>
     
     
     <summary type="html">&lt;p&gt;参考z3r4y师傅的解题思路，感觉这种方法也是很有参考价值的&lt;/p&gt;</summary>
@@ -368,25 +387,6 @@
     
     
     <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java基础-javassist</title>
-    <link href="http://example.com/posts/8201.html"/>
-    <id>http://example.com/posts/8201.html</id>
-    <published>2024-04-06T06:32:07.000Z</published>
-    <updated>2024-04-06T07:36:18.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;可能有人感觉自己写在博客上的java跨度太大了，其实是因为大多数的java笔记都写在本地上了。。。今天来点基础的&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
     
   </entry>
   
