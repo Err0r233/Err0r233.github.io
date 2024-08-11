@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-07-23T10:45:37.886Z</updated>
+  <updated>2024-08-11T05:24:21.113Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TFCCTF2024 web方向部分题解</title>
+    <link href="http://example.com/posts/12526.html"/>
+    <id>http://example.com/posts/12526.html</id>
+    <published>2024-08-11T04:40:22.000Z</published>
+    <updated>2024-08-11T05:24:21.113Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;老外的比赛，涨姿势了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>流量分析学习</title>
+    <link href="http://example.com/posts/28398.html"/>
+    <id>http://example.com/posts/28398.html</id>
+    <published>2024-08-01T08:08:29.000Z</published>
+    <updated>2024-08-11T05:23:20.873Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关流量分析的学习笔记&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="-CTF Misc" scheme="http://example.com/categories/CTF-Misc/"/>
+    
+    
+    <category term="Misc" scheme="http://example.com/tags/Misc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>dasctf暑期挑战赛easyjob复现</title>
     <link href="http://example.com/posts/52077.html"/>
     <id>http://example.com/posts/52077.html</id>
     <published>2024-07-23T08:34:18.000Z</published>
-    <updated>2024-07-23T10:45:37.886Z</updated>
+    <updated>2024-08-11T04:43:57.935Z</updated>
     
     
     <summary type="html">&lt;p&gt;这次java意外地能查到资料.jpg，然后以为得用jndi打，就不是很想做。哎，没想到不出网，淦。还有个很几把神经的原因就是十个靶机我全都打不开，摆了&lt;/p&gt;</summary>
@@ -349,44 +387,6 @@
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UTF8 Overlong Encoding绕waf</title>
-    <link href="http://example.com/posts/13739.html"/>
-    <id>http://example.com/posts/13739.html</id>
-    <published>2024-04-26T10:27:30.000Z</published>
-    <updated>2024-04-26T13:59:10.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;学习一个绕waf的方法&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xss学习</title>
-    <link href="http://example.com/posts/20141.html"/>
-    <id>http://example.com/posts/20141.html</id>
-    <published>2024-04-18T02:54:57.000Z</published>
-    <updated>2024-04-18T09:46:50.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;再不学xss就要被学弟狠狠超了:(&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   

