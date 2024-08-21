@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-08-18T04:51:25.603Z</updated>
+  <updated>2024-08-21T05:43:59.782Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Secret</title>
+    <link href="http://example.com/posts/17365.html"/>
+    <id>http://example.com/posts/17365.html</id>
+    <published>2024-08-21T05:36:32.000Z</published>
+    <updated>2024-08-21T05:43:59.782Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>巅峰极客2024部分题解</title>
     <link href="http://example.com/posts/25143.html"/>
     <id>http://example.com/posts/25143.html</id>
     <published>2024-08-18T02:43:50.000Z</published>
-    <updated>2024-08-18T04:51:25.603Z</updated>
+    <updated>2024-08-20T05:55:58.492Z</updated>
     
     
     <summary type="html">&lt;p&gt;尽力了，自己还是太菜了&lt;/p&gt;</summary>
@@ -370,23 +389,6 @@
     
     
     <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>被awd速通(1)</title>
-    <link href="http://example.com/posts/57335.html"/>
-    <id>http://example.com/posts/57335.html</id>
-    <published>2024-04-28T12:34:41.000Z</published>
-    <updated>2024-06-06T08:06:14.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;心血来潮学习awd(吗？)&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="awd" scheme="http://example.com/tags/awd/"/>
     
   </entry>
   
