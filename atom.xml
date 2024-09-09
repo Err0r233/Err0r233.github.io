@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-08-21T08:26:10.461Z</updated>
+  <updated>2024-09-09T10:23:15.876Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>真正的from LFI to RCE——CVE-2024-2961</title>
+    <link href="http://example.com/posts/28510.html"/>
+    <id>http://example.com/posts/28510.html</id>
+    <published>2024-09-09T05:34:17.000Z</published>
+    <updated>2024-09-09T10:23:15.876Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="基础漏洞" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>羊城杯2024web方向题解与复现</title>
+    <link href="http://example.com/posts/3830.html"/>
+    <id>http://example.com/posts/3830.html</id>
+    <published>2024-08-31T17:07:25.000Z</published>
+    <updated>2024-09-09T10:58:26.760Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;8.27偶遇粤港澳大湾区羊城杯，全是知识盲区强如战神，拼尽全力无法战胜。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>Secret</title>
@@ -344,44 +382,6 @@
     
     
     <summary type="html">&lt;p&gt;学习java内存马&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flask内存马学习</title>
-    <link href="http://example.com/posts/4656.html"/>
-    <id>http://example.com/posts/4656.html</id>
-    <published>2024-05-14T11:51:52.000Z</published>
-    <updated>2024-05-17T12:00:26.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;要学内存马了，先学点简单的，从flask内存马开始&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SPEL表达式注入</title>
-    <link href="http://example.com/posts/56097.html"/>
-    <id>http://example.com/posts/56097.html</id>
-    <published>2024-05-07T07:27:26.000Z</published>
-    <updated>2024-05-17T12:00:26.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;学习SPEL表达式注入&lt;/p&gt;</summary>
     
     
     

