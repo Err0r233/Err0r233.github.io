@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-09-09T10:58:55.612Z</updated>
+  <updated>2024-09-10T13:19:47.475Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第四届长城杯网络安全大赛Web方向思路及题解</title>
+    <link href="http://example.com/posts/27646.html"/>
+    <id>http://example.com/posts/27646.html</id>
+    <published>2024-09-10T10:21:03.000Z</published>
+    <updated>2024-09-10T13:19:47.475Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;填错信息导致没有号打这个比赛，就随便看看题了，没想到他们都做不出来。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>真正的from LFI to RCE——CVE-2024-2961</title>
@@ -363,25 +382,6 @@
     
     
     <summary type="html">&lt;p&gt;简单了解javaweb三大件&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java内存马学习 - 介绍</title>
-    <link href="http://example.com/posts/25574.html"/>
-    <id>http://example.com/posts/25574.html</id>
-    <published>2024-05-15T11:11:46.000Z</published>
-    <updated>2024-05-17T12:00:26.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;学习java内存马&lt;/p&gt;</summary>
     
     
     
