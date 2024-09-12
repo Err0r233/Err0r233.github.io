@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-09-10T10:21:03.000Z">
-<meta property="article:modified_time" content="2024-09-10T13:19:47.475Z">
+<meta property="article:modified_time" content="2024-09-10T13:25:05.489Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1725974387475"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1725974705489"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -209,7 +209,7 @@
 <p>登录成功。</p>
 <p>登陆成功后就是一个普通的仪表盘，点击头像发现可以更改头像。头像上传后直接302跳转回原页面，这里需要猜一下上传的目录上传在哪里了。</p>
 <p>这里还是很好猜的，第一次就才对了，上传的文件放在了<code>/uploads</code>文件夹下，并且文件上传中不能够有<code>p</code>这个字符。</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/27646/1.png" class title="awa">
 <p>这里就是采用最简单的思路，经过测试发现可以使用<code>.htaccess</code>进行绕过，准备一个<code>.htaccess</code>:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;.txt&quot;&gt;</span><br><span class="line">	SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
 <p>上传后随便传一个1.txt并且内容是shell就可以了。</p>
@@ -325,7 +325,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-09-10T13:19:47.475Z" itemprop="dateModified">最后编辑：2024-09-10</time>
+                    <time datetime="2024-09-10T13:25:05.489Z" itemprop="dateModified">最后编辑：2024-09-10</time>
                 </div>
             </div>
         </footer>
