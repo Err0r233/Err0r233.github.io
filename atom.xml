@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-09-10T13:25:05.489Z</updated>
+  <updated>2024-09-15T14:18:22.554Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ErloGrave 复现</title>
+    <link href="http://example.com/posts/42959.html"/>
+    <id>http://example.com/posts/42959.html</id>
+    <published>2024-09-15T11:03:10.000Z</published>
+    <updated>2024-09-15T14:18:22.554Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;菜！又被das暴打了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>第四届长城杯网络安全大赛Web方向思路及题解</title>
@@ -40,7 +59,7 @@
     <link href="http://example.com/posts/28510.html"/>
     <id>http://example.com/posts/28510.html</id>
     <published>2024-09-09T05:34:17.000Z</published>
-    <updated>2024-09-12T09:39:55.441Z</updated>
+    <updated>2024-09-15T11:21:23.364Z</updated>
     
     
     <summary type="html">&lt;p&gt;重新拾起被曾经被我忽视掉的漏洞——CVE-2024-2961&lt;/p&gt;</summary>
@@ -370,25 +389,6 @@
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javaweb与tomcat</title>
-    <link href="http://example.com/posts/23430.html"/>
-    <id>http://example.com/posts/23430.html</id>
-    <published>2024-05-15T11:45:56.000Z</published>
-    <updated>2024-05-17T12:00:26.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;简单了解javaweb三大件&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
     
   </entry>
   
