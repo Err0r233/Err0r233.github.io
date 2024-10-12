@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-09-15T14:18:57.670Z</updated>
+  <updated>2024-10-12T17:31:05.301Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从2024巅峰极客的easy_java学习jdk17下的反序列化</title>
+    <link href="http://example.com/posts/24747.html"/>
+    <id>http://example.com/posts/24747.html</id>
+    <published>2024-10-12T14:38:18.000Z</published>
+    <updated>2024-10-12T17:31:05.301Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;好久没更新博客了，水一篇&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>ErloGrave 复现</title>
@@ -363,25 +382,6 @@
     
     
     <summary type="html">&lt;p&gt;被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>山警网络空间安全实验室比赛的复现学习</title>
-    <link href="http://example.com/posts/48037.html"/>
-    <id>http://example.com/posts/48037.html</id>
-    <published>2024-05-17T08:49:17.000Z</published>
-    <updated>2024-05-17T12:16:00.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;自己没打，但是朋友提了两嘴就去看了一下，题目还挺有意思，学习一下&lt;/p&gt;</summary>
     
     
     
