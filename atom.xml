@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-10-12T17:31:05.301Z</updated>
+  <updated>2024-10-12T17:43:09.767Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/24747.html"/>
     <id>http://example.com/posts/24747.html</id>
     <published>2024-10-12T14:38:18.000Z</published>
-    <updated>2024-10-12T17:31:05.301Z</updated>
+    <updated>2024-10-12T17:43:09.767Z</updated>
     
     
     <summary type="html">&lt;p&gt;好久没更新博客了，水一篇&lt;/p&gt;</summary>
