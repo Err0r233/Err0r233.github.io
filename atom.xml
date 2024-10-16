@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-10-12T17:43:09.767Z</updated>
+  <updated>2024-10-16T13:57:51.324Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tornado原型链污染学习</title>
+    <link href="http://example.com/posts/61598.html"/>
+    <id>http://example.com/posts/61598.html</id>
+    <published>2024-10-16T05:39:55.000Z</published>
+    <updated>2024-10-16T13:57:51.324Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;来自数信杯的一道题目，涨知识了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>从2024巅峰极客的easy_java学习jdk17下的反序列化</title>
@@ -370,25 +389,6 @@
     
     
     <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CISCN2024 Web方向题解</title>
-    <link href="http://example.com/posts/26055.html"/>
-    <id>http://example.com/posts/26055.html</id>
-    <published>2024-05-20T05:30:13.000Z</published>
-    <updated>2024-06-07T07:35:36.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;被CISCN打烂了，几个题都是差一点就出，自己还是太菜了。顺带一提，怎么出题方有srk啊()&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
     
   </entry>
   
