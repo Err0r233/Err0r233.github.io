@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-10-16T13:58:27.466Z</updated>
+  <updated>2024-10-24T16:06:50.059Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dasctf十月web方向部分题解</title>
+    <link href="http://example.com/posts/49264.html"/>
+    <id>http://example.com/posts/49264.html</id>
+    <published>2024-10-24T09:21:25.000Z</published>
+    <updated>2024-10-24T16:06:50.059Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;被ld.so.preload气晕。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>tornado原型链污染学习</title>
@@ -363,25 +382,6 @@
     
     
     <summary type="html">&lt;p&gt;tomcat内存马第二式 filter型内存马&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tomcat内存马(一)</title>
-    <link href="http://example.com/posts/28066.html"/>
-    <id>http://example.com/posts/28066.html</id>
-    <published>2024-05-22T11:33:22.000Z</published>
-    <updated>2024-05-22T16:19:54.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;tomcat的第一个内存马，listener型&lt;/p&gt;</summary>
     
     
     
