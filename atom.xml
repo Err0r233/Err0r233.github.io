@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-11-09T16:35:40.467Z</updated>
+  <updated>2024-11-12T15:29:44.534Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VulnStack 4</title>
+    <link href="http://example.com/posts/58068.html"/>
+    <id>http://example.com/posts/58068.html</id>
+    <published>2024-11-12T09:30:16.000Z</published>
+    <updated>2024-11-12T15:29:44.534Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;电脑终于有内存了.jpg&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>2024鹏城杯线上赛Web方向题解</title>
@@ -363,25 +380,6 @@
     
     
     <summary type="html">&lt;p&gt;tomcat内存马第四式 valve型内存马，自己写的很水，直接用就行了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tomcat内存马(三)</title>
-    <link href="http://example.com/posts/15780.html"/>
-    <id>http://example.com/posts/15780.html</id>
-    <published>2024-05-25T04:23:09.000Z</published>
-    <updated>2024-05-25T08:19:42.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;tomcat内存马第三式 servlet型内存马&lt;/p&gt;</summary>
     
     
     
