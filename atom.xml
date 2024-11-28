@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-11-12T15:41:22.014Z</updated>
+  <updated>2024-11-28T23:05:13.345Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SPEL注入Spring内存马</title>
+    <link href="http://example.com/posts/6350.html"/>
+    <id>http://example.com/posts/6350.html</id>
+    <published>2024-11-28T09:50:03.000Z</published>
+    <updated>2024-11-28T23:05:13.345Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;闲来无事水一篇没有营养的文章。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>VulnStack 4</title>
@@ -361,25 +380,6 @@
     
     
     <summary type="html">&lt;p&gt;AspectJWeaver反序列化&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tomcat内存马(四)</title>
-    <link href="http://example.com/posts/43864.html"/>
-    <id>http://example.com/posts/43864.html</id>
-    <published>2024-05-25T07:27:14.000Z</published>
-    <updated>2024-05-25T08:19:42.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;tomcat内存马第四式 valve型内存马，自己写的很水，直接用就行了&lt;/p&gt;</summary>
     
     
     
