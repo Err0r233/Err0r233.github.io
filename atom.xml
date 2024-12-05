@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-11-28T23:05:35.528Z</updated>
+  <updated>2024-12-05T17:53:02.577Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VulnStack 7</title>
+    <link href="http://example.com/posts/58260.html"/>
+    <id>http://example.com/posts/58260.html</id>
+    <published>2024-12-05T12:31:12.000Z</published>
+    <updated>2024-12-05T17:53:02.577Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;不想复习啊，打个vulnstack7放松一下就当我今天学习了吧&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="渗透" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>SPEL注入Spring内存马</title>
@@ -368,25 +385,6 @@
     
     
     <category term="awd" scheme="http://example.com/tags/awd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AspectJWeaver反序列化</title>
-    <link href="http://example.com/posts/13706.html"/>
-    <id>http://example.com/posts/13706.html</id>
-    <published>2024-05-26T03:29:34.000Z</published>
-    <updated>2024-05-29T07:30:52.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;AspectJWeaver反序列化&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="http://example.com/categories/java/"/>
-    
-    
-    <category term="java" scheme="http://example.com/tags/java/"/>
     
   </entry>
   

