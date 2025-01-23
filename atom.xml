@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-12-05T17:54:48.785Z</updated>
+  <updated>2025-01-23T05:28:19.131Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SUCTF2025 Web方向部分思路</title>
+    <link href="http://example.com/posts/25622.html"/>
+    <id>http://example.com/posts/25622.html</id>
+    <published>2025-01-23T01:48:20.000Z</published>
+    <updated>2025-01-23T05:28:19.131Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;又是被带飞的一集&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>VulnStack 7</title>
@@ -363,23 +382,6 @@
     
     
     <summary type="html">&lt;p&gt;不好评价，支持绿盟&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="awd" scheme="http://example.com/tags/awd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>被awd速通(2)</title>
-    <link href="http://example.com/posts/12279.html"/>
-    <id>http://example.com/posts/12279.html</id>
-    <published>2024-06-07T08:32:42.000Z</published>
-    <updated>2024-06-08T15:56:28.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;以长城杯的DocToolkit修复作为例子，研究一下jvav靶机怎么修的&lt;/p&gt;</summary>
     
     
     
