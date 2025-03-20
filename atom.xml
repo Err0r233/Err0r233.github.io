@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-01-23T05:28:42.383Z</updated>
+  <updated>2025-03-20T11:48:56.976Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CISCN&amp;长城杯2025半决赛复盘</title>
+    <link href="http://example.com/posts/35955.html"/>
+    <id>http://example.com/posts/35955.html</id>
+    <published>2025-03-19T09:21:02.000Z</published>
+    <updated>2025-03-20T11:48:56.976Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;感觉半决赛打的还是失误太多了&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="web" scheme="http://example.com/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CISCN&amp;长城杯2025半决赛awdp复现——TimeCapsule</title>
+    <link href="http://example.com/posts/16382.html"/>
+    <id>http://example.com/posts/16382.html</id>
+    <published>2025-03-17T14:53:09.000Z</published>
+    <updated>2025-03-18T15:20:21.131Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;运气真好，混进决赛了。结果还是break不掉，唉真废物&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="web" scheme="http://example.com/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>SUCTF2025 Web方向部分思路</title>
@@ -245,7 +279,7 @@
     <link href="http://example.com/posts/17365.html"/>
     <id>http://example.com/posts/17365.html</id>
     <published>2024-08-21T05:36:32.000Z</published>
-    <updated>2024-08-21T08:26:10.461Z</updated>
+    <updated>2025-03-16T05:00:29.747Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -351,42 +385,6 @@
     
     
     <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客复活测试</title>
-    <link href="http://example.com/posts/58452.html"/>
-    <id>http://example.com/posts/58452.html</id>
-    <published>2024-07-22T05:03:51.000Z</published>
-    <updated>2024-07-22T05:05:43.221Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;孩子们我回来了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF Web" scheme="http://example.com/categories/CTF-Web/"/>
-    
-    
-    <category term="杂项" scheme="http://example.com/tags/%E6%9D%82%E9%A1%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CISCN2024 华南分区赛 awd</title>
-    <link href="http://example.com/posts/50456.html"/>
-    <id>http://example.com/posts/50456.html</id>
-    <published>2024-06-11T04:22:11.000Z</published>
-    <updated>2024-06-11T06:06:46.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;不好评价，支持绿盟&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="awd" scheme="http://example.com/tags/awd/"/>
     
   </entry>
   
